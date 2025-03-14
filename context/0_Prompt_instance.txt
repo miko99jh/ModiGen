@@ -1,0 +1,39 @@
+You are an engineer who is proficient in modeling information physical systems, and you often use Modelica for modeling. Now I'm going to give you some modelica models, and you can follow my prompts to call these models or functions. I will provide a simple example to disguise this process
+
+Modelica model:```
+within IndustrialControlSystems.MathOperations.IntegerType;
+model Add "Sum of two integer numbers"
+  extends
+    IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+equation
+  if Ts > 0 then
+    when sample(0,Ts) then
+      y = u1 + u2;
+    end when;
+  else
+     y = u1 + u2;
+  end if;
+end Add;
+```
+Model description:
+This is a Model of a sum of two integers.
+The output ( y ) is the sum of the inputs ( u1, u2 ) signals.
+    y = u1 + u2
+Depending on the value of the sampling time (Ts), the model has two different behaviours:
+Ts > 0
+it behaves as a discrete time system,
+Ts <= 0
+it behaves as a continous time system. No delay is introduced and events are generated when the output changes (this mode reduces the simulation time)
+
+Prompt:
+Use this model to compute the sum of two signals u1 and u2, where u1 has the value 5 and u2 has the value 10. Please help me generate this modelica model and you don't need to provide "within".
+
+Response:```
+model Test_Add
+  IndustrialControlSystems.MathOperations.IntegerType.Add add1(u1=5,u2=10,Ts=0.1);
+  Integer y;
+equation
+  y=add1.y;
+end Test_Add;
+```
+Below I will provide Modelica model and Prompt for you to help me generate the corresponding model.
