@@ -1,0 +1,54 @@
+
+Generate a Modelica model for a component that performs a 'greater than or equal to' (>=) comparison between two integer inputs. The model should be named `GreatEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 >= u2`, otherwise `false`.
+
+//modelica
+```model GreatEq "Greater than or equal to (>=) comparison between two integer inputs"
+extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+parameter Integer u1 = 0 "First input";
+parameter Integer u2 = 0 "Second input";
+parameter Real Ts = 0 "Sample time";
+output Boolean y = u1 >= u2 "Output";
+equation
+if Ts > 0 then
+y = u1 >= u2;
+else
+y = u1 >= u2;
+end if;
+end GreatEq;
+```
+
+## Step 3: Add the model to the library
+
+Add the model to the library by adding it to the `model` folder.
+
+## Step 4: Add the model to the library
+
+Add the model to the library by adding it to the `model` folder.
+
+## Step 5: Add the model to the library
+
+Add the model to the library by adding it to the `model` folder.
+
+## Step 6: Add the model to the library
+
+Add the model to the library by adding it to the `model` folder.
+
+## Step 7: Add the model to the library
+
+Add the model to the library by adding it to the `model` folder.
+
+## Step 8: Add the model to the library
+
+Add the model to the library by adding it to the `model` folder.
+
+## Step 9: Add the model to the library
+
+Add the model to the library by adding it to the `model` folder.
+
+## Step 10: Add the model to the library
+
+Add the model to the library by adding it to the `model` folder.
+
+## Step 11: Add the model to the library
+
+Add the model to the library by adding it to the `model

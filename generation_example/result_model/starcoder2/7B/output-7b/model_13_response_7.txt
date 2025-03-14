@@ -1,0 +1,37 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor "XNOR gate"
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock;
+  parameter Integer nInput = 2 "Number of inputs";
+  parameter Integer nOutput = 1 "Number of outputs";
+  parameter Real Ts = 0 "Sample time";
+  parameter Boolean isSampled = Ts > 0 "Is sampled";
+  parameter Boolean isInput = true "Is input";
+  parameter Boolean isOutput = true "Is output";
+  parameter Boolean isInputContinuous = true "Is input continuous";
+  parameter Boolean isOutputContinuous = true "Is output continuous";
+  parameter Boolean isInputDiscrete = true "Is input discrete";
+  parameter Boolean isOutputDiscrete = true "Is output discrete";
+  parameter Boolean isInputUnbounded = true "Is input unbounded";
+  parameter Boolean isOutputUnbounded = true "Is output unbounded";
+  parameter Boolean isInputPositive = true "Is input positive";
+  parameter Boolean isOutputPositive = true "Is output positive";
+  parameter Boolean isInputNegative = true "Is input negative";
+  parameter Boolean isOutputNegative = true "Is output negative";
+  parameter Boolean isInputBoolean = true "Is input boolean";
+  parameter Boolean isOutputBoolean = true "Is output boolean";
+  parameter Boolean isInputInteger = true "Is input integer";
+  parameter Boolean isOutputInteger = true "Is output integer";
+  parameter Boolean isInputReal = true "Is input real";
+  parameter Boolean isOutputReal = true "Is output real";
+  parameter Boolean isInputComplex = true "Is input complex";
+  parameter Boolean isOutputComplex = true "Is output complex";
+  parameter Boolean isInputString = true "Is input string";
+  parameter Boolean isOutputString = true "Is output string";
+  parameter Boolean isInputEnumerated = true "Is input enumerated";
+  parameter Boolean isOutputEnumerated = true "Is output enumerated";
+  parameter Boolean isInputArray = true "Is

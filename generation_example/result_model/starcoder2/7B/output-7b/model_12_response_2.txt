@@ -1,0 +1,35 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual "Implements 'not equal (!=)' logic"
+extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+parameter Real eps = 1e-6 "Small threshold for comparison";
+Real y "Output of comparison";
+Real Ts = 0 "Sample time";
+equation
+when Ts > 0
+y = (abs(u1 - u2) > eps);
+else
+y = (abs(u1 - u2) > eps);
+end when;
+end NotEqual;
+```
+
+### 3.1.2. Generate a Modelica model for a comparison function that implements 'less than (<)' logic. The model should be named `Less` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If u1 is less than u2, the output y should be true; otherwise, it should be false.
+
+//modelica
+```model Less "Implements 'less than (<)' logic"
+extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+Real y "Output of comparison";
+Real Ts = 0 "Sample time";
+equation
+when Ts > 0
+y = (u1 < u2);
+else
+y = (u1 < u2);
+end when;
+end Less;
+```
+
+### 3.1.

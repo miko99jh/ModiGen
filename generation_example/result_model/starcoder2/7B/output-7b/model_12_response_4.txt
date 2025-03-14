@@ -1,0 +1,36 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual "Not equal comparison"
+extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+
+Real u1 "Input 1"
+Real u2 "Input 2"
+Boolean y "Output"
+parameter Real eps = 1e-6 "Threshold";
+parameter Real Ts = 0 "Sample time";
+
+equation
+if Ts > 0 then
+when Ts time 0
+y = (abs(u1 - u2) > eps);
+end when;
+else
+y = (abs(u1 - u2) > eps);
+end if;
+end NotEqual;
+```
+
+## 3.2.2. Generating a Modelica model for a comparison function that implements 'less than (<)' logic
+
+Generate a Modelica model for a comparison function that implements 'less than (<)' logic. The model should be named `LessThan` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If u1 is less than u2, the output y should be true; otherwise, it should be false.
+
+//modelica
+```model LessThan "Less than comparison"
+extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+
+Real u1 "Input 1"
+Real u2 "Input 2"
+Boolean y "Output"
+parameter

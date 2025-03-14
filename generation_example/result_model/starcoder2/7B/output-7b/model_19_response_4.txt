@@ -1,0 +1,54 @@
+
+Create a Modelica model named `DeadBand` for a dead-band controller with the following specifications:
+
+1. **Model Functionality**: The model implements a continuous dead-band functionality. The dead-band allows for an asymmetric range. When the 'smoothed' parameter is enabled, a smooth operator is applied. During initialization, the homotopy operator simplifies the model to y = u.
+
+2. **Inheritance and Interfaces**: The model extends `Modelica.Blocks.Interfaces.SISO`.
+
+3. **Parameters**: The model has the following parameters:
+   - `uMax` (Real, start=1): Upper limit of the dead zones.
+   - `uMin` (Real, default=-uMax): Lower limit of the dead zones.
+   - `smoothed` (Boolean, default=false): Indicates whether the smooth operator is applied.
+
+4. **Equations and Expressions**: The model includes the following equations:
+   - An assertion to ensure that uMax is greater than or equal to uMin: `assert(uMax >= uMin, "Limits must be consistent");`
+   - If `smoothed` is true, the output `y` is calculated using the `smooth` operator and `homotopy`:
+  `y = homotopy(actual = smooth(0, if u < uMin then u - uMin elseif u > uMax then u - uMax else 0), simplified = u);`
+   - If `smoothed` is false, the output `y` is calculated directly via `homotopy`:
+  `y = homotopy(actual = if u < uMin then u - uMin elseif u > uMax then u - uMax else 0, simplified = u);`
+
+//modelica
+```model DeadBand "Continuous dead-band controller"
+  extends Modelica.Blocks.Interfaces.SISO;
+  parameter Real uMax = 1 "Upper limit of the dead zones";
+  parameter Real uMin = -uMax "Lower limit of the dead zones";
+  parameter Boolean smoothed = false "Indicates whether the smooth operator is applied";
+  equation
+    assert(uMax >= uMin, "Limits must be consistent");
+    y = if smoothed then homotopy(actual = smooth(0, if u < uMin then u - uMin elseif u > uMax then u - uMax else 0), simplified = u) else homotopy(actual = if u < uMin then u - uMin elseif u > uMax then u - uMax else 0, simplified = u);
+  end DeadBand;
+```
+
+## Step 3: Test the Model
+
+To test the model, create a Modelica model named `TestDeadBand` for a test bench that instantiates the `DeadBand` model and connects it to a constant input and a dummy output.
+
+//modelica
+```model TestDeadBand "Test bench for the DeadBand model"
+  extends Modelica.Blocks.Sources.Constant;
+  parameter Real uMax = 1 "Upper limit of the dead zones";
+  parameter Real uMin = -uMax "Lower limit of the dead zones";
+  parameter Boolean smoothed = false "Indicates whether the smooth operator is applied";
+  Modelica.Blocks.Interfaces.SISO deadBand "Dead-band controller";
+  equation
+    connect(deadBand.u, u);
+    connect(deadBand.y, y);
+  end TestDeadBand;
+```
+
+## Step 4: Compile the Model
+
+To compile the model, use the Modelica Compiler to generate the C code.
+
+```
+modelica -c DeadBand.

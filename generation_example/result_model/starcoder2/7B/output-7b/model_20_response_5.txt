@@ -1,0 +1,35 @@
+
+Generate a Modelica model for a Bus named `Bus`. The Bus model is designed to connect other components to its port, facilitating the integration and interaction of different electrical systems. It serves as a hub in a power grid system to facilitate electrical connections. 
+
+**Inheritance and Interfaces**: The model should extend three components:
+1. `PowerGrids.Icons.Bus` for port characteristics with parameters VPuIcon = port.VPu, UIcon = port.U and UPhaseIcon = port.UPhase.
+2. `PowerGrids.Electrical.BaseClasses.SolutionChecking` for validation of results using VPuCheck = port.VPu and IPuCheck = port.IPu.
+3. `PowerGrids.Electrical.BaseClasses.OnePortAC` for single-phase AC port models with final SNom = 1, final PStart = 0, final QStart = 0, final hasSubPF, final localInit, final isLinear = true, redeclare PowerGrids.Electrical.PowerFlow.BusPF componentPF(UNom = UNom). 
+
+**Equations and Expressions**: Include the equation 'port.i = Complex(0)' to denote the initial electrical current at the port.
+
+Include these details in a well-structured Modelica model.
+
+//modelica
+```model Bus "Bus model"
+  extends PowerGrids.Electrical.BaseClasses.OnePortAC;
+  parameter Modelica.SIunits.Voltage VNom = 1 "Nominal voltage";
+  parameter Modelica.SIunits.Voltage VPu = 1 "Voltage p.u.";
+  parameter Modelica.SIunits.Current IPu = 1 "Current p.u.";
+  parameter Modelica.SIunits.Current IPuMax = 1 "Maximum current p.u.";
+  parameter Modelica.SIunits.Current IPuMin = -1 "Minimum current p.u.";
+  parameter Modelica.SIunits.Current IPuCheck = 1 "Current p.u. check";
+  parameter Modelica.SIunits.Voltage VPuCheck = 1 "Voltage p.u. check";
+  parameter Modelica.SIunits.Angle UPhase = 0 "Phase angle";
+  parameter Modelica.SIunits.Voltage U = 1 "Voltage";
+  parameter Modelica.SIunits.Current I = 1 "Current";
+  parameter Modelica.SIunits.Power P = 1 "Active power";
+  parameter Modelica.SIunits.Power Q = 1 "Reactive power";
+  parameter Modelica.SIunits.Power PCheck = 1 "Active power check";
+  parameter Modelica.SIunits.Power QCheck = 1 "Reactive power check";
+  parameter Modelica.SIunits.Power PStart = 0 "Initial active power";
+  parameter Modelica.SIunits.Power QStart = 0 "Initial reactive power";
+  parameter Modelica.SIunits.Power PNom = 1 "Nominal active power";
+  parameter Modelica.SIunits.Power QNom = 1 "Nominal reactive power";
+  parameter Modelica.SIunits.Power PMax = 1 "Maximum active power";
+  parameter Modelica.SIunits.Power QMax = 1 "Maximum

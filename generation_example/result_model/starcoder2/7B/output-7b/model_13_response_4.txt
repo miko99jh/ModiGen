@@ -1,0 +1,45 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor "n-bit XNOR gate"
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock;
+  parameter Integer nInput = 2 "Number of input signals";
+  parameter Real Ts = 0 "Sample time";
+  parameter Boolean isSampled = Ts > 0 "Is sampled";
+  parameter Boolean isAsserted = nInput >= 2 "Is asserted";
+  Real y[1] "Output signal";
+  input Real u[nInput] "Input signals";
+equation
+  if isAsserted then
+    if isSampled then
+      when sample(0, Ts)
+        y[1] = not Functions.Xor(u[:], nInput);
+    else
+      y[1] = not Functions.Xor(u[:], nInput);
+    end when;
+  end if;
+end Xnor;
+```
+
+**Note**: The model should be tested by creating a test model.
+
+//modelica
+```model TestXnor
+  extends Modelica.Icons.Example;
+  Modelica.Blocks.Interfaces.RealInput u[2];
+  Modelica.Blocks.Interfaces.RealOutput y[1];
+  IndustrialControlSystems.Logical.LogicalOperations.Xnor xnor(nInput=2, Ts=0.1);
+  connect(u, xnor.u);
+  connect(xnor.y, y);
+equation
+  when sample(0, 0.1)
+    u[1] = 1;
+    u[2] = 1;
+  end when;
+end TestXnor;
+```
+
+## 2.2.1.4.2.2.3.1.3.5.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1

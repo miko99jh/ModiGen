@@ -1,0 +1,46 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual "not equal"
+extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+parameter Real eps = 1e-6;
+parameter Real Ts = 0;
+Real y;
+equation
+y = (abs(u1-u2) > eps);
+if (Ts > 0) then
+y = if (abs(u1-u2) > eps) then false else y;
+end if;
+end NotEqual;
+```
+
+### 1.2.2.3.2. Using the Modelica Library
+
+To use the Modelica library, you must first import the library into your Modelica model.
+
+//modelica
+```model NotEqual "not equal"
+extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+import IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+import IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+parameter Real eps = 1e-6;
+parameter Real Ts = 0;
+Real y;
+equation
+y = (abs(u1-u2) > eps);
+if (Ts > 0) then
+y = if (abs(u1-u2) > eps) then false else y;
+end if;
+end NotEqual;
+```
+
+### 1.2.2.3.3. Using the Modelica Library and the Modelica Standard Library
+
+To use the Modelica library and the Modelica Standard Library, you must first import the library into your Modelica model.
+
+//modelica
+```model NotEqual "not equal"
+extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+import Modelica.Math.BooleanFunctions;
+import

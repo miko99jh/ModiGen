@@ -1,0 +1,39 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor "XNOR gate"
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock;
+  parameter Integer nInput "Number of inputs";
+  parameter Real Ts "Sample time";
+  parameter Boolean useWhen "Use when block";
+  parameter Boolean useNot "Use not function";
+  parameter Boolean useXor "Use xor function";
+  parameter Boolean useAnd "Use and function";
+  parameter Boolean useOr "Use or function";
+  parameter Boolean useNand "Use nand function";
+  parameter Boolean useNor "Use nor function";
+  parameter Boolean useXnor "Use xnor function";
+  parameter Boolean useXnor2 "Use xnor function";
+  parameter Boolean useXnor3 "Use xnor function";
+  parameter Boolean useXnor4 "Use xnor function";
+  parameter Boolean useXnor5 "Use xnor function";
+  parameter Boolean useXnor6 "Use xnor function";
+  parameter Boolean useXnor7 "Use xnor function";
+  parameter Boolean useXnor8 "Use xnor function";
+  parameter Boolean useXnor9 "Use xnor function";
+  parameter Boolean useXnor10 "Use xnor function";
+  parameter Boolean useXnor11 "Use xnor function";
+  parameter Boolean useXnor12 "Use xnor function";
+  parameter Boolean useXnor13 "Use xnor function";
+  parameter Boolean useXnor14 "Use xnor function";
+  parameter Boolean useXnor15 "Use xnor function";
+  parameter Boolean useXnor16 "Use xnor function";
+  parameter Boolean useXnor17 "Use xnor function";
+  parameter Boolean useXnor18 "Use xnor function";
+  parameter Boolean useXnor19 "Use xnor function";
+  parameter Boolean useXnor20 "Use xnor function";
+  parameter Boolean useXnor21 "Use xnor function";
+  parameter Boolean use

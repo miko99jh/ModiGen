@@ -1,0 +1,20 @@
+
+Generate a Modelica model named `Add` that adds two integer input parameters 'u1' and 'u2' and outputs their sum 'y'. The model should extend the `IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation`. The input 'u' and output 'y' exist in IntSimpleOperation and does not need to be redeclared. It should handle the addition through a conditional operation based on the sampling time Ts. If Ts is greater than zero, the output is computed at each sample point; otherwise, the output is the direct sum of the two inputs.
+
+//modelica
+```model Add "Add two integer inputs"
+extends IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+parameter IntegerType.Interfaces.IntSimpleOperation.Ts Ts = 0;
+parameter IntegerType.Interfaces.IntSimpleOperation.u1 u1 = 0;
+parameter IntegerType.Interfaces.IntSimpleOperation.u2 u2 = 0;
+parameter IntegerType.Interfaces.IntSimpleOperation.y y = 0;
+equation
+if (Ts > 0) then
+y = u1 + u2;
+else
+y = u1 + u2;
+end if;
+end Add;
+```
+
+### 4.3.3.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.

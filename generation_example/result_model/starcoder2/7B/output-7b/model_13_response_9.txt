@@ -1,0 +1,46 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor "XNOR gate"
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock;
+  parameter Integer nInput = 2;
+  parameter Integer nOutput = 1;
+  parameter Real Ts = 0;
+  parameter Boolean debug = false;
+  parameter Boolean verbose = false;
+  parameter Boolean show_input = false;
+  parameter Boolean show_output = false;
+  parameter Boolean show_internal = false;
+  parameter Boolean show_equation = false;
+  parameter Boolean show_algorithm = false;
+  parameter Boolean show_code = false;
+  parameter Boolean show_flow = false;
+  parameter Boolean show_data = false;
+  parameter Boolean show_parameters = false;
+  parameter Boolean show_initial = false;
+  parameter Boolean show_variables = false;
+  parameter Boolean show_constants = false;
+  parameter Boolean show_equations = false;
+  parameter Boolean show_connectors = false;
+  parameter Boolean show_flow_indicators = false;
+  parameter Boolean show_data_indicators = false;
+  parameter Boolean show_parameters_indicators = false;
+  parameter Boolean show_initial_indicators = false;
+  parameter Boolean show_variables_indicators = false;
+  parameter Boolean show_constants_indicators = false;
+  parameter Boolean show_equations_indicators = false;
+  parameter Boolean show_connectors_indicators = false;
+  parameter Boolean show_flow_labels = false;
+  parameter Boolean show_data_labels = false;
+  parameter Boolean show_parameters_labels = false;
+  parameter Boolean show_initial_labels = false;
+  parameter Boolean show_variables_labels = false;
+  parameter Boolean show_constants_labels = false;
+  parameter Boolean show_equations_labels = false;
+  parameter Boolean show_connectors_labels = false;
+  parameter Boolean show_flow_names = false;
+  parameter Boolean show_data_names = false;
+  parameter Boolean show_parameters_names = false;

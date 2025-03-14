@@ -1,0 +1,32 @@
+
+Generate a Modelica model for a component that performs a 'greater than or equal to' (>=) comparison between two integer inputs. The model should be named `GreatEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 >= u2`, otherwise `false`.
+
+//modelica
+```model GreatEq "Greater than or equal to comparison" extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison
+//inputs
+parameter Integer u1 = 0 "First input";
+parameter Integer u2 = 0 "Second input";
+//outputs
+output Boolean y = u1 >= u2 "Output";
+//equation
+parameter Real Ts = 0.01 "Sample time";
+equation
+when Ts > 0.0 then
+y = u1 >= u2;
+end when;
+end GreatEq;
+```
+
+### 2.3.6. Less than or equal to comparison
+
+Generate a Modelica model for a component that performs a 'less than or equal to' (<=) comparison between two integer inputs. The model should be named `LessEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 <= u2`, otherwise `false`.
+
+//modelica
+```model LessEq "Less than or equal to comparison" extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison
+//inputs
+parameter Integer u1 = 0 "First input";
+parameter Integer u2 = 0 "Second input";
+//outputs
+output Boolean y = u1 <= u2 "Output";
+//equation
+parameter Real Ts

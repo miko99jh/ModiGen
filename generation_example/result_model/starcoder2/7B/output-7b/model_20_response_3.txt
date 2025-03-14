@@ -1,0 +1,49 @@
+
+Generate a Modelica model for a Bus named `Bus`. The Bus model is designed to connect other components to its port, facilitating the integration and interaction of different electrical systems. It serves as a hub in a power grid system to facilitate electrical connections. 
+
+**Inheritance and Interfaces**: The model should extend three components:
+1. `PowerGrids.Icons.Bus` for port characteristics with parameters VPuIcon = port.VPu, UIcon = port.U and UPhaseIcon = port.UPhase.
+2. `PowerGrids.Electrical.BaseClasses.SolutionChecking` for validation of results using VPuCheck = port.VPu and IPuCheck = port.IPu.
+3. `PowerGrids.Electrical.BaseClasses.OnePortAC` for single-phase AC port models with final SNom = 1, final PStart = 0, final QStart = 0, final hasSubPF, final localInit, final isLinear = true, redeclare PowerGrids.Electrical.PowerFlow.BusPF componentPF(UNom = UNom). 
+
+**Equations and Expressions**: Include the equation 'port.i = Complex(0)' to denote the initial electrical current at the port.
+
+Include these details in a well-structured Modelica model.
+
+//modelica
+```model Bus "Bus"
+  extends PowerGrids.Electrical.BaseClasses.OnePortAC(
+    final SNom = 1,
+    final PStart = 0,
+    final QStart = 0,
+    final hasSubPF = false,
+    final localInit = false,
+    final isLinear = true,
+    redeclare PowerGrids.Electrical.PowerFlow.BusPF componentPF(UNom = UNom)
+  )
+  extends PowerGrids.Icons.Bus(
+    final VPuIcon = port.VPu,
+    final UIcon = port.U,
+    final UPhaseIcon = port.UPhase
+  )
+  extends PowerGrids.Electrical.BaseClasses.SolutionChecking(
+    final VPuCheck = port.VPu,
+    final IPuCheck = port.IPu
+  )
+  parameter Real UNom = 1 "Nominal voltage";
+  parameter Real R = 0.001 "Resistance";
+  parameter Real X = 0.001 "Reactance";
+  parameter Real G = 0.001 "Conductance";
+  parameter Real B = 0.001 "Susceptance";
+  parameter Real VNom = 1 "Nominal voltage";
+  parameter Real VMin = 0.95 "Minimum voltage";
+  parameter Real VMax = 1.05 "Maximum voltage";
+  parameter Real PMin = -100 "Minimum active power";
+  parameter Real PMax = 100 "Maximum active power";
+  parameter Real QMin = -100 "Minimum reactive power";
+  parameter Real QMax = 100 "Maximum reactive power";
+  parameter Real IMin = -100 "Minimum current";
+  parameter Real IMax = 100 "Maximum current";
+  parameter Real PNom = 1 "Nominal active power";
+  parameter Real QNom = 0 "Nominal reactive power";
+ 

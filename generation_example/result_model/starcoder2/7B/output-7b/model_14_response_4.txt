@@ -1,0 +1,62 @@
+
+Generate a Modelica model named `Timer_OffDelay`. This model represents an OFF delay timer, which delays the deactivation of a signal. The model extends `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and includes the following components: 
+1. A Boolean variable 'run' which is true while the timer is counting.
+2. A Real variable 'startTime' representing the start time of the timer counting.
+3. A discrete Boolean variable 'Sd'. 
+
+The initial equations set 'startTime' to 0 and 'run' to false. 
+
+The main equations should include: 
+1. 'Sd' equals 'S'.
+2. Using the 'sample(0,Ts)' function to trigger the timer: 
+- 'startTime' is set by calling `IndustrialControlSystems.Logical.Timers.Functions.positiveEdge` with arguments '(pre(Sd), Sd, R, pre(startTime), time)'.
+- '(run, Q)' are determined using `IndustrialControlSystems.Logical.Timers.Functions.odt` with arguments '(S, R, PV, time, startTime)'.
+- 'tr' is calculated as 'if (not Q) then PV - (time - startTime) else PV'.
+
+Please include the inheritance from `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and ensure all variables are correctly parameterized and integrated.
+
+//modelica
+```model Timer_OffDelay "Timer for OFF delay"
+  extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer;
+
+  parameter Boolean S "Input signal";
+  parameter Real R "Delay time";
+  parameter Real PV "Previous value of output";
+  parameter Real Ts "Sampling time";
+
+  Boolean run "Timer is running";
+  Real startTime "Start time of timer";
+  discrete Boolean Sd "Sampled input signal";
+
+  initial equation
+    startTime = 0;
+    run = false;
+  equation
+    Sd = S;
+    startTime = IndustrialControlSystems.Logical.Timers.Functions.positiveEdge(pre(Sd), Sd, R, pre(startTime), time);
+    (run, Q) = IndustrialControlSystems.Logical.Timers.Functions.odt(S, R, PV, time, startTime);
+    tr = if (not Q) then PV - (time - startTime) else PV;
+end Timer_OffDelay;
+```
+
+//modelica
+```model Timer_OffDelay "Timer for OFF delay"
+  extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer;
+
+  parameter Boolean S "Input signal";
+  parameter Real R "Delay time";
+  parameter Real PV "Previous value of output";
+  parameter Real Ts "Sampling time";
+
+  Boolean run "Timer is running";
+  Real startTime "Start time of timer";
+  discrete Boolean Sd "Sampled input signal";
+
+  initial equation
+    startTime = 0;
+    run = false;
+  equation
+    Sd = S;
+    startTime = IndustrialControlSystems.Logical.Timers.Functions.positiveEdge(pre(Sd), Sd, R, pre(startTime), time);
+    (run, Q) = IndustrialControlSystems.Logical.Timers.Functions.odt(S, R, PV, time, startTime);
+    tr = if (not Q) then PV - (time - startTime) else PV

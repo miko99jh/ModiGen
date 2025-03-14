@@ -1,0 +1,40 @@
+
+Generate a Modelica model for a Bus named `Bus`. The Bus model is designed to connect other components to its port, facilitating the integration and interaction of different electrical systems. It serves as a hub in a power grid system to facilitate electrical connections. 
+
+**Inheritance and Interfaces**: The model should extend three components:
+1. `PowerGrids.Icons.Bus` for port characteristics with parameters VPuIcon = port.VPu, UIcon = port.U and UPhaseIcon = port.UPhase.
+2. `PowerGrids.Electrical.BaseClasses.SolutionChecking` for validation of results using VPuCheck = port.VPu and IPuCheck = port.IPu.
+3. `PowerGrids.Electrical.BaseClasses.OnePortAC` for single-phase AC port models with final SNom = 1, final PStart = 0, final QStart = 0, final hasSubPF, final localInit, final isLinear = true, redeclare PowerGrids.Electrical.PowerFlow.BusPF componentPF(UNom = UNom). 
+
+**Equations and Expressions**: Include the equation 'port.i = Complex(0)' to denote the initial electrical current at the port.
+
+Include these details in a well-structured Modelica model.
+
+//modelica
+```model Bus "Bus"
+extends PowerGrids.Electrical.BaseClasses.OnePortAC;
+
+parameter Real VPuIcon = port.VPu;
+parameter Real UIcon = port.U;
+parameter Real UPhaseIcon = port.UPhase;
+
+PowerGrids.Icons.Bus port(
+	VPu = VPuIcon,
+	U = UIcon,
+	UPhase = UPhaseIcon
+);
+
+PowerGrids.Electrical.BaseClasses.SolutionChecking VPuCheck(
+	VPu = port.VPu
+);
+
+PowerGrids.Electrical.BaseClasses.SolutionChecking IPuCheck(
+	IPu = port.IPu
+);
+
+equation
+port.i = Complex(0);
+end Bus;
+```
+
+### 2.2.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.

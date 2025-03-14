@@ -1,0 +1,38 @@
+
+Generate a Modelica model for a component that performs a 'greater than or equal to' (>=) comparison between two integer inputs. The model should be named `GreatEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 >= u2`, otherwise `false`.
+
+//modelica
+```model GreatEq "Greater than or equal to comparison"
+extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+parameter Integer u1;
+parameter Integer u2;
+parameter Real Ts = 0;
+output Boolean y;
+equation
+if Ts > 0 then
+y = u1 >= u2;
+else
+y = u1 >= u2;
+end if;
+end GreatEq;
+```
+
+### 4.2.2. Generate a Modelica model for a component that performs a 'less than' (<) comparison between two integer inputs. The model should be named `Less` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 < u2`, otherwise `false`.
+
+//modelica
+```model Less "Less than comparison"
+extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+parameter Integer u1;
+parameter Integer u2;
+parameter Real Ts = 0;
+output Boolean y;
+equation
+if Ts > 0 then
+y = u1 < u2;
+else
+y = u1 < u2;
+end if;
+end Less;
+```
+
+### 4.2.3. Generate a Modelica model for a component that performs a 'less than or

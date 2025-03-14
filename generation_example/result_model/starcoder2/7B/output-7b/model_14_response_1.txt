@@ -1,0 +1,54 @@
+
+Generate a Modelica model named `Timer_OffDelay`. This model represents an OFF delay timer, which delays the deactivation of a signal. The model extends `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and includes the following components: 
+1. A Boolean variable 'run' which is true while the timer is counting.
+2. A Real variable 'startTime' representing the start time of the timer counting.
+3. A discrete Boolean variable 'Sd'. 
+
+The initial equations set 'startTime' to 0 and 'run' to false. 
+
+The main equations should include: 
+1. 'Sd' equals 'S'.
+2. Using the 'sample(0,Ts)' function to trigger the timer: 
+- 'startTime' is set by calling `IndustrialControlSystems.Logical.Timers.Functions.positiveEdge` with arguments '(pre(Sd), Sd, R, pre(startTime), time)'.
+- '(run, Q)' are determined using `IndustrialControlSystems.Logical.Timers.Functions.odt` with arguments '(S, R, PV, time, startTime)'.
+- 'tr' is calculated as 'if (not Q) then PV - (time - startTime) else PV'.
+
+Please include the inheritance from `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and ensure all variables are correctly parameterized and integrated.
+
+//modelica
+```model Timer_OffDelay "Delay timer"
+extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer;
+
+parameter Boolean S = false "Input signal";
+parameter Real R = 1 "Delay time";
+parameter Real PV = 0 "Output signal";
+
+discrete Boolean Sd "Delayed signal";
+discrete Real startTime "Start time";
+discrete Boolean run "Timer running";
+
+equation
+startTime = 0;
+run = false;
+
+Sd = S;
+
+startTime = IndustrialControlSystems.Logical.Timers.Functions.positiveEdge(pre(Sd), Sd, R, pre(startTime), time);
+(run, Q) = IndustrialControlSystems.Logical.Timers.Functions.odt(S, R, PV, time, startTime);
+tr = if (not Q) then PV - (time - startTime) else PV;
+end Timer_OffDelay;
+```
+
+### 2.2.2. Timer_OnDelay
+
+Generate a Modelica model named `Timer_OnDelay`. This model represents an ON delay timer, which delays the activation of a signal. The model extends `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and includes the following components: 
+1. A Boolean variable 'run' which is true while the timer is counting.
+2. A Real variable'startTime' representing the start time of the timer counting.
+3. A discrete Boolean variable 'Sd'. 
+
+The initial equations set'startTime' to 0 and 'run' to false. 
+
+The main equations should include: 
+1. 'Sd' equals 'S'.
+2. Using the'sample(0,Ts)' function to trigger the timer: 
+-'startTime' is set by calling `IndustrialControlSystems.Logical.Timers.Functions.negativeEdge` with arguments '(pre(Sd), Sd, R
