@@ -1,0 +1,11 @@
+# Validation Dependencies
+numpy>=1.24.0
+pandas>=1.5.0
+tqdm>=4.60.0
+OMPython==3.5.1  # OpenModelica Python API
+
+# Generation Dependencies
+llama-index-core==0.11.16
+torch>=2.0.0
+transformers>=4.30.0
+accelerate>=0.20.0
