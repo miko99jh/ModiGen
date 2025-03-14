@@ -1,3 +1,4 @@
+# Component model functional validation script, used after the __main__ function to compute pass_f@k.
 import os
 import re
 import json
@@ -11,14 +12,14 @@ MSE_THRESHOLD = 1e-3
 # Data matching: Find the most recent value
 def find_closest_values(reference_data, validated_data):
     """
-    根据 reference_data 的最后一列，在 validated_data 的非第一列中找到最接近的一列。
+    Find the closest column in validated_data to the last column of reference_data.
     
     Args:
-        reference_data (ndarray): 参考数据 (N, M)，仅使用最后一列作为参考。
-        validated_data (ndarray): 验证数据 (N, L)，从第二列开始比较。
+        reference_data (ndarray): Reference data (N, M), using only the last column as a reference.
+        validated_data (ndarray): Validation data (N, L), comparing from the second column onward.
     
     Returns:
-        closest_row (ndarray): 与 reference_data 的最后一列最接近的 validated_data 的一列。
+        closest_row (ndarray): The column in validated_data closest to the last column of reference_data.
     """
     # Extract the last column of reference_data
     reference_column = reference_data[:, -1]
@@ -44,105 +45,105 @@ def find_closest_values(reference_data, validated_data):
 # Adjust column length consistently
 def adjust_length(data_1, data_2):
     """
-    按照 reference_data 的时间点，从 validated_data 中提取最接近的时间点数据。
+    Extract the closest time point data from validated_data based on reference_data time points.
     
-    参数：
-    - reference_data: numpy 数组，参考数据，第一列是时间。
-    - validated_data: numpy 数组，验证数据，第一行是时间。
+    Args:
+    - reference_data: numpy array, reference data, with the first column as time.
+    - validated_data: numpy array, validation data, with the first row as time.
 
-    返回：
-    - reference_data: 调整后的参考数据。
-    - aligned_validated_data: 按照 reference_data 时间点对齐的验证数据。
+    Returns:
+    - reference_data: Adjusted reference data.
+    - aligned_validated_data: Validation data aligned according to reference_data time points.
     """
     # Get reference time points and verification time points
-    data1_time = data_1[:, 0]  # 参考数据的时间列
-    data2_time = data_2[:, 0]  # 验证数据的时间列
+    data1_time = data_1[:, 0]  # Time column of reference data
+    data2_time = data_2[:, 0]  # Time column of validation data
 
     aligned_validated_data = []
 
     for ref_t in data1_time:
-        # 找到与 ref_t 最接近的 validated_time 索引
+        # Find the closest validated_time index to ref_t
         closest_index = np.argmin(np.abs(data2_time - ref_t))
         
-        # 提取该时间点对应的 validated_data 列
-        aligned_validated_data.append(data_2[closest_index, :])  # 取相应时间点的数据部分
+        # Extract the corresponding validated_data column at this time point
+        aligned_validated_data.append(data_2[closest_index, :])  # Retrieve data at the corresponding time point
 
-    aligned_validated_data = np.array(aligned_validated_data)  # 转置为行对齐格式
+    aligned_validated_data = np.array(aligned_validated_data)  # Convert to row-aligned format
 
     return data_1, aligned_validated_data
 
 # The interpolation function adjusts the data to the target length
 def interpolate_to_length(data, target_length):
-    x_original = np.linspace(0, 1, len(data))  # 原始数据的点
-    x_target = np.linspace(0, 1, target_length)  # 目标点
+    x_original = np.linspace(0, 1, len(data))  # Original data points
+    x_target = np.linspace(0, 1, target_length)  # Target points
     interpolated_data = np.interp(x_target, x_original, data)
     return interpolated_data
 
 # Load the output data of the reference model
 def load_csv_data(csv_path):
     """
-    加载CSV文件中的数据，假定时间列和输出值存储在文件中。
-    返回包含时间列和数据列的numpy数组。
+    Load data from a CSV file, assuming time column and output values are stored in the file.
+    Returns a numpy array containing the time column and data columns.
     """
     try:
         data = pd.read_csv(csv_path)
-        return data.values  # 返回为numpy数组
+        return data.values  # Return as numpy array
     except Exception as e:
-        print(f"加载 CSV 数据时出错: {e}")
+        print(f"Error loading CSV data: {e}")
         return None
 
 # Load the MAT file data of the model to be verified
 def load_mat_data(mat_path):
     """
-    加载MAT文件并提取data_2变量中的数值数据。
-    返回包含时间列和数据列的numpy数组。
+    Load a MAT file and extract numerical data from the data_2 variable.
+    Returns a numpy array containing the time column and data columns.
     """
     try:
         mat_data = sio.loadmat(mat_path)
         if "data_2" in mat_data:
             return mat_data["data_2"]
         else:
-            raise KeyError("MAT 文件中未找到 'data_2' 变量。")
+            raise KeyError("Variable 'data_2' not found in MAT file.")
     except Exception as e:
-        print(f"加载 MAT 数据时出错: {e}")
+        print(f"Error loading MAT data: {e}")
         return None
 
 # Calculated mean square Error (MSE)
 def calculate_mse(data1, data2):
     """
-    计算两个数据序列的均方误差。
+    Compute the mean square error between two data sequences.
     """
     mse = np.mean((data1 - data2) ** 2)
     return mse
 
-# 更新 JSON 文件
+# Update JSON file
 def update_json_results(json_path, model_key, passed_count):
     try:
-        # 加载现有的 JSON 数据
+        # Load existing JSON data
         with open(json_path, "r") as file:
             results_data = json.load(file)
 
-        # 检查 model_n 是否存在
+        # Check if model_n exists
         if model_key not in results_data["results"]:
-            raise KeyError(f"{model_key} 不存在于 JSON 文件中。")
+            raise KeyError(f"{model_key} does not exist in JSON file.")
 
-        # 更新或添加 check_function_correct 字段
+        # Update or add check_function_correct field
         results_data["results"][model_key]["check_function_correct"] = passed_count
 
-        # 写回 JSON 文件
+        # Write back to JSON file
         with open(json_path, "w") as file:
             json.dump(results_data, file, indent=4)
 
-        print(f"已成功更新 {json_path}: {model_key} -> check_function_correct = {passed_count}")
+        print(f"Successfully updated {json_path}: {model_key} -> check_function_correct = {passed_count}")
 
     except Exception as e:
-        print(f"更新 JSON 文件时出错: {e}")
+        print(f"Error updating JSON file: {e}")
 
-# 主函数
+# Main function
 def main():
     choice = "starcoder2/feedback-15B-Grag"
     results_json_path = f"E:/Research_Work2/modelica generation/model_generation/result_model/{choice}/results_analysis_model.json"
-    # 定义文件路径
+    # Define file paths
     for n in range(1, 130):
         passed_count = 0
         failed_count = 0
@@ -150,23 +151,23 @@ def main():
         reference_csv_dir = "E:/Research_Work2/modelica generation/model_generation/model_prompts/reference_model"
         mat_file_dir = f"E:/Research_Work2/modelica generation/model_generation/result_model/{choice}/simulation"
 
-        # 匹配文件名的正则表达式
+        # Match filenames using regex pattern
         # pattern = re.compile(f"{n}_Test_.*\\.csv")
         pattern = re.compile(f"{n}_.*\\.csv")
         matching_files = [f for f in os.listdir(reference_csv_dir) if pattern.match(f)]
 
         if matching_files == []:
             reference_data = None
-            print("\033[33m加载参考数据文件失败，无法继续验证。\033[0m")
+            print("\033[33mFailed to load reference data file, verification cannot continue.\033[0m")
             model_key = f"model_{n}"
             update_json_results(results_json_path, model_key, passed_count)
             continue
         
-        # 加载参考模型数据
-        reference_csv_path = os.path.join(reference_csv_dir, matching_files[0])  # 参考模型的CSV文件路径    
+        # Load reference model data
+        reference_csv_path = os.path.join(reference_csv_dir, matching_files[0])  # Reference model CSV file path    
         reference_data = load_csv_data(reference_csv_path)
 
-        # 匹配以 model_{n} 为开头的文件夹
+        # Match folders starting with model_{n}
         folder_pattern = re.compile(f"model_{n}_")
         mat_files = []
         for root, dirs, files in os.walk(mat_file_dir):
@@ -174,7 +175,7 @@ def main():
                 mat_files += [os.path.join(root, file) for file in files if file.endswith(".mat")]
 
         if not mat_files:
-            print("\033[33m该模型没有生成仿真成功的用例，无法继续验证。\033[0m")
+            print("\033[33mNo successful simulation cases were generated for this model, verification cannot continue.\033[0m")
             model_key = f"model_{n}"
             update_json_results(results_json_path, model_key, passed_count)
         else:
@@ -183,50 +184,46 @@ def main():
                 id_path = os.path.normpath(mat_file_path).split(os.sep)[-2]
 
                 if validated_data is None:
-                    print(f"\033[91m加载 MAT 文件 {mat_file_path} 失败，无法继续验证。\033[0m")
+                    print(f"\033[91mFailed to load MAT file {mat_file_path}, verification cannot continue.\033[0m")
                     failed_count += 1
                     continue
                 if validated_data.size == 0:
-                    print(f"\033[35mMAT 文件 {mat_file_path} 无有效验证结果，无法继续验证。\033[0m")
+                    print(f"\033[35mMAT file {mat_file_path} contains no valid validation results, verification cannot continue.\033[0m")
                     failed_count += 1
                     continue
                 validated_data = validated_data.T
 
                 try:
-                    # 调整数据行列长度一致
+                    # Adjust data row and column length consistency
                     ref_rows, ref_cols = reference_data.shape
                     val_rows, val_cols = validated_data.shape
-                    # if ref_rows < val_cols:
-                    #     reference_output = interpolate_to_length(reference_output, val_cols)
-                    # elif ref_rows > val_cols:
-                    #     validated_data = np.array([interpolate_to_length(row, ref_rows) for row in validated_data])
                     if ref_rows < val_rows:
                         reference_data, validated_data = adjust_length(reference_data, validated_data)
-                        print(f"\033[36m{id_path}:ref_rows < val_rows\033[0m")
+                        print(f"\033[36m{id_path}: ref_rows < val_rows\033[0m")
                     if ref_rows > val_rows:
                         validated_data, reference_data = adjust_length(validated_data, reference_data)
-                        print(f"\033[36m{id_path}:ref_rows > val_rows\033[0m")
+                        print(f"\033[36m{id_path}: ref_rows > val_rows\033[0m")
 
-                    # 匹配最近值
+                    # Match closest values
                     matched_validated_data = find_closest_values(reference_data, validated_data)
 
-                    # 计算MSE
-                    mse = calculate_mse(reference_data[:, -1], matched_validated_data)  # 跳过第一行
+                    # Compute MSE
+                    mse = calculate_mse(reference_data[:, -1], matched_validated_data)
 
-                    # 检查 MSE 阈值
+                    # Check MSE threshold
                     if mse <= MSE_THRESHOLD:
-                        print(f"{id_path} 功能验证通过: MSE = {mse:.6f} (低于阈值 {MSE_THRESHOLD})")
+                        print(f"{id_path} Function verification passed: MSE = {mse:.6f} (below threshold {MSE_THRESHOLD})")
                         passed_count += 1
                     else:
-                        print(f"\033[91m{id_path} 功能验证失败: MSE = {mse:.6f} (高于阈值 {MSE_THRESHOLD})\033[0m")
+                        print(f"\033[91m{id_path} Function verification failed: MSE = {mse:.6f} (above threshold {MSE_THRESHOLD})\033[0m")
                         failed_count += 1
 
                 except Exception as e:
-                    print(f"{id_path} 验证过程中出错: {e}")
+                    print(f"{id_path} Error occurred during verification: {e}")
 
-            print(f"\n验证通过的模型总数: {passed_count}\n验证未通过的模型总数: {failed_count}")
+            print(f"\nTotal number of models passed: {passed_count}\nTotal number of models failed: {failed_count}")
 
-            # 更新 JSON 文件
+            # Update JSON file
             model_key = f"model_{n}"
             update_json_results(results_json_path, model_key, passed_count)
         
