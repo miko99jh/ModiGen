@@ -1,0 +1,40 @@
+Response:```
+model Test_Sub
+  IndustrialControlSystems.MathOperations.IntegerType.Sub sub1(u1=5,u2=10,Ts=0.1);
+  Integer y;
+equation
+  y=sub1.y;
+end Test_Sub;
+```
+Below I will provide Modelica model and Prompt for you to help me generate the corresponding model.
+Modelica model:```
+within IndustrialControlSystems.MathOperations.IntegerType;
+model Mult "Multiplication of two integer numbers"
+  extends
+    IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+equation
+  if Ts > 0 then
+    when sample(0,Ts) then
+      y = u1 * u2;
+    end when;
+  else
+     y = u1 * u2;
+  end if;
+end Mult;
+```
+Model description:
+Model of a multiplication of two integers.
+The output ( y ) is the multiplication of the inputs ( u1, u2 ) signals.
+    y = u1 * u2
+Depending on the value of the sampling time (Ts), the model has two different behaviours:
+Ts > 0
+it behaves as a discrete time system,
+Ts <= 0
+it behaves as a continous time system. No delay is introduced and events are generated when the output changes (this mode reduces the simulation time)
+
+Prompt:
+Use this model to compute the multiplication of two signals u1 and u2, where u1 has the value 5 and u2 has the value 10. Please help me generate this modelica model and you don't need to provide "within".
+
+Response:```
+model Test_Mult
+  IndustrialControlSystems.MathOperations.IntegerType.Mult mult1(u1=5,u2=10,Ts=0.1);
