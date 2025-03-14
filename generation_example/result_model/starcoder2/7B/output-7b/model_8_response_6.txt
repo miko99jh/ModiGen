@@ -1,0 +1,36 @@
+
+Generate a Modelica model named `FirstOrder` to simulate a first order process, defined by the transfer function mu/(1+tau*s). It extends from a base block `IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock`. The model should include parameters for the time constant 'tau' with value 2, the gain 'mu' with value 1, and the output 'y_start' with value 0. The initial equations is initial output 'y' equals to 'y_start'. The equations should describe the dynamic behavior where the derivative of output 'y' scaled with 'tau' plus the output itself equals the input 'u' multiplied by 'mu'.
+
+//modelica
+```model FirstOrder "First order process"
+  extends IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock;
+  parameter Real tau = 2 "Time constant";
+  parameter Real mu = 1 "Gain";
+  parameter Real y_start = 0 "Initial output";
+  Real y(start = y_start) "Output";
+  input Real u "Input";
+  equation
+    der(y) = tau*y + u*mu;
+end FirstOrder;
+```
+
+### 3.2.4
+
+Generate a Modelica model named `FirstOrder` to simulate a first order process, defined by the transfer function mu/(1+tau*s). It extends from a base block `IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock`. The model should include parameters for the time constant 'tau' with value 2, the gain'mu' with value 1, and the output 'y_start' with value 0. The initial equations is initial output 'y' equals to 'y_start'. The equations should describe the dynamic behavior where the derivative of output 'y' scaled with 'tau' plus the output itself equals the input 'u' multiplied by'mu'.
+
+//modelica
+```model FirstOrder "First order process"
+  extends IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock;
+  parameter Real tau = 2 "Time constant";
+  parameter Real mu = 1 "Gain";
+  parameter Real y_start = 0 "Initial output";
+  Real y(start = y_start) "Output";
+  input Real u "Input";
+  equation
+    der(y) = tau*y + u*mu;
+end FirstOrder;
+```
+
+### 3.2.5
+
+Generate a Modelica model named `FirstOrder` to simulate a first order process, defined by the transfer function mu/(1+tau*s). It extends

@@ -1,0 +1,40 @@
+
+Generate a Modelica block named `SignalRanker` that ranks output signals such that the output signals are ordered in descending order (y[i] >= y[i+1]). The block should extend the `Modelica.Blocks.Interfaces.MIMO` interface, ensuring that the number of outputs (nout) matches the number of inputs (nin). Use the `Modelica.Math.Vectors.sort` function to sort the input vector (u) in descending order with the 'ascending' parameter set to false.
+
+//modelica
+```block SignalRanker
+extends Modelica.Blocks.Interfaces.MIMO;
+
+input Real u[nout];
+output Real y[nin];
+
+algorithm
+y := Modelica.Math.Vectors.sort(u, false);
+end SignalRanker;
+```
+
+## 4.3.3.2. Modelica function
+
+Generate a Modelica function named `SignalRanker` that ranks output signals such that the output signals are ordered in descending order (y[i] >= y[i+1]). The function should extend the `Modelica.Blocks.Interfaces.MIMO` interface, ensuring that the number of outputs (nout) matches the number of inputs (nin). Use the `Modelica.Math.Vectors.sort` function to sort the input vector (u) in descending order with the 'ascending' parameter set to false.
+
+//modelica
+```function SignalRanker
+extends Modelica.Blocks.Interfaces.MIMO;
+
+input Real u[nout];
+output Real y[nin];
+
+algorithm
+y := Modelica.Math.Vectors.sort(u, false);
+end SignalRanker;
+```
+
+## 4.3.3.3. Modelica package
+
+Generate a Modelica package named `SignalRanker` that ranks output signals such that the output signals are ordered in descending order (y[i] >= y[i+1]). The package should extend the `Modelica.Blocks.Interfaces.MIMO` interface, ensuring that the number of outputs (nout) matches the number of inputs (nin). Use the `Modelica.Math.Vectors.sort` function to sort the input vector (u) in descending order with the 'ascending' parameter set to false.
+
+//modelica
+```package SignalRanker
+extends Modelica.Blocks.Interfaces.MIMO;
+
+input

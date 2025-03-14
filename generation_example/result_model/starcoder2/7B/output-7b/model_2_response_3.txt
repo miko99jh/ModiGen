@@ -1,0 +1,24 @@
+
+Generate a Modelica function model that calculates the distances between the centers of faces in a layered structure. The model should be named `layer_fcf_distances`. The function takes an input array `s` of type `Real`, representing the thicknesses of the layers, and outputs an array `d` of type `Real` representing the distances between face centers, with `size(s, 1) + 1` elements. The function also has a protected variable n, it is an integer `n` that stores the size of the input array `s`. The function should first assign the first and last elements of `d` as half of the first and last elements of `s`, respectively. Then, for each subsequent element, calculate the average of the current and previous layer thicknesses. The model does not inherit from any other models.
+
+//modelica
+```function layer_fcf_distances
+"Calculate distances between face centers in a layered structure"
+input Real s[size(s, 1) + 1];
+output Real d[size(s, 1) + 1];
+protected
+  integer n;
+initial
+  n := size(s, 1) + 1;
+  d[1] := 0.5*s[1];
+  d[n] := 0.5*s[n];
+equation
+  for i in 2:n-1 loop
+    d[i] := 0.5*(s[i-1] + s[i]);
+  end for;
+end layer_fcf_distances;
+```
+
+### 2.2.1.3. Modelica Model `layer_fcf_distances_test`
+
+The test model should be named `layer_fcf_distances_test`. The model should inherit from the `Modelica.Utilities.Tests.Compare` model. The model should have a public variable `s` of type `Real` that is an array of thicknesses of the layers. The model should have a public variable `d` of type `Real` that is an array of distances between the face centers. The model should have a public variable `expected` of type `Real` that is an array of expected distances between the face centers. The model should have a protected variable `n` of type `Integer` that is the size of the input array `s`. The model should have a protected variable `d_calc` of type `Real` that is an array of calculated distances between the face centers. The model should have a protected variable `expected_calc` of type `Real` that is an array of expected distances between the face centers. The model should have a protected variable `tolerance` of type `Real` that is the tolerance for the comparison of the calculated distances and the expected distances.

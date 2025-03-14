@@ -1,0 +1,25 @@
+
+Generate a Modelica function model that calculates the distances between the centers of faces in a layered structure. The model should be named `layer_fcf_distances`. The function takes an input array `s` of type `Real`, representing the thicknesses of the layers, and outputs an array `d` of type `Real` representing the distances between face centers, with `size(s, 1) + 1` elements. The function also has a protected variable n, it is an integer `n` that stores the size of the input array `s`. The function should first assign the first and last elements of `d` as half of the first and last elements of `s`, respectively. Then, for each subsequent element, calculate the average of the current and previous layer thicknesses. The model does not inherit from any other models.
+
+//modelica
+```function layer_fcf_distances
+input Real s[size(s, 1) + 1];
+output Real d[size(s, 1) + 1];
+protected
+  Integer n = size(s, 1);
+initial
+{
+  d[1] = s[1]/2;
+  d[n+1] = s[n]/2;
+}
+algorithm
+for i in 2:n
+d[i] = (s[i-1] + s[i])/2;
+end for;
+end algorithm;
+end layer_fcf_distances;
+```
+
+//end
+
+### 3.2.1.1.2.2.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3.3

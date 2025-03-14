@@ -1,0 +1,23 @@
+
+Generate a Modelica function named `moh` to calculate the minute of an hour given a specific time. The function should correctly handle the conversion from a continuous time input to discrete minute output, factoring in the starting hour, minute, and second. The input parameters 't', 'hour_start', 'min_start', and 'sec_start' represent the current time in seconds and the initial hour, minute, and second respectively. The output 'y' should represent the minute of the current hour, ranging from 0 to 59.   Use `AES.Functions.sod` and `AES.Functions.hod` to calculate seconds of the day and hour of the day as intermediate steps(represented by two protection variables s and h), ensuring accurate minute calculation within an hour frame.
+
+//modelica
+```function moh "Minute of an Hour"
+  input Real t;
+  input Real hour_start;
+  input Real min_start;
+  input Real sec_start;
+  output Real y;
+  Real s;
+  Real h;
+protected
+  Real t_start;
+equation
+  s = sod(t, hour_start, min_start, sec_start);
+  h = hod(t, hour_start, min_start, sec_start);
+  t_start = s + h*3600;
+  y = (s - t_start)/60;
+end moh;
+```
+
+### 1.2.3.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2

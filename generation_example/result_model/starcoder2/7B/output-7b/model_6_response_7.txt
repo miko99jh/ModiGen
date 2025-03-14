@@ -1,0 +1,89 @@
+
+Generate a detailed Modelica model named `TestTrackingFO` for a test mode tracking system for a Fractional Order (FO) controller block. The model is intended to simulate scenarios within industrial control systems. It should include the following components: 
+
+1. **FOtr**: An instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `useTS=true` and `T=0.4`.
+
+2. **FOaw**: Another instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `mu=1`, `AntiWindup=true`, `T=0.4`, `useTS=true`, `Ymin=0`, and `Ymax=2`.
+
+3. **Signal**: A `Modelica.Blocks.Sources.Step` source with parameters `startTime=2` and `height=2`.
+
+4. **TSsignal**: A `Modelica.Blocks.Sources.BooleanPulse` source with parameters `startTime=4`, `width=10`, and `period=40`.
+
+5. **TrackRef**: A `Modelica.Blocks.Sources.Trapezoid` source with parameters `amplitude=5`, `rising=1`, `width=2`, `falling=1`, `period=8`, `nperiod=1`, and `startTime=4`.
+
+6. **FO**: A third instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `mu=1` and `T=0.4`.
+
+Ensure that the following connections are made in the model's equation section:
+
+- Connect `signal.y` to `FO.u`.
+- Connect `TSsignal.y` to `FOtr.TS`.
+- Connect `TrackRef.y` to `FOtr.TR`.
+- Connect `signal.y` to `FOtr.u`.
+- Connect `signal.y` to `FOaw.u`.
+- Connect `TSsignal.y` to `FOaw.TS`.
+- Connect `TrackRef.y` to `FOaw.TR`.
+
+//modelica
+```model TestTrackingFO
+
+//FOtr
+IndustrialControlSystems.Controllers.Blocks.FO FOtr(
+	useTS=true,
+	T=0.4);
+
+//FOaw
+IndustrialControlSystems.Controllers.Blocks.FO FOaw(
+	mu=1,
+	AntiWindup=true,
+	T=0.4,
+	useTS=true,
+	Ymin=0,
+	Ymax=2);
+
+//Signal
+Modelica.Blocks.Sources.Step signal(
+	startTime=2,
+	height=2);
+
+//TSsignal
+Modelica.Blocks.Sources.BooleanPulse TSsignal(
+	startTime=4,
+	width=10,
+	period=40);
+
+//TrackRef
+Modelica.Blocks.Sources.Trapezoid TrackRef(
+	amplitude=5,
+	rising=1,
+	width=2,
+	falling=1,
+	period=8,
+	nperiod=1,
+	startTime=4);
+
+//FO
+IndustrialControlSystems.Controllers.Blocks.FO FO(
+	mu=1,
+	T=0.4);
+
+//connections
+connect(signal.y, FO.u);
+connect(TSsignal.y, FOtr.TS);
+connect(TrackRef.y, FOtr.TR);
+connect(signal.y, FOtr.u);
+connect(signal.y, FOaw.u);
+connect(TSsignal.y, FOaw.TS);
+connect(TrackRef.y, FOaw.TR);
+
+//end model
+end TestTrackingFO;
+```
+
+The model should have the following `equation` section:
+
+//modelica
+```equation
+
+//FOtr
+equation
+connect(FOtr.y, FO.u

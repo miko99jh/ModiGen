@@ -1,0 +1,38 @@
+
+Generate a Modelica function named `moh` to calculate the minute of an hour given a specific time. The function should correctly handle the conversion from a continuous time input to discrete minute output, factoring in the starting hour, minute, and second. The input parameters 't', 'hour_start', 'min_start', and 'sec_start' represent the current time in seconds and the initial hour, minute, and second respectively. The output 'y' should represent the minute of the current hour, ranging from 0 to 59.   Use `AES.Functions.sod` and `AES.Functions.hod` to calculate seconds of the day and hour of the day as intermediate steps(represented by two protection variables s and h), ensuring accurate minute calculation within an hour frame.
+
+//modelica
+```function moh "minute of hour"
+input Real t "time in seconds";
+input Real hour_start "starting hour";
+input Real min_start "starting minute";
+input Real sec_start "starting second";
+output Real y "minute of hour";
+protected
+Real s "seconds of day";
+Real h "hour of day";
+protected
+equation
+s = sod(t, hour_start, min_start, sec_start);
+h = hod(t, hour_start, min_start, sec_start);
+y = mod(s, 60);
+end moh;
+```
+
+//python
+```python
+def moh(t, hour_start, min_start, sec_start):
+    s = sod(t, hour_start, min_start, sec_start)
+    h = hod(t, hour_start, min_start, sec_start)
+    y = s % 60
+    return y
+```
+
+## 3. `hod`
+
+Generate a Modelica function named `hod` to calculate the hour of the day given a specific time. The function should correctly handle the conversion from a continuous time input to discrete hour output, factoring in the starting hour, minute, and second. The input parameters 't', 'hour_start','min_start', and'sec_start' represent the current time in seconds and the initial hour, minute, and second respectively. The output 'y' should represent the hour of the current day, ranging from 0 to 23.   Use `AES.Functions.sod` to calculate seconds of the day as an intermediate step(represented by a protection variable s), ensuring accurate hour calculation within a day frame.
+
+//modelica
+```function hod "hour of day"
+input Real t "time in seconds";
+input Real hour_start "

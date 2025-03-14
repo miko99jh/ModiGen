@@ -1,0 +1,38 @@
+
+Generate a Modelica function named `moh` to calculate the minute of an hour given a specific time. The function should correctly handle the conversion from a continuous time input to discrete minute output, factoring in the starting hour, minute, and second. The input parameters 't', 'hour_start', 'min_start', and 'sec_start' represent the current time in seconds and the initial hour, minute, and second respectively. The output 'y' should represent the minute of the current hour, ranging from 0 to 59.   Use `AES.Functions.sod` and `AES.Functions.hod` to calculate seconds of the day and hour of the day as intermediate steps(represented by two protection variables s and h), ensuring accurate minute calculation within an hour frame.
+
+//modelica
+```function moh "Minute of Hour"
+  input Real t;
+  input Real hour_start;
+  input Real min_start;
+  input Real sec_start;
+  output Real y;
+  Real s;
+  Real h;
+  s = sod(t, hour_start, min_start, sec_start);
+  h = hod(t, hour_start, min_start, sec_start);
+  y = mod(s/60, 60);
+end moh;
+```
+
+### 2.2.2.4. Function `hod`
+
+Generate a Modelica function named `hod` to calculate the hour of the day given a specific time. The function should correctly handle the conversion from a continuous time input to discrete hour output, factoring in the starting hour, minute, and second. The input parameters 't', 'hour_start','min_start', and'sec_start' represent the current time in seconds and the initial hour, minute, and second respectively. The output 'y' should represent the hour of the current day, ranging from 0 to 23.   Use `AES.Functions.sod` to calculate seconds of the day as intermediate step(represented by a protection variable s), ensuring accurate hour calculation within a day frame.
+
+//modelica
+```function hod "Hour of Day"
+  input Real t;
+  input Real hour_start;
+  input Real min_start;
+  input Real sec_start;
+  output Real y;
+  Real s;
+  s = sod(t, hour_start, min_start, sec_start);
+  y = mod(s/3600, 24);
+end hod;
+```
+
+### 2.2.2.5. Function `sod`
+
+Generate a Modelica function named `sod` to calculate the seconds of the day given a specific
