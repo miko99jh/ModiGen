@@ -1,0 +1,65 @@
+Certainly! Below is a simple Modelica model for a PI controller that maintains the water level in a container at a target height of 1 meter. The model uses proportional and integral control to adjust the water inflow to compensate for the leak.
+
+```modelica
+model PIController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0;            // Proportional coefficient
+  parameter Real Ki = 0.5;            // Integral coefficient
+  parameter Real leak_rate = 0.1;     // Leak rate in meters per unit time
+
+  // Variables
+  Real waterLevel(start=0.2);         // Current water level in meters
+  Real error;                         // Error in water level
+  Real Pcontrol;                      // Proportional control action
+  Real Icontrol;                      // Integral control action
+  Real inflow;                        // Water inflow rate
+
+  // Integral state
+  Real integralError(start=0.0);      // Accumulated error for integral control
+
+equation
+  // Calculate error
+  error = target_height - waterLevel;
+
+  // Proportional control
+  Pcontrol = Kp * error;
+
+  // Integral control
+  der(integralError) = error;         // Accumulate error over time
+  Icontrol = Ki * integralError;
+
+  // Total inflow rate
+  inflow = Pcontrol + Icontrol;
+
+  // Water level dynamics
+  der(waterLevel) = inflow - leak_rate;
+
+end PIController;
+```
+
+### Explanation:
+- **Parameters**: 
+  - `target_height`: The desired water level.
+  - `Kp`: Proportional gain.
+  - `Ki`: Integral gain.
+  - `leak_rate`: The rate at which water leaks from the container.
+
+- **Variables**:
+  - `waterLevel`: The current water level, initialized to 0.2 meters.
+  - `error`: The difference between the target height and the current water level.
+  - `Pcontrol`: The proportional control action.
+  - `Icontrol`: The integral control action.
+  - `inflow`: The rate at which water is added to the container.
+
+- **Integral State**:
+  - `integralError`: Accumulates the error over time for integral control.
+
+- **Equations**:
+  - The error is calculated as the difference between the target height and the current water level.
+  - The proportional control action is calculated using the proportional gain and the error.
+  - The integral control action is calculated using the integral gain and the accumulated error.
+  - The total inflow rate is the sum of the proportional and integral control actions.
+  - The water level changes according to the inflow rate minus the leak rate.
+
+This model will simulate the water level over time, adjusting the inflow to maintain the target height despite the leak. You can simulate this model using a Modelica simulation environment to observe how the water level changes over time.

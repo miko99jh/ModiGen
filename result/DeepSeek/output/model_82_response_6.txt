@@ -1,0 +1,33 @@
+
+Create a Modelica function named `factorY2DC` that calculates the factor of DC-voltage from RMS Y-voltage for a specified number of phases. The function should include the following components and details:
+1. Components:
+- The function should extend from Modelica.Icons.Function. 
+- Import the necessary constants and functions: import Modelica.Constants.pi and import Modelica.Electrical.Polyphase.Functions.numberOfSymmetricBaseSystems. 
+- Input for the number of phases: input Integer m=3. 
+- Output for the factor: output Real y.
+2. Protected Variables:
+- Integer mBasic initialized as integer(m/numberOfSymmetricBaseSystems(m)).
+3. Algorithm:
+Implement the conversion logic based on the following geometric cases:
+- Case mBasic = 2: If the basic phase count is 2, the factor should represent the standard full-wave bridge rectification ratio (the ratio of 4 to pi).
+- General Case: Otherwise, calculate the factor based on the polyphase geometric relationship: 'y = 2*sin((mBasic - 1)/2*pi/mBasic)*sqrt(2)*sin(pi/(2*m))/(pi/(2*m))'
+
+Please ensure that the function is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```function factorY2DC
+  extends Modelica.Icons.Function;
+  input Integer m=3 "Number of phases";
+  output Real y "Factor of DC-voltage from RMS Y-voltage";
+protected 
+  Integer mBasic=integer(m/Modelica.Electrical.Polyphase.Functions.numberOfSymmetricBaseSystems(m)) "Number of basic systems";
+algorithm 
+  if mBasic == 2 then
+    y := 4/Modelica.Constants.pi;
+  else 
+    y := 2*Modelica.Math.sin((mBasic - 1)/2*Modelica.Constants.pi/mBasic)*Modelica.Math.sqrt(2)*Modelica.Math.sin(Modelica.Constants.pi/(2*m))/Modelica.Constants.pi/(2*m);
+  end if;
+end factorY2DC;
+```
+
+This function can be used to calculate the factor of DC-voltage from RMS Y-voltage for a specified number of phases.

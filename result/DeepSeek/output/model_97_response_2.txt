@@ -1,0 +1,264 @@
+
+Please simulate the temperature change of a platinum resistance sensor in a medium. It is known that the temperature of the measured medium (`Tg`) is stable at 100°C. The volume of the sensor (`V`) is 1.15*10^(-9), the comprehensive specific heat (`c`) is 456, the sensor surface area (`Ar`) is 5.31*10^(-6), the convective heat transfer coefficient (`alpha`) is 800, and the comprehensive density (`pho`) is 7980. The initial temperature of the sensor (`Tj`) is 25 °C. Please help me realize the Modelica model named `RTD_Pt100` where the medium temperature (`Tg`) is defined as an **input** and the sensor temperature (`Tj`) is defined as an **output**. The model should calculate the temperature change of the sensor over time based on the heat balance between the sensor and the medium.
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); // medium temperature
+  Real m = pho*V; // mass of the sensor
+  Real Q_convection = alpha*Ar*(Tj - Tg); // convection heat transfer
+  Real Q_sens = c*m*(der(Tj) - (Tj - Tg)/V); // heat balance
+equation 
+  der(Tj) = Q_sens/m + (Tj - Tg)/V; // heat balance
+  Tg = input(100, "°C"); // medium temperature
+end RTD_Pt100;
+```
+
+//modelica
+```model RTD_Pt100
+  parameter Real V = 1.15*10^(-9); // volume of the sensor
+  parameter Real c = 456; // comprehensive specific heat
+  parameter Real Ar = 5.31*10^(-6); // sensor surface area
+  parameter Real alpha = 800; // convective heat transfer coefficient
+  parameter Real pho = 7980; // comprehensive density
+  Real Tj(start = 25); // sensor temperature
+  Real Tg(start = 100); //

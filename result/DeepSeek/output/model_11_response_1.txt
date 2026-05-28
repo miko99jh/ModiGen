@@ -1,0 +1,24 @@
+
+Generate a Modelica model for a component that performs a 'greater than or equal to' (>=) comparison between two integer inputs. The model should be named `GreatEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 >= u2`, otherwise `false`.
+
+//modelica
+```model GreatEq
+  extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+equation
+  if Ts > 0 then
+    y = (time >= Ts) and (u1 >= u2);
+  else
+    y = u1 >= u2;
+  end if;
+end GreatEq;```
+
+//markdown
+```markdown
+The model `GreatEq` extends from the `IntComparison` model in the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces` package. The inputs `u1` and `u2` are integers, and the output `y` is a Boolean.
+
+In the equation section, the model includes a sample time parameter `Ts`. If `Ts` is greater than 0, the comparison is triggered at regular intervals. Otherwise, the comparison is continuous.
+
+The value of `y` is `true` if `u1` is greater than or equal to `u2`, otherwise `false`.
+```
+
+This model can be used to compare two integer inputs and output a Boolean result.

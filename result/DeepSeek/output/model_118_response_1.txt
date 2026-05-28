@@ -1,0 +1,169 @@
+
+Generate a Modelica model named `Variant2_tuned` for a tuned version of Variant 2. The model should be compatible with Modelica version 3.2.3. Specifically, extend the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2' model with the following adjusted components redeclared for enhanced performance. Set the 'controller' component with yMax=50, Ti=0.07, Td=0.01, k=4, and the 'actuator' component with uMax=50, along with a 'sensor' components with sample_time=0.01. This model serves to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model from the 'ModelicaByExample.Architectures.SensorComparison.Examples' package. It redeclares the 'controller', 'actuator', and'sensor' components with adjusted parameters for enhanced performance.
+
+The 'controller' component is set with the following parameters: yMax=50, Ti=0.07, Td=0.01, and k=4. These parameters are used to tune the controller for better performance.
+
+The 'actuator' component is set with the parameter uMax=50. This parameter is used to limit the maximum output of the actuator.
+
+The'sensor' component is set with the parameter sample_time=0.01. This parameter is used to set the sampling time of the sensor, which affects the frequency at which the sensor measures the system's state.
+
+This model is compatible with Modelica version 3.2.3 and is designed to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+```
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(yMax = 50, Ti = 0.07, Td = 0.01, k = 4), actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(uMax = 50), sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(sample_time = 0.01)); end Variant2_tuned;```
+
+//text
+```
+This Modelica model extends the 'Variant2' model

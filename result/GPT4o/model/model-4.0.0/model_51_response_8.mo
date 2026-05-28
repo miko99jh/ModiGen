@@ -1,0 +1,50 @@
+model Resistor
+ extends Modelica.Icons.Example;
+
+  // Electrical components
+  Modelica.Electrical.Analog.Basic.Resistor resistor(
+    R=100, 
+    alpha=1e-3, 
+    T_ref=293.15, 
+    i(start=0), 
+    useHeatPort=true) 
+    annotation (Placement(transformation(extent={{-10,10},{10,-10}})));
+
+  Modelica.Electrical.Analog.Sources.SineVoltage sineVoltage1(
+    V=220, 
+    f=1) 
+    annotation (Placement(transformation(extent={{-50,10},{-30,-10}})));
+
+  Modelica.Electrical.Analog.Basic.Ground ground 
+    annotation (Placement(transformation(extent={{-50,-30},{-40,-40}})));
+
+  // Thermal components
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor(
+    G=50) 
+    annotation (Placement(transformation(extent={{10,10},{30,-10}})));
+
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature(
+    T=20 + 273.15) 
+    annotation (Placement(transformation(extent={{40,10},{60,-10}})));
+
+equation 
+  // Electrical connections
+  connect(sineVoltage1.p, resistor.p) 
+    annotation (Line(points={{-30,0},{-10,0}}, color={0,0,127}));
+  connect(sineVoltage1.n, ground.p) 
+    annotation (Line(points={{-40,-10},{-40,-35},{-45,-35},{-45,-40}}, color={0,0,127}));
+  connect(resistor.n, ground.p) 
+    annotation (Line(points={{0,-10},{-45,-10},{-45,-35},{-45,-40}}, color={0,0,127}));
+
+  // Thermal connections
+  connect(resistor.heatPort, thermalConductor.port_a) 
+    annotation (Line(points={{10,0},{20,0}}, color={191,0,0}));
+  connect(thermalConductor.port_b, fixedTemperature.port) 
+    annotation (Line(points={{30,0},{40,0}}, color={191,0,0}));
+
+  annotation (
+    uses(Modelica(version="4.0.0")),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}))
+  );
+end Resistor;

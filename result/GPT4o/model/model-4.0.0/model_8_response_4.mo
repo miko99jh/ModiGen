@@ -1,0 +1,21 @@
+model FirstOrder
+ extends IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock;
+
+  // Parameters
+  parameter Real tau = 2 "Time constant";
+  parameter Real mu = 1 "Gain";
+  parameter Real y_start = 0 "Initial output";
+
+  // Variables
+  Real y "Output";
+  Real u "Input";
+
+initial equation
+  // Initial condition for the output
+  y = y_start;
+
+equation
+  // Dynamic behavior of the first order process
+  tau * der(y) + y = mu * u;
+
+end FirstOrder;

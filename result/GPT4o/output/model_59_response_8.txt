@@ -1,0 +1,27 @@
+```modelica
+model IdealOpAmp3Pin
+  // Positive input pin
+  Modelica.Electrical.Analog.Interfaces.PositivePin in_p;
+  
+  // Negative input pin
+  Modelica.Electrical.Analog.Interfaces.NegativePin in_n;
+  
+  // Output pin
+  Modelica.Electrical.Analog.Interfaces.PositivePin out;
+
+equation
+  // Voltage at positive input pin equals voltage at negative input pin
+  in_p.v = in_n.v;
+  
+  // Current at positive input pin is zero
+  in_p.i = 0;
+  
+  // Current at negative input pin is zero
+  in_n.i = 0;
+  
+  // Output pin is a norator, allowing any voltage and current
+  // No specific equation for the output pin as it is ideal
+end IdealOpAmp3Pin;
+```
+
+This Modelica model represents an ideal operational amplifier with three pins: a positive input pin (`in_p`), a negative input pin (`in_n`), and an output pin (`out`). The model enforces the ideal behavior where the voltages at the input pins are equal, and the currents at the input pins are zero. The output pin is modeled as a norator, meaning it can have any voltage and current, typical for an ideal operational amplifier.

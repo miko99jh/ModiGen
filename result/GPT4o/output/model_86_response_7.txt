@@ -1,0 +1,51 @@
+To implement a `BouncingBall` model in Modelica, you can follow the structure below. This model simulates a ball that bounces with a given coefficient of restitution when it hits the ground. The ball is affected by gravity and starts with an initial height and velocity.
+
+```modelica
+model BouncingBall
+  // Parameters
+  parameter Real radius = 0.1 "Radius of the ball in meters";
+  parameter Real e = 0.9 "Coefficient of restitution";
+  parameter Real g = 9.81 "Acceleration due to gravity in m/s^2";
+
+  // State variables
+  Real h(start = 1) "Height of the ball in meters";
+  Real v(start = 0) "Velocity of the ball in m/s";
+
+  // Event to detect collision with the ground
+  Boolean isOnGround;
+
+equation
+  // Differential equations
+  der(h) = v;
+  der(v) = if isOnGround then 0 else -g;
+
+  // Event when the ball hits the ground
+  when h <= radius then
+    v = -e * v;
+    reinit(h, radius);
+  end when;
+
+  // Determine if the ball is on the ground
+  isOnGround = h <= radius and v <= 0;
+
+end BouncingBall;
+```
+
+### Explanation:
+- **Parameters**: 
+  - `radius`: The radius of the ball.
+  - `e`: The coefficient of restitution, which determines how much velocity is retained after a bounce.
+  - `g`: The gravitational acceleration.
+
+- **State Variables**:
+  - `h`: The height of the ball.
+  - `v`: The velocity of the ball.
+
+- **Equations**:
+  - The differential equations describe the motion of the ball. The height `h` changes with the velocity `v`, and the velocity changes due to gravity unless the ball is on the ground.
+  
+- **Events**:
+  - An event is triggered when the ball's height `h` is less than or equal to the radius, indicating a collision with the ground. The velocity is then reversed and reduced by the coefficient of restitution `e`.
+  - The `reinit` function is used to reset the height to the radius to prevent the ball from going below the ground.
+
+This model will simulate the bouncing behavior of the ball, taking into account the effects of gravity and the energy loss during each bounce.

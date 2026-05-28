@@ -1,0 +1,29 @@
+```modelica
+model CurrentControlledDCPM
+  extends Modelica.Electrical.Machines.Examples.ControlledDCDrives.Utilities.PartialControlledDCPM;
+
+  // Parameters
+  parameter Modelica.Electrical.Machines.Examples.ControlledDCDrives.Utilities.DriveData driveData;
+
+  // Components
+  Modelica.Mechanics.Rotational.Sources.QuadraticSpeedDependentTorque loadTorque(
+    tau_nominal = -driveData.tauNominal,
+    TorqueDirection = false,
+    w_nominal = driveData.motorData.wNominal) "Quadratic speed-dependent torque source for load";
+
+  Modelica.Blocks.Sources.Step step(
+    offset = 0,
+    startTime = 0.2,
+    height = driveData.tauNominal) "Step source for torque input";
+
+equation
+  // Mechanical linkage
+  connect(loadInertia.flange_b, loadTorque.flange) "Connect load inertia to load torque source";
+
+  // Control signal flow
+  connect(step.y, tau2i.u) "Connect step output to torque-to-current transformation input";
+
+end CurrentControlledDCPM;
+```
+
+This Modelica model defines a current-controlled DC permanent magnet drive with an H-bridge, powered from a battery. It includes a quadratic speed-dependent torque source for the load and a step source for the torque input, with the necessary connections for mechanical linkage and control signal flow. Make sure to define the `driveData` parameter with appropriate values for your specific application.

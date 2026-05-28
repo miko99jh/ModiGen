@@ -1,0 +1,39 @@
+Below is the Modelica model named `ArrayExample` that defines an array, calculates the absolute values of its elements, finds the minimum and maximum values, and computes the sum of all elements using an equation block.
+
+```modelica
+model ArrayExample
+  // Define the array and its length
+  parameter Integer n = 5; // Length of the array
+  parameter Integer data[n] = {1, 2, 3, 4, 5}; // Initialize the array
+  
+  // Variables to store results
+  Integer abs1[n]; // Array to store absolute values
+  Integer min1;    // Minimum value
+  Integer max1;    // Maximum value
+  Integer sum1;    // Sum of all elements
+
+equation
+  // Compute absolute values
+  for i in 1:n loop
+    abs1[i] = abs(data[i]);
+  end for;
+
+  // Compute minimum value
+  min1 = min(data);
+
+  // Compute maximum value
+  max1 = max(data);
+
+  // Compute sum of all elements
+  sum1 = sum(data);
+end ArrayExample;
+```
+
+### Explanation:
+1. **Array Definition**: The array `data` is defined as a parameter with values `{1, 2, 3, 4, 5}` and length `n = 5`.
+2. **Absolute Values**: The `abs1` array is computed using a `for` loop, where each element is assigned the absolute value of the corresponding element in `data`.
+3. **Minimum Value**: The `min1` variable is computed using the built-in `min()` function applied to the array `data`.
+4. **Maximum Value**: The `max1` variable is computed using the built-in `max()` function applied to the array `data`.
+5. **Sum of Elements**: The `sum1` variable is computed using the built-in `sum()` function applied to the array `data`.
+
+This model can be simulated in a Modelica environment to verify the results.

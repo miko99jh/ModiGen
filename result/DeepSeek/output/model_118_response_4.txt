@@ -1,0 +1,32 @@
+
+Generate a Modelica model named `Variant2_tuned` for a tuned version of Variant 2. The model should be compatible with Modelica version 3.2.3. Specifically, extend the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2' model with the following adjusted components redeclared for enhanced performance. Set the 'controller' component with yMax=50, Ti=0.07, Td=0.01, k=4, and the 'actuator' component with uMax=50, along with a 'sensor' components with sample_time=0.01. This model serves to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+
+//modelica
+```model Variant2_tuned extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2
+  parameter Real yMax=50;
+  parameter Real Ti=0.07;
+  parameter Real Td=0.01;
+  parameter Real k=4;
+  parameter Real uMax=50;
+  parameter Real sample_time=0.01;
+
+  ModelicaByExample.Architectures.SensorComparison.Components.Controller controller(yMax=yMax, Ti=Ti, Td=Td, k=k, sample_time=sample_time);
+  ModelicaByExample.Architectures.SensorComparison.Components.Actuator actuator(uMax=uMax, sample_time=sample_time);
+  ModelicaByExample.Architectures.SensorComparison.Components.Sensor sensor(sample_time=sample_time);
+
+equation
+  connect(controller.y, sensor.y);
+  connect(actuator.u, controller.u);
+end Variant2_tuned;```
+
+This model extends the Variant2 model from the SensorComparison package in ModelicaByExample. It overrides the default parameters of the controller, actuator, and sensor components to enhance their performance. The controller is set with a larger yMax, a faster Ti, a smaller Td, and a larger k. The actuator is set with a larger uMax. The sensor is set with a smaller sample_time. The connections between these components are also adjusted to reflect these changes.
+
+The purpose of this model is to demonstrate how changing the parameters of these components can affect the overall performance of the system. By tuning these parameters, it is possible to achieve a better balance between control performance and computational efficiency.
+
+Please note that this model is compatible with Modelica version 3.2.3. If you are using a different version of Modelica, you may need to adjust the syntax accordingly.
+
+The model is named `Variant2_tuned` and is located in the same package as the original Variant2 model. This model can be used for further analysis and comparison with the original Variant2 model.
+
+Please ensure that the Modelica libraries and packages are correctly installed and configured in your Modelica development environment before running this model.
+
+This model is provided as an example of how to extend and tune a Modelica model for improved performance.

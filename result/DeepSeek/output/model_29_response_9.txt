@@ -1,0 +1,55 @@
+
+Create a Modelica model named `SpeedControl` for the discrete control of crankshaft speed by throttle actuation. The model should include the following details:
+
+1. **Components and Parameters**:
+- `k_p`: Proportional gain, a real number with a value of 0.0614. 
+- `k_I`: Integral gain, a real number with a value of 0.0723.
+- `N_des`: Desired speed, a `Modelica.Blocks.Interfaces.RealInput` with units of rad/s and an initial value of 0.
+- `N`: Measured speed, a `Modelica.Blocks.Interfaces.RealInput` with units of rad/s and an initial value of 0.
+- `Theta`: Throttle angle, a `Modelica.Blocks.Interfaces.RealOutput` of with units of degrees and an initial value of 8.9.
+- `x_d`: With type `Modelica.Units.NonSI.Angle_deg`, a protected variable representing an angle in degrees, initialized to 8.973 and fixed.
+
+2. **Equations and Expressions**:
+- Implement a discrete-time Proportional-Integral (PI) control law within a `when Clock() then` block:
+Integral State Update: The protected state 'x_d' should be updated at each clock tick. It accumulates the speed error (difference between 'previous(N_des') and 'previous(N)'), scaled by the integral gain 'k_I' and the specific clock interval.
+Output Calculation: The throttle angle 'Theta' should be calculated as the sum of the proportional correction (based on current speed error and 'k_p') and the current integral state 'x_d'.
+Use appropriate clocked operators like previous() and interval() to ensure correct discrete-time behavior.
+
+//modelica
+```block SpeedControl
+  extends Modelica.Icons.Example;
+  parameter Real k_p=0.0614 "Proportional gain";
+  parameter Real k_I=0.0723 "Integral gain";
+  Modelica.Blocks.Interfaces.RealInput N_des(unit="rad/s")=0 "Desired speed";
+  Modelica.Blocks.Interfaces.RealInput N(unit="rad/s")=0 "Measured speed";
+  Modelica.Blocks.Interfaces.RealOutput Theta(unit="deg")=8.9 "Throttle angle";
+protected 
+  Real x_d=8.973 "Integral state";
+equation 
+  when Clock() then
+    // Integral State Update
+    x_d = x_d + (k_I * (previous(N_des) - previous(N)) * interval());
+    // Output Calculation
+    Theta = k_p * (N_des - N) + x_d;
+  end when;
+end SpeedControl;
+```
+
+3. **Simulation**:
+- Use the default simulation parameters.
+- Plot the throttle angle 'Theta' as a function of time.
+- The simulation should run for 10 seconds.
+- The simulation should be run in a Modelica environment that supports the Blocks library.
+
+4. **Documentation**:
+- The model should be documented with a brief description of its purpose and functionality.
+- Include comments in the code to explain the purpose of each parameter, variable, and equation.
+- The model should be saved with a descriptive name, such as `SpeedControl.mo`.
+
+5. **Testing**:
+- Test the model by setting 'N_des' to a constant value and 'N' to a different constant value.
+- Observe the throttle angle 'Theta' and verify that it follows the expected PI control law.
+- Adjust the parameters 'k_p' and 'k_I' and observe the effect on the throttle angle 'Theta'.
+- The model should be robust to changes in the parameters and initial conditions.
+
+Note: The actual implementation of the PI control law may vary depending on the specific requirements and constraints of the system. The above model is a simplified example and may need to be adjusted for a real-world application.

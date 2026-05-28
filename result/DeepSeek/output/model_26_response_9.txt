@@ -1,0 +1,20 @@
+
+Generate a Modelica block named `BooleanChange` that indicates changes in a Boolean signal within the context of clocked, non-periodic signals. The model should extend from the `Modelica.Clocked.ClockSignals.Interfaces.ClockedBlockIcon` class.
+The model should include:
+- A Boolean input signal 'u' of type `Modelica.Blocks.Interfaces.BooleanInput`.
+- A Boolean output signal 'y' of type `Modelica.Blocks.Interfaces.BooleanOutput`.
+In the equation section, determine the output 'y' by detecting changes in the input signal 'u'. On the initial activation of the clock, the output should default to 'false'. For all subsequent ticks, the output should be 'true' only if the current value of 'u' differs from its value at the most recent previous tick.
+
+//modelica
+```block BooleanChange extends Modelica.Clocked.ClockSignals.Interfaces.ClockedBlockIcon;
+  Modelica.Blocks.Interfaces.BooleanInput u;
+  Modelica.Blocks.Interfaces.BooleanOutput y = false;
+equation 
+  y = if clock then
+        if u then true else false
+      else
+        if u <> previous(u) then true else false;
+end BooleanChange;
+```
+
+This model will output a 'true' value whenever there is a change in the Boolean input signal 'u'.

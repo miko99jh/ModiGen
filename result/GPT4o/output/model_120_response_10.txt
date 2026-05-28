@@ -1,0 +1,39 @@
+Certainly! Below is a Modelica model named `PID_Controller` that extends the `ModelicaByExample.Architectures.SensorComparison.Interfaces.Controller` and includes the specified parameters and configurations.
+
+```modelica
+model PID_Controller
+  extends ModelicaByExample.Architectures.SensorComparison.Interfaces.Controller;
+
+  // Parameters
+  parameter Real k = 1 "Gain of controller";
+  parameter Modelica.SIunits.Time Ti = 1 "Time constant of Integrator block";
+  parameter Modelica.SIunits.Time Td = 0 "Time constant of Derivative block";
+  parameter Real yMax = 10 "Upper limit of output";
+
+protected 
+  // PID block
+  Modelica.Blocks.Continuous.LimPID PID(
+    k = k,
+    Ti = Ti,
+    Td = Td,
+    yMax = yMax
+  );
+
+equation 
+  // Signal connections
+  connect(setpoint, PID.u_s) "Connect external setpoint to PID setpoint input";
+  connect(measurement, PID.u_m) "Connect measured signal to PID measurement input";
+  connect(PID.y, command) "Route PID output to external command interface";
+
+end PID_Controller;
+```
+
+### Explanation:
+- **Parameters**: The model includes parameters for the gain (`k`), integrator time constant (`Ti`), derivative time constant (`Td`), and the upper limit of the output (`yMax`).
+- **Protected Section**: A `Modelica.Blocks.Continuous.LimPID` block named `PID` is instantiated with the specified parameters.
+- **Equation Section**: 
+  - The `setpoint` is connected to the `PID` block's setpoint input (`PID.u_s`).
+  - The `measurement` is connected to the `PID` block's measurement input (`PID.u_m`).
+  - The `PID` block's output (`PID.y`) is connected to the external command interface (`command`).
+
+This model provides a basic structure for a PID controller within a Modelica environment, allowing for further customization and integration into larger systems.

@@ -1,0 +1,42 @@
+Below is the Modelica function `factorY2DC` that calculates the factor of DC-voltage from RMS Y-voltage for a specified number of phases. The function is designed according to the specifications you provided:
+
+```modelica
+function factorY2DC
+  extends Modelica.Icons.Function;
+  import Modelica.Constants.pi;
+  import Modelica.Electrical.Polyphase.Functions.numberOfSymmetricBaseSystems;
+  
+  input Integer m = 3 "Number of phases";
+  output Real y "Factor of DC-voltage from RMS Y-voltage";
+
+protected 
+  Integer mBasic = integer(m / numberOfSymmetricBaseSystems(m));
+
+algorithm 
+  if mBasic == 2 then
+    // Case for full-wave bridge rectification
+    y := 4 / pi;
+  else
+    // General case for polyphase systems
+    y := 2 * sin((mBasic - 1) / 2 * pi / mBasic) * sqrt(2) * sin(pi / (2 * m)) / (pi / (2 * m));
+  end if;
+end factorY2DC;
+```
+
+### Explanation:
+1. **Function Extension**: The function extends from `Modelica.Icons.Function`, which is a standard way to define functions in Modelica with a specific icon.
+
+2. **Imports**: 
+   - `Modelica.Constants.pi` is imported for mathematical calculations involving π.
+   - `Modelica.Electrical.Polyphase.Functions.numberOfSymmetricBaseSystems` is imported to determine the number of symmetric base systems for the given number of phases.
+
+3. **Inputs and Outputs**:
+   - `input Integer m=3`: The number of phases, defaulting to 3.
+   - `output Real y`: The calculated factor of DC-voltage from RMS Y-voltage.
+
+4. **Protected Variables**:
+   - `Integer mBasic`: This variable is calculated as the integer division of `m` by the number of symmetric base systems, which helps determine the geometric case.
+
+5. **Algorithm**:
+   - If `mBasic` equals 2, the function uses the standard full-wave bridge rectification ratio (4/π).
+   - For other values of `mBasic`, the function calculates the factor using the provided polyphase geometric relationship formula.

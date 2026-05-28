@@ -1,0 +1,27 @@
+
+Create a Modelica model named `ShiftSample` demonstrating the usage of a 'ShiftSample' block for Clock signals.
+
+It includes the following components: 1) A 'PeriodicExactClock' named 'periodicClock' from `Modelica.Clocked.ClockSignals.Clocks` with a factor of 20 and resolution set to `Modelica.Clocked.Types.Resolution.ms`. 2) A 'ShiftSample' from `Modelica.Clocked.ClockSignals.Sampler` with a shiftCounter of 4 and resolution of 3. 3) A 'SampleClocked' from `Modelica.Clocked.RealSignals.Sampler`. 4) A 'Sine' block from `Modelica.Blocks.Sources` with frequency 2, offset 0.1, and startTime 0.
+
+Equations & Connectivity:
+In the equation section, establish the following signal flow:
+1. Use the output of 'periodicClock' to drive the input of the 'shiftSample1' block.
+2. The output of the 'shiftSample1' (the shifted clock signal) should then serve as the sampling clock for the 'sample1' component.
+3. Finally, sample the continuous output of the 'sine' source using the 'sample1' block to complete the discrete-time signal generation.
+
+Ensure the model handles accurate clock signals and shifting sample behavior.
+
+//modelica
+```model ShiftSample
+  Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock(factor=20, resolution=Modelica.Clocked.Types.Resolution.ms);
+  Modelica.Clocked.ClockSignals.Sampler.ShiftSample shiftSample1(shiftCounter=4, resolution=3);
+  Modelica.Clocked.RealSignals.Sampler.SampleClocked sample1;
+  Modelica.Blocks.Sources.Sine sine(frequency=2, offset=0.1, startTime=0);
+equation 
+  connect(periodicClock.y, shiftSample1.u);
+  connect(shiftSample1.y, sample1.clock);
+  connect(sine.y, sample1.u);
+end ShiftSample;
+```
+
+This Modelica model demonstrates the usage of a 'ShiftSample' block for Clock signals. The 'PeriodicExactClock' generates a clock signal with a factor of 20 and a resolution of milliseconds. The 'ShiftSample' block shifts the clock signal by 4 time units, and the 'SampleClocked' block samples the continuous output of the 'Sine' block using the shifted clock signal.

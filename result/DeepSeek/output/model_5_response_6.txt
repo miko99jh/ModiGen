@@ -1,0 +1,38 @@
+
+Create a Modelica model named `I` for an integrator with tracking mode and limiter functionality. The model extends `IndustrialControlSystems.Controllers.Interfaces.Block` and extend its features. Include the following parameters: `Real T = 1` (Integral time), `Real y_start = 0` (State initial value). The model should handle anti-windup by checking the `AntiWindup` flag. If `AntiWindup` is true and the tracking signal (`ts`) is not active, the derivative of `Y` should be computed as `der(Y) = 1/T*u + 1/eps*(y - Y)`, and the output `y` should be `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is true and the tracking signal (`ts`) is active, compute `der(Y)` as `1/eps*(y - Y)` and limit the output `y` is `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is false, set `Y` to 0, calculate `T*der(y) = u for inactive `ts`, and compute `eps*der(y) = (-y + tr)` for active `ts`. Also, include an initial equation setting 'y = y_start' and a Real type protected parameter Y.
+
+//modelica
+```model I
+  extends IndustrialControlSystems.Controllers.Interfaces.Block;
+  parameter Real T = 1 "Integral time";
+  parameter Real y_start = 0 "State initial value";
+  parameter Real Ymin = -Inf "Minimum output";
+  parameter Real Ymax = Inf "Maximum output";
+  parameter Real eps = 1e-6 "Anti-windup parameter";
+  Real Y(start=y_start) "Integrator state";
+equation 
+  der(Y) = if not AntiWindup then 
+    if not ts then 
+      T*der(y) 
+    else 
+      eps*der(y) 
+  else if ts then 
+    if not ts then 
+      1/T*u + 1/eps*(y - Y) 
+    else 
+      1/eps*(y - Y) 
+  end if;
+  y = max(Ymin,min(Ymax,tr));
+  y = Y;
+end I;```
+
+//plaintext
+```
+This model represents an integrator with tracking mode and limiter functionality. It extends the `Block` interface from the `IndustrialControlSystems.Controllers.Interfaces` package. The model has parameters for the integral time (`T`), the initial state (`y_start`), and the minimum and maximum output values (`Ymin` and `Ymax`). It also has an anti-windup parameter (`eps`).
+
+The model's behavior is controlled by the `AntiWindup` flag and the tracking signal (`ts`). If `AntiWindup` is true and `ts` is not active, the derivative of the integrator state (`Y`) is computed as `1/T*u + 1/eps*(y - Y)`. The output `y` is then limited to the range between `Ymin` and `Ymax`. If `AntiWindup` is true and `ts` is active, the derivative of `Y` is computed as `1/eps*(y - Y)`, and `y` is limited to the same range. If `AntiWindup` is false, `Y` is set to 0, and the derivative of `y` is computed as `T*der(y)` for inactive `ts` and `eps*der(y) = (-y + tr)` for active `ts`.
+
+The initial equation sets `y = y_start`, and the `Y` parameter is used to store the state of the integrator.
+```
+
+This model should be used in a control system where the integrator is used to track a reference signal (`tr`). The `ts` signal is used to indicate when the tracking signal is active. The `u` signal is the control input. The `y` signal is the output of the integrator, which is also the control signal in this case. The `AntiWindup` flag is used to enable or disable anti-windup functionality.

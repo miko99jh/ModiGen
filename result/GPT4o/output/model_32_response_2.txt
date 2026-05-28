@@ -1,0 +1,59 @@
+To create a Modelica model named `Sample3` that demonstrates a Sample block for Real signals with direct feed-through in both continuous-time and clocked partitions, follow the structure below. This model will include the specified components and parameters, and establish the feedback loop as described.
+
+```modelica
+model Sample3
+  // Import necessary Modelica libraries
+  import Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock;
+  import Modelica.Clocked.Types.Resolution;
+  import Modelica.Blocks.Sources.Step;
+  import Modelica.Blocks.Math.Gain;
+  import Modelica.Blocks.Math.Feedback;
+  import Modelica.Clocked.RealSignals.Sampler.Hold;
+  import Modelica.Clocked.RealSignals.Sampler.SampleClocked;
+  import Modelica.Clocked.RealSignals.Sampler.Sample;
+
+  // Parameters
+  parameter Real factor = 20;
+  parameter Resolution resolution = Resolution.ms;
+
+  // Components
+  PeriodicExactClock periodicClock(factor=factor, resolution=resolution);
+  Step step(startTime=0.04);
+  Gain gain(k=1.2);
+  Feedback feedback;
+  Hold hold1;
+  SampleClocked sample1(clock=periodicClock);
+  Sample sample2;
+
+equation
+  // Sampling the step signal using sample1 triggered by periodicClock
+  sample1.u = step.y;
+  
+  // Feedback logic: sample1 output enters the positive input of feedback
+  feedback.u1 = sample1.y;
+  
+  // Scale feedback output using gain
+  gain.u = feedback.y;
+  
+  // Signal holding: route gain output through hold1
+  hold1.u = gain.y;
+  
+  // Sample the output of hold1 using sample2
+  sample2.u = hold1.y;
+  
+  // Connect sample2 output to the negative input of feedback to close the loop
+  feedback.u2 = sample2.y;
+  
+end Sample3;
+```
+
+### Explanation:
+- **PeriodicExactClock**: This component generates a clock signal with a specified period and resolution. Here, the `factor` is set to 20, and the resolution is in milliseconds (`ms`).
+- **Step**: A step signal source that starts at `0.04` seconds.
+- **Gain**: Multiplies the input signal by a factor `k`, which is set to `1.2`.
+- **Feedback**: Provides a mechanism to create a feedback loop by taking two inputs (`u1` and `u2`) and producing an output.
+- **Hold**: Holds the signal value between clock ticks, converting continuous-time signals to discrete-time signals.
+- **SampleClocked**: Samples the input signal based on the clock signal.
+- **Sample**: Samples the continuous-time signal.
+
+This model sets up a feedback loop where the step signal is sampled, processed through feedback and gain, held, and then re-sampled to close the loop.

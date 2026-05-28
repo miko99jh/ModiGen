@@ -1,0 +1,13 @@
+
+Generate a Modelica model for a 'Linear current-controlled current source' component named 'CCC'. The model should extend the 'Modelica.Electrical.Analog.Interfaces.TwoPort' interface, which typically includes two electrical ports. There is a parameter 'gain' should be a Real type with a start value of 1.0, representing the current gain. The main functionality of the model is to control the output current 'i2' based on the input current 'i1' with a linear relationship governed by the 'gain' parameter. Specifically, the equation should be 'i2 = i1 * gain'. Additionally, the model should enforce that the voltage 'v1' at the input port is set to zero.
+
+//modelica
+```model CCC extends Modelica.Electrical.Analog.Interfaces.TwoPort(v1 = 0)
+  parameter Real gain = 1.0 "Current gain";
+  Modelica.SIunits.Current i2(start = 0) "Output current";
+equation
+  i2 = i1 * gain;
+end CCC;
+```
+
+This model is a simple linear current-controlled current source. The output current 'i2' is directly proportional to the input current 'i1' with a gain factor 'gain'. The voltage 'v1' at the input port is set to zero due to the 'Modelica.Electrical.Analog.Interfaces.TwoPort' interface.

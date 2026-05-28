@@ -1,0 +1,55 @@
+To create a Modelica model named `ShiftSample` that demonstrates the usage of a `ShiftSample` block for clock signals, you can follow the structure below. This model includes the specified components and establishes the necessary connections and equations to demonstrate the functionality.
+
+```modelica
+model ShiftSample
+  // Import necessary Modelica libraries
+  import Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock;
+  import Modelica.Clocked.ClockSignals.Sampler.ShiftSample;
+  import Modelica.Clocked.RealSignals.Sampler.SampleClocked;
+  import Modelica.Blocks.Sources.Sine;
+  import Modelica.Clocked.Types.Resolution;
+
+  // Components
+  PeriodicExactClock periodicClock(factor=20, resolution=Resolution.ms) 
+    annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
+  
+  ShiftSample shiftSample1(shiftCounter=4, resolution=3) 
+    annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
+  
+  SampleClocked sample1 
+    annotation (Placement(transformation(extent={{0,40},{20,60}})));
+  
+  Sine sineSource(frequency=2, offset=0.1, startTime=0) 
+    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
+
+equation
+  // Connect the periodic clock to the shift sample block
+  connect(periodicClock.y, shiftSample1.u) 
+    annotation (Line(points={{-60,50},{-40,50}}, color={0,0,127}));
+  
+  // Connect the shifted clock signal to the sample clocked block
+  connect(shiftSample1.y, sample1.clock) 
+    annotation (Line(points={{-20,50},{0,50}}, color={0,0,127}));
+  
+  // Connect the sine source to the sample clocked block
+  connect(sineSource.y, sample1.u) 
+    annotation (Line(points={{-60,0},{0,0},{0,40}}, color={0,0,127}));
+
+  // Output the sampled signal
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
+              Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
+end ShiftSample;
+```
+
+### Explanation:
+- **PeriodicExactClock**: Generates a periodic clock signal with a specified factor and resolution.
+- **ShiftSample**: Shifts the clock signal by a specified number of clock ticks (`shiftCounter`) and resolution.
+- **SampleClocked**: Samples a continuous signal based on the clock signal provided.
+- **Sine**: Generates a continuous sine wave signal with specified frequency, offset, and start time.
+
+### Connectivity:
+1. The `periodicClock` generates a clock signal that is fed into the `shiftSample1` block.
+2. The `shiftSample1` block shifts the clock signal and outputs it to the `sample1` block.
+3. The `sample1` block uses the shifted clock signal to sample the continuous output of the `sineSource`.
+
+This model demonstrates how to use clock signals and shift them to control the sampling of a continuous signal in a discrete-time manner.

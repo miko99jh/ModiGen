@@ -1,0 +1,12 @@
+class DAEexample
+  extends Modelica.Blocks.Interfaces.PartialDAE;
+  parameter Real x0=0.9 "Initial value of x";
+  Real x(start=x0) "State variable x";
+  Real y(start=0) "State variable y";
+  Real y_dot "Derivative of y";
+equation 
+  der(x) = y_dot - 0.5*sin(y)*(1+y_dot);
+  der(y) = y_dot;
+  x-y = exp(-0.9*x)*cos(y);
+  annotation (experiment(StartTime=0, StopTime=10, Tolerance=1e-6, Interval=1e-3));
+end DAEexample;

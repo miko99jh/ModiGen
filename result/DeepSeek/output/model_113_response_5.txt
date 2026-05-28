@@ -1,0 +1,23 @@
+
+Develop a State space version of an RLC circuit Modelica model named `RLC` where the circuit parameters are: voltage source 'Vb' is 24 volts, inductor 'L' is 1 Henry, resistor 'R' is 100 ohms, and capacitor 'C' is 0.001 Farads. The State space model should use the `ModelicaByExample.ArrayEquations.StateSpace.LTI` component 'rlc_comp' with 'nx=2' state variables, 'nu=1' input, 'ny=2' outputs, initial state' x0={0, 0}', matrices 'A=[-1/(R*C), 1/C; -1/L, 0], B=[0; 1/L], C=[1/R, 0; -1/R, 1], and D=[0; 0]'. Connect the input 'u' of LTI component to the voltage source.
+
+//modelica
+```model RLC
+  parameter Real Vb=24 "Voltage source";
+  parameter Real L=1 "Inductor";
+  parameter Real R=100 "Resistor";
+  parameter Real C=0.001 "Capacitor";
+  ModelicaByExample.ArrayEquations.StateSpace.LTI rlc_comp(nx=2, nu=1, ny=2, x0={0, 0}, 
+    A=[-1/(R*C), 1/C; -1/L, 0], B=[0; 1/L], C=[1/R, 0; -1/R, 1], D=[0; 0]);
+equation
+  rlc_comp.u = Vb;
+end RLC;
+```
+
+This model uses the `ModelicaByExample.ArrayEquations.StateSpace.LTI` component to represent the RLC circuit. The parameters for the RLC circuit are defined as constants at the top of the model. The state space matrices for the `rlc_comp` component are defined as per the given circuit parameters. The input to the `rlc_comp` component is connected to the voltage source 'Vb'.
+
+Note: The `ModelicaByExample.ArrayEquations.StateSpace.LTI` component is a generic state space model component and may not be available in all Modelica libraries. If it is not available, you may need to use a different state space model component or implement the state space equations directly.
+
+Also note that this model does not include any equations to describe the behavior of the circuit. The `ModelicaByExample.ArrayEquations.StateSpace.LTI` component is a generic state space model component and does not have any built-in behavior. You would need to add additional equations to describe the behavior of the circuit, such as Kirchhoff's laws and the definition of the voltage source.
+
+The `ModelicaByExample.ArrayEquations.StateSpace.LTI` component is used here as an example of how to represent a state space model in Modelica. In a real-world application, you would likely use a different component or set of components to represent the specific behavior of the circuit.

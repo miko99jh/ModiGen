@@ -1,0 +1,253 @@
+
+Create a Modelica model named `IndependentSampling`. The model includes real type variables 'x', 'y', 'e' and 'next_time'. This model specifically demonstrates the technique of independent sampling where two variables, 'x' and 'y', are sampled at 10Hz using different methods. The model should compute the error 'e' as the difference between 'x' and 'y'. Additionally, 'x' is a direct sample, manage the sampling rate for 'y' using a variable 'next_time' which updates every 0.1 seconds based on the previous 'next_time', when {initial(), time>pre(next_time)} then 'y' sample. This model is crucial for systems that require synchronization of separate processes that are sampled at the same rate but initiated differently.
+
+//modelica
+```model IndependentSampling
+  parameter Real samplingRate = 10 "Sampling rate in Hz";
+  Real x(start=0) "Variable x sampled at 10Hz";
+  Real y(start=0) "Variable y sampled at different rate";
+  Real e "Error between x and y";
+  Real next_time(start=0) "Next time to sample y";
+initial equation
+  next_time = time;
+equation
+  // Sampling x at 10Hz
+  when {initial(), time > pre(next_time)} then
+    x = x + 1;
+    next_time = next_time + 1/samplingRate;
+  end when;
+
+  // Sampling y at different rate
+  when {initial(), time > pre(next_time)} then
+    y = y + 2;
+    next_time = next_time + 0.1;
+  end when;
+
+  // Computing the error
+  e = x - y;
+end IndependentSampling;
+```
+
+This model will create a simulation of two variables 'x' and 'y' that are sampled at different rates. The error 'e' will be computed as the difference between 'x' and 'y'. This model is useful for demonstrating the concept of independent sampling in Modelica.
+
+Please note that the sampling rate of 'y' is set to 1/0.1 = 10Hz, which is the same as the sampling rate of 'x'. This is just for demonstration purposes and in a real-world application, the sampling rates of 'x' and 'y' could be different.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+Please note that the 'initial' keyword is used to specify that the block of code within the 'when' statement should be executed only during the initialization of the model.
+
+The 'pre' function is used to access the value of a variable at the previous time step. This is necessary because the 'when' statement is triggered at the end of the time step, so the current value of the variable is not yet available.
+
+The'start' attribute is used to specify an initial value for a variable. This is useful for variables that are not reset at the start of each simulation.
+
+The 'equation' section of a Modelica model is used to define the equations that describe the behavior of the model. These equations are typically algebraic equations that describe the relationships between the variables in the model.
+
+The 'initial equation' section of a Modelica model is used to define the initial conditions of the variables in the model. These initial conditions are typically specified as start attributes on the variables, but they can also be specified in the initial equation section.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+The 'then' keyword is used to specify the block of code that should be executed when the condition in the 'when' statement is true.
+
+The 'end when' keyword is used to end the 'when' statement.
+
+The '+' operator is used to add two numbers together.
+
+The '-' operator is used to subtract one number from another.
+
+The '=' operator is used to assign a value to a variable.
+
+The '<' operator is used to check if one number is less than another.
+
+The '>' operator is used to check if one number is greater than another.
+
+The 'pre' function is used to access the value of a variable at the previous time step. This is necessary because the 'when' statement is triggered at the end of the time step, so the current value of the variable is not yet available.
+
+The 'time' variable is a built-in variable in Modelica that represents the current time in the simulation.
+
+The 'initial' keyword is used to specify that the block of code within the 'when' statement should be executed only during the initialization of the model.
+
+The'start' attribute is used to specify an initial value for a variable. This is useful for variables that are not reset at the start of each simulation.
+
+The 'equation' section of a Modelica model is used to define the equations that describe the behavior of the model. These equations are typically algebraic equations that describe the relationships between the variables in the model.
+
+The 'initial equation' section of a Modelica model is used to define the initial conditions of the variables in the model. These initial conditions are typically specified as start attributes on the variables, but they can also be specified in the initial equation section.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+The 'then' keyword is used to specify the block of code that should be executed when the condition in the 'when' statement is true.
+
+The 'end when' keyword is used to end the 'when' statement.
+
+The '+' operator is used to add two numbers together.
+
+The '-' operator is used to subtract one number from another.
+
+The '=' operator is used to assign a value to a variable.
+
+The '<' operator is used to check if one number is less than another.
+
+The '>' operator is used to check if one number is greater than another.
+
+The 'pre' function is used to access the value of a variable at the previous time step. This is necessary because the 'when' statement is triggered at the end of the time step, so the current value of the variable is not yet available.
+
+The 'time' variable is a built-in variable in Modelica that represents the current time in the simulation.
+
+The 'initial' keyword is used to specify that the block of code within the 'when' statement should be executed only during the initialization of the model.
+
+The'start' attribute is used to specify an initial value for a variable. This is useful for variables that are not reset at the start of each simulation.
+
+The 'equation' section of a Modelica model is used to define the equations that describe the behavior of the model. These equations are typically algebraic equations that describe the relationships between the variables in the model.
+
+The 'initial equation' section of a Modelica model is used to define the initial conditions of the variables in the model. These initial conditions are typically specified as start attributes on the variables, but they can also be specified in the initial equation section.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+The 'then' keyword is used to specify the block of code that should be executed when the condition in the 'when' statement is true.
+
+The 'end when' keyword is used to end the 'when' statement.
+
+The '+' operator is used to add two numbers together.
+
+The '-' operator is used to subtract one number from another.
+
+The '=' operator is used to assign a value to a variable.
+
+The '<' operator is used to check if one number is less than another.
+
+The '>' operator is used to check if one number is greater than another.
+
+The 'pre' function is used to access the value of a variable at the previous time step. This is necessary because the 'when' statement is triggered at the end of the time step, so the current value of the variable is not yet available.
+
+The 'time' variable is a built-in variable in Modelica that represents the current time in the simulation.
+
+The 'initial' keyword is used to specify that the block of code within the 'when' statement should be executed only during the initialization of the model.
+
+The'start' attribute is used to specify an initial value for a variable. This is useful for variables that are not reset at the start of each simulation.
+
+The 'equation' section of a Modelica model is used to define the equations that describe the behavior of the model. These equations are typically algebraic equations that describe the relationships between the variables in the model.
+
+The 'initial equation' section of a Modelica model is used to define the initial conditions of the variables in the model. These initial conditions are typically specified as start attributes on the variables, but they can also be specified in the initial equation section.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+The 'then' keyword is used to specify the block of code that should be executed when the condition in the 'when' statement is true.
+
+The 'end when' keyword is used to end the 'when' statement.
+
+The '+' operator is used to add two numbers together.
+
+The '-' operator is used to subtract one number from another.
+
+The '=' operator is used to assign a value to a variable.
+
+The '<' operator is used to check if one number is less than another.
+
+The '>' operator is used to check if one number is greater than another.
+
+The 'pre' function is used to access the value of a variable at the previous time step. This is necessary because the 'when' statement is triggered at the end of the time step, so the current value of the variable is not yet available.
+
+The 'time' variable is a built-in variable in Modelica that represents the current time in the simulation.
+
+The 'initial' keyword is used to specify that the block of code within the 'when' statement should be executed only during the initialization of the model.
+
+The'start' attribute is used to specify an initial value for a variable. This is useful for variables that are not reset at the start of each simulation.
+
+The 'equation' section of a Modelica model is used to define the equations that describe the behavior of the model. These equations are typically algebraic equations that describe the relationships between the variables in the model.
+
+The 'initial equation' section of a Modelica model is used to define the initial conditions of the variables in the model. These initial conditions are typically specified as start attributes on the variables, but they can also be specified in the initial equation section.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+The 'then' keyword is used to specify the block of code that should be executed when the condition in the 'when' statement is true.
+
+The 'end when' keyword is used to end the 'when' statement.
+
+The '+' operator is used to add two numbers together.
+
+The '-' operator is used to subtract one number from another.
+
+The '=' operator is used to assign a value to a variable.
+
+The '<' operator is used to check if one number is less than another.
+
+The '>' operator is used to check if one number is greater than another.
+
+The 'pre' function is used to access the value of a variable at the previous time step. This is necessary because the 'when' statement is triggered at the end of the time step, so the current value of the variable is not yet available.
+
+The 'time' variable is a built-in variable in Modelica that represents the current time in the simulation.
+
+The 'initial' keyword is used to specify that the block of code within the 'when' statement should be executed only during the initialization of the model.
+
+The'start' attribute is used to specify an initial value for a variable. This is useful for variables that are not reset at the start of each simulation.
+
+The 'equation' section of a Modelica model is used to define the equations that describe the behavior of the model. These equations are typically algebraic equations that describe the relationships between the variables in the model.
+
+The 'initial equation' section of a Modelica model is used to define the initial conditions of the variables in the model. These initial conditions are typically specified as start attributes on the variables, but they can also be specified in the initial equation section.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+The 'then' keyword is used to specify the block of code that should be executed when the condition in the 'when' statement is true.
+
+The 'end when' keyword is used to end the 'when' statement.
+
+The '+' operator is used to add two numbers together.
+
+The '-' operator is used to subtract one number from another.
+
+The '=' operator is used to assign a value to a variable.
+
+The '<' operator is used to check if one number is less than another.
+
+The '>' operator is used to check if one number is greater than another.
+
+The 'pre' function is used to access the value of a variable at the previous time step. This is necessary because the 'when' statement is triggered at the end of the time step, so the current value of the variable is not yet available.
+
+The 'time' variable is a built-in variable in Modelica that represents the current time in the simulation.
+
+The 'initial' keyword is used to specify that the block of code within the 'when' statement should be executed only during the initialization of the model.
+
+The'start' attribute is used to specify an initial value for a variable. This is useful for variables that are not reset at the start of each simulation.
+
+The 'equation' section of a Modelica model is used to define the equations that describe the behavior of the model. These equations are typically algebraic equations that describe the relationships between the variables in the model.
+
+The 'initial equation' section of a Modelica model is used to define the initial conditions of the variables in the model. These initial conditions are typically specified as start attributes on the variables, but they can also be specified in the initial equation section.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+The 'then' keyword is used to specify the block of code that should be executed when the condition in the 'when' statement is true.
+
+The 'end when' keyword is used to end the 'when' statement.
+
+The '+' operator is used to add two numbers together.
+
+The '-' operator is used to subtract one number from another.
+
+The '=' operator is used to assign a value to a variable.
+
+The '<' operator is used to check if one number is less than another.
+
+The '>' operator is used to check if one number is greater than another.
+
+The 'pre' function is used to access the value of a variable at the previous time step. This is necessary because the 'when' statement is triggered at the end of the time step, so the current value of the variable is not yet available.
+
+The 'time' variable is a built-in variable in Modelica that represents the current time in the simulation.
+
+The 'initial' keyword is used to specify that the block of code within the 'when' statement should be executed only during the initialization of the model.
+
+The'start' attribute is used to specify an initial value for a variable. This is useful for variables that are not reset at the start of each simulation.
+
+The 'equation' section of a Modelica model is used to define the equations that describe the behavior of the model. These equations are typically algebraic equations that describe the relationships between the variables in the model.
+
+The 'initial equation' section of a Modelica model is used to define the initial conditions of the variables in the model. These initial conditions are typically specified as start attributes on the variables, but they can also be specified in the initial equation section.
+
+The 'when' statement in Modelica is used to implement event-based programming, which is a form of programming where the execution of a program is determined by events like changes in state, sensor output, or messages from other programs. This is a powerful feature for implementing systems where the timing of operations is critical.
+
+The 'then' keyword is used to specify the block of code that should be executed when the condition in the 'when' statement is true.
+
+The 'end when' keyword is used to end the 'when' statement.
+
+The '+' operator is used to add two numbers together.
+
+The '-' operator is used to subtract one number from another.
+
+The '=' operator is used

@@ -1,0 +1,30 @@
+model SquirrelCage
+ extends Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort(T=T_ref);
+
+  // Parameters
+  parameter Modelica.Units.SI.Inductance Lrsigma "Rotor stray inductance per phase translated to stator";
+  parameter Modelica.Units.SI.Resistance Rr "Rotor resistance per phase translated to stator at T_ref";
+  parameter Modelica.Units.SI.Temperature T_ref = 293.15 "Reference temperature";
+  parameter Modelica.Units.SI.LinearTemperatureCoefficient alpha = 0 "Temperature coefficient of resistance at T_ref";
+
+  // Variables
+  Modelica.Units.SI.Resistance Rr_actual "Actual rotor resistance";
+  Modelica.Electrical.Machines.Interfaces.SpacePhasor spacePhasor_r "Space phasor for rotor";
+  Modelica.Blocks.Interfaces.RealOutput i[2](quantity="ElectricCurrent", unit="A") "Currents out from the squirrel cage";
+
+equation
+  // Assert temperature within valid range
+  assert((1 + alpha*(T_heatPort - T_ref)) >= Modelica.Constants.eps, "Temperature outside scope of model!");
+
+  // Calculate actual rotor resistance
+  Rr_actual = Rr * (1 + alpha*(T_heatPort - T_ref));
+
+  // Electromagnetic dynamics: Phasor voltage
+  spacePhasor_r.v_ = Rr_actual * spacePhasor_r.i_ + Lrsigma * der(spacePhasor_r.i_);
+
+  // Loss integration: Calculate loss power
+  LossPower = (2/3) * (spacePhasor_r.i_[1]^2 + spacePhasor_r.i_[2]^2) * Rr_actual;
+
+  // Output currents
+  i = -spacePhasor_r.i_;
+end SquirrelCage;

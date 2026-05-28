@@ -1,0 +1,26 @@
+block ToDQ
+ extends Modelica.Blocks.Interfaces.MIMO(final nin=m, final nout=2);
+
+  // Parameters
+  parameter Integer m(min=1) = 3 "Number of phases";
+  parameter Integer p "Number of pole pairs";
+
+  // Components
+  Modelica.Blocks.Math.Gain toGamma(final k=p) "Gain block to calculate electrical angle";
+  Modelica.Electrical.Machines.SpacePhasors.Blocks.Rotator rotator "Rotator block for space phasor rotation";
+  Modelica.Blocks.Interfaces.RealInput phi(unit="rad") "Input mechanical angle in radians";
+  Modelica.Electrical.Machines.SpacePhasors.Blocks.ToSpacePhasor toSpacePhasor(final m=m) "Block to convert multi-phase signals to stationary space phasor";
+
+equation
+  // Angle Processing: Calculate electrical angle
+  connect(phi, toGamma.u) "Connect mechanical angle input to gain block";
+  connect(toGamma.y, rotator.phi) "Connect electrical angle output to rotator";
+
+  // Coordinate Transformation: Multi-phase to stationary space phasor
+  connect(u, toSpacePhasor.u) "Connect multi-phase input signals to ToSpacePhasor block";
+  connect(toSpacePhasor.y, rotator.u) "Connect stationary space phasor to rotator";
+
+  // Final Output: Rotor-fixed space phasor
+  connect(rotator.y, y) "Connect rotated phasor to block output";
+
+end ToDQ;

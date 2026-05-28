@@ -1,0 +1,28 @@
+To create a Modelica model named `FirstOrderExperiment` that defines a first-order differential equation with experiment conditions, you can use the following code. This model includes a real variable `x` initialized to 2, and it uses a simple first-order differential equation to make `x` converge towards 1.0.
+
+```modelica
+model FirstOrderExperiment
+  // Declare a real variable 'x'
+  Real x(start=2);
+
+equation
+  // Define the first-order differential equation
+  der(x) = -x + 1;
+
+  // The equation above will make 'x' converge towards 1.0 over time
+
+annotation(
+  experiment(StartTime=0, StopTime=10, Tolerance=1e-6, Interval=0.1));
+end FirstOrderExperiment;
+```
+
+### Explanation:
+- **Variable Declaration**: The model declares a real variable `x` with an initial value of 2.
+- **Differential Equation**: The equation `der(x) = -x + 1` is a simple first-order linear differential equation. It describes the rate of change of `x` over time. The term `-x` pulls `x` towards zero, while the constant `1` shifts the equilibrium point to 1.0.
+- **Experiment Annotation**: The `annotation(experiment(...))` specifies the simulation conditions:
+  - `StartTime=0`: The simulation starts at time 0.
+  - `StopTime=10`: The simulation runs until time 10.
+  - `Tolerance=1e-6`: The numerical tolerance for the solver.
+  - `Interval=0.1`: The output interval for the simulation results.
+
+This model will simulate how `x` changes over time, starting from 2 and converging towards 1.0.

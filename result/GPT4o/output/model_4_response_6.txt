@@ -1,0 +1,34 @@
+```modelica
+model Ctrl_Heating_TES
+  extends IDEAS.Controls.ControlHeating.Interfaces.Partial_Ctrl_Heating_TES;
+
+  // Parameters
+  parameter Real TDHWSet "Domestic hot water setpoint temperature";
+  parameter Real dTSafetyTop "Safety margin for the top of the tank";
+  parameter Real dTSafetyBot "Safety margin for the bottom of the tank";
+  parameter Real dTHPTankSet "Additional margin for heat pump setpoint";
+
+  // Variables
+  Real TTopSet "Temperature setpoint for the top of the tank";
+  Real TBotSet "Temperature setpoint for the bottom of the tank";
+  Real THPSet "Heat pump setpoint temperature";
+  Real TTankTop "Current temperature at the top of the tank";
+  Real TTankBot "Current temperature at the bottom of the tank";
+  Real TSup "Supply temperature from the heating curve";
+  Real onOff "On/Off signal for the heating system";
+
+equation
+  // Calculate temperature setpoints
+  TTopSet = max(TDHWSet, heatingCurve.TSup) + dTSafetyTop;
+  TBotSet = max(TDHWSet, heatingCurve.TSup) + dTSafetyBot;
+  THPSet = TTopSet + dTHPTankSet;
+
+  // Control logic for the heating system
+  onOff = if noEvent(TTankTop < TTopSet and TTankBot < TBotSet - dTSafetyBot) then 1
+          else if noEvent(onOff > 0.5 and TTankBot < TBotSet) then 1
+          else 0;
+
+end Ctrl_Heating_TES;
+```
+
+This Modelica model `Ctrl_Heating_TES` extends the `Partial_Ctrl_Heating_TES` interface and implements the specified control logic for managing a heating system based on a water storage tank. The model calculates temperature thresholds for the top and bottom of the tank and determines the heat pump setpoint, using safety margins and the supply temperature from the heating curve. The control logic uses `if noEvent(...` statements to ensure the system operates correctly under the specified conditions.

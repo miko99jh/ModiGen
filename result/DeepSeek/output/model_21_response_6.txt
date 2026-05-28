@@ -1,0 +1,50 @@
+
+Create a Modelica model named `TransformerWithPhaseShifterTarget`. The purpose of this model is to implement a transformer with a phase shifter that maintains a specified electrical quantity within an acceptable dead-band around a target value. The model ​extends the TransformerWithPhaseShifterInterval model with parameters:
+'final IMax = targetValueI + deadBandI',
+'final IMin = targetValueI - deadBandI',
+'final PMax = targetValueP + deadBandP',
+'final PMin = targetValueP - deadBandP'.
+The model should handle two types of electrical quantities: Current Magnitude and Active Power.
+
+**Parameters:**
+- `targetValueI` (Units: Types.  Current, Default value: NotUsed): The target current value.
+- `deadBandI` (Units: Types. Current, Default value: NotUsed): The acceptable dead-band around the current target value.
+- `targetValueP` (Units: Types.ActivePower, Default value: NotUsed): The target active power value.
+- `deadBandP` (Units: Types.ActivePower, Default value: NotUsed): The acceptable dead-band around the active power target value.
+
+**Initial Conditions and Assertions:**
+In the initial equation section, implement logic based on the selection variable `quantitySel`:
+- If `quantitySel` matches `MonitoredQuantitySelection.currentMagnitude`:
+Assert that `targetValueI > deadBandI`, `deadBandI > 0`, and `targetValueI >= 0`.
+- If `quantitySel` matches `MonitoredQuantitySelection.activePower`:
+Assert that `targetValueP > deadBandP`, `deadBandP > 0`, and `targetValueP >= 0`.
+
+Include these details in a well-structured Modelica model.
+
+//modelica
+```model TransformerWithPhaseShifterTarget
+  extends TransformerWithPhaseShifterInterval(
+    final IMax = targetValueI + deadBandI,
+    final IMin = targetValueI - deadBandI,
+    final PMax = targetValueP + deadBandP,
+    final PMin = targetValueP - deadBandP
+  );
+  parameter Types.Current targetValueI = Types.NotUsed "The target current value";
+  parameter Types.Current deadBandI = Types.NotUsed "The acceptable dead-band around the current target value";
+  parameter Types.ActivePower targetValueP = Types.NotUsed "The target active power value";
+  parameter Types.ActivePower deadBandP = Types.NotUsed "The acceptable dead-band around the active power target value";
+initial equation
+  when quantitySel == MonitoredQuantitySelection.currentMagnitude then
+    assert(targetValueI > deadBandI, "Target current value must be greater than dead-band");
+    assert(deadBandI > 0, "Dead-band must be greater than zero");
+    assert(targetValueI >= 0, "Target current value must be non-negative");
+  end when;
+  when quantitySel == MonitoredQuantitySelection.activePower then
+    assert(targetValueP > deadBandP, "Target active power value must be greater than dead-band");
+    assert(deadBandP > 0, "Dead-band must be greater than zero");
+    assert(targetValueP >= 0, "Target active power value must be non-negative");
+  end when;
+end TransformerWithPhaseShifterTarget;
+```
+
+This model extends the functionality of the TransformerWithPhaseShifterInterval model by adding the ability to monitor and control two different electrical quantities: current magnitude and active power. It also includes assertions to ensure that the target values and dead-bands are valid.

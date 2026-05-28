@@ -1,0 +1,44 @@
+
+Generate a Modelica model for a 'Discrete-time PI controller'. The model should be named 'PI'. The functionality of this model is to implement a Proportional-Integral (PI) controller in a discrete-time system. The model should extend `Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO`.
+
+**Inputs:**
+- 'kd' (Real parameter): Represents the gain of the discrete PI controller.
+- 'Td' (Real parameter, minimum value is Modelica.Constants.small): The time constant of the discrete PI controller.
+
+**Outputs:**
+- 'x' (Real output, start value is 0): Represents the state of the discrete PI controller.
+
+**Equations:**
+Implement the PI control law within a 'when Clock() then' block:
+- Integral State Update: The internal state 'x' should act as a discrete-time accumulator, updated at each tick by adding the current input 'u' normalized by the time constant 'Td' to its previous value.
+- Control Output: The output signal 'y' is the proportional-integral sum, calculated as the controller gain 'kd' multiplied by the sum of the current input and the updated state.
+
+//modelica
+```block PI extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO
+  parameter Real kd "Controller gain";
+  parameter Real Td(min=Modelica.Constants.small) "Time constant";
+  Real x(start=0) "State of the discrete PI controller";
+equation
+  when Clock() then
+    x = x + (u/Td);
+    y = kd * (u + x);
+  end when;
+end PI;
+```
+
+This model should be placed in a package named 'DiscreteControllers' under the Modelica library 'Modelica_UsersGuide'.
+
+//modelica
+```block Modelica.UsersGuide.DiscreteControllers.PI extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO
+  parameter Real kd "Controller gain";
+  parameter Real Td(min=Modelica.Constants.small) "Time constant";
+  Real x(start=0) "State of the discrete PI controller";
+equation
+  when Clock() then
+    x = x + (u/Td);
+    y = kd * (u + x);
+  end when;
+end PI;
+```
+
+Please note that the actual implementation may vary depending on the specific requirements of the system you are working with.

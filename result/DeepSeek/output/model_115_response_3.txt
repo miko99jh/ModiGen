@@ -1,0 +1,16 @@
+
+Generate a Modelica model that implements an on-off actuator for a thermal control system. The model should be named `ConventionOnOffActuator` and extend from the `ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator` model. The actuator should have a parameter `heating_capacity` of type `Real`, representing the heating capacity of the actuator. Internally, the model should include a `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component named `heater` to model the heat flow, and a `Modelica.Blocks.Math.BooleanToReal` component named `command` with redeclared parameters 'realTrue=heating_capacity' and 'realFalse=0'. The heating process is regulated by the command component. Specifically, link the output signal of the command to the heater's heat flow rate input (Q_flow). Additionally, connect the heater's thermal port (port) to the external furnace interface.
+
+//modelica
+```model ConventionOnOffActuator
+  extends ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator(redeclare parameter Real heating_capacity = 1000 "Heating capacity of the actuator");
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater;
+  Modelica.Blocks.Math.BooleanToReal command(realTrue=heating_capacity, realFalse=0);
+equation
+  command.y = heater.Q_flow;
+  connect(heater.port, port);
+end ConventionOnOffActuator;
+```
+
+//text
+This model extends from the `ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator` model and redeclares the `heating_capacity` parameter. It includes a `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component named `heater` and a `Modelica.Blocks.Math.BooleanToReal` component named `command`. The `command` component is linked to the `heater`'s heat flow rate input (Q_flow) and the `heater`'s thermal port (port) is connected to the external furnace interface.

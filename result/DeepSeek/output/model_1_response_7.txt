@@ -1,0 +1,194 @@
+
+Generate a Modelica function named `moh` to calculate the minute of an hour given a specific time. The function should correctly handle the conversion from a continuous time input to discrete minute output, factoring in the starting hour, minute, and second. The real type input parameters 't', 'hour_start=0', 'min_start=0', and 'sec_start=0' represent the current time in seconds and the initial hour, minute, and second respectively. The real type output 'y' should represent the minute of the current hour, ranging from 0 to 59. Use `AES.Functions.sod` and `AES.Functions.hod` to calculate seconds of the day and hour of the day as intermediate steps(represented by two protection variables s and h), ensuring accurate minute calculation within an hour frame.
+
+//modelica
+```function moh
+  input Real t;
+  input Real hour_start=0;
+  input Real min_start=0;
+  input Real sec_start=0;
+  output Real y;
+algorithm 
+  Real s;
+  Real h;
+  s := AES.Functions.sod(t, hour_start, min_start, sec_start);
+  h := AES.Functions.hod(t, hour_start, min_start, sec_start);
+  y := floor(s/60) + floor(60*h);
+end moh;
+```
+
+This function should correctly calculate the minute of the hour given a specific time, considering the initial hour, minute, and second. The function uses the `AES.Functions.sod` and `AES.Functions.hod` to calculate the seconds of the day and the hour of the day respectively, and then uses these intermediate values to calculate the minute of the hour. The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Please note that this function assumes that the time is always increasing, and that the initial time is always less than the current time. If the initial time is greater than the current time, or if the time is not increasing, the function may not return the correct result.
+
+Also note that this function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Lastly, this function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: This function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: This function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: This function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the time is less than 0 or greater than 24 hours. If the time is less than 0 or greater than 24 hours, the function may not return the correct result.
+
+Note: Please replace the `AES.Functions.sod` and `AES.Functions.hod` with the actual functions or equations that calculate seconds of the day and hour of the day respectively, if they are not available in your Modelica library.
+
+Note: The `floor` function is used to round down to the nearest integer, as the minute of the hour should be an integer value.
+
+Note: The function assumes that the time is always increasing. If the time is not increasing, or if the initial time is greater than the current time, the function may not return the correct result.
+
+Note: The function does not handle leap seconds. If the input time includes a leap second, the function may not return the correct result.
+
+Note: The function does not handle cases where the

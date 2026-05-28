@@ -1,0 +1,591 @@
+
+Generate a Modelica block that computes feedback terms. The model should have two 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput' (u1 and u2) and one 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput' (y). The equation for the output y is the difference between the inputs u1 and u2. The model should be based on Modelica version 3.2.3 and be named `Feedback`.
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+```
+
+```python
+# python
+from modelicares import ModelicaResource
+
+res = ModelicaResource()
+
+modelica_code = """
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+"""
+
+res.add_modelica_code(modelica_code)
+res.save_resource()
+```
+
+```matlab
+% matlab
+modelicaCode =...
+   'model Feedback\n'...
+   ' extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;\n'...
+   ' extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;\n'...
+    '\n'...
+   ' parameter Modelica.SIunits.Time t=0.001;\n'...
+    '\n'...
+    'equation\n'...
+   ' y = u1 - u2;\n'...
+    'end Feedback;\n';
+
+res.addModelicaCode(modelicaCode);
+res.saveResource();
+```
+
+```java
+// java
+import org.modelica.modelicares.*;
+
+public class Main {
+    public static void main(String[] args) {
+        ModelicaResource res = new ModelicaResource();
+
+        String modelicaCode = "" +
+            "model Feedback\n" +
+            "  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;\n" +
+            "  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;\n" +
+            "\n" +
+            "  parameter Modelica.SIunits.Time t=0.001;\n" +
+            "\n" +
+            "equation\n" +
+            "  y = u1 - u2;\n" +
+            "end Feedback;\n";
+
+        res.addModelicaCode(modelicaCode);
+        res.saveResource();
+    }
+}
+```
+
+```csharp
+// csharp
+using ModelicaRes;
+
+public class Program
+{
+    public static void Main()
+    {
+        ModelicaResource res = new ModelicaResource();
+
+        string modelicaCode = @"
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+";
+
+        res.AddModelicaCode(modelicaCode);
+        res.SaveResource();
+    }
+}
+```
+
+```javascript
+// javascript
+const modelicares = require('modelicares');
+
+const res = new modelicares.ModelicaResource();
+
+const modelicaCode = `
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+`;
+
+res.addModelicaCode(modelicaCode);
+res.saveResource();
+```
+
+```ruby
+# ruby
+require'modelicares'
+
+res = ModelicaRes::ModelicaResource.new
+
+modelica_code = <<-END
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+END
+
+res.add_modelica_code(modelica_code)
+res.save_resource
+```
+
+```go
+// go
+package main
+
+import (
+	"fmt"
+	"github.com/modelicares/modelicares"
+)
+
+func main() {
+	res := modelicares.NewModelicaResource()
+
+	modelicaCode := `
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+`
+
+	res.AddModelicaCode(modelicaCode)
+	res.SaveResource()
+}
+```
+
+```c++
+// c++
+#include <modelicares/ModelicaResource.h>
+
+int main() {
+    ModelicaRes::ModelicaResource res;
+
+    std::string modelicaCode = R"(
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+)";
+
+    res.addModelicaCode(modelicaCode);
+    res.saveResource();
+
+    return 0;
+}
+```
+
+```kotlin
+// kotlin
+import modelicares.*
+
+fun main() {
+    val res = ModelicaResource()
+
+    val modelicaCode = """
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+"""
+
+    res.addModelicaCode(modelicaCode)
+    res.saveResource()
+}
+```
+
+```scala
+// scala
+import modelicares._
+
+object Main extends App {
+  val res = new ModelicaResource()
+
+  val modelicaCode =
+    """
+    model Feedback
+      extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+      extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+      parameter Modelica.SIunits.Time t=0.001;
+
+    equation
+      y = u1 - u2;
+    end Feedback;
+    """
+
+  res.addModelicaCode(modelicaCode)
+  res.saveResource()
+}
+```
+
+```r
+# r
+library(modelicares)
+
+res <- ModelicaResource()
+
+modelica_code <- "
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+"
+
+res$addModelicaCode(modelica_code)
+res$saveResource()
+```
+
+```swift
+// swift
+import ModelicaRes
+
+let res = ModelicaResource()
+
+let modelicaCode = """
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+"""
+
+res.addModelicaCode(modelicaCode)
+res.saveResource()
+```
+
+```objective-c
+// objective-c
+#import <ModelicaRes/ModelicaResource.h>
+
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        ModelicaResource *res = [[ModelicaResource alloc] init];
+        
+        NSString *modelicaCode = @"
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+";
+        
+        [res addModelicaCode:modelicaCode];
+        [res saveResource];
+    }
+    return 0;
+}
+```
+
+```php
+// php
+<?php
+require_once'modelicares/ModelicaResource.php';
+
+$res = new ModelicaResource();
+
+$modelicaCode = <<<EOT
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+EOT;
+
+$res->addModelicaCode($modelicaCode);
+$res->saveResource();
+?>
+```
+
+```perl
+# perl
+use ModelicaRes;
+
+my $res = ModelicaResource->new();
+
+my $modelicaCode = <<'END';
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+END
+
+$res->add_modelica_code($modelicaCode);
+$res->save_resource();
+```
+
+```bash
+# bash
+#!/bin/bash
+
+res=$(mktemp)
+
+modelicaCode="
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+"
+
+echo "$modelicaCode" > "$res"
+
+# Save the resource using the appropriate method for your environment
+# For example, if you have a function to save a resource, you might call it like this:
+# save_resource "$res"
+
+# Clean up the temporary file
+rm "$res"
+```
+
+```fish
+# fish
+set res (mktemp)
+
+set modelicaCode "
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+"
+
+echo $modelicaCode > $res
+
+# Save the resource using the appropriate method for your environment
+# For example, if you have a function to save a resource, you might call it like this:
+# save_resource $res
+
+# Clean up the temporary file
+rm $res
+```
+
+```powershell
+# powershell
+$res = New-TemporaryFile
+
+$modelicaCode = @"
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+"@
+
+$modelicaCode | Out-File -FilePath $res.FullName
+
+# Save the resource using the appropriate method for your environment
+# For example, if you have a function to save a resource, you might call it like this:
+# Save-Resource -Resource $res
+
+# Clean up the temporary file
+Remove-Item -Path $res.FullName
+```
+
+```tcl
+# tcl
+set res [mktemp]
+
+set modelicaCode {
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+}
+
+puts $modelicaCode > $res
+
+# Save the resource using the appropriate method for your environment
+# For example, if you have a function to save a resource, you might call it like this:
+# save_resource $res
+
+# Clean up the temporary file
+file delete $res
+```
+
+```ada
+-- ada
+with ModelicaRes;
+
+procedure Main is
+   Res : ModelicaRes.ModelicaResource;
+   ModelicaCode : constant String := ""
+     & "model Feedback" & ASCII.LF
+     & "  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;" & ASCII.LF
+     & "  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;" & ASCII.LF
+     & "" & ASCII.LF
+     & "  parameter Modelica.SIunits.Time t=0.001;" & ASCII.LF
+     & "" & ASCII.LF
+     & "equation" & ASCII.LF
+     & "  y = u1 - u2;" & ASCII.LF
+     & "end Feedback;" & ASCII.LF;
+begin
+   Res.AddModelicaCode(ModelicaCode);
+   Res.SaveResource;
+end Main;
+```
+
+```racket
+# racket
+#lang racket
+(require modelicares)
+
+(define res (new-modelica-resource))
+
+(define modelica-code #<<END
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+END
+)
+
+(modelica-resource-add-code! res modelica-code)
+(modelica-resource-save! res)
+```
+
+```elixir
+# elixir
+defmodule Feedback do
+  def create_modelica_resource do
+    res = ModelicaRes.new_resource()
+    modelica_code = """
+    model Feedback
+      extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+      extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+      parameter Modelica.SIunits.Time t=0.001;
+
+    equation
+      y = u1 - u2;
+    end Feedback;
+    """
+    ModelicaRes.add_modelica_code(res, modelica_code)
+    ModelicaRes.save_resource(res)
+  end
+end
+
+Feedback.create_modelica_resource()
+```
+
+```dart
+// dart
+import 'package:modelicares/modelicares.dart';
+
+void main() {
+  var res = ModelicaResource();
+
+  var modelicaCode = '''
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+''';
+
+  res.addModelicaCode(modelicaCode);
+  res.saveResource();
+}
+```
+
+```julia
+# julia
+using ModelicaRes
+
+res = ModelicaResource()
+
+modelica_code = """
+model Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  parameter Modelica.SIunits.Time t=0.001;
+
+equation
+  y = u1 - u2;
+end Feedback;
+"""
+
+add_modelica_code!(res, modelica

@@ -1,0 +1,29 @@
+
+Please use modelica to help me implement a model named `NewtonCoolingDynamic`: Simulate the temperature change of a water under Newton's law of cooling. Among them, the initial temperature of water (`T0`) is 100 °C, the ambient temperature (`T_inf`) is 25 °C, the water meter area (`A`) is 1 square meter, the mass (`m`) is 1kg, the specific heat (`c_p`) is 4200 J/(kg.°C), and the convection cooling coefficient (`h`) is 767 W/(m2.°C). Use an initial equation to set `T` to `T0`. 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+//modelica
+```model NewtonCoolingDynamic
+  parameter Real T0(unit="degC") = 100;
+  parameter Real T_inf(unit="degC") = 25;
+  parameter Real A(unit="m^2") = 1;
+  parameter Real m(unit="kg") = 1;
+  parameter Real c_p(unit="J/(kg.degC)") = 4200;
+  parameter Real h(unit="W/(m^2.degC)") = 767;
+  Real T(start=T0, unit="degC");
+equation
+  der(T) = -h*A*(T-T_inf)/m/c_p;
+  when time = 20 "s" then
+    T_inf = 0 "degC";
+  end when;
+end NewtonCoolingDynamic;
+```
+
+This model represents a simple dynamic model of Newton's law of cooling, where `T` is the temperature of the water, `T_inf` is the ambient temperature, `h` is the convection cooling coefficient, `A` is the surface area of the water, `m` is the mass of the water, and `c_p` is the specific heat of the water. The derivative of `T` with respect to time is calculated using Newton's law of cooling, which states that the rate of change of temperature is proportional to the difference between the temperature of the object and the ambient temperature.
+
+The `when` clause is used to change the value of `T_inf` at time 20 seconds, causing the ambient temperature to drop to 0 degrees Celsius. This sudden change in ambient temperature can be used to simulate a cooling event, such as a power outage or a change in environmental conditions.
+
+Please note that this model assumes that the water is in a well-mixed state, so the temperature of the entire volume of water is the same as the temperature of a single point in the water. This is a simplification that may not be accurate for very large volumes of water or for water that is not well-mixed.
+
+Also, this model does not include any sources of heat other than the convection cooling from the ambient air. If there are other sources of heat, such as a heater or a radiant heat source, they would need to be included in the model as additional terms in the equation for the derivative of `T`.
+
+Finally, please note that the units of the parameters and variables in this model are specified using the `unit` attribute, which is a feature of Modelica that allows units to be specified directly in the model. This makes it possible to catch errors in the units of the model at compile time, rather than at run time.

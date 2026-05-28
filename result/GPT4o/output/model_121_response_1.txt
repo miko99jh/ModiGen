@@ -1,0 +1,16 @@
+To create a Modelica model named `OnOffVariant` that extends from `ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel`, and includes the specified components, you can use the following code:
+
+```modelica
+model OnOffVariant
+  extends ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel;
+
+  redeclare replaceable ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator actuator(
+    heating_capacity=500);
+
+  redeclare replaceable ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl controller(
+    setpoint=300);
+
+end OnOffVariant;
+```
+
+This model extends the `ExpandableModel` and redeclares the `actuator` and `controller` components with the specified parameters. Make sure that the `ModelicaByExample` library is available in your Modelica environment to use these components.

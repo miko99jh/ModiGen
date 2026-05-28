@@ -1,0 +1,54 @@
+
+Generate a Modelica model named `LimitedActuator` for an actuator with lag and saturation.
+
+The model should extend the `ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator` and include the following parameters: `delayTime` (of type `Modelica.SIunits.Time`), which represents the delay time of the output with respect to the input signal, and `uMax` (of type `Real`), which represents the upper limit of input signals.
+
+The model should include the following components in protected part: `Modelica.Mechanics.Rotational.Sources. Torque` with `useSupport=true`, `Modelica.Blocks.Nonlinear.Limiter` with `uMax=uMax`, and `Modelica.Blocks.Nonlinear.FixedDelay` with `delayTime=delayTime`.
+
+The model's equations should connect these components appropriately, including 1. Mechanical Output: Link the torque source's output flange (torque.flange) to the external 'shaft', and its support (torque.support) to the 'housing'.
+2. Signal Chain: The input torque command tau should first pass through the input of the lag component (lag.u). The delayed output signal (lag.y) is then processed by the input of the limiter (limiter.u) to enforce saturation constraints.
+3. Actuation: The final limited signal output (limiter.y) must drive the torque generation input (torque.tau) of the torque component.
+
+//modelica
+```model LimitedActuator
+  extends ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator;
+  parameter Modelica.SIunits.Time delayTime "Delay time";
+  parameter Real uMax "Upper limit of input signals";
+protected 
+  Modelica.Mechanics.Rotational.Sources.Torque torque;
+  Modelica.Blocks.Nonlinear.Limiter limiter(uMax=uMax);
+  Modelica.Blocks.Nonlinear.FixedDelay lag(delayTime=delayTime);
+equation 
+  connect(torque.flange, shaft);
+  connect(torque.support, housing);
+  connect(tau, lag.u);
+  connect(lag.y, limiter.u);
+  connect(limiter.y, torque.tau);
+end LimitedActuator;
+```
+
+This model should be placed in a new package named `ModelicaByExample.Architectures.SensorComparison.Actuators`.
+
+Make sure to test the model using the `ModelicaByExample.Architectures.SensorComparison.Test.Actuators` package.
+
+The test should include a simulation of the actuator with a torque command signal that varies between -100N.m and 100N.m. The test should also include a plot of the torque command signal, the actuator's output torque, and the actuator's housing angular velocity.
+
+The test should be named `TestLimitedActuator` and it should be placed in the `ModelicaByExample.Architectures.SensorComparison.Test.Actuators` package.
+
+//modelica
+```model TestLimitedActuator
+  ModelicaByExample.Architectures.SensorComparison.Actuators.LimitedActuator actuator(delayTime=0.1, uMax=100);
+  ModelicaByExample.Architectures.SensorComparison.Sources.TorqueCommand torqueCommand;
+equation 
+  connect(torqueCommand.output, actuator.tau);
+  annotation(experiment(StartTime=0, StopTime=10, Interval=0.01, Tolerance=1e-6));
+end TestLimitedActuator;
+```
+
+Please note that you need to have the `ModelicaByExample` package installed in your Modelica environment to run these models. If it's not installed, you can download it from the Modelica Standard Library website or from the Modelica Association GitHub repository.
+
+Also, please note that the `ModelicaByExample.Architectures.SensorComparison.Sources.TorqueCommand` model is a simple sine wave source that varies between -100N.m and 100N.m. If it's not available, you can create a similar source model yourself.
+
+Finally, please note that the `ModelicaByExample.Architectures.SensorComparison.Test.Actuators` package is a placeholder for the actual test package. You should create the actual test package and place the `TestLimitedActuator` model inside it.
+
+Please let me know if you need further assistance or clarification.

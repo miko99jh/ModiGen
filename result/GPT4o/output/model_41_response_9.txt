@@ -1,0 +1,25 @@
+```modelica
+block PI
+  extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO;
+
+  parameter Real kd "Gain of the discrete PI controller";
+  parameter Real Td(min=Modelica.Constants.small) "Time constant of the discrete PI controller";
+
+  output Real x(start=0) "State of the discrete PI controller";
+
+protected 
+  Real u_prev(start=0) "Previous input value for state update";
+
+equation 
+  when Clock() then
+    // Integral State Update
+    x = pre(x) + u / Td;
+    
+    // Control Output
+    y = kd * (u + x);
+  end when;
+
+end PI;
+```
+
+This Modelica model defines a discrete-time PI controller named `PI`. It extends the `Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO` interface, which is suitable for single-input, single-output (SISO) systems in a clocked (discrete-time) context. The model includes parameters for the controller gain `kd` and the time constant `Td`, with `Td` having a minimum value constraint. The state `x` is updated in a `when Clock() then` block, which ensures that the state and output are updated at each clock tick. The control output `y` is calculated as the proportional-integral sum.

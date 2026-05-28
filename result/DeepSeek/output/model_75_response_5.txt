@@ -1,0 +1,24 @@
+
+Generate a Modelica block named `FromPolar` that converts a space phasor from polar coordinates to Cartesian coordinates. The block should include the following components and details:
+1. Components:
+-  The block should extend from Modelica.Blocks.Interfaces.MIMOs with final n set to 2.
+2. Equations:
+Implement the coordinate transformation where the input vector 'u' represents polar components and the output vector 'y' represents Cartesian components:
+The first input 'u[1]' shall be treated as the magnitude of the space phasor.
+The second input 'u[2]' shall be treated as the angle of the space phasor.
+The output vector 'y' should be defined as the projection of the magnitude onto the Cartesian axes using the cosine and sine of the input angle.
+
+Please ensure the block is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```block FromPolar extends Modelica.Blocks.Interfaces.MIMOs
+  parameter Integer n=2 "Number of inputs";
+  input Real u[n] "Input vector";
+  output Real y[n] "Output vector";
+equation
+  y[1] = u[1]*cos(u[2]);
+  y[2] = u[1]*sin(u[2]);
+end FromPolar;
+```
+
+This block will convert a space phasor from polar coordinates to Cartesian coordinates. The input vector 'u' represents the magnitude and angle of the space phasor in polar coordinates, and the output vector 'y' represents the Cartesian coordinates of the space phasor.

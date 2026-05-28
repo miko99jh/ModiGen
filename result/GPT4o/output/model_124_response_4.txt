@@ -1,0 +1,28 @@
+Here is the Modelica model `AmbientCondition` that represents an infinite reservoir at a specified ambient temperature. The model includes a parameter `T_amb` of type `Modelica.SIunits.Temperature` and a heat transfer interface `node` of type `Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a`. The temperature at the `node` is constrained to be equal to `T_amb`.
+
+```modelica
+model AmbientCondition
+  // Parameter for ambient temperature
+  parameter Modelica.SIunits.Temperature T_amb = 293.15 
+    "Ambient temperature (default: 20°C)";
+
+  // Heat transfer interface
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a node 
+    "Heat transfer interface representing the infinite reservoir";
+
+equation
+  // Enforce the temperature at the node to be equal to the ambient temperature
+  node.T = T_amb;
+
+  // Since this is an infinite reservoir, no heat is stored in the model
+  node.Q_flow = 0;
+end AmbientCondition;
+```
+
+### Explanation:
+1. **Parameter `T_amb`**: This parameter represents the ambient temperature of the infinite reservoir. It is initialized to a default value of 293.15 K (20°C), but it can be set to any desired value.
+2. **HeatPort_a `node`**: This is the heat transfer interface that allows the model to interact thermally with other components in a system.
+3. **Equation `node.T = T_amb`**: This equation ensures that the temperature at the heat port is always equal to the ambient temperature, representing the infinite reservoir's constant temperature.
+4. **Equation `node.Q_flow = 0`**: This ensures that the infinite reservoir does not store or release any heat internally, as it is assumed to have infinite thermal capacity.
+
+This model can be used in thermal simulations where a constant ambient temperature boundary condition is required.

@@ -1,0 +1,8 @@
+model Inductor
+ extends Modelica.Electrical.Analog.Interfaces.OnePort(final i(start=0));
+
+  parameter Modelica.SIunits.Inductance L = 1 "Inductance";
+
+equation
+  L * der(i) = v;
+end Inductor;

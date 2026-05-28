@@ -1,0 +1,36 @@
+
+Please use modelica to help me implement a model named `NewtonCoolingDynamic`: Simulate the temperature change of a water under Newton's law of cooling. Among them, the initial temperature of water (`T0`) is 100 °C, the ambient temperature (`T_inf`) is 25 °C, the water meter area (`A`) is 1 square meter, the mass (`m`) is 1kg, the specific heat (`c_p`) is 4200 J/(kg.°C), and the convection cooling coefficient (`h`) is 767 W/(m2.°C). Use an initial equation to set `T` to `T0`. 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+//modelica
+```model NewtonCoolingDynamic
+  parameter Real T0(unit="degC") = 100;
+  parameter Real T_inf(unit="degC") = 25;
+  parameter Real A(unit="m^2") = 1;
+  parameter Real m(unit="kg") = 1;
+  parameter Real c_p(unit="J/(kg.degC)") = 4200;
+  parameter Real h(unit="W/(m^2.degC)") = 767;
+  Real T(start=T0, unit="degC");
+  Real Q_dot(unit="W");
+  Real Q_dot_conv(unit="W");
+  Real Q_dot_rad(unit="W");
+initial equation
+  T = T0;
+equation
+  // Newton's law of cooling
+  Q_dot = h * A * (T_inf - T);
+  // Energy balance
+  der(T) = (Q_dot - Q_dot_conv - Q_dot_rad) / (m * c_p);
+  // After 20 seconds, the ambient temperature suddenly dropped to 0°C
+  when time > 20 then
+    T_inf = 0;
+  end when;
+end NewtonCoolingDynamic;
+```
+
+This model describes the Newton's law of cooling, which states that the rate of heat loss of a body is directly proportional to the difference in temperature between the body and its surroundings. The equation for heat transfer (`Q_dot`) is calculated using the convection coefficient (`h`), the surface area (`A`), and the difference in temperature between the water and the ambient temperature (`T_inf - T`). The energy balance equation (`der(T)`) takes into account the heat transfer and the internal energy changes of the water. After 20 seconds, the ambient temperature suddenly drops to 0°C, which is represented by the `when` clause.
+
+Please note that this model assumes that there is no radiation heat transfer and no internal heat generation in the water. If these factors are significant, additional terms would need to be included in the model.
+
+Also, please note that the units of the parameters and variables are specified using the `unit` attribute. This makes the model more readable and allows for automatic unit checking during the simulation.
+
+Please let me know if you need any further assistance.

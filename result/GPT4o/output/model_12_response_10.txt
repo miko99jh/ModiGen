@@ -1,0 +1,29 @@
+Certainly! Below is a Modelica model for a comparison function named `NotEqual`, which implements the 'not equal (!=)' logic. It extends from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model and includes a sample time parameter `Ts` for triggering the comparison at regular intervals.
+
+```modelica
+model NotEqual
+  extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+
+  parameter Real eps = 1e-6 "Threshold for comparison";
+  parameter Real Ts = 0 "Sample time for discrete comparison; if Ts > 0, comparison is discrete";
+
+equation
+  if Ts > 0 then
+    when sample(0, Ts) then
+      y = abs(u1 - u2) >= eps;
+    end when;
+  else
+    y = abs(u1 - u2) >= eps;
+  end if;
+end NotEqual;
+```
+
+### Explanation:
+- **Parameters:**
+  - `eps`: A small threshold value used to determine if the absolute difference between `u1` and `u2` is significant enough to consider them not equal.
+  - `Ts`: The sample time parameter. If `Ts` is greater than 0, the comparison is triggered at regular intervals defined by `Ts`. Otherwise, the comparison is continuous.
+
+- **Logic:**
+  - The `equation` section checks if `Ts` is greater than 0. If so, it uses the `when sample(0, Ts)` construct to perform the comparison at discrete intervals.
+  - If `Ts` is 0 or less, the comparison is continuous.
+  - The output `y` is set to `true` if the absolute difference between `u1` and `u2` is greater than or equal to `eps`, indicating that `u1` and `u2` are not equal. Otherwise, `y` is set to `false`.

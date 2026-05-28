@@ -1,0 +1,24 @@
+
+Create a Modelica block named `EventClock`. The purpose of the model is to generate a clock signal when the Boolean input changes from false to true. The model should extend `Modelica.Clocked.ClockSignals.Interfaces.PartialClock`. The input parameter is a Boolean signal 'u' of type `Modelica.Blocks.Interfaces.BooleanInput`. The output is a clock signal 'y'. In the equation section, generate the output clock 'y' based on the events in the Boolean signal 'u'. If the 'useSolver' flag is enabled, the clock should be instantiated as a nested clock associated with the specified 'solverMethod'. Otherwise, define 'y' as a standard event clock triggered directly by 'u'.
+
+//modelica
+```block EventClock extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock
+  parameter Modelica.Blocks.Interfaces.BooleanInput u "Boolean input signal";
+  Modelica.Blocks.Interfaces.ClockOutput y(start=false) "Clock output signal";
+  parameter Boolean useSolver=false "Flag to enable nested solver";
+  parameter Modelica.Blocks.Types.SolverMethod solverMethod=Modelica.Blocks.Types.SolverMethod.FixedStep "Solver method to use for nested clock";
+equation
+  if useSolver then
+    Modelica.Blocks.Types.Clock clock(
+      Modelica.Blocks.Types.SolverMethod=solverMethod,
+      Modelica.Blocks.Types.TriggerType=Modelica.Blocks.Types.TriggerType.Rising,
+      Modelica.Blocks.Types.InitialValue=false);
+    clock.u = u;
+    y = clock.y;
+  else
+    y = Modelica.Blocks.Types.clock(Modelica.Blocks.Types.TriggerType.Rising, u, false);
+  end if;
+end EventClock;
+```
+
+This model will generate a clock signal 'y' that is true only when the Boolean input 'u' changes from false to true. The clock signal 'y' is triggered by the rising edge of the Boolean signal 'u'. If the 'useSolver' flag is enabled, the clock is instantiated as a nested clock associated with the specified'solverMethod'. Otherwise, the clock is defined as a standard event clock.

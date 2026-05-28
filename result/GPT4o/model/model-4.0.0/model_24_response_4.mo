@@ -1,0 +1,7 @@
+function largerTimeConstant
+ input Real a "Coefficient of s in the polynomial";
+  input Real b "Coefficient of s^2 in the polynomial";
+  output Real T "Larger time constant T1";
+algorithm
+  T := (a + sqrt(abs(a^2 - 4*b))) / 2;
+end largerTimeConstant;

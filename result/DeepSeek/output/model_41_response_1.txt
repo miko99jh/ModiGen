@@ -1,0 +1,33 @@
+
+Generate a Modelica model for a 'Discrete-time PI controller'. The model should be named 'PI'. The functionality of this model is to implement a Proportional-Integral (PI) controller in a discrete-time system. The model should extend `Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO`.
+
+**Inputs:**
+- 'kd' (Real parameter): Represents the gain of the discrete PI controller.
+- 'Td' (Real parameter, minimum value is Modelica.Constants.small): The time constant of the discrete PI controller.
+
+**Outputs:**
+- 'x' (Real output, start value is 0): Represents the state of the discrete PI controller.
+
+**Equations:**
+Implement the PI control law within a 'when Clock() then' block:
+- Integral State Update: The internal state 'x' should act as a discrete-time accumulator, updated at each tick by adding the current input 'u' normalized by the time constant 'Td' to its previous value.
+- Control Output: The output signal 'y' is the proportional-integral sum, calculated as the controller gain 'kd' multiplied by the sum of the current input and the updated state.
+
+//modelica
+```block PI extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO
+  parameter Real kd "Controller gain";
+  parameter Real Td(min=Modelica.Constants.small) "Time constant";
+  Real x(start=0) "State of the discrete PI controller";
+equation
+  when Clock() then
+    x = x + (u/Td);
+    y = kd * (u + x);
+  end when;
+end PI;
+```
+
+This model should be placed in a folder named 'DiscreteTime' in the 'Controllers' package.
+
+Please note that the 'Clock()' function is used to trigger the update of the controller state and output at each discrete time step. The 'when' clause is used to ensure that the controller equations are only evaluated at these discrete times.
+
+Also, the'start' attribute is used to initialize the state 'x' to 0. The'min' attribute is used to constrain the time constant 'Td' to a minimum value to prevent division by zero.

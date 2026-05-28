@@ -1,0 +1,38 @@
+To implement a Modelica model named `Summation` that calculates the sum of all integers from 1 to `n` (where `n` is 10), you can use an algorithm block with a for loop. Here's how you can do it:
+
+```modelica
+model Summation
+  // Declare variables
+  Integer n = 10; // Upper limit of the summation
+  Integer sum;    // Variable to store the sum
+
+algorithm
+  // Initialize sum
+  sum := 0;
+
+  // Loop to calculate the sum of integers from 1 to n
+  for i in 1:n loop
+    sum := sum + i;
+  end for;
+  
+  // You can add a when statement to print the result if needed
+  when initial() then
+    // Print the result
+    Modelica.Utilities.Streams.print("The sum of integers from 1 to " + String(n) + " is: " + String(sum));
+  end when;
+end Summation;
+```
+
+### Explanation:
+- **Variables**: 
+  - `n` is set to 10, which is the upper limit of the summation.
+  - `sum` is used to store the accumulated sum of integers.
+
+- **Algorithm Block**:
+  - `sum` is initialized to 0 before entering the loop.
+  - A `for` loop iterates from 1 to `n`, adding each integer to `sum`.
+
+- **Output**:
+  - The `when initial()` block is used to print the result when the simulation starts. This is optional and can be removed if you don't need to print the result.
+
+This model will calculate the sum of integers from 1 to 10 and store the result in the `sum` variable.

@@ -1,0 +1,26 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual
+  extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+  parameter Real eps=1e-6;
+  parameter Real Ts=0;
+equation
+  if Ts > 0 then
+    y = not(abs(u1 - u2) < eps);
+  else
+    der(y) = (not(abs(u1 - u2) < eps)) - y;
+  end if;
+end NotEqual;
+```
+
+This model will generate a Boolean output 'y' that is true when the inputs 'u1' and 'u2' are not equal within a certain tolerance 'eps'. The tolerance can be adjusted by changing the value of 'eps'. If 'Ts' is greater than 0, the comparison is performed at regular intervals of 'Ts'. If 'Ts' is 0, the comparison is continuous.
+
+Please note that this model is a simple implementation and may not be suitable for all applications. For example, it does not account for the possibility of 'u1' and 'u2' going out of range, or for the possibility of 'u1' and 'u2' changing rapidly. These issues could be addressed by adding additional logic to the model.
+
+Also, note that the Modelica language does not support the 'not' operator on Boolean expressions directly. Instead, it uses the 'not' function. Therefore, in the equation section, the expression 'not(abs(u1 - u2) < eps)' is used instead of '!(abs(u1 - u2) < eps)'.
+
+Finally, the Modelica language does not support the 'der' operator directly on Boolean variables. However, in this case, it is used to compute the rate of change of the Boolean variable 'y'. The equation 'der(y) = (not(abs(u1 - u2) < eps)) - y' computes the rate of change of 'y' as the difference between the desired rate of change and the current value of 'y'. This is a common trick in Modelica to compute the rate of change of a Boolean variable.
+
+Please replace the placeholder values with the actual values as per your requirements.

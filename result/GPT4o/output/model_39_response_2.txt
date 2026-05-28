@@ -1,0 +1,40 @@
+To create a Modelica model for a block called `AssignClockVectorized`, which assigns a clock signal to a vector of Real input signals and outputs them as a clocked Real signal vector, you can follow the structure below. This model will include the necessary inputs, outputs, and interfaces as specified:
+
+```modelica
+block AssignClockVectorized
+  parameter Integer n(min=1) = 1 "Size of input signal vector u (= size of output signal vector y)";
+  
+  // Input and output vectors
+  Modelica.Blocks.Interfaces.RealInput u[n] "Vector of Real input signals";
+  Modelica.Blocks.Interfaces.RealOutput y[n] "Vector of Real output signals";
+  
+  // Clock input
+  Modelica.Clocked.ClockSignals.Interfaces.ClockInput clock "Clock input signal";
+
+equation
+  // When the clock ticks, assign input vector u to output vector y
+  when ClockSample(clock) then
+    y = u;
+  end when;
+  
+end AssignClockVectorized;
+```
+
+### Explanation:
+
+1. **Parameters**:
+   - `n`: A parameter that defines the size of the input and output vectors. It has a minimum value of 1.
+
+2. **Inputs and Outputs**:
+   - `u[n]`: A vector of Real input signals, with size determined by `n`.
+   - `y[n]`: A vector of Real output signals, also with size `n`.
+   - `clock`: A clock input signal that triggers the assignment.
+
+3. **Interfaces**:
+   - `Modelica.Blocks.Interfaces.RealInput` and `Modelica.Blocks.Interfaces.RealOutput` are used for the input and output vectors.
+   - `Modelica.Clocked.ClockSignals.Interfaces.ClockInput` is used for the clock input.
+
+4. **Equation**:
+   - The `when ClockSample(clock) then` construct is used to update the output `y` with the input `u` whenever the clock signal triggers. This ensures that the assignment happens in a clocked manner.
+
+This model provides a simple yet effective way to handle clocked assignments for vectorized signals in Modelica.

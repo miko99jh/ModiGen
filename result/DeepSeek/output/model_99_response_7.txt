@@ -1,0 +1,27 @@
+
+Implement a Modelica function named `PotentialEnergy` for solving gravitational potential energy, where the inputs are mass (`m`), height (`h`), and gravitational acceleration (`g`) which defaults to 9.81, and the output is the gravitational potential energy (`pe`) of the object. The function should use an `algorithm` block to calculate the potential energy.
+
+//modelica
+```function PotentialEnergy
+  input Real m "Mass";
+  input Real h "Height";
+  input Real g = 9.81 "Gravitational acceleration";
+  output Real pe "Gravitational potential energy";
+algorithm 
+  pe := 0.5 * m * h * g;
+end PotentialEnergy;
+```
+
+This function calculates the gravitational potential energy of an object based on its mass, height, and gravitational acceleration. The formula used here is `0.5 * m * h * g`, where `m` is the mass of the object, `h` is the height from which the object is raised, and `g` is the gravitational acceleration. The output is the gravitational potential energy of the object.
+
+The default value of `g` is set to 9.81 m/s^2, which is the standard value for gravitational acceleration on Earth. If no value is provided for `g`, this default value will be used.
+
+The function uses an `algorithm` block to calculate the potential energy. This block is used to perform calculations that are not related to time-varying variables. In this case, the calculation is straightforward and does not require any time-varying variables, so the `algorithm` block is appropriate.
+
+The function is named `PotentialEnergy` and takes three inputs: `m`, `h`, and `g`. The output is the gravitational potential energy (`pe`) of the object.
+
+The function is defined using the `function` keyword, and the inputs and outputs are declared using the `input` and `output` keywords, respectively. The types of the inputs and outputs are specified after the variable name in quotation marks.
+
+The function is defined in Modelica, which is a hardware-independent, high-level modeling language for large-scale dynamic systems. Modelica allows for the easy and efficient modeling of complex systems, and its syntax is designed to be easy to read and write.
+
+The function can be used in a Modelica model to calculate the gravitational potential energy of an object based on its mass, height, and gravitational acceleration. For example, the function could be used in a model to calculate the gravitational potential energy of a car on a hill.

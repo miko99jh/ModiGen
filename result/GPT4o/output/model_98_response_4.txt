@@ -1,0 +1,35 @@
+To implement the `Rt_T` function in Modelica for calculating the resistance of a platinum resistor based on temperature, you can follow the structure below. This function uses the given constants and conditions to compute the resistance:
+
+```modelica
+function Rt_T
+  input Real T; // Temperature in degrees Celsius
+  output Real Rt; // Resistance in ohms
+
+protected
+  constant Real R0 = 100; // Reference resistance at 0°C in ohms
+  constant Real A = 3.9083e-3; // Coefficient A
+  constant Real B = -5.775e-7; // Coefficient B
+  constant Real C = -4.183e-12; // Coefficient C
+
+algorithm
+  if T >= 0 and T < 850 then
+    Rt := R0 * (1 + A*T + B*T^2);
+  elseif T > -200 and T < 0 then
+    Rt := R0 * (1 + A*T + B*T^2 + C*T^3 * (T - 100));
+  else
+    // Handle out of range temperatures if necessary
+    // For now, we can set Rt to a default value or raise an error
+    Rt := R0; // Default to R0 if out of range
+    // Alternatively, you could raise an error or warning
+    // error("Temperature out of range for this model");
+  end if;
+end Rt_T;
+```
+
+### Explanation:
+- **Inputs and Outputs**: The function takes a single input `T` (temperature in degrees Celsius) and outputs `Rt` (resistance in ohms).
+- **Protected Constants**: The constants `R0`, `A`, `B`, and `C` are defined as protected variables, meaning they are internal to the function and not accessible from outside.
+- **Algorithm Block**: The `algorithm` block contains the logic for calculating the resistance based on the temperature range:
+  - For temperatures between 0°C and 850°C, the resistance is calculated using the formula `Rt = R0 * (1 + A*T + B*T^2)`.
+  - For temperatures between -200°C and 0°C, the formula includes an additional term: `Rt = R0 * (1 + A*T + B*T^2 + C*T^3 * (T - 100))`.
+- **Out of Range Handling**: If the temperature is outside the specified range, the function defaults `Rt` to `R0`. You can modify this behavior to raise an error or handle it differently as needed.

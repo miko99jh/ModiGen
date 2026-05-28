@@ -1,0 +1,26 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual
+  extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+  parameter Real eps = 1e-6 "Small threshold for comparison";
+  parameter Real Ts = 0 "Sample time for comparison";
+equation
+  if Ts > 0 then
+    y = not(u1 == u2);
+  else
+    y = not(abs(u1 - u2) < eps);
+  end if;
+end NotEqual;
+```
+
+This model will be used to compare two real signals and output a Boolean signal indicating whether they are not equal. The sample time parameter allows for the model to be run at regular intervals, which can be useful for systems that require discrete processing. The small threshold parameter allows for a small amount of error in the comparison.
+
+Please note that this model is a simple implementation and may not be suitable for all applications. For example, it does not account for the potential for numerical errors in the comparison of real numbers, and it does not account for the potential for the signals u1 and u2 to change rapidly.
+
+Also note that the Modelica language does not support the direct definition of a model that extends from an external library model. You would need to define the `RealComparison` model in your own library or import it from another library.
+
+Please replace the placeholder values for `eps` and `Ts` with the actual values you want to use in your model.
+
+This model should be placed in the appropriate directory in your Modelica library, and you should be able to use it in your Modelica models just like any other Modelica model.

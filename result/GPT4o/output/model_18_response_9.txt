@@ -1,0 +1,49 @@
+To create a Modelica model for a first-order low-pass filter with the specified requirements, you can follow the structure below. This model uses conditional instantiation to switch between a dynamic low-pass filter and a static gain based on the value of the time constant `T`.
+
+```modelica
+model FirstOrder
+  extends Modelica.Blocks.Interfaces.SISO;
+
+  parameter Boolean noDynamics = not(T > 0) "Determines trivial configuration with no dynamics";
+  parameter Real k = 1 "Gain of the filter";
+  parameter Modelica.Units.SI.Time T "Time constant of the filter";
+  parameter Modelica.Blocks.Types.Init initType = Modelica.Blocks.Types.Init.NoInit "Type of initialization";
+  parameter Real y_start = 0 "Initial value of the output";
+
+  Modelica.Blocks.Continuous.FirstOrder firstOrder1(
+    T = T, 
+    initType = initType, 
+    k = k, 
+    y_start = y_start) if not noDynamics;
+
+  Modelica.Blocks.Math.Gain gain(
+    k = k) if noDynamics;
+
+equation
+  if not noDynamics then
+    connect(u, firstOrder1.u);
+    connect(firstOrder1.y, y);
+  else
+    connect(u, gain.u);
+    connect(gain.y, y);
+  end if;
+end FirstOrder;
+```
+
+### Explanation:
+
+- **Parameters**:
+  - `noDynamics`: A boolean parameter that determines whether the model should use a dynamic filter or a static gain. It defaults to `not(T > 0)`, meaning if `T` is not greater than zero, the model will use a static gain.
+  - `k`: The gain of the filter.
+  - `T`: The time constant of the filter.
+  - `initType`: Specifies the type of initialization for the dynamic filter.
+  - `y_start`: The initial value of the output.
+
+- **Components**:
+  - `firstOrder1`: An instance of `Modelica.Blocks.Continuous.FirstOrder`, which is used when `T > 0` (i.e., `noDynamics` is false).
+  - `gain`: An instance of `Modelica.Blocks.Math.Gain`, which is used when `T <= 0` (i.e., `noDynamics` is true).
+
+- **Equations**:
+  - The `equation` section uses conditional statements to connect the input `u` and output `y` to the appropriate components (`firstOrder1` or `gain`) based on the value of `noDynamics`.
+
+This model allows you to switch between a dynamic low-pass filter and a static gain by simply adjusting the parameter `T`.

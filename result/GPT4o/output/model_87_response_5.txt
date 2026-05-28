@@ -1,0 +1,36 @@
+To implement a simple pendulum model in Modelica, you can define a model named `SimplePendulum` with the specified parameters and initial conditions. Below is a Modelica code snippet that sets up the model:
+
+```modelica
+model SimplePendulum
+  // Parameters
+  parameter Real L = 1 "Length of the pendulum (m)";
+  parameter Real m = 1 "Mass of the pendulum (kg)";
+  parameter Real g = 9.81 "Acceleration due to gravity (m/s^2)";
+
+  // State variables
+  Real theta(start = 1.5) "Angle from the vertical (rad)";
+  Real omega(start = 0) "Angular velocity (rad/s)";
+
+equation
+  // Differential equation for the pendulum
+  der(theta) = omega;
+  der(omega) = -(g/L) * sin(theta);
+
+end SimplePendulum;
+```
+
+### Explanation:
+- **Parameters**: 
+  - `L` is the length of the pendulum.
+  - `m` is the mass of the pendulum.
+  - `g` is the gravitational acceleration.
+
+- **State Variables**:
+  - `theta` is the angle of the pendulum from the vertical, with an initial value of 1.5 radians.
+  - `omega` is the angular velocity of the pendulum, with an initial value of 0 radians per second.
+
+- **Equations**:
+  - `der(theta) = omega` represents the relationship between the angle and angular velocity.
+  - `der(omega) = -(g/L) * sin(theta)` is the equation of motion for the pendulum, derived from Newton's second law for rotational systems.
+
+This model can be simulated using a Modelica simulation environment to observe the behavior of the pendulum over time.

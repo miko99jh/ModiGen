@@ -1,0 +1,25 @@
+
+Generate a Modelica model named `PlugToPins_p` to connect all positive pins in a polyphase electrical system. The model should include the following components and details:
+1. Components:
+- The model should have a parameter for the number of phases: parameter Integer m(final min=1) = 3. 
+- Positive plug interface: `Modelica.Electrical.Polyphase.Interfaces.PositivePlug` plug_p with final m=m
+- Array of positive pins: Modelica.Electrical.Analog.Interfaces.PositivePin pin_p[m].
+3. Equations:
+Implement the electrical coupling between the polyphase connector and the pin array:
+- Potential Equality: Equate the voltage vector of the pins in the analog array 'pin_p' with the voltage vector('v') of the internal pins('pin') within the polyphase plug 'plug_p'.
+- Current Conservation: Define the current flow such that the current leaving the polyphase plug's internal pins is the negative of the current entering the analog pin array 'pin_p'.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model PlugToPins_p
+  parameter Integer m(final min=1) = 3;
+  Modelica.Electrical.Polyphase.Interfaces.PositivePlug plug_p(m=m);
+  Modelica.Electrical.Analog.Interfaces.PositivePin pin_p[m];
+equation
+  plug_p.v = pin_p.v;
+  sum(pin_p.i) = -sum(plug_p.i);
+end PlugToPins_p;
+```
+
+This model will allow you to connect a positive polyphase plug to a positive analog pin array, ensuring that the voltage and current are correctly coupled between the two.

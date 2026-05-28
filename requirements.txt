@@ -1,0 +1,21 @@
+# --- Core Simulation & Modelica Interaction ---
+OMPython>=2.0.0
+# Ensure OpenModelica (omc) is installed on your system PATH
+
+# --- Data Processing & Numerical Analysis ---
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+
+# --- LLM & RAG Framework ---
+# If using HuggingFace models locally:
+transformers>=4.30.0
+torch>=2.0.0
+accelerate>=0.20.0
+
+# If using Llama-Index for RAG:
+llama-index>=0.8.0
+
+# --- Utilities ---
+tqdm>=4.65.0
+requests>=2.31.0

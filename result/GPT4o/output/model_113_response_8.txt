@@ -1,0 +1,56 @@
+To create a Modelica model of an RLC circuit using a state-space representation, you can follow the structure below. This model uses the `ModelicaByExample.ArrayEquations.StateSpace.LTI` component to represent the state-space equations of the RLC circuit. The parameters and matrices are set according to your specifications.
+
+```modelica
+model RLC
+  import ModelicaByExample.ArrayEquations.StateSpace.LTI;
+
+  // Parameters
+  parameter Real Vb = 24; // Voltage source in volts
+  parameter Real L = 1;   // Inductance in Henry
+  parameter Real R = 100; // Resistance in Ohms
+  parameter Real C = 0.001; // Capacitance in Farads
+
+  // State-space matrices
+  parameter Real A[2, 2] = [-1/(R*C), 1/C; -1/L, 0];
+  parameter Real B[2, 1] = [0; 1/L];
+  parameter Real C_matrix[2, 2] = [1/R, 0; -1/R, 1];
+  parameter Real D[2, 1] = [0; 0];
+
+  // Initial state
+  parameter Real x0[2] = {0, 0};
+
+  // State-space component
+  LTI rlc_comp(
+    nx = 2,
+    nu = 1,
+    ny = 2,
+    A = A,
+    B = B,
+    C = C_matrix,
+    D = D,
+    x0 = x0
+  );
+
+  // Voltage source
+  Modelica.Blocks.Sources.Constant voltageSource(V = Vb);
+
+equation
+  // Connect the input of the LTI component to the voltage source
+  connect(voltageSource.y, rlc_comp.u);
+
+  // Outputs can be connected to other components or used for analysis
+  // connect(rlc_comp.y[1], ...); // Example connection for output 1
+  // connect(rlc_comp.y[2], ...); // Example connection for output 2
+
+end RLC;
+```
+
+### Explanation:
+- **Parameters**: The parameters `Vb`, `L`, `R`, and `C` define the voltage source, inductance, resistance, and capacitance, respectively.
+- **State-space matrices**: The matrices `A`, `B`, `C_matrix`, and `D` define the state-space representation of the RLC circuit.
+- **Initial state**: The initial state `x0` is set to `{0, 0}`.
+- **LTI component**: The `LTI` component from `ModelicaByExample.ArrayEquations.StateSpace` is used to model the state-space equations.
+- **Voltage source**: A constant voltage source is used to provide the input voltage `Vb` to the system.
+- **Connections**: The input `u` of the `LTI` component is connected to the output of the voltage source. The outputs `y[1]` and `y[2]` can be connected to other components or used for analysis.
+
+This model provides a state-space representation of the RLC circuit, which can be simulated and analyzed using Modelica tools.

@@ -1,0 +1,14 @@
+model VoltageSensor
+  extends Modelica.Icons.RoundSensor;
+  parameter Integer m(final min=1) = 3;
+  Modelica.Electrical.Polyphase.Interfaces.PositivePlug plug_p(final m=m);
+  Modelica.Electrical.Polyphase.Interfaces.NegativePlug plug_n(final m=m);
+  Modelica.Blocks.Interfaces.RealOutput v[m] "Voltage" each unit="V";
+  Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor[m];
+equation 
+  for i in 1:m loop
+    plug_p.pin[i].n := voltageSensor[i].p;
+    plug_n.pin[i].n := voltageSensor[i].n;
+    v[i] = voltageSensor[i].v;
+  end for;
+end VoltageSensor;

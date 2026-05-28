@@ -1,0 +1,31 @@
+Here is the Modelica model for a step voltage source as per your requirements:
+
+```modelica
+model StepVoltage
+  extends ModelicaByExample.Components.Electrical.DryApproach.TwoPin;
+
+  parameter Modelica.SIunits.Voltage V0 = 0 "Initial voltage";
+  parameter Modelica.SIunits.Voltage Vf = 1 "Final voltage";
+  parameter Modelica.SIunits.Time stepTime = 1 "Time at which voltage steps from V0 to Vf";
+
+protected 
+  Modelica.Blocks.Sources.Step stepSource(
+    height = Vf - V0,
+    offset = V0,
+    startTime = stepTime) "Step source to generate the voltage";
+
+equation 
+  v = stepSource.y;
+end StepVoltage;
+```
+
+### Explanation:
+1. **Extending `TwoPin`**: The model extends the `ModelicaByExample.Components.Electrical.DryApproach.TwoPin` class, which provides the basic structure for a two-pin electrical component.
+2. **Parameters**:
+   - `V0`: The initial voltage before the step.
+   - `Vf`: The final voltage after the step.
+   - `stepTime`: The time at which the voltage transitions from `V0` to `Vf`.
+3. **Step Source**: A `Modelica.Blocks.Sources.Step` block is used to generate the step voltage. The `height` parameter is set to the difference between `Vf` and `V0`, and the `offset` is set to `V0`. The `startTime` is set to `stepTime`.
+4. **Voltage Output**: The voltage `v` of the `TwoPin` model is set equal to the output `y` of the `stepSource`.
+
+This model is compatible with Modelica version 3.2.3 and should work as intended.

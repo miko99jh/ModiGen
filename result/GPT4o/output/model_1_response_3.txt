@@ -1,0 +1,40 @@
+Certainly! Below is a Modelica function named `moh` that calculates the minute of an hour given a specific time. It uses `AES.Functions.sod` and `AES.Functions.hod` to calculate intermediate steps for seconds of the day and hour of the day.
+
+```modelica
+function moh
+  input Real t; // Current time in seconds
+  input Real hour_start = 0; // Starting hour
+  input Real min_start = 0; // Starting minute
+  input Real sec_start = 0; // Starting second
+  output Real y; // Minute of the current hour (0 to 59)
+protected
+  Real s; // Seconds of the day
+  Real h; // Hour of the day
+algorithm
+  // Calculate seconds of the day
+  s := AES.Functions.sod(hour_start, min_start, sec_start) + t;
+  
+  // Calculate hour of the day
+  h := AES.Functions.hod(s);
+  
+  // Calculate minute of the current hour
+  y := floor(mod(s, 3600) / 60);
+end moh;
+```
+
+### Explanation:
+- **Inputs:**
+  - `t`: Represents the current time in seconds.
+  - `hour_start`, `min_start`, `sec_start`: Represent the starting hour, minute, and second respectively.
+  
+- **Outputs:**
+  - `y`: Represents the minute of the current hour, ranging from 0 to 59.
+
+- **Protected Variables:**
+  - `s`: Represents the seconds of the day, calculated using the starting time and the current time.
+  - `h`: Represents the hour of the day, calculated from the seconds of the day.
+
+- **Algorithm:**
+  - `AES.Functions.sod` is used to calculate the total seconds from the start time.
+  - `AES.Functions.hod` is used to determine the hour of the day from the total seconds.
+  - The minute of the current hour is calculated by taking the remainder of seconds divided by 3600 (seconds in an hour) and then dividing by 60 to convert to minutes. The `floor` function ensures the result is a discrete minute value.

@@ -1,0 +1,31 @@
+model TestTrackingFO
+ // Import necessary packages
+  import IndustrialControlSystems.Controllers.Blocks.FO;
+  import Modelica.Blocks.Sources.Step;
+  import Modelica.Blocks.Sources.BooleanPulse;
+  import Modelica.Blocks.Sources.Trapezoid;
+
+  // Instantiate components
+  FO FOtr(useTS=true, T=0.4);
+  FO FOaw(mu=1, AntiWindup=true, T=0.4, useTS=true, Ymin=0, Ymax=2);
+  FO FO(mu=1, T=0.4);
+  
+  Step Signal(startTime=2, height=2);
+  BooleanPulse TSsignal(startTime=4, width=10, period=40);
+  Trapezoid TrackRef(amplitude=5, rising=1, width=2, falling=1, period=8, nperiod=1, startTime=4);
+
+equation
+  // Connect the step source signal to the control inputs '.u' of all three FO controller instances
+  connect(Signal.y, FO.u);
+  connect(Signal.y, FOtr.u);
+  connect(Signal.y, FOaw.u);
+
+  // Link the boolean pulse TSsignal to the tracking mode switches '.TS' of the tracking-enabled instances
+  connect(TSsignal.y, FOtr.TS);
+  connect(TSsignal.y, FOaw.TS);
+
+  // Provide the trapezoidal TrackRef as the tracking reference '.TR' for both FOtr and FOaw
+  connect(TrackRef.y, FOtr.TR);
+  connect(TrackRef.y, FOaw.TR);
+  
+end TestTrackingFO;

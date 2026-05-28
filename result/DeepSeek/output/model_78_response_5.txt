@@ -1,0 +1,40 @@
+
+Generate a Modelica block named 'ToDQ' that transforms instantaneous stator inputs to a rotor fixed space phasor. The block should include the following components and details:
+1. Components:
+- The block should extend from Modelica.Blocks.Interfaces.MIMO with final nin set to m and final nout set to 2. 
+- Parameter for the number of phases: parameter Integer m(min=1) = 3. 
+- Parameter for the number of pole pairs: parameter Integer p.
+- Gain block: Modelica.Blocks.Math.Gain toGamma with final k=p.
+- Rotator block: Modelica.Electrical.Machines.SpacePhasors.Blocks.Rotator rotator.
+- Real input for the angle: Modelica.Blocks.Interfaces.RealInput phi with unit set to "rad".
+- ToSpacePhasor block: Modelica.Electrical.Machines.SpacePhasors.Blocks.ToSpacePhasor toSpacePhasor with final m set to m.
+2. Connections:
+Implement the transformation topology as follows:
+- Angle Processing: Feed the input mechanical angle 'phi' into the 'toGamma' gain block to calculate the electrical angle, then use the resulting output to drive the rotation angle of the 'rotator'.
+- Coordinate Transformation: Route the block's multi-phase input signals 'u' into the 'toSpacePhasor' block to generate a stationary space phasor.
+- Vector Rotation: Direct the stationary space phasor from 'toSpacePhasor' into the 'rotator' to perform the shift into the rotor-fixed frame.
+- Final Output: Link the resulting rotated phasor from the 'rotator' to the block's main output 'y'.
+
+Please ensure that the block is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```block ToDQ extends Modelica.Blocks.Interfaces.MIMO(final nin=m, final nout=2)
+  parameter Integer m(min=1) = 3;
+  parameter Integer p;
+  Modelica.Blocks.Math.Gain toGamma(final k=p);
+  Modelica.Electrical.Machines.SpacePhasors.Blocks.Rotator rotator;
+  Modelica.Blocks.Interfaces.RealInput phi(unit="rad");
+  Modelica.Electrical.Machines.SpacePhasors.Blocks.ToSpacePhasor toSpacePhasor(final m=m);
+equation 
+  connect(phi, toGamma.u);
+  connect(toGamma.y, rotator.w);
+  connect(toSpacePhasor.u, u);
+  connect(toSpacePhasor.y, rotator.u);
+  connect(rotator.y, y);
+end ToDQ;```
+
+Please note that the block is designed to work with a 3-phase system by default. If you need to work with a different number of phases, you can change the value of the'm' parameter. The 'p' parameter is used to specify the number of pole pairs.
+
+The block is designed to take a multi-phase input signal 'u' and output a 2-dimensional vector 'y' representing the rotor-fixed space phasor. The input mechanical angle 'phi' is in radians and is used to rotate the coordinate system.
+
+Please test the block with your specific use case to ensure it works as expected.

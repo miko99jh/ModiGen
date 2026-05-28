@@ -1,0 +1,27 @@
+
+Generate a Modelica function named `moh` to calculate the minute of an hour given a specific time. The function should correctly handle the conversion from a continuous time input to discrete minute output, factoring in the starting hour, minute, and second. The real type input parameters 't', 'hour_start=0', 'min_start=0', and 'sec_start=0' represent the current time in seconds and the initial hour, minute, and second respectively. The real type output 'y' should represent the minute of the current hour, ranging from 0 to 59. Use `AES.Functions.sod` and `AES.Functions.hod` to calculate seconds of the day and hour of the day as intermediate steps(represented by two protection variables s and h), ensuring accurate minute calculation within an hour frame.
+
+//modelica
+```function moh
+  input Real t;
+  input Real hour_start=0;
+  input Real min_start=0;
+  input Real sec_start=0;
+  output Real y;
+algorithm 
+  Real s, h;
+  s := AES.Functions.sod(t, hour_start, min_start, sec_start);
+  h := AES.Functions.hod(t, hour_start, min_start, sec_start);
+  y := floor(s/60) + floor(60*h);
+end moh;
+```
+
+This function calculates the minute of the hour given a specific time. It first calculates the seconds of the day and hour of the day using the `AES.Functions.sod` and `AES.Functions.hod` functions respectively. It then calculates the minute by dividing the seconds of the day by 60 and adding the result to the product of 60 and the hour of the day. The `floor` function is used to round down to the nearest integer, as the minute is an integer value.
+
+Please note that this function assumes that the input time is in seconds and that the initial hour, minute, and second are also given in seconds. The output minute is an integer value ranging from 0 to 59.
+
+Also note that the `AES.Functions.sod` and `AES.Functions.hod` functions are not standard Modelica functions and are assumed to be defined elsewhere in your Modelica code. If they are not defined, you will need to define them yourself or replace them with equivalent calculations.
+
+The function `moh` is a useful tool for time-based calculations in Modelica, allowing for the conversion of continuous time inputs to discrete minute outputs.
+
+Note: The `AES.Functions.sod` and `AES.Functions.hod` functions are used here as placeholders. You need to replace them with the actual functions that calculate the seconds of the day and hour of the day based on the given time and initial hour, minute, and second.

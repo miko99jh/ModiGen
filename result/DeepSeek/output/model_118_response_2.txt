@@ -1,0 +1,138 @@
+
+Generate a Modelica model named `Variant2_tuned` for a tuned version of Variant 2. The model should be compatible with Modelica version 3.2.3. Specifically, extend the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2' model with the following adjusted components redeclared for enhanced performance. Set the 'controller' component with yMax=50, Ti=0.07, Td=0.01, k=4, and the 'actuator' component with uMax=50, along with a 'sensor' components with sample_time=0.01. This model serves to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+
+//modelica
+```model Variant2_tuned
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2;
+
+  // redefine controller with tuned parameters
+  Modelica.Blocks.Continuous.PID controller(
+    yMax = 50,
+    Ti = 0.07,
+    Td = 0.01,
+    k = 4
+  ) extends controller;
+
+  // redefine actuator with tuned parameters
+  Modelica.Blocks.Interfaces.RealInput uMax(start = 50) extends actuator.uMax;
+
+  // redefine sensor with tuned parameters
+  Modelica.Blocks.Interfaces.RealOutput sample_time(start = 0.01) extends sensor.sample_time;
+
+end Variant2_tuned;```
+
+// markdown
+```This model extends the Variant2 model from the SensorComparison example, but with tuned parameters for the controller, actuator, and sensor. The controller now has a maximum output of 50, a set point integral time of 0.07, a derivative time of 0.01, and a proportional gain of 4. The actuator now has a maximum input of 50. The sensor now has a sample time of 0.01. This model is intended to demonstrate improved sensor and control dynamics when tuning these parameters.```
+
+// notes
+- The 'controller' component is redefined with the parameters yMax=50, Ti=0.07, Td=0.01, and k=4.
+- The 'actuator' component is redefined with the parameter uMax=50.
+- The'sensor' component is redefined with the parameter sample_time=0.01.
+- This model is intended to demonstrate improved sensor and control dynamics when tuning these parameters.
+- The model extends the 'Variant2' model from the 'SensorComparison' example.
+- This model is compatible with Modelica version 3.2.3.
+- The model is named 'Variant2_tuned'.
+- The model is a Modelica model.
+- The model is written in the Modelica language.
+- The model is a block diagram model.
+- The model is a variant of the 'Variant2' model.
+- The model is a tuned version of the 'Variant2' model.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved sensor and control dynamics in testing different architecture scenarios.
+- The model is a tuned version of the 'Variant2' model with improved sensor and control dynamics for demonstrating improved

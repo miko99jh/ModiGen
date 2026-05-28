@@ -1,0 +1,72 @@
+Here is the Modelica model `ComplexPoles` as per your requirements:
+
+```modelica
+model ComplexPoles
+  extends IndustrialControlSystems.LinearSystems.Interfaces.DiscreteBaseBlock;
+
+  // Parameters
+  parameter Real xi(min=0, max=1) = 0.8 "Damping coefficient";
+  parameter Real omegan(min=0) = 0.1 "Natural frequency";
+  parameter Real mu = 1 "Gain";
+  parameter Real y_start = 0 "Output initial value";
+  parameter Real dy_start = 0 "Slope initial value";
+
+  // Protected variables
+protected 
+  Real u_pre1 "Previous input value";
+  Real y_pre1 "Previous output value";
+
+  // Initial equations
+initial equation
+  pre(y) = y_start;
+  pre(y_pre1) = dy_start;
+
+equation
+  // Ensure damping coefficient is within valid range
+  assert(0 <= xi and xi <= 1, "Damping coefficient xi must be between 0 and 1");
+
+  // Discrete sampling events
+  when sample(0, Ts) then
+    // Process output calculation using the provided function
+    y = IndustrialControlSystems.LinearSystems.Discrete.Functions.fCmplx(
+          alfa = alfa,
+          u = u,
+          pre(u) = pre(u),
+          pre(u_pre1) = pre(u_pre1),
+          pre(y) = pre(y),
+          pre(y_pre1) = pre(y_pre1),
+          Ts = Ts,
+          mu = mu,
+          xi = xi,
+          omegan = omegan);
+
+    // Update previous values for the next sample
+    u_pre1 = pre(u);
+    y_pre1 = pre(y);
+  end when;
+
+end ComplexPoles;
+```
+
+### Explanation of the Model:
+1. **Parameters**:
+   - `xi`: Damping coefficient, constrained between 0 and 1.
+   - `omegan`: Natural frequency, must be non-negative.
+   - `mu`: Gain of the system.
+   - `y_start`: Initial value of the output.
+   - `dy_start`: Initial slope of the output.
+
+2. **Protected Variables**:
+   - `u_pre1`: Stores the previous input value.
+   - `y_pre1`: Stores the previous output value.
+
+3. **Initial Equations**:
+   - The `pre(y)` and `pre(y_pre1)` are initialized to `y_start` and `dy_start`, respectively.
+
+4. **Main Equation**:
+   - An `assert` statement ensures that the damping coefficient `xi` is within the valid range [0, 1].
+   - The `when sample(0, Ts)` block ensures that the equations inside it are executed at discrete time intervals defined by the sampling period `Ts`.
+   - The function `IndustrialControlSystems.LinearSystems.Discrete.Functions.fCmplx` is used to compute the output `y` based on the provided parameters and previous states.
+   - After computing `y`, the variables `u_pre1` and `y_pre1` are updated with the previous values of `u` and `y`, respectively, to prepare for the next sampling event.
+
+This model is designed to represent a process with complex poles in a discrete-time control system.

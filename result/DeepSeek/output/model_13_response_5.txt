@@ -1,0 +1,76 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+  parameter Integer n=size(u, 1);
+  output Boolean y[nOutput];
+equation 
+  assert(nInput>=2, "XNOR gate requires at least 2 inputs");
+  when sample(0, Ts) then
+    y[1] = not Functions.Xor(u[:], nInput);
+  else
+    y[1] = not Functions.Xor(u[:], nInput);
+  end when;
+end Xnor;
+```
+
+This model should be placed in a package named `XnorPackage`. The package should contain a model named `XnorModel` that uses the `Xnor` model. The `XnorModel` should have a single input signal `u1` and a single output signal `y1`. The `XnorModel` should instantiate the `Xnor` model with `nInput=2` and `nOutput=1`.
+
+//modelica
+```model XnorPackage
+  model Xnor
+    extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+    parameter Integer n=size(u, 1);
+    output Boolean y[nOutput];
+  equation 
+    assert(nInput>=2, "XNOR gate requires at least 2 inputs");
+    when sample(0, Ts) then
+      y[1] = not Functions.Xor(u[:], nInput);
+    else
+      y[1] = not Functions.Xor(u[:], nInput);
+    end when;
+  end Xnor;
+
+  model XnorModel
+    Xnor xnor;
+  equation 
+    xnor.u = {u1};
+    y1 = xnor.y[1];
+  end XnorModel;
+end XnorPackage;
+```
+
+The model should be tested using a test harness model named `XnorTestHarness`. The `XnorTestHarness` should have two input signals `u1` and `u2` and a single output signal `y1`. The `XnorTestHarness` should instantiate the `XnorModel` with `nInput=2` and `nOutput=1`. The test harness should also include a `sinusoidalSources` block for `u1` and `u2` and a `scopes` block for `y1`.
+
+//modelica
+```model XnorTestHarness
+  parameter Real amplitude=1 "Amplitude of the sinusoidal source";
+  parameter Real frequency=1 "Frequency of the sinusoidal source";
+  parameter Real startTime=0 "Start time of the sinusoidal source";
+  parameter Real stopTime=10 "Stop time of the sinusoidal source";
+  parameter Integer points=1000 "Number of points to record";
+  parameter Real samplingPeriod=0.001 "Sampling period of the sinusoidal source";
+  parameter Real offset=0 "Offset of the sinusoidal source";
+  parameter Real phase1=0 "Phase of the sinusoidal source 1";
+  parameter Real phase2=0 "Phase of the sinusoidal source 2";
+  input Real u1 "Input signal 1";
+  input Real u2 "Input signal 2";
+  output Real y1 "Output signal";
+  XnorPackage.XnorModel xnorModel;
+  Sources.SinusoidalSources sinusoidalSources(amplitude, frequency, startTime, stopTime, points, samplingPeriod, offset, phase1, phase2);
+  Scopes.Scopes scopes(startTime, stopTime, points);
+equation 
+  connect(sinusoidalSources.y, {xnorModel.u1, xnorModel.u2});
+  connect(xnorModel.y1, scopes.y);
+end XnorTestHarness;
+```
+
+Please note that the `Xnor` model and the `XnorTestHarness` model should be placed in separate files named `Xnor.mo` and `XnorTestHarness.mo` respectively. The `XnorPackage` and `XnorModel` should be placed in a file named `XnorPackage.mo`. The `Sources` and `Scopes` packages should be available in the Modelica Standard Library.
+
+The models should be tested using a simulation environment that supports the Modelica language. The test harness model should be simulated for a duration of at least `stopTime` seconds. The output of the `scopes` block should be examined to verify that the `Xnor` model is functioning correctly.
+
+Please note that the `Xnor` model and the `XnorTestHarness` model may require additional components or parameters to function correctly in a real-world application.

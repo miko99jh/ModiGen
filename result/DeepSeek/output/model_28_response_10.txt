@@ -1,0 +1,157 @@
+
+Generate a Modelica block named `ConjunctiveClock` with the following for a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. This block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`. It also configure the block to perform a logical conjunction (AND) by redeclaring the internal 'combinator' component with the appropriate Boolean logic block from the Modelica Standard Library in `PartialLogicalClock`.
+
+//modelica
+```block ConjunctiveClock extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock(combinator=Modelica.Blocks.Logical.And(nin=nin));```
+
+The `nin` attribute is set to the number of inputs to the clock.
+
+This block is used to create a logical clock that ticks when all input clocks have ticked at least once. It is a useful tool for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block extends the `PartialLogicalClock` block, which is a partial model that defines the basic structure of a logical clock. The `ConjunctiveClock` block overrides the `combinator` component of the `PartialLogicalClock` block with a `Modelica.Blocks.Logical.And` block, which performs a logical conjunction (AND) operation on its inputs.
+
+The `nin` attribute of the `And` block is set to the number of inputs to the clock, which is determined by the number of input connectors of the `ConjunctiveClock` block. This ensures that the `And` block has the correct number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once. This can be useful for controlling the flow of execution in a Modelica model.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks

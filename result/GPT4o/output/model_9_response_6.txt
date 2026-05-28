@@ -1,0 +1,46 @@
+To create a Modelica model named `ComplexPoles` that represents a process with complex poles, you can follow the structure below. This model extends `IndustrialControlSystems.LinearSystems.Interfaces.DiscreteBaseBlock` and includes the specified parameters and logic. Note that this example assumes the existence of the `IndustrialControlSystems` library and its components, which you should have available in your Modelica environment.
+
+```modelica
+model ComplexPoles
+  extends IndustrialControlSystems.LinearSystems.Interfaces.DiscreteBaseBlock;
+
+  parameter Real xi = 0.8 "Damping coefficient";
+  parameter Real omegan = 0.1 "Natural frequency";
+  parameter Real mu = 1 "Gain";
+  parameter Real y_start = 0 "Output initial value";
+  parameter Real dy_start = 0 "Slope initial value";
+
+protected 
+  Real u_pre1;
+  Real y_pre1;
+
+initial equation
+  pre(y) = y_start;
+  pre(y_pre1) = dy_start;
+
+equation
+  assert(0 <= xi and xi <= 1, "Damping coefficient xi must be between 0 and 1");
+
+  when sample(0, Ts) then
+    y = IndustrialControlSystems.LinearSystems.Discrete.Functions.fCmplx(
+          alfa, u, pre(u), pre(u_pre1), pre(y), pre(y_pre1), Ts, mu, xi, omegan);
+    u_pre1 = pre(u);
+    y_pre1 = pre(y);
+  end when;
+
+end ComplexPoles;
+```
+
+### Explanation:
+
+- **Parameters**: The model includes parameters for the damping coefficient (`xi`), natural frequency (`omegan`), gain (`mu`), and initial values for the output (`y_start`) and its slope (`dy_start`).
+
+- **Protected Variables**: `u_pre1` and `y_pre1` are used to store the previous values of the input and output, respectively.
+
+- **Initial Equations**: The initial values for `y` and `y_pre1` are set using the `pre` operator, which refers to the value of a variable at the previous time step.
+
+- **Main Equation**: The `assert` statement ensures that the damping coefficient is within the valid range. The `when` clause is used to execute the main logic at discrete time sampling events, defined by `sample(0, Ts)`. The function `fCmplx` is called to compute the output `y` based on the current and previous values of the input and output, as well as the system parameters.
+
+- **Updating Previous Values**: After computing `y`, the previous values of `u` and `y` are updated to prepare for the next sampling event.
+
+Make sure to replace `alfa` and `Ts` with appropriate values or parameters as needed, and ensure that the `IndustrialControlSystems` library is correctly referenced in your Modelica environment.

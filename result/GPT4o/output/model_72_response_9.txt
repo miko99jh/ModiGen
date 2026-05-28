@@ -1,0 +1,52 @@
+To create a Modelica model named `IMC_Transformer` that extends from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`, you need to ensure that the model is syntactically correct and adheres to the Modelica language standard. Below is an example of how you might structure this model:
+
+```modelica
+model IMC_Transformer
+  extends Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer;
+
+  // Parameters
+  parameter Modelica.SIunits.Voltage V_nominal = 400 "Nominal voltage";
+  parameter Modelica.SIunits.Frequency f_nominal = 50 "Nominal frequency";
+  parameter Modelica.SIunits.Power P_nominal = 10000 "Nominal power";
+
+  // Components
+  Modelica.Electrical.Machines.Basic.InductionMachine imc(
+    V_nominal = V_nominal,
+    f_nominal = f_nominal,
+    P_nominal = P_nominal) "Induction machine component";
+
+  Modelica.Electrical.Analog.Basic.Resistor loadResistor(
+    R = 10) "Load resistor";
+
+  Modelica.Electrical.Analog.Basic.Ground ground "Ground component";
+
+  Modelica.Electrical.Analog.Basic.VoltageSourceAC voltageSource(
+    V = V_nominal,
+    freqHz = f_nominal) "AC voltage source";
+
+  Modelica.Electrical.Analog.Basic.Transformer transformer(
+    V1 = V_nominal,
+    V2 = V_nominal / 2) "Transformer component";
+
+  // Connections
+  equation
+    connect(voltageSource.p, transformer.p1);
+    connect(transformer.n1, ground.p);
+    connect(transformer.p2, imc.pin);
+    connect(imc.pout, loadResistor.p);
+    connect(loadResistor.n, ground.p);
+
+end IMC_Transformer;
+```
+
+### Explanation:
+- **Parameters**: The model includes parameters for nominal voltage, frequency, and power, which are typical for an induction machine setup.
+- **Components**: 
+  - `InductionMachine`: Represents the induction machine with squirrel cage.
+  - `Resistor`: Represents a load connected to the induction machine.
+  - `Ground`: Provides a reference point for the circuit.
+  - `VoltageSourceAC`: Provides the AC voltage supply to the system.
+  - `Transformer`: Steps down the voltage to the induction machine.
+- **Connections**: The `equation` section connects the components to form a complete circuit.
+
+This model is a basic representation and can be expanded with more detailed parameters and components as needed for specific simulation requirements. Make sure to adjust the parameters and component values according to your specific needs and the characteristics of the system you are modeling.

@@ -1,0 +1,43 @@
+Certainly! Below is a Modelica model named `NewtonCoolingDynamic` that simulates the temperature change of water under Newton's law of cooling. The model includes an initial condition for the water temperature and a change in ambient temperature after 20 seconds.
+
+```modelica
+model NewtonCoolingDynamic
+  // Parameters
+  parameter Real T0 = 100; // Initial temperature of water in °C
+  parameter Real T_inf_initial = 25; // Initial ambient temperature in °C
+  parameter Real A = 1; // Area in m²
+  parameter Real m = 1; // Mass in kg
+  parameter Real c_p = 4200; // Specific heat in J/(kg.°C)
+  parameter Real h = 767; // Convection cooling coefficient in W/(m².°C)
+
+  // Variables
+  Real T(start = T0); // Temperature of water in °C
+  Real T_inf; // Ambient temperature in °C
+  Real Q_dot; // Heat transfer rate in W
+
+initial equation
+  T = T0; // Set initial temperature
+
+equation
+  // Ambient temperature changes after 20 seconds
+  T_inf = if time < 20 then T_inf_initial else 0;
+
+  // Newton's law of cooling
+  Q_dot = h * A * (T - T_inf);
+
+  // Energy balance equation
+  m * c_p * der(T) = -Q_dot;
+
+end NewtonCoolingDynamic;
+```
+
+### Explanation:
+- **Parameters**: These are constants used in the model, such as initial temperature (`T0`), initial ambient temperature (`T_inf_initial`), area (`A`), mass (`m`), specific heat (`c_p`), and convection cooling coefficient (`h`).
+- **Variables**: `T` is the temperature of the water, initialized to `T0`. `T_inf` is the ambient temperature, which changes after 20 seconds. `Q_dot` is the rate of heat transfer.
+- **Initial Equation**: Sets the initial temperature of the water to `T0`.
+- **Equation**: 
+  - `T_inf` changes from `T_inf_initial` to 0°C after 20 seconds.
+  - `Q_dot` is calculated using Newton's law of cooling.
+  - The energy balance equation relates the rate of change of temperature (`der(T)`) to the heat transfer rate (`Q_dot`).
+
+This model will simulate the cooling process of the water, taking into account the sudden drop in ambient temperature after 20 seconds.

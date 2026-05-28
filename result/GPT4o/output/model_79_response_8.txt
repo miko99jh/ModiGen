@@ -1,0 +1,39 @@
+```modelica
+block VfController
+  extends Modelica.Blocks.Interfaces.SIMO(u(unit="Hz"), final nout=m);
+
+  // Parameters
+  parameter Integer m = 3 "Number of phases";
+  parameter Modelica.Units.SI.Angle orientation[m] = -Modelica.Electrical.Polyphase.Functions.symmetricOrientation(m) "Orientation of phases";
+  parameter Modelica.Units.SI.Voltage VNominal "Nominal RMS voltage per phase";
+  parameter Modelica.Units.SI.Frequency fNominal "Nominal frequency";
+  parameter Modelica.Units.SI.Angle BasePhase = 0 "Common phase shift";
+  parameter Boolean EconomyMode = false "Economy mode";
+
+  // Outputs
+  output Modelica.Units.SI.Angle x(start=0, fixed=true) "Integrator state";
+  output Modelica.Units.SI.Voltage amplitude "Voltage amplitude";
+
+protected 
+  Integer pow = if EconomyMode then 2 else 1 "Power for scaling in economy mode";
+
+equation 
+  // Voltage Modulation
+  if u[1] < fNominal then
+    amplitude = VNominal * sqrt(2) * (u[1] / fNominal)^pow;
+  else
+    amplitude = VNominal * sqrt(2);
+  end if;
+
+  // Phase Integration
+  der(x) = 2 * Modelica.Constants.pi * u[1];
+
+  // Multi-phase Synthesis
+  for i in 1:m loop
+    y[i] = amplitude * sin(x + BasePhase + orientation[i]);
+  end for;
+
+end VfController;
+```
+
+This Modelica block `VfController` is designed to control the voltage and frequency of a multi-phase system. It includes parameters for the number of phases, phase orientation, nominal voltage and frequency, and an economy mode. The block calculates the voltage amplitude based on the input frequency and synthesizes multi-phase outputs as sine waves.

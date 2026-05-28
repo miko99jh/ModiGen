@@ -1,0 +1,23 @@
+
+Generate a Modelica block named `ExtractSignal` that extracts specific signals from an input signal vector. The model should inherit from `Modelica.ComplexBlocks.Interfaces.ComplexMIMO`, indicating that it handles multiple input and output signals in a complex multi-input multi-output system.  The key parameter is `extract`, which is an integer array with a size of `nout`, specifying the indices of the input vector to be extracted and sent to the output. The model should iterate over the range of output signals (`nout`) and assign each input `u[extract[i]]` to the corresponding output `y[i]`. Ensure accurate handling of the parameterization and iteration to correctly map input signals to outputs.
+
+//modelica
+```block ExtractSignal
+model ExtractSignal
+  extends Modelica.ComplexBlocks.Interfaces.ComplexMIMO;
+  parameter Integer extract[:];
+  output Modelica.ComplexBlocks.Interfaces.ComplexMIMO y[size(extract, 1)];
+
+protected 
+  Integer nout=size(extract, 1);
+
+algorithm 
+  for i in 1:nout loop
+    y[i].u = u[extract[i]];
+  end for;
+end ExtractSignal;
+```
+
+This model can be used to extract specific signals from an input signal vector in a complex multi-input multi-output system. The `extract` parameter is an array that specifies the indices of the input vector to be extracted and sent to the output. The model iterates over the range of output signals and assigns each input `u[extract[i]]` to the corresponding output `y[i]`.
+
+Please note that this model assumes that the input vector `u` and the output vector `y` have the same size. If this is not the case, you may need to add additional checks or modifications to handle different sizes.

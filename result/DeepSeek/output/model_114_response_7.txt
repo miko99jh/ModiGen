@@ -1,0 +1,40 @@
+
+Create a Modelica model named `SecondOrderSystem` representing a second order rotational system. The model should import `Modelica.SIunits.*`.
+The model includes parameters for initial angles (`phi1_init=0`, `phi2_init=1`) of type 'Angle', initial angular velocities (`omega1_init=0`, `omega2_init=0`) of type 'AngularVelocity', inertias (`J1=0.4`, `J2=1.0`) of type 'Inertia', 'RotationalSpringConstant' (`c1=11`, `c2=5`), and 'RotationalDampingConstant' (`d1=0.2`, `d2=1.0`). The model includes parameters Angle phi1, Angle phi2, AngularVelocity omega1, AngularVelocity omega2.
+Include initial equations to set `phi1`, `phi2`, `omega1`, and `omega2` to their respective initial values.
+The model should define the equations for 
+1. Kinematics: Define the angular velocities (omega1, omega2) as the time derivatives of their respective angles (phi1, phi2). 
+2. Kinetics: The motion is governed by Newton's second law for rotation. The first inertia (J1) is subject to a restorative torque from a rotational spring (c1) and a damping torque (d1), both proportional to the relative displacement and relative velocity between the two rotors. 
+3. Coupling: The second inertia (J2) is affected by the same coupling torque (in the opposite direction), plus an additional grounding spring (c2) and damper (d2) acting on its absolute position and velocity.
+
+//modelica
+```model SecondOrderSystem
+  import Modelica.SIunits.*;
+  parameter Angle phi1_init=0 "Initial angle of first rotor";
+  parameter Angle phi2_init=1 "Initial angle of second rotor";
+  parameter AngularVelocity omega1_init=0 "Initial angular velocity of first rotor";
+  parameter AngularVelocity omega2_init=0 "Initial angular velocity of second rotor";
+  parameter Inertia J1=0.4 "Inertia of first rotor";
+  parameter Inertia J2=1.0 "Inertia of second rotor";
+  parameter RotationalSpringConstant c1=11 "Spring constant of first rotor";
+  parameter RotationalSpringConstant c2=5 "Spring constant of second rotor";
+  parameter RotationalDampingConstant d1=0.2 "Damping constant of first rotor";
+  parameter RotationalDampingConstant d2=1.0 "Damping constant of second rotor";
+  Angle phi1(start=phi1_init);
+  Angle phi2(start=phi2_init);
+  AngularVelocity omega1(start=omega1_init);
+  AngularVelocity omega2(start=omega2_init);
+  Real tau1;
+  Real tau2;
+equation 
+  // Kinematics
+  der(omega1) = (tau1 - d1*omega1)/J1;
+  der(omega2) = (tau2 - d2*omega2)/J2;
+  // Kinetics
+  tau1 = c1*(phi2-phi1) - d1*omega1;
+  tau2 = c2*(phi1-phi2) - d2*omega2;
+end SecondOrderSystem;```
+
+Note: The equations are written in the form of Newton's second law for rotation. The torque (tau) is related to the angular velocity (omega) and the angle (phi) through the rotational spring constant (c) and rotational damping constant (d). The inertia (J) is the rotational mass and appears in the equation for the time derivative of the angular velocity.
+
+The model should be written in a way that it can be used in a simulation environment, such as Dymola or Modelica.

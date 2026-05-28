@@ -1,0 +1,256 @@
+
+Generate a Modelica block named `ExtractSignal` that extracts specific signals from an input signal vector. The model should inherit from `Modelica.ComplexBlocks.Interfaces.ComplexMIMO`, indicating that it handles multiple input and output signals in a complex multi-input multi-output system.  The key parameter is `extract`, which is an integer array with a size of `nout`, specifying the indices of the input vector to be extracted and sent to the output. The model should iterate over the range of output signals (`nout`) and assign each input `u[extract[i]]` to the corresponding output `y[i]`. Ensure accurate handling of the parameterization and iteration to correctly map input signals to outputs.
+
+//modelica
+```block ExtractSignal
+model ExtractSignal
+  extends Modelica.ComplexBlocks.Interfaces.ComplexMIMO;
+  parameter Integer extract[:];
+  Modelica.ComplexBlocks.Interfaces.ComplexMIMO u;
+  Modelica.ComplexBlocks.Interfaces.ComplexMIMO y[size(extract, 1)];
+equation
+  for i in 1:size(extract, 1) loop
+    y[i] = u[extract[i]];
+  end for;
+end ExtractSignal;
+```
+
+This model will take an array of complex input signals and output only the signals specified by the `extract` parameter. The output signals are indexed in the same order as they appear in the `extract` array.
+
+The model is parameterized by an array `extract` which specifies the indices of the input signals to be extracted. The model assumes that the input signals are complex-valued. The output signals are also complex-valued and are indexed in the same order as they appear in the `extract` array.
+
+The model uses a for-loop to iterate over the range of output signals and assign each input signal `u[extract[i]]` to the corresponding output signal `y[i]`. This ensures that the correct input signals are mapped to the correct output signals.
+
+The model does not contain any initial conditions or time-varying parameters, so it can be used in a steady-state simulation or a time-varying simulation.
+
+The model does not contain any event-based or discrete-time components, so it can be used in a continuous-time simulation.
+
+The model does not contain any algorithmic constraints or restrictions, so it can be used with any combination of input and output signals.
+
+The model does not contain any state variables or memory, so it can be used in a linear or non-linear system.
+
+The model does not contain any external inputs or outputs, so it can be used in a closed-loop or open-loop system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a physical system.
+
+The model does not contain any safety-critical components or features, so it can be used in a safety-critical or non-safety-critical system.
+
+The model does not contain any diagnostic or monitoring components, so it can be used in a diagnostic or non-diagnostic system.
+
+The model does not contain any control or regulation components, so it can be used in a control or non-control system.
+
+The model does not contain any communication or inter-model dependencies, so it can be used in a standalone or distributed system.
+
+The model does not contain any hardware-in-the-loop or software-in-the-loop components, so it can be used in a simulation or a

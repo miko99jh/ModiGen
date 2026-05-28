@@ -1,0 +1,46 @@
+To create a Modelica model named `Pipe` that simulates the flow of fluid through a pipe using the Hagen-Poiseuille relationship, you can follow the structure below. This model will calculate the flow coefficient (`c`), the flow rate (`Q`), and the velocity (`v`) based on the given parameters.
+
+```modelica
+model Pipe
+  // Parameters
+  parameter Real P1 = 1080; // Pressure at the inlet (Pa)
+  parameter Real P2 = 900;  // Pressure at the outlet (Pa)
+  parameter Real L = 1;     // Length of the pipe (m)
+  parameter Real D = 0.05;  // Inner diameter of the pipe (m)
+  parameter Real mu = 2e-3; // Viscosity of the fluid (Pa.s)
+
+  // Constants
+  constant Real pi = 3.141592653589793;
+
+  // Variables
+  Real c;  // Flow coefficient
+  Real Q;  // Flow rate (m^3/s)
+  Real v;  // Velocity (m/s)
+
+equation
+  // Calculate the flow coefficient using the Hagen-Poiseuille equation
+  c = (pi * D^4) / (128 * mu * L);
+
+  // Calculate the flow rate using the pressure difference and flow coefficient
+  Q = c * (P1 - P2);
+
+  // Calculate the velocity from the flow rate and cross-sectional area
+  v = Q / (pi * (D/2)^2);
+
+end Pipe;
+```
+
+### Explanation:
+
+1. **Parameters**: These are the known values for the pressure at both ends of the pipe (`P1` and `P2`), the length of the pipe (`L`), the inner diameter of the pipe (`D`), and the viscosity of the fluid (`mu`).
+
+2. **Constants**: The value of `pi` is defined as a constant for calculations involving circular cross-sections.
+
+3. **Variables**: The model calculates the flow coefficient (`c`), the flow rate (`Q`), and the velocity (`v`).
+
+4. **Equations**:
+   - The flow coefficient `c` is calculated using the Hagen-Poiseuille equation, which relates the flow rate to the pressure difference, pipe dimensions, and fluid viscosity.
+   - The flow rate `Q` is determined by multiplying the flow coefficient `c` by the pressure difference `(P1 - P2)`.
+   - The velocity `v` is calculated by dividing the flow rate `Q` by the cross-sectional area of the pipe, which is `pi * (D/2)^2`.
+
+This model provides a simple representation of fluid flow through a pipe using the Hagen-Poiseuille relationship, suitable for laminar flow conditions.

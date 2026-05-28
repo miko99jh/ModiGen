@@ -1,0 +1,33 @@
+To create the `SmoothStep` Modelica model as specified, you need to extend the `IndustrialControlSystems.MathOperations.RealType.Interfaces.RealNinOperation` and set the parameters and equations accordingly. Below is the Modelica code for the `SmoothStep` model:
+
+```modelica
+model SmoothStep
+  extends IndustrialControlSystems.MathOperations.RealType.Interfaces.RealNinOperation(
+    final useInputs = false,
+    final FixedPoint = false,
+    final Nbit = 1,
+    final scaleFactor = 1,
+    final MAX = 1,
+    final MIN = 0);
+
+  parameter Real tin = 10 "Initial time for the smooth step [s]";
+  parameter Real alfa = 0.1 "Portion of time for parabolic junctions [dimensionless, range: 0 to 1]";
+  parameter Real yin = 0 "Output initial value [dimensionless]";
+  parameter Real yfin = 1 "Output final value [dimensionless]";
+  parameter Real m = 0.1 "Slope of the ramp [dimensionless]";
+
+  Real y "Output of the smooth step";
+
+equation
+  assert(alfa >= 0 and alfa <= 1, "alfa out of range [0,1]");
+  y = IndustrialControlSystems.MathOperations.RealType.Functions.fSmoothStep(time, tin, alfa, m, yin, yfin);
+  Ufp = zeros(nInput);
+  Yfp = 0;
+end SmoothStep;
+```
+
+### Explanation:
+- **Parameters**: The model includes parameters `tin`, `alfa`, `yin`, `yfin`, and `m` with their respective default values and descriptions.
+- **Assertions**: The `assert` statement ensures that `alfa` is within the range [0, 1].
+- **Equations**: The output `y` is calculated using the `fSmoothStep` function, which is assumed to be defined in the `IndustrialControlSystems.MathOperations.RealType.Functions` package.
+- **Fixed-point Representation**: The model sets `Ufp` to a zero vector of size `nInput` and `Yfp` to 0, indicating that the fixed-point representation is not used in this model.

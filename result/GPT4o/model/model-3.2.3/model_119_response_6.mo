@@ -1,0 +1,22 @@
+model LimitedActuator
+ extends ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator;
+
+  parameter Modelica.SIunits.Time delayTime;
+  parameter Real uMax;
+
+protected 
+  Modelica.Mechanics.Rotational.Sources.Torque torque(useSupport=true);
+  Modelica.Blocks.Nonlinear.Limiter limiter(uMax=uMax);
+  Modelica.Blocks.Nonlinear.FixedDelay lag(delayTime=delayTime);
+
+equation 
+  // Mechanical Output
+  connect(torque.flange, shaft);
+  connect(torque.support, housing);
+
+  // Signal Chain
+  lag.u = tau; // Input torque command
+  limiter.u = lag.y; // Delayed output signal
+  torque.tau = limiter.y; // Limited signal drives torque generation
+
+end LimitedActuator;

@@ -1,0 +1,34 @@
+
+Create a Modelica block named `EventClock`. The purpose of the model is to generate a clock signal when the Boolean input changes from false to true. The model should extend `Modelica.Clocked.ClockSignals.Interfaces.PartialClock`. The input parameter is a Boolean signal 'u' of type `Modelica.Blocks.Interfaces.BooleanInput`. The output is a clock signal 'y'. In the equation section, generate the output clock 'y' based on the events in the Boolean signal 'u'. If the 'useSolver' flag is enabled, the clock should be instantiated as a nested clock associated with the specified 'solverMethod'. Otherwise, define 'y' as a standard event clock triggered directly by 'u'.
+
+//modelica
+```block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+  parameter Modelica.Blocks.Interfaces.BooleanInput u(start=false);
+  Modelica.Blocks.Interfaces.BooleanOutput y;
+  parameter Modelica.Blocks.Interfaces.BooleanInput useSolver=false;
+  parameter Modelica.Blocks.Interfaces.BooleanInput solverMethod=false;
+equation
+  if useSolver then
+    Modelica.Blocks.Types.BlockTypes.NestedClock(
+      clock=y,
+      clockTrigger=u,
+      solverMethod=solverMethod
+    );
+  else
+    y = Modelica.Blocks.Types.BlockTypes.EventClock(clockTrigger=u);
+  end if;
+end EventClock;
+```
+
+In this model, the 'useSolver' parameter allows the user to choose whether to use a solver for the clock signal. If 'useSolver' is true, the model will create a nested clock with the specified'solverMethod'. If 'useSolver' is false, the model will create an event clock directly triggered by the Boolean input 'u'.
+
+Please note that the'solverMethod' parameter is only used when 'useSolver' is true. It specifies the method used by the solver to integrate the clock signal.
+
+The 'y' output is a Boolean signal that represents the clock signal. It is connected to the 'clock' input of the nested clock or directly to the 'clockTrigger' input of the event clock.
+
+The 'u' input is the Boolean signal that triggers the clock signal. It is used as the trigger for the event clock or the clock signal of the nested clock.
+
+The 'useSolver' and'solverMethod' parameters are used to configure the behavior of the clock signal. If 'useSolver' is true, the clock signal is integrated using the specified'solverMethod'. If 'useSolver' is false, the clock signal is generated based on the events in the 'u' signal.
+
+Please replace the placeholder text with the actual code and test it in your Modelica environment to ensure it works as expected.

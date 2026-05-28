@@ -1,0 +1,21 @@
+model IdealCore
+ extends PartialCore;
+
+  // Parameters for transformation ratios
+  parameter Real n12 "Voltage transformation ratio between winding 1 and 2";
+  parameter Real n13 "Voltage transformation ratio between winding 1 and 3";
+
+  // Variables for voltages and currents
+  Real v1[m] "Voltage across winding 1";
+  Real v2[m] "Voltage across winding 2";
+  Real v3[m] "Voltage across winding 3";
+  Real im[m] = zeros(m) "Magnetizing current vector set to zero";
+
+equation
+  // Voltage transformation equations
+  for i in 1:m loop
+    v1[i] = n12 * v2[i];
+    v1[i] = n13 * v3[i];
+  end for;
+
+end IdealCore;

@@ -1,0 +1,31 @@
+
+Use the Modelica model named `VanDerPol` to implement a Van der Pol oscillator with the parameter 'lambda = 0.3'. The system consists of two variables, 'x' and 'y', both starting at 1. The equations should define the derivatives of 'x' and 'y' to simulate the nonlinear oscillation behavior based on the Van der Pol relationship.
+
+//modelica
+```model VanDerPol
+  parameter Real lambda = 0.3;
+  Real x(start=1);
+  Real y(start=1);
+equation
+  der(x) = y;
+  der(y) = (1 - lambda*x^2)*y - x;
+end VanDerPol;
+```
+
+This Modelica model represents a Van der Pol oscillator. The parameter 'lambda' is set to 0.3. The equations define the derivatives of 'x' and 'y' based on the Van der Pol relationship. The system starts with 'x' and 'y' both set to 1.
+
+To simulate this model, you can use a Modelica simulation software like Dymola, OpenModelica, or any other that supports Modelica.
+
+Please note that the simulation results will depend on the chosen solver and the simulation parameters, such as the simulation time and the step size.
+
+To run the simulation, you can use the following commands in a Modelica simulation software:
+
+```modelica
+simulate(VanDerPol, stopTime=10);
+```
+
+This command will simulate the Van der Pol oscillator for 10 seconds. The simulation results can be visualized in the software's graphical user interface.
+
+The simulation results will show the behavior of the Van der Pol oscillator over time, including the oscillations and the amplitude modulation due to the nonlinear term in the Van der Pol equation.
+
+Please note that the simulation results may vary depending on the specific Modelica simulation software used and its settings.

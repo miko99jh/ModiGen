@@ -1,0 +1,40 @@
+Certainly! Below is a Modelica function named `PolynomialWithDerivative` that computes the value of a polynomial and its derivative based on the input `x` and an array of coefficients `c`. The function uses a loop to iterate over the coefficients and calculate the polynomial value. Additionally, it calculates the derivative of the polynomial.
+
+```modelica
+function PolynomialWithDerivative
+  input Real x; // Independent variable
+  input Real c[:]; // Array of polynomial coefficients
+  output Real y; // Computed polynomial value
+  output Real dy; // Computed derivative of the polynomial
+protected
+  Integer n = size(c, 1); // Size of the coefficient array
+algorithm
+  y := 0.0;
+  dy := 0.0;
+  for i in 1:n loop
+    y := y * x + c[i];
+    if i < n then
+      dy := dy * x + c[i] * (n - i);
+    end if;
+  end for;
+end PolynomialWithDerivative;
+```
+
+### Explanation:
+- **Inputs:**
+  - `x`: The independent variable where the polynomial is evaluated.
+  - `c`: An array of coefficients for the polynomial. The coefficient `c[1]` corresponds to the highest degree term.
+
+- **Outputs:**
+  - `y`: The value of the polynomial at `x`.
+  - `dy`: The value of the derivative of the polynomial at `x`.
+
+- **Protected Variable:**
+  - `n`: The number of coefficients, which also indicates the degree of the polynomial plus one.
+
+- **Algorithm:**
+  - The function initializes `y` and `dy` to zero.
+  - It iterates over each coefficient, updating the polynomial value `y` using Horner's method.
+  - The derivative `dy` is calculated by considering the power of each term, reducing the power by one for the derivative calculation.
+
+This function efficiently computes both the polynomial and its derivative using a single loop.

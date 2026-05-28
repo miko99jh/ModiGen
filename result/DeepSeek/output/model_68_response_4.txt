@@ -1,0 +1,43 @@
+
+Generate a Modelica model named `SquirrelCage` that represents a squirrel cage for an electrical machine. The model should include the following components and details:
+1. Model Functionality: The model represents a squirrel cage with parameters for rotor stray inductance, rotor resistance, reference temperature, and temperature coefficient of resistance.
+2. Components:
+- The model should include the following parameters:
+- Modelica.Units.SI.Inductance Lrsigma: Rotor stray inductance per phase translated to stator. 
+- Modelica.Units.SI.Resistance Rr: Rotor resistance per phase translated to stator at T_ref. 
+- Modelica.Units.SI.Temperature T_ref: Reference temperature (default 293.15 K).
+- Modelica.Units.SI.LinearTemperatureCoefficient alpha: Temperature coefficient of resistance at T_ref (default 0).
+- The model should extend Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort with T set to T_ref. 
+- Include a variable for the actual rotor resistance: Modelica.Units.SI.Resistance Rr_actual. 
+- Include a space phasor for the rotor: `Modelica.Electrical.Machines.Interfaces.SpacePhasor spacePhasor_r`. 
+- Include a RealOutput array for the currents out from the squirrel cage: Modelica.Blocks.Interfaces.RealOutput i[2] with quantity ElectricCurrent and unit A, set to -spacePhasor_r.i_.
+3. Equations and Expressions:
+ The model should include the following equations:
+- An assertion to ensure the temperature is within the valid range: assert((1 + alpha*(T_heatPort - T_ref)) >= Modelica.Constants.eps, "Temperature outside scope of model!"). 
+- Resistance Compensation: Calculate 'Rr_actual' by applying the temperature coefficient to the base resistance based on the heat port's current temperature.
+- Electromagnetic Dynamics: Define the phasor voltage 'spacePhasor_r.v_' as the sum of the resistive drop and the inductive flux change (derivative of current).
+- Loss Integration: Relate the 'LossPower' to the square of the space phasor current components, ensuring the phase-scaling factor (2/3) is properly applied.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model SquirrelCage
+  extends Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort;
+  parameter Modelica.Units.SI.Inductance Lrsigma "Rotor stray inductance per phase translated to stator";
+  parameter Modelica.Units.SI.Resistance Rr "Rotor resistance per phase translated to stator at T_ref";
+  parameter Modelica.Units.SI.Temperature T_ref=293.15 "Reference temperature";
+  parameter Modelica.Units.SI.LinearTemperatureCoefficient alpha=0 "Temperature coefficient of resistance at T_ref";
+  Modelica.Units.SI.Resistance Rr_actual "Actual rotor resistance";
+  Modelica.Electrical.Machines.Interfaces.SpacePhasor spacePhasor_r;
+  Modelica.Blocks.Interfaces.RealOutput i[2] "Currents out from the squirrel cage" 
+    annotation (Quantity(quantity="ElectricCurrent", unit="A"), Dialog(group="Output"));
+equation 
+  assert((1 + alpha*(T_heatPort - T_ref)) >= Modelica.Constants.eps, "Temperature outside scope of model!");
+  Rr_actual = Rr * (1 + alpha*(T_heatPort - T_ref));
+  spacePhasor_r.v_ = Rr_actual * spacePhasor_r.i_ + Lrsigma * der(spacePhasor_r.i_);
+  i[1] = -spacePhasor_r.i_.re;
+  i[2] = -spacePhasor_r.i_.im;
+  LossPower = 0.5 * (spacePhasor_r.i_.re^2 + spacePhasor_r.i_.im^2) * Rr_actual;
+end SquirrelCage;
+```
+This model should be used as a component in a larger model to simulate the electrical machine.

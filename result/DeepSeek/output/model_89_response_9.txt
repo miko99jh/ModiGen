@@ -1,0 +1,28 @@
+
+Please use modelica to help me implement a model named `NewtonCoolingDynamic`: Simulate the temperature change of a water under Newton's law of cooling. Among them, the initial temperature of water (`T0`) is 100 °C, the ambient temperature (`T_inf`) is 25 °C, the water meter area (`A`) is 1 square meter, the mass (`m`) is 1kg, the specific heat (`c_p`) is 4200 J/(kg.°C), and the convection cooling coefficient (`h`) is 767 W/(m2.°C). Use an initial equation to set `T` to `T0`. 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+//modelica
+```model NewtonCoolingDynamic
+  parameter Real T0 = 100 "Initial temperature of water";
+  parameter Real T_inf1 = 25 "Ambient temperature";
+  parameter Real A = 1 "Water meter area";
+  parameter Real m = 1 "Mass";
+  parameter Real c_p = 4200 "Specific heat";
+  parameter Real h = 767 "Convection cooling coefficient";
+  Real T(start=T0) "Temperature of water";
+  Real T_inf(start=T_inf1) "Ambient temperature";
+  Real Q_dot "Heat transfer rate";
+equation
+  der(T) = (T_inf - T) / (m * c_p) * A * h;
+  Q_dot = A * h * (T_inf - T);
+  when time = 20 "s" then
+    T_inf = 0 "K";
+  end when;
+end NewtonCoolingDynamic;
+```
+
+This model should be able to simulate the temperature change of the water over time.
+
+Please note that the `when` clause in Modelica is used to specify events that can change the state of the model. In this case, when the time is 20 seconds, the ambient temperature suddenly drops to 0 degrees Celsius.
+
+Please help me to implement this model in Modelica.

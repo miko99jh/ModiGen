@@ -1,0 +1,9 @@
+model ConstantCurrent
+ extends Modelica.Electrical.Analog.Interfaces.OnePort;
+  extends Modelica.Electrical.Analog.Icons.CurrentSource;
+
+  parameter Modelica.Units.SI.Current I = 1 "Value of constant current";
+
+equation
+  i = I;
+end ConstantCurrent;

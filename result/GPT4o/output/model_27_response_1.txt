@@ -1,0 +1,50 @@
+Here is the `EventClock` block implemented in Modelica:
+
+```modelica
+block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+
+  // Input Boolean signal
+  input Modelica.Blocks.Interfaces.BooleanInput u;
+
+  // Output clock signal
+  output Clock y;
+
+protected 
+  // Internal variable to detect rising edge of 'u'
+  Boolean u_prev(start=false, fixed=true);
+
+equation 
+  // Detect rising edge of 'u'
+  when u and not pre(u) then
+    u_prev = true;
+  elsewhen not u then
+    u_prev = false;
+  end when;
+
+  // Generate clock signal 'y'
+  if useSolver then
+    y = Modelica.Clocked.Clocks.NestedClock(solverMethod=solverMethod);
+  else
+    y = Modelica.Clocked.Clocks.EventClock(trigger=u and not pre(u));
+  end if;
+
+end EventClock;
+```
+
+### Explanation:
+1. **Extending `PartialClock`**: The block extends `Modelica.Clocked.ClockSignals.Interfaces.PartialClock`, which provides the `useSolver` and `solverMethod` parameters for clock generation.
+
+2. **Input and Output**:
+   - `u`: A Boolean input signal of type `Modelica.Blocks.Interfaces.BooleanInput`.
+   - `y`: A clock signal output of type `Clock`.
+
+3. **Rising Edge Detection**:
+   - The `u_prev` variable is used to store the previous value of `u`.
+   - A `when` clause is used to detect a rising edge (`u` changes from `false` to `true`).
+
+4. **Clock Generation**:
+   - If `useSolver` is `true`, the clock `y` is instantiated as a nested clock using the specified `solverMethod`.
+   - Otherwise, `y` is defined as an event clock triggered by the rising edge of `u`.
+
+This block generates a clock signal based on the Boolean input `u` and the `useSolver` flag.

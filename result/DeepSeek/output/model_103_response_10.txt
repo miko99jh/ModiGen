@@ -1,0 +1,167 @@
+
+Solve algebraic differential equations der(y) + (1+0.5*sin(y))*der(x) = sin(time);   x-y = exp(-0.9*x)*cos(y);  the initial value of 'x' is 0.9. Please help me generate a modelica class named `DAEexample` to do this.
+
+//modelica
+```class DAEexample
+  extends Modelica.Blocks.Interfaces.PartialDAE;
+  parameter Real x0=0.9 "Initial value of x";
+  Real x(start=x0) "State of x";
+  Real y(start=0) "State of y";
+  Real der_x "Derivative of x";
+  Real der_y "Derivative of y";
+equation 
+  der(x) = der_x;
+  der(y) = der_y;
+  der_x + (1+0.5*sin(y))*der_x = sin(time);
+  x-y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+The above modelica class should solve the given differential equations.
+
+The initial value of 'x' is 0.9. The initial value of 'y' is 0.
+
+The derivative of 'x' is 'der_x' and the derivative of 'y' is 'der_y'.
+
+The equation for 'der_x' is 'der(x) = der_x' and the equation for 'der_y' is 'der(y) = der_y'.
+
+The equation for 'der_x' is 'der_x + (1+0.5*sin(y))*der_x = sin(time)' and the equation for 'x-y' is 'exp(-0.9*x)*cos(y)'.
+
+The 'x' and 'y' states are updated by the equations for 'der_x' and 'der_y'.
+
+The 'der_x' and 'der_y' derivatives are updated by the equations for 'der_x' and 'der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x + (1+0.5*sin(y))*der_x = sin(time)', and the 'der_y' derivative is updated by 'x-y = exp(-0.9*x)*cos(y)'.
+
+The 'x' state is updated by 'der(x) = der_x', and the 'y' state is updated by 'der(y) = der_y'.
+
+The 'der_x' derivative is updated by 'der_x

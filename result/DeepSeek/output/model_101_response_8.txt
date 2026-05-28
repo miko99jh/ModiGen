@@ -1,0 +1,35 @@
+
+Implement a Modelica function named `SphereProperties` to calculate the surface area (`surface`) and volume (`volume`) of a sphere based on its radius (`radius`). The function should use an algorithm block to implement the calculation logic and utilize the pi constant from the standard Modelica library (Modelica.Constants.pi) for the formulas.
+
+//modelica
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function takes a single input, `radius`, which represents the radius of the sphere. It calculates the surface area and volume of the sphere using the formulas for a sphere, which are `surface = 4 * pi * radius^2` and `volume = 4/3 * pi * radius^3`, respectively. The results are returned as the outputs `surface` and `volume`.
+
+The algorithm block is used to implement the calculation logic. It uses the pi constant from the Modelica.Constants package for the formulas. The `:=` operator is used to assign the calculated values to the outputs.
+
+The function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model SphereModel
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface "Surface area of the sphere";
+  Real volume "Volume of the sphere";
+initial equation
+  surface = SphereProperties(radius).surface;
+  volume = SphereProperties(radius).volume;
+equation
+  // Additional equations or model components can be added here
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter to calculate the surface area and volume of a sphere. The results are assigned to the `surface` and `volume` variables. These variables can then be used elsewhere in the model.
+
+Note: The `initial equation` section is used to calculate the initial values of the `surface` and `volume` variables. In a simulation, these initial values would be updated at each time step based on the current `radius` value.
+
+This function and model can be used to calculate the properties of a sphere in a Modelica simulation environment.

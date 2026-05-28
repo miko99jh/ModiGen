@@ -1,0 +1,32 @@
+
+Generate a Modelica model named `Dd04` that represents a transformer with a Dd4 vector group. The model should include the following components and details:
+1. Components:
+- The model should extend `Modelica.Electrical.Machines.Interfaces.PartialBasicTransformer` with the final VectorGroup set to `Dd04`. 
+- Include two delta connections: Modelica.Electrical.Polyphase.Basic.Delta Delta1 and Delta2, both with final m set to m.
+2. Connections:
+ The model should include the following connections:
+- Primary Side & Leakage: Interface the positive input plug 'r1.plug_p' with the first delta stage 'Delta1.plug_p'. To account for primary flux leakage, connect the negative terminal of the primary leakage inductance 'l1sigma.plug_n' to the core's first winding positive input ('core.plug_p1'). Complete the primary loop by routing the delta's return path ('Delta1.plug_n') to the core's first winding negative terminal ('core.plug_n1').
+- Core Inter-stage Logic: Establish the Dd4 phase-shift topology by bridging the internal core windings. Specifically, tie the second winding's return ('core.plug_n2') to the third winding's supply ('core.plug_p3') to achieve the required vector group displacement.
+- Secondary Side: Link the core's secondary output ('core.plug_p2') to the second delta stage 'Delta2.plug_p'. For the secondary leakage path, route the third winding's return ('core.plug_n3') to the secondary leakage inductance 'l2sigma.plug_n'. Finally, close the circuit by connecting 'Delta2.plug_n' to the output resistor terminal 'r2.plug_p'.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model Dd04
+  extends Modelica.Electrical.Machines.Interfaces.PartialBasicTransformer(final VectorGroup = Modelica.Electrical.Machines.Types.VectorGroup.Dd04);
+  Modelica.Electrical.Polyphase.Basic.Delta Delta1(final m = m);
+  Modelica.Electrical.Polyphase.Basic.Delta Delta2(final m = m);
+  Modelica.Electrical.Analog.Basic.Inductor l1sigma(L = 1e-3);
+  Modelica.Electrical.Analog.Basic.Inductor l2sigma(L = 1e-3);
+  Modelica.Electrical.Analog.Basic.Resistor r2(R = 1);
+
+equation 
+  connect(r1.plug_p, Delta1.plug_p);
+  connect(l1sigma.plug_n, core.plug_p1);
+  connect(Delta1.plug_n, core.plug_n1);
+  connect(core.plug_p2, Delta2.plug_p);
+  connect(l2sigma.plug_n, core.plug_n3);
+  connect(Delta2.plug_n, r2.plug_p);
+end Dd04;
+```
+This model is a basic transformer that represents a transformer with a Dd4 vector group. It includes two delta connections and two leakage inductances. The primary side is connected to the first delta stage, and the secondary side is connected to the second delta stage. The primary and secondary leakage paths are represented by the leakage inductances. The primary and secondary sides are connected to the core, which represents the transformer's magnetic core. The core is a Dd4 transformer core, which means that the three phases are displaced by 120 degrees.

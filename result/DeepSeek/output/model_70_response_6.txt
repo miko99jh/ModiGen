@@ -1,0 +1,33 @@
+
+Generate a Modelica model named `Dy05` that represents a transformer with a Dy5 vector group. The model should include the following components and details:
+1. Components:
+- The model should extend `Modelica.Electrical.Machines.Interfaces.PartialBasicTransformer` with the final VectorGroup set to `Dy05`. 
+- Include a star connection for the secondary winding: Modelica.Electrical.Polyphase.Basic.Star star2 with final m set to m.
+- Include a negative pin for the star point: Modelica.Electrical.Analog.Interfaces.NegativePin starpoint2. 
+- Include a delta connection for the primary winding: Modelica.Electrical.Polyphase.Basic.Delta Delta1 with final m set to m.
+2. Connections:
+ The model should include the following connections:
+- Primary Loop: Initiate the feed from 'r1.plug_p' into 'Delta1.plug_p'. Route the primary leakage path from 'l1sigma.plug_n' into 'core.plug_p1', and close the primary delta circuit by linking 'Delta1.plug_n' to 'core.plug_n1'.
+- Vector Group Bridge: Implement the Dy5 phase shift by bridging the core's internal windings, specifically tying the second winding exit ('core.plug_n2') to the third winding entry ('core.plug_p3').
+- Secondary Star Topology: Route the transformed power from 'core.plug_p2' into the supply side of the star connection ('star2.plug_p').
+- Secondary Leakage & Neutral: Integrate the secondary leakage by connecting 'l2sigma.plug_n' to the core's third winding return ('core.plug_n3'). Finally, establish the system neutral by tying the star connection's common point ('star2.pin_n') to the external 'starpoint2'.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model Dy05
+  extends Modelica.Electrical.Machines.Interfaces.PartialBasicTransformer(final vectorGroup = Modelica.Electrical.Machines.Types.VectorGroup.Dy05);
+  Modelica.Electrical.Polyphase.Basic.Star star2(final m = m);
+  Modelica.Electrical.Analog.Interfaces.NegativePin starpoint2;
+  Modelica.Electrical.Polyphase.Basic.Delta Delta1(final m = m);
+equation 
+  connect(r1.plug_p, Delta1.plug_p);
+  connect(l1sigma.plug_n, core.plug_p1);
+  connect(Delta1.plug_n, core.plug_n1);
+  connect(core.plug_n2, core.plug_p3);
+  connect(core.plug_p2, star2.plug_p);
+  connect(l2sigma.plug_n, core.plug_n3);
+  connect(star2.pin_n, starpoint2);
+end Dy05;```
+
+This model should be used as a starting point for further development or modification to suit specific application requirements.

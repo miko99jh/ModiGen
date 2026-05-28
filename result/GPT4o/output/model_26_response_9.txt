@@ -1,0 +1,38 @@
+Certainly! Below is a Modelica block named `BooleanChange` that detects changes in a Boolean signal within the context of clocked, non-periodic signals. It extends from the `Modelica.Clocked.ClockSignals.Interfaces.ClockedBlockIcon` class and includes the specified input and output signals.
+
+```modelica
+block BooleanChange
+  extends Modelica.Clocked.ClockSignals.Interfaces.ClockedBlockIcon;
+
+  // Boolean input signal
+  Modelica.Blocks.Interfaces.BooleanInput u;
+
+  // Boolean output signal
+  Modelica.Blocks.Interfaces.BooleanOutput y;
+
+protected
+  // Variable to store the previous value of the input signal
+  Boolean previousValue(start=false);
+
+initial equation
+  // On the initial activation of the clock, the output should default to 'false'
+  y = false;
+
+equation
+  when ClockSample() then
+    // Determine the output 'y' by detecting changes in the input signal 'u'
+    y = (u <> previousValue);
+    // Update the previous value with the current value of 'u'
+    previousValue = u;
+  end when;
+
+end BooleanChange;
+```
+
+### Explanation:
+- **Input and Output**: The block has a Boolean input `u` and a Boolean output `y`.
+- **Protected Variable**: `previousValue` is used to store the previous value of the input signal `u`.
+- **Initial Equation**: Sets the output `y` to `false` on the initial activation of the clock.
+- **Equation Section**: Within the `when ClockSample()` construct, the block checks if the current value of `u` differs from `previousValue`. If it does, `y` is set to `true`; otherwise, it remains `false`. After checking, `previousValue` is updated to the current value of `u`.
+
+This block effectively detects changes in the Boolean input signal `u` and updates the output `y` accordingly.

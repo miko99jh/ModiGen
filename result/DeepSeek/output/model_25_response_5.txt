@@ -1,0 +1,36 @@
+
+Generate a Modelica block for sub-sampling a clocked Boolean input signal and providing it as a clocked output signal. The model should be a block named `SubSample`. The model has the following parameters:
+
+1. 'inferFactor' (Boolean, default=true): If true, the sub-sampling factor is inferred automatically.
+2. 'factor(min=1)' (Integer, default=1): The sub-sampling factor, ignored if 'inferFactor' is true.
+
+The model should include:
+
+- A Boolean input signal 'u' of type `Modelica.Blocks.Interfaces.BooleanInput`.
+- A Boolean output signal 'y' of type `Modelica.Blocks.Interfaces.BooleanOutput`.
+ The clock of 'y' should be slower than the clock of 'u'.
+
+In the equation section, implement the logic as follows:
+
+- If 'inferFactor' is true, use the `subSample(u)` function to automatically infer the sub-sampling factor and assign the result to 'y'.
+- If 'inferFactor' is false, use the `subSample(u, factor)` function, with 'factor' determining the sub-sampling rate, and assign the result to 'y'.
+
+Ensure that the output signal 'y' reflects the correct sub-sampling of the input signal 'u' based on the inferred or specified factor.
+
+//modelica
+```block SubSample
+  extends Modelica.Blocks.Icons.Block;
+  parameter Boolean inferFactor = true "If true, the sub-sampling factor is inferred automatically";
+  parameter Integer factor(min=1) = 1 "The sub-sampling factor, ignored if 'inferFactor' is true";
+  Modelica.Blocks.Interfaces.BooleanInput u;
+  Modelica.Blocks.Interfaces.BooleanOutput y;
+equation 
+  if inferFactor then
+    y = Modelica.Blocks.Types.subSample(u);
+  else
+    y = Modelica.Blocks.Types.subSample(u, factor);
+  end if;
+end SubSample;
+```
+
+This block can be used to reduce the sampling rate of a Boolean signal. If the 'inferFactor' parameter is set to true, the block will automatically determine the sub-sampling factor based on the clock rates of the input and output signals. If 'inferFactor' is set to false, the block will use the specified 'factor' to determine the sub-sampling rate.

@@ -1,0 +1,23 @@
+
+Create a Modelica block named `EventClock`. The purpose of the model is to generate a clock signal when the Boolean input changes from false to true. The model should extend `Modelica.Clocked.ClockSignals.Interfaces.PartialClock`. The input parameter is a Boolean signal 'u' of type `Modelica.Blocks.Interfaces.BooleanInput`. The output is a clock signal 'y'. In the equation section, generate the output clock 'y' based on the events in the Boolean signal 'u'. If the 'useSolver' flag is enabled, the clock should be instantiated as a nested clock associated with the specified 'solverMethod'. Otherwise, define 'y' as a standard event clock triggered directly by 'u'.
+
+//modelica
+```block EventClock extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock
+  parameter Modelica.Blocks.Interfaces.BooleanInput u(start=false);
+  Modelica.Blocks.Interfaces.Clock y;
+  parameter Boolean useSolver=false;
+  parameter Modelica.Blocks.Interfaces.Types.SolverMethod solverMethod=Modelica.Blocks.Interfaces.Types.SolverMethod.FixedStep;
+equation
+  if useSolver then
+    Modelica.Blocks.Sources.Clock(clock=y, solverMethod=solverMethod) clock(clock=y, solverMethod=solverMethod);
+  else
+    y = Modelica.Blocks.Interfaces.Clock(when=Modelica.Blocks.Interfaces.Events.rising(u));
+  end if;
+end EventClock;
+```
+
+This model will generate a clock signal 'y' when the Boolean input 'u' changes from false to true. If the 'useSolver' flag is enabled, the clock will be associated with the specified'solverMethod'. Otherwise, the clock will be generated directly by the Boolean signal 'u'.
+
+Note: The `Modelica.Blocks.Sources.Clock` block is used to generate a clock signal. The `Modelica.Blocks.Interfaces.Events.rising` function is used to detect the rising edge of the Boolean signal 'u'. The `Modelica.Blocks.Interfaces.Clock` type is used to define the output clock signal 'y'.
+
+Please make sure to test this model in your Modelica environment to ensure it behaves as expected.

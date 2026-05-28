@@ -1,0 +1,16 @@
+
+Generate a Modelica model named `FirstOrderExperiment` that defines first order equation with experiment conditions for a simple system. The model should include a real variable 'x' and initialize 'x=2'. This variable should dynamically change based on the differential equation defined, aiming for the value of 'x' to converge towards 1.0.
+
+//modelica
+```model FirstOrderExperiment
+  parameter Real k = 0.1 "Rate constant";
+  Real x(start=2) "State variable";
+equation
+  der(x) = -k*x;
+  when x < 1.0 then
+    terminate("Experiment complete");
+  end when;
+end FirstOrderExperiment;
+```
+
+This model defines a first-order differential equation with a rate constant 'k'. The state variable 'x' is initialized to 2. The equation describes the rate of change of 'x' as being proportional to its current value with a negative sign, which is characteristic of a first-order decay process. The 'when' clause is used to terminate the simulation when 'x' falls below 1.0, indicating that the experiment is complete.

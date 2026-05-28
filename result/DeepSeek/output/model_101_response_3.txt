@@ -1,0 +1,46 @@
+
+Implement a Modelica function named `SphereProperties` to calculate the surface area (`surface`) and volume (`volume`) of a sphere based on its radius (`radius`). The function should use an algorithm block to implement the calculation logic and utilize the pi constant from the standard Modelica library (Modelica.Constants.pi) for the formulas.
+
+//modelica
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function takes as input the radius of a sphere and returns the surface area and volume of the sphere. The surface area is calculated by multiplying the constant pi (Modelica.Constants.pi) by 4 and the square of the radius. The volume is calculated by multiplying the constant pi (Modelica.Constants.pi) by 4/3, the cube of the radius.
+
+Note: The Modelica language does not support the use of the `:=` operator in functions. Therefore, the `=` operator is used instead.
+
+Here is an example of how to use this function:
+
+```modelica
+model SpherePropertiesExample
+  Real radius = 5;
+  Real surface;
+  Real volume;
+initial equation
+  surface = SphereProperties(radius)(surface);
+  volume = SphereProperties(radius)(volume);
+equation
+  //...
+end SpherePropertiesExample;```
+
+In this example, the radius of the sphere is set to 5. The surface area and volume of the sphere are calculated by calling the `SphereProperties` function and assigning the results to the `surface` and `volume` variables, respectively.
+
+Please note that in a real-world scenario, you would likely not need to explicitly call the `SphereProperties` function in this manner. Instead, you would directly assign the output variables `surface` and `volume` in the function call.
+
+```modelica
+model SpherePropertiesExample
+  Real radius = 5;
+  Real surface;
+  Real volume;
+equation
+  (surface, volume) = SphereProperties(radius);
+  //...
+end SpherePropertiesExample;```
+
+In this revised example, the `SphereProperties` function is called directly with the `radius` value, and the `surface` and `volume` variables are assigned the returned values directly.

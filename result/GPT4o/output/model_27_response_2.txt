@@ -1,0 +1,50 @@
+To create a Modelica block named `EventClock` that generates a clock signal when a Boolean input changes from false to true, you can follow the structure below. This block extends `Modelica.Clocked.ClockSignals.Interfaces.PartialClock` and uses a Boolean input to trigger the clock signal. The implementation considers the `useSolver` flag to determine how the clock is instantiated.
+
+```modelica
+block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+
+  // Input Boolean signal
+  Modelica.Blocks.Interfaces.BooleanInput u "Boolean input signal";
+
+  // Output clock signal
+  output Modelica.Clocked.ClockSignals.Clock y "Output clock signal";
+
+  // Parameter to decide if a solver should be used
+  parameter Boolean useSolver = false "Flag to use solver for clock generation";
+  parameter String solverMethod = "default" "Solver method to use if useSolver is true";
+
+protected 
+  // Internal variable to detect rising edge
+  Boolean pre_u(start=false);
+
+equation 
+  // Detect rising edge of the input signal
+  pre_u = pre(u);
+
+  // Generate clock signal based on the rising edge of 'u'
+  when {u and not pre_u} then
+    if useSolver then
+      // Instantiate clock as a nested clock with solver
+      y = Modelica.Clocked.Clocks.NestedClock(solverMethod=solverMethod);
+    else
+      // Define 'y' as a standard event clock triggered by 'u'
+      y = Modelica.Clocked.Clocks.EventClock();
+    end if;
+  end when;
+
+end EventClock;
+```
+
+### Explanation:
+- **Input and Output**: The block has a Boolean input `u` and a clock output `y`.
+- **Parameters**: 
+  - `useSolver`: A Boolean parameter to decide if a solver should be used for clock generation.
+  - `solverMethod`: A string parameter specifying the solver method if `useSolver` is true.
+- **Internal Variable**: `pre_u` is used to store the previous value of `u` to detect rising edges.
+- **Equation Section**:
+  - The `when` clause detects a rising edge (`u` changes from false to true).
+  - If `useSolver` is true, `y` is instantiated as a nested clock using the specified `solverMethod`.
+  - Otherwise, `y` is defined as a standard event clock triggered by the rising edge of `u`.
+
+This block will generate a clock signal whenever the input `u` transitions from false to true, with the option to use a solver for clock generation if needed.

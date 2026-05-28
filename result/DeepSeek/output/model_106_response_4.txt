@@ -1,0 +1,30 @@
+
+Use the Modelica model named Lorenz to implement a Lorenz system. The system uses parameters 'sigma = 10', 'rho = 28', and 'beta = 8/3'. The variables 'x', 'y', and 'z' represent the coordinates, starting from initial values 'x0', 'y0', and 'z0' all equal to 1. The equations should describe the rate of change for each coordinate to simulate the chaotic attractor behavior.
+
+//modelica
+```model Lorenz
+  parameter Real sigma = 10;
+  parameter Real rho = 28;
+  parameter Real beta = 8/3;
+  parameter Real x0 = 1;
+  parameter Real y0 = 1;
+  parameter Real z0 = 1;
+  Real x(start=x0);
+  Real y(start=y0);
+  Real z(start=z0);
+equation
+  der(x) = sigma*(y - x);
+  der(y) = x*(rho - z) - y;
+  der(z) = x*y - beta*z;
+end Lorenz;
+```
+
+This Modelica model describes the Lorenz system, which is a system of ordinary differential equations that exhibits chaotic behavior. The system is defined by three differential equations:
+
+1. The rate of change of 'x' is proportional to the difference between 'y' and 'x', with a proportionality constant'sigma'.
+2. The rate of change of 'y' is proportional to the difference between 'x*(rho - z)' and 'y'.
+3. The rate of change of 'z' is proportional to the difference between 'x*y' and 'beta*z'.
+
+The initial conditions for 'x', 'y', and 'z' are set to 1. The parameters'sigma', 'rho', and 'beta' are set to 10, 28, and 8/3 respectively.
+
+The Lorenz system is known for its sensitivity to initial conditions, which leads to its characteristic butterfly effect. This means that small changes in initial conditions can lead to drastically different outcomes over time.

@@ -1,0 +1,47 @@
+Here is the Modelica code for the `BooleanChange` block:
+
+```modelica
+block BooleanChange
+  extends Modelica.Clocked.ClockSignals.Interfaces.ClockedBlockIcon;
+
+  // Boolean input signal
+  input Modelica.Blocks.Interfaces.BooleanInput u;
+
+  // Boolean output signal
+  output Modelica.Blocks.Interfaces.BooleanOutput y;
+
+protected
+  // Internal variable to store the previous value of 'u'
+  Boolean u_previous(start=false);
+
+equation
+  // On the first activation of the clock, output 'y' is false
+  when Clock() then
+    if previous(Clock()) then
+      // For subsequent ticks, detect changes in 'u'
+      y = u <> u_previous;
+    else
+      // Initial activation of the clock
+      y = false;
+    end if;
+
+    // Update the previous value of 'u'
+    u_previous = u;
+  end when;
+end BooleanChange;
+```
+
+### Explanation:
+1. **Inheritance**: The block extends from `Modelica.Clocked.ClockSignals.Interfaces.ClockedBlockIcon`, which provides a standard icon for clocked blocks.
+2. **Inputs and Outputs**:
+   - `u`: A Boolean input signal of type `Modelica.Blocks.Interfaces.BooleanInput`.
+   - `y`: A Boolean output signal of type `Modelica.Blocks.Interfaces.BooleanOutput`.
+3. **Protected Variable**:
+   - `u_previous`: Stores the previous value of the input signal `u`. It is initialized to `false` using `start=false`.
+4. **Equation Section**:
+   - The `when Clock()` construct ensures that the equations are evaluated only at clock ticks.
+   - On the first activation of the clock (`if previous(Clock())` is `false`), the output `y` is set to `false`.
+   - For subsequent ticks, `y` is set to `true` if the current value of `u` differs from its previous value (`u <> u_previous`).
+   - The previous value of `u` is updated at each tick (`u_previous = u`).
+
+This block detects changes in the Boolean input signal `u` and outputs `true` only when a change is detected.

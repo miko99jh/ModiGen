@@ -1,0 +1,17 @@
+
+Generate a Modelica model that implements an on-off actuator for a thermal control system. The model should be named `ConventionOnOffActuator` and extend from the `ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator` model. The actuator should have a parameter `heating_capacity` of type `Real`, representing the heating capacity of the actuator. Internally, the model should include a `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component named `heater` to model the heat flow, and a `Modelica.Blocks.Math.BooleanToReal` component named `command` with redeclared parameters 'realTrue=heating_capacity' and 'realFalse=0'. The heating process is regulated by the command component. Specifically, link the output signal of the command to the heater's heat flow rate input (Q_flow). Additionally, connect the heater's thermal port (port) to the external furnace interface.
+
+//modelica
+```model ConventionOnOffActuator
+  extends ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator(redeclare parameter Real heating_capacity = 1000 "Heating capacity of the actuator");
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater(Q_flow = command.y*heating_capacity);
+  Modelica.Blocks.Math.BooleanToReal command(realTrue = heating_capacity, realFalse = 0);
+equation 
+  connect(heater.port, port);
+  connect(command.u, heater.Q_flow);
+end ConventionOnOffActuator;
+```
+
+The `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component is used to model a heat source with a constant heat flow rate. The heat flow rate is controlled by the output of the `Modelica.Blocks.Math.BooleanToReal` component. If the input to the `command` block is true (1), the heat flow rate is set to the `heating_capacity` parameter. If the input is false (0), the heat flow rate is set to 0. This results in an on-off actuator that can control the heating capacity of the thermal system.
+
+Please note that this model assumes a linear relationship between the actuator command and the heat flow rate. In a real-world application, the relationship might be non-linear or dependent on other factors.

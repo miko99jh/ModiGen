@@ -1,0 +1,28 @@
+Certainly! Below is a simple Modelica model named `FirstOrderExperiment` that defines a first-order differential equation. The model includes a real variable `x`, which is initialized to 2, and it dynamically changes based on the differential equation to converge towards 1.0.
+
+```modelica
+model FirstOrderExperiment
+  // Define a real variable 'x' initialized to 2
+  Real x(start=2);
+
+equation
+  // Define the first-order differential equation
+  der(x) = -0.5 * (x - 1);
+
+  // Experiment annotation to specify simulation conditions
+  annotation(
+    experiment(StartTime=0, StopTime=10, Tolerance=1e-6, Interval=0.1)
+  );
+end FirstOrderExperiment;
+```
+
+### Explanation:
+- **Variable Initialization**: The variable `x` is initialized to 2 using `start=2`.
+- **Differential Equation**: The equation `der(x) = -0.5 * (x - 1)` describes how `x` changes over time. The term `-0.5 * (x - 1)` ensures that `x` converges towards 1.0. The rate of convergence is controlled by the coefficient `-0.5`.
+- **Experiment Annotation**: The `annotation(experiment(...))` specifies the simulation conditions:
+  - `StartTime=0`: The simulation starts at time 0.
+  - `StopTime=10`: The simulation stops at time 10.
+  - `Tolerance=1e-6`: The solver tolerance is set to 1e-6 for numerical accuracy.
+  - `Interval=0.1`: The simulation results are recorded at intervals of 0.1 time units.
+
+This model can be simulated using a Modelica tool to observe how `x` converges towards 1.0 over the specified time period.

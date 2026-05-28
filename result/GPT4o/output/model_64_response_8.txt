@@ -1,0 +1,13 @@
+```modelica
+model CellStack
+  extends Modelica.Electrical.Batteries.BaseClasses.BaseCellStack(
+    final R = Ns * cellData.Ri / Np);
+
+  redeclare Modelica.Electrical.Batteries.ParameterRecords.CellData cellData;
+
+equation
+  connect(r0.n, n);
+end CellStack;
+```
+
+This Modelica model named `CellStack` extends the `BaseCellStack` from the `Modelica.Electrical.Batteries.BaseClasses` package. It sets the parameter `r0` with a final value of `R` calculated as `Ns * cellData.Ri / Np`. The `cellData` parameter is redeclared to use `Modelica.Electrical.Batteries.ParameterRecords.CellData`. Additionally, the model includes a connection between `r0.n` and `n`. This model should be syntactically correct according to the Modelica language standard.

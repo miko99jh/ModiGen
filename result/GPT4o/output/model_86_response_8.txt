@@ -1,0 +1,54 @@
+Certainly! Below is a simple implementation of a `BouncingBall` model in Modelica. This model simulates a ball bouncing under the influence of gravity, with a specified coefficient of restitution for the bounce.
+
+```modelica
+model BouncingBall
+  parameter Real radius = 0.1 "Radius of the ball";
+  parameter Real e = 0.9 "Coefficient of restitution";
+  parameter Real g = 9.81 "Acceleration due to gravity (m/s^2)";
+  parameter Real initialHeight = 1 "Initial height of the ball (m)";
+  parameter Real initialVelocity = 0 "Initial velocity of the ball (m/s)";
+
+  Real height(start=initialHeight) "Height of the ball above the ground";
+  Real velocity(start=initialVelocity) "Vertical velocity of the ball";
+
+  Boolean isFalling(start=true) "Flag to indicate if the ball is falling";
+
+equation
+  // Differential equations for motion
+  der(height) = velocity;
+  der(velocity) = if isFalling then -g else 0;
+
+  // Condition for bouncing
+  when height <= radius then
+    velocity = -e * velocity;
+    isFalling = true;
+  end when;
+
+  // Condition for free fall
+  when velocity < 0 then
+    isFalling = true;
+  elsewhen velocity > 0 then
+    isFalling = false;
+  end when;
+
+end BouncingBall;
+```
+
+### Explanation:
+- **Parameters**: 
+  - `radius`: The radius of the ball.
+  - `e`: The coefficient of restitution, which determines how much velocity is retained after a bounce.
+  - `g`: The acceleration due to gravity.
+  - `initialHeight` and `initialVelocity`: Initial conditions for the simulation.
+
+- **Variables**:
+  - `height`: The current height of the ball above the ground.
+  - `velocity`: The current vertical velocity of the ball.
+  - `isFalling`: A boolean flag indicating whether the ball is in free fall.
+
+- **Equations**:
+  - The differential equations describe the motion of the ball. The height changes according to the velocity, and the velocity changes due to gravity when the ball is falling.
+  - The `when` clause handles the bouncing condition. When the ball's height is less than or equal to its radius (indicating contact with the ground), the velocity is reversed and scaled by the coefficient of restitution.
+  - Additional `when` clauses manage the transition between falling and rising states based on the velocity.
+
+This model should simulate the bouncing behavior of the ball under the specified conditions. You can simulate this model using a Modelica environment like OpenModelica or Dymola to observe the ball's motion over time.

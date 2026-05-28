@@ -1,0 +1,72 @@
+Below is the implementation of the `PDController` model in Modelica. This model simulates the water level control system using proportional-differential (PD) control.
+
+```modelica
+model PDController
+  // Parameters
+  parameter Real Kp = 1 "Proportional gain";
+  parameter Real Kd = 0.1 "Differential gain";
+  parameter Real target_height = 1 "Target water level (m)";
+  parameter Real initial_waterLevel = 0.2 "Initial water level (m)";
+  
+  // Variables
+  Real waterLevel(start = initial_waterLevel) "Current water level (m)";
+  Real error "Height error (m)";
+  Real dError "Rate of change of error (m/s)";
+  Real Pcontrol "Proportional control output";
+  Real Dcontrol "Differential control output";
+  Real controlSignal "Control signal (m/s)";
+  
+  // Time derivative of water level
+  Real waterLevelRate "Rate of change of water level (m/s)";
+  
+equation
+  // Error calculation
+  error = target_height - waterLevel;
+  
+  // Proportional control
+  Pcontrol = Kp * error;
+  
+  // Differential control
+  der(error) = dError; // Derivative of error
+  Dcontrol = Kd * dError;
+  
+  // Control signal
+  controlSignal = Pcontrol + Dcontrol;
+  
+  // Water level dynamics
+  der(waterLevel) = controlSignal;
+  
+  annotation(
+    experiment(StartTime = 0, StopTime = 20, Tolerance = 1e-6, Interval = 0.1),
+    Documentation(info = "PD Controller to maintain water level at target height."));
+end PDController;
+```
+
+### Explanation:
+1. **Parameters**:
+   - `Kp`: Proportional gain.
+   - `Kd`: Differential gain.
+   - `target_height`: Desired water level in the container.
+   - `initial_waterLevel`: Initial water level in the container.
+
+2. **Variables**:
+   - `waterLevel`: Current water level in the container.
+   - `error`: Difference between the target height and the current water level.
+   - `dError`: Rate of change of the error (derivative of the error).
+   - `Pcontrol`: Contribution of proportional control.
+   - `Dcontrol`: Contribution of differential control.
+   - `controlSignal`: Combined control signal from proportional and differential control.
+   - `waterLevelRate`: Rate of change of the water level.
+
+3. **Equations**:
+   - The error is calculated as the difference between the target height and the current water level.
+   - The proportional control is directly proportional to the error.
+   - The differential control is proportional to the rate of change of the error.
+   - The control signal is the sum of the proportional and differential control outputs.
+   - The rate of change of the water level (`der(waterLevel)`) is determined by the control signal.
+
+4. **Simulation**:
+   - The simulation runs from `StartTime = 0` to `StopTime = 20` seconds.
+   - The water level is expected to approach the target height of 1 meter over time.
+
+You can simulate this model in a Modelica environment (e.g., OpenModelica or Dymola) to observe how the water level changes over time.

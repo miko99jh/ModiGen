@@ -1,0 +1,28 @@
+
+Generate a Modelica model named `CurrentControlledDCPM` that represents a current-controlled DC permanent magnet (PM) drive with an H-bridge, powered from a battery. The model should include the following components and details:
+1. Components: 
+- The model should extend from `Modelica.Electrical.Machines.Examples.ControlledDCDrives.Utilities.PartialControlledDCPM`. 
+- Include a quadratic speed-dependent torque source for the load: Modelica.Mechanics.Rotational.Sources.QuadraticSpeedDependentTorque loadTorque with parameters tau_nominal set to -driveData.tauNominal, TorqueDirection set to false, and w_nominal set to driveData.motorData.wNominal. 
+- Include a step source for the torque input: Modelica.Blocks.Sources.Step step with parameters offset set to 0, startTime set to 0.2, and height set to driveData.tauNominal.
+2. Connections:
+ The model should include the following connections: 
+- Mechanical Linkage: Establish a mechanical connection between the rear flange of the inherited load inertia ('loadInertia.flange_b') and the 'flange' of the 'loadTorque' source to apply the speed-dependent load.
+- Control Signal Flow: Route the torque command output from the 'step' block into the input of the inherited torque-to-current transformation block ('tau2i.u') to drive the current control loop.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model CurrentControlledDCPM
+  extends Modelica.Electrical.Machines.Examples.ControlledDCDrives.Utilities.PartialControlledDCPM;
+  Modelica.Mechanics.Rotational.Sources.QuadraticSpeedDependentTorque loadTorque(
+    tau_nominal = -driveData.tauNominal,
+    TorqueDirection = false,
+    w_nominal = driveData.motorData.wNominal);
+  Modelica.Blocks.Sources.Step step(offset = 0, startTime = 0.2, height = driveData.tauNominal);
+
+equation 
+  connect(loadTorque.flange_a, loadInertia.flange_b);
+  connect(step.y, tau2i.u);
+end CurrentControlledDCPM;```
+
+This model extends the `PartialControlledDCPM` model and includes a `QuadraticSpeedDependentTorque` load torque source and a `Step` source for the torque input. The `QuadraticSpeedDependentTorque` source is connected to the load inertia, and the torque command output from the `Step` block is routed to the input of the inherited torque-to-current transformation block.

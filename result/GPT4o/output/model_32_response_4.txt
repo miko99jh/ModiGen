@@ -1,0 +1,60 @@
+To create a Modelica model named `Sample3` that demonstrates a sample block for Real signals with direct feed-through in both continuous-time and clocked partitions, you can follow the structure below. This model will include the specified components and parameters, and it will implement the feedback loop as described.
+
+```modelica
+model Sample3
+  // Import necessary Modelica libraries
+  import Modelica.Blocks.Sources.Step;
+  import Modelica.Blocks.Math.Gain;
+  import Modelica.Blocks.Math.Feedback;
+  import Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock;
+  import Modelica.Clocked.RealSignals.Sampler.Hold;
+  import Modelica.Clocked.RealSignals.Sampler.SampleClocked;
+  import Modelica.Clocked.RealSignals.Sampler.Sample;
+  import Modelica.Clocked.Types.Resolution;
+
+  // Parameters
+  parameter Integer factor = 20;
+  parameter Resolution resolution = Resolution.ms;
+
+  // Components
+  PeriodicExactClock periodicClock(factor = factor, resolution = resolution);
+  Step step(startTime = 0.04);
+  Gain gain(k = 1.2);
+  Feedback feedback;
+  Hold hold1;
+  SampleClocked sample1;
+  Sample sample2;
+
+equation
+  // Sampling: Use 'periodicClock' to trigger the sampling of the 'step' signal via 'sample1'
+  connect(periodicClock.y, sample1.clock);
+  connect(step.y, sample1.u);
+
+  // Feedback Logic: The output of 'sample1' enters the positive input ('u1') of the 'feedback' block
+  connect(sample1.y, feedback.u1);
+
+  // The 'feedback' output is then scaled by the gain
+  connect(feedback.y, gain.u);
+
+  // Signal Holding: Route the 'gain' output through 'hold1' to convert it back for sampling
+  connect(gain.y, hold1.u);
+
+  // Loop Closure: Sample the output of 'hold1' using 'sample2'
+  connect(hold1.y, sample2.u);
+  connect(periodicClock.y, sample2.clock);
+
+  // Connect the output of 'sample2' to the negative input ('u2') of the 'feedback' block to close the loop
+  connect(sample2.y, feedback.u2);
+
+end Sample3;
+```
+
+### Explanation:
+- **Periodic Clock**: A clock signal is generated using `PeriodicExactClock` with a specified `factor` and `resolution`.
+- **Step Source**: A step signal is generated starting at `0.04` seconds.
+- **Gain**: The gain block scales the feedback signal by a factor of `1.2`.
+- **Feedback**: The feedback block is used to create a feedback loop.
+- **Hold**: The hold block is used to maintain the signal value between clock ticks.
+- **Sample Blocks**: `SampleClocked` and `Sample` are used to sample the signals at the clock ticks.
+
+This model sets up a feedback loop where the output of the system is fed back into the input, scaled by a gain, and sampled at regular intervals defined by the clock.

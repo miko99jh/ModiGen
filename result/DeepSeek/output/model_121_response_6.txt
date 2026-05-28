@@ -1,0 +1,20 @@
+
+Generate a Modelica model for a thermal control system with on-off control variation. The model should be compatible with Modelica version 3.2.3. The model, named 'OnOffVariant', should extend from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel' and should include two redeclared and replaceable components: an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' named 'actuator' with 'heating_capacity=500' and an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' named 'controller' with a 'setpoint=300'.
+
+//modelica
+```model OnOffVariant
+  extends ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel;
+  replaceable ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator actuator(
+    final heating_capacity=500);
+  replaceable ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl controller(
+    final setpoint=300);
+end OnOffVariant;
+```
+
+This model should be saved in a file named 'OnOffVariant.mo'.
+
+The Modelica code should be saved in a file named 'OnOffVariant.mo' and the file should be located in the 'ModelicaByExample/Architectures/ThermalControl/Examples' directory.
+
+Please note that this task assumes you have the necessary permissions to create and save files in the specified directory. If you don't have these permissions, you may need to create a new directory or use a different location for the file.
+
+Also, please note that the Modelica version 3.2.3 is quite old and it's recommended to use a newer version for better compatibility and features.

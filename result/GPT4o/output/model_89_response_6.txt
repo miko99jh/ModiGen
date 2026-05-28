@@ -1,0 +1,56 @@
+Certainly! Below is a Modelica model named `NewtonCoolingDynamic` that simulates the temperature change of water under Newton's law of cooling, with the specified parameters and conditions:
+
+```modelica
+model NewtonCoolingDynamic
+  // Parameters
+  parameter Real T0 = 100; // Initial temperature of water in °C
+  parameter Real T_inf_initial = 25; // Initial ambient temperature in °C
+  parameter Real A = 1; // Area in m²
+  parameter Real m = 1; // Mass in kg
+  parameter Real c_p = 4200; // Specific heat in J/(kg.°C)
+  parameter Real h = 767; // Convection cooling coefficient in W/(m².°C)
+
+  // Variables
+  Real T(start = T0); // Temperature of the water in °C
+  Real T_inf; // Ambient temperature in °C
+  Real Q_dot; // Heat transfer rate in W
+
+initial equation
+  T = T0; // Set initial temperature
+
+equation
+  // Newton's law of cooling
+  Q_dot = h * A * (T - T_inf);
+  der(T) = -Q_dot / (m * c_p);
+
+  // Ambient temperature change after 20 seconds
+  when time >= 20 then
+    T_inf = 0;
+  else
+    T_inf = T_inf_initial;
+  end when;
+end NewtonCoolingDynamic;
+```
+
+### Explanation:
+- **Parameters**: These are constants that define the initial conditions and properties of the system.
+  - `T0`: Initial temperature of the water.
+  - `T_inf_initial`: Initial ambient temperature.
+  - `A`: Area through which heat is transferred.
+  - `m`: Mass of the water.
+  - `c_p`: Specific heat capacity of the water.
+  - `h`: Convection cooling coefficient.
+
+- **Variables**:
+  - `T`: Temperature of the water, initialized to `T0`.
+  - `T_inf`: Ambient temperature, which changes after 20 seconds.
+  - `Q_dot`: Rate of heat transfer.
+
+- **Initial Equation**: Sets the initial temperature of the water.
+
+- **Equations**:
+  - The heat transfer rate `Q_dot` is calculated using Newton's law of cooling.
+  - The rate of change of temperature `der(T)` is determined by the heat transfer rate divided by the product of mass and specific heat capacity.
+  - A `when` statement is used to change the ambient temperature `T_inf` from 25°C to 0°C after 20 seconds.
+
+This model will simulate the cooling process of the water, taking into account the sudden drop in ambient temperature after 20 seconds.

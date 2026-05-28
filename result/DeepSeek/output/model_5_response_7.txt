@@ -1,0 +1,40 @@
+
+Create a Modelica model named `I` for an integrator with tracking mode and limiter functionality. The model extends `IndustrialControlSystems.Controllers.Interfaces.Block` and extend its features. Include the following parameters: `Real T = 1` (Integral time), `Real y_start = 0` (State initial value). The model should handle anti-windup by checking the `AntiWindup` flag. If `AntiWindup` is true and the tracking signal (`ts`) is not active, the derivative of `Y` should be computed as `der(Y) = 1/T*u + 1/eps*(y - Y)`, and the output `y` should be `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is true and the tracking signal (`ts`) is active, compute `der(Y)` as `1/eps*(y - Y)` and limit the output `y` is `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is false, set `Y` to 0, calculate `T*der(y) = u for inactive `ts`, and compute `eps*der(y) = (-y + tr)` for active `ts`. Also, include an initial equation setting 'y = y_start' and a Real type protected parameter Y.
+
+//modelica
+```model I
+  extends IndustrialControlSystems.Controllers.Interfaces.Block;
+  parameter Real T = 1 "Integral time";
+  parameter Real y_start = 0 "State initial value";
+  parameter Real Ymin = -inf "Lower limit of integrator output";
+  parameter Real Ymax = inf "Upper limit of integrator output";
+  parameter Real eps = 1e-3 "Anti-windup gain";
+  Real Y(start=y_start) "Integrator state";
+equation
+  if not AntiWindup or not ts then
+    der(Y) = 1/T*u + 1/eps*(Y - y);
+    y = max(Ymin, min(Ymax, tr));
+  else
+    der(Y) = 1/eps*(Y - y);
+    y = max(Ymin, min(Ymax, tr));
+  end if;
+  initial equation
+    y = y_start;
+end I;
+```
+
+This model should be used in a control system where the integrator is used to track a reference signal (`tr`). The `AntiWindup` flag is used to enable or disable the anti-windup functionality of the integrator. If `AntiWindup` is true, the integrator will limit its output to the range `[Ymin, Ymax]` to prevent windup, i.e., excessive changes in the integrator state. If `AntiWindup` is false, the integrator will not limit its output and will instead track the reference signal directly.
+
+The `eps` parameter is used to control the rate of change of the integrator state when anti-windup is enabled. It is related to the integral time `T` by the equation `1/eps = T`. This means that `eps` is the time constant of the anti-windup mechanism. A smaller value of `eps` will result in a faster response to changes in the reference signal, but may also lead to more frequent changes in the integrator state, which can cause windup.
+
+The `Ymin` and `Ymax` parameters define the lower and upper limits of the integrator output. If the integrator output exceeds these limits, it will be clamped to the limit value. This can be used to prevent the integrator from outputting values that are physically unrealistic or that would cause problems elsewhere in the control system.
+
+The `y_start` parameter defines the initial value of the integrator state. This can be used to set the initial condition of the integrator when the control system is first started.
+
+The `T` parameter defines the integral time of the integrator. This is the time constant of the integrator and determines how quickly the integrator responds to changes in the input signal. A larger value of `T` will result in a slower response, while a smaller value will result in a faster response.
+
+The `u` input is the input signal to the integrator. This is the signal that the integrator is supposed to track. The `tr` input is the reference signal that the integrator is supposed to track. The `ts` input is a Boolean signal that indicates whether the tracking signal is active. If `ts` is true, the integrator is supposed to track the reference signal. If `ts` is false, the integrator is not supposed to track the reference signal and instead should output a constant value.
+
+The `y` output is the output signal of the integrator. This is the signal that is fed into the rest of the control system. It is the result of integrating the input signal `u`, with the effect of anti-windup being applied if `AntiWindup` is true.
+
+The `der(Y)` equation calculates the derivative of the integrator state `Y`. This is done using the input signal `u` and the output signal `y`, with the effect of anti-windup being applied if `AntiWindup` is true. The `y` equation calculates the output signal `y` of the integrator. This is done by clamping the integrator state `Y` to the range `[Ymin, Ymax]` if `AntiWindup` is true, and by setting the output signal `y` to the reference signal `tr` if `ts` is active. The `initial equation` sets the initial value of the integrator state `Y` to `y_start`.

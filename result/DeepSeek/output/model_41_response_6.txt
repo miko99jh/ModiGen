@@ -1,0 +1,30 @@
+
+Generate a Modelica model for a 'Discrete-time PI controller'. The model should be named 'PI'. The functionality of this model is to implement a Proportional-Integral (PI) controller in a discrete-time system. The model should extend `Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO`.
+
+**Inputs:**
+- 'kd' (Real parameter): Represents the gain of the discrete PI controller.
+- 'Td' (Real parameter, minimum value is Modelica.Constants.small): The time constant of the discrete PI controller.
+
+**Outputs:**
+- 'x' (Real output, start value is 0): Represents the state of the discrete PI controller.
+
+**Equations:**
+Implement the PI control law within a 'when Clock() then' block:
+- Integral State Update: The internal state 'x' should act as a discrete-time accumulator, updated at each tick by adding the current input 'u' normalized by the time constant 'Td' to its previous value.
+- Control Output: The output signal 'y' is the proportional-integral sum, calculated as the controller gain 'kd' multiplied by the sum of the current input and the updated state.
+
+//modelica
+```block PI extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO
+  parameter Real kd;
+  parameter Real Td(min=Modelica.Constants.small) = 1;
+  Real x(start=0) = if Clock() then x + (u/Td) else x;
+  output Real y = kd * (u + x);
+equation
+  when Clock() then
+    x = x + (u/Td);
+    y = kd * (u + x);
+  end when;
+end PI;
+```
+
+This model should be used in a discrete-time control system where the controller gain 'kd' and the time constant 'Td' are known and fixed. The state 'x' should be updated at each tick by adding the current input 'u' normalized by the time constant 'Td' to its previous value. The output 'y' is the proportional-integral sum, calculated as the controller gain 'kd' multiplied by the sum of the current input and the updated state.

@@ -1,0 +1,23 @@
+```modelica
+model SuperSample
+  extends Modelica.Icons.Example;
+
+  // Components
+  Modelica.Clocked.IntegerSignals.Sampler.SampleClocked sample1;
+  Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock(factor=20, resolution=Modelica.Clocked.Types.Resolution.ms);
+  Modelica.Clocked.IntegerSignals.Sampler.SuperSample superSample1(inferFactor=false, factor=3);
+  Modelica.Blocks.Sources.IntegerTable table(table=[0,1; 0.05,2; 0.1,0; 0.15,-1; 0.2,3]);
+
+equation
+  // Clocking Logic
+  connect(periodicClock.clock, sample1.clock);
+
+  // Data Path
+  connect(table.y, sample1.u);
+
+  // Signal Processing
+  connect(sample1.y, superSample1.u);
+end SuperSample
+```
+
+This Modelica model defines a `SuperSample` block that samples integer signals using a periodic clock and then supersamples the signal to increase the sampling rate. The integer values are provided by a table, and the clocking logic ensures that the sampling occurs at the specified intervals.

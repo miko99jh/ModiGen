@@ -1,0 +1,103 @@
+
+Generate a Modelica model named `Variant2_tuned` for a tuned version of Variant 2. The model should be compatible with Modelica version 3.2.3. Specifically, extend the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2' model with the following adjusted components redeclared for enhanced performance. Set the 'controller' component with yMax=50, Ti=0.07, Td=0.01, k=4, and the 'actuator' component with uMax=50, along with a 'sensor' components with sample_time=0.01. This model serves to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+
+//modelica
+```model Variant2_tuned
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2;
+
+  // Redefine the actuator with a new sample_time
+  replaceable actuator actuator(
+    final uMax = 50,
+    sample_time = 0.01
+  );
+
+  // Redefine the controller with new parameters
+  replaceable controller controller(
+    final yMax = 50,
+    final Ti = 0.07,
+    final Td = 0.01,
+    final k = 4
+  );
+
+  // Redefine the sensor with a new sample_time
+  replaceable sensor sensor(
+    sample_time = 0.01
+  );
+end Variant2_tuned;```
+
+//modelica
+```model actuator
+  parameter Real uMax = 100 "Maximum actuator output";
+  parameter Real sample_time = 0.1 "Sample time for actuator";
+  Real u "Actuator output";
+  Real u_ref "Reference input for actuator";
+  Real u_meas "Measured actuator output";
+
+  equation
+    // Actuator dynamics
+    der(u) = (u_ref - u)/sample_time;
+
+    // Actuator output saturation
+    u = if u > uMax then uMax else if u < -uMax then -uMax else u;
+
+    // Actuator measurement
+    u_meas = u;
+end actuator;```
+
+//modelica
+```model controller
+  parameter Real yMax = 100 "Maximum output of sensor";
+  parameter Real Ti = 1 "Integrator time constant";
+  parameter Real Td = 1 "Derivative time constant";
+  parameter Real k = 1 "Controller gain";
+  parameter Real sample_time = 0.1 "Sample time for controller";
+
+  Real y "Sensor output";
+  Real y_ref "Reference input for controller";
+  Real u "Controller output";
+
+  equation
+    // Proportional-integral-derivative (PID) controller
+    der(u) = (y_ref - y)/sample_time;
+    u = k*(y_ref - y) + k*Ti*der(y) + k*Td*(y_ref - 2*y + y_meas);
+
+    // Controller output saturation
+    u = if u > yMax then yMax else if u < -yMax then -yMax else u;
+end controller;```
+
+//modelica
+```model sensor
+  parameter Real sample_time = 0.1 "Sample time for sensor";
+  Real y "Sensor output";
+  Real y_meas "Measured sensor output";
+
+  equation
+    // Sensor dynamics
+    der(y) = (y_meas - y)/sample_time;
+
+    // Sensor output
+    y = y_meas;
+end sensor;```
+
+//modelica
+```model Variant2_tuned
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2;
+
+  replaceable actuator actuator(
+    final uMax = 50,
+    sample_time = 0.01
+  );
+
+  replaceable controller controller(
+    final yMax = 50,
+    final Ti = 0.07,
+    final Td = 0.01,
+    final k = 4
+  );
+
+  replaceable sensor sensor(
+    sample_time = 0.01
+  );
+end Variant2_tuned;```
+
+This model should be used to compare the performance of the Variant 2 architecture with different sensor and control dynamics.

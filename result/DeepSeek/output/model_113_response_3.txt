@@ -1,0 +1,21 @@
+
+Develop a State space version of an RLC circuit Modelica model named `RLC` where the circuit parameters are: voltage source 'Vb' is 24 volts, inductor 'L' is 1 Henry, resistor 'R' is 100 ohms, and capacitor 'C' is 0.001 Farads. The State space model should use the `ModelicaByExample.ArrayEquations.StateSpace.LTI` component 'rlc_comp' with 'nx=2' state variables, 'nu=1' input, 'ny=2' outputs, initial state' x0={0, 0}', matrices 'A=[-1/(R*C), 1/C; -1/L, 0], B=[0; 1/L], C=[1/R, 0; -1/R, 1], and D=[0; 0]'. Connect the input 'u' of LTI component to the voltage source.
+
+//modelica
+```model RLC
+  ModelicaByExample.ArrayEquations.StateSpace.LTI rlc_comp(nx=2, nu=1, ny=2, 
+    x0={0, 0}, A=[-1/(100*0.001), 1/0.001; -1/1, 0], 
+    B=[0; 1/1], C=[1/100, 0; -1/100, 1], D=[0; 0]);
+  parameter Real Vb=24 "Voltage source";
+equation 
+  rlc_comp.u = Vb;
+end RLC;
+```
+
+This Modelica model describes a simple RLC circuit. The voltage source 'Vb' is 24 volts, the inductor 'L' is 1 Henry, the resistor 'R' is 100 ohms, and the capacitor 'C' is 0.001 Farads. The State space model uses the 'rlc_comp' component with 'nx=2' state variables, 'nu=1' input, 'ny=2' outputs, initial state 'x0={0, 0}', matrices 'A=[-1/(R*C), 1/C; -1/L, 0], B=[0; 1/L], C=[1/R, 0; -1/R, 1], and D=[0; 0]'. The input 'u' of the LTI component is connected to the voltage source.
+
+The matrices A, B, C, and D are derived from the differential equations of the RLC circuit. The matrix A represents the state transition matrix, B is the input influence matrix, C is the output influence matrix, and D is the direct transmission matrix. The state variables are the voltage across the capacitor and the current through the inductor. The input is the voltage source, and the outputs are the voltage across the resistor and the voltage across the capacitor.
+
+The initial state 'x0' is set to {0, 0}, meaning the circuit starts with no voltage across the capacitor and no current through the inductor.
+
+The Modelica model can be used to simulate the RLC circuit and predict its behavior under different conditions.

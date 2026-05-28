@@ -1,0 +1,39 @@
+
+Implement a Modelica function named `CircleProperties` to calculate the circumference (`circumference`) and area (`area`) of a circle based on its radius (`radius`). The function should include a protected section to define the diameter (`diameter`) and use an algorithm block to implement the logic for both outputs. Assume the value of pi is 3.14159 for the calculations.
+
+//modelica
+```function CircleProperties
+  input Real radius;
+  output Real circumference;
+  output Real area;
+protected 
+  Real diameter;
+algorithm 
+  diameter := 2 * radius;
+  circumference := 2 * 3.14159 * radius;
+  area := 3.14159 * radius * radius;
+end CircleProperties;```
+
+This function takes the radius of a circle as an input and calculates the diameter, circumference, and area of the circle. The diameter is calculated by multiplying the radius by 2. The circumference is calculated by multiplying the diameter by pi (3.14159) and the area is calculated by squaring the radius and multiplying it by pi. The results are then returned as the outputs of the function.
+
+Note: This function assumes that the radius is a positive number. If the radius is not positive, the results of the calculations may not be meaningful.
+
+Here is a simple example of how to use this function:
+
+```modelica
+model Example
+  Real radius = 5;
+  Real circumference;
+  Real area;
+equation 
+  CircleProperties(radius, circumference, area);
+  annotation(experiment(StopTime=0.1));
+end Example;```
+
+In this example, the radius is set to 5. The function `CircleProperties` is called with this radius and the outputs are stored in the variables `circumference` and `area`.
+
+In the Modelica model, the function `CircleProperties` is defined with three input and output parameters. The input parameter `radius` is used to calculate the diameter, circumference, and area of the circle. The protected parameter `diameter` is calculated by multiplying the `radius` by 2. The algorithm block calculates the `circumference` and `area` using the formula for the circumference and area of a circle, respectively. The results are then returned as the output parameters `circumference` and `area`.
+
+The Modelica model also includes an example of how to use the `CircleProperties` function. In this example, the `radius` is set to 5. The `CircleProperties` function is called with this `radius` and the outputs are stored in the variables `circumference` and `area`. The `annotation(experiment(StopTime=0.1))` line is used to specify that the simulation should run for 0.1 seconds.
+
+This Modelica function and model can be used to calculate the properties of a circle given its radius.

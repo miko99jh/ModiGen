@@ -1,0 +1,34 @@
+To create a Modelica model for simulating the temperature change of a platinum resistance sensor, you can use the heat transfer equation to model the heat exchange between the sensor and the medium. The heat transfer is governed by the equation:
+
+\[ \frac{dT_j}{dt} = \frac{\alpha \cdot A_r \cdot (T_g - T_j)}{c \cdot \rho \cdot V} \]
+
+Here's how you can implement this in a Modelica model:
+
+```modelica
+model RTD_Pt100
+  // Parameters
+  parameter Real V = 1.15e-9 "Volume of the sensor (m^3)";
+  parameter Real c = 456 "Comprehensive specific heat (J/kg.K)";
+  parameter Real Ar = 5.31e-6 "Sensor surface area (m^2)";
+  parameter Real alpha = 800 "Convective heat transfer coefficient (W/m^2.K)";
+  parameter Real rho = 7980 "Comprehensive density (kg/m^3)";
+
+  // Inputs
+  input Real Tg "Temperature of the measured medium (°C)";
+
+  // Outputs
+  output Real Tj(start=25) "Temperature of the sensor (°C)";
+
+  // Equation
+  equation
+    der(Tj) = (alpha * Ar * (Tg - Tj)) / (c * rho * V);
+end RTD_Pt100;
+```
+
+### Explanation:
+- **Parameters**: These are the physical properties of the sensor and the medium, such as volume, specific heat, surface area, heat transfer coefficient, and density.
+- **Inputs**: `Tg` is the temperature of the medium, which is stable at 100°C in this scenario.
+- **Outputs**: `Tj` is the temperature of the sensor, which starts at 25°C.
+- **Equation**: The differential equation models the rate of change of the sensor's temperature over time due to the heat exchange with the medium.
+
+This model will simulate how the sensor's temperature changes over time as it approaches the medium's temperature. You can simulate this model using a Modelica simulation environment to observe the sensor's temperature response over time.

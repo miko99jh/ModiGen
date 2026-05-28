@@ -1,0 +1,51 @@
+To implement a proportional control system in Modelica, you can create a simple model that simulates the change in water level over time. The model will use a proportional controller to adjust the water level based on the error between the current water level and the target height. Below is a basic implementation of the `PController` model in Modelica:
+
+```modelica
+model PController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0; // Proportional gain
+
+  // Variables
+  Real waterLevel(start = 0.2); // Initial water level in meters
+  Real error; // Error between target and current water level
+  Real control; // Control signal
+
+equation
+  // Calculate the error
+  error = target_height - waterLevel;
+
+  // Calculate the control signal using proportional control
+  control = Kp * error;
+
+  // Update the water level based on the control signal
+  der(waterLevel) = control;
+
+  annotation(
+    experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-6, Interval = 0.1),
+    __OpenModelica_simulationFlags(solver = "dassl")
+  );
+end PController;
+```
+
+### Explanation:
+
+- **Parameters**: 
+  - `target_height`: The desired water level in the reservoir.
+  - `Kp`: The proportional gain, which determines how aggressively the controller responds to the error.
+
+- **Variables**:
+  - `waterLevel`: The current water level in the reservoir, initialized to 0.2 meters.
+  - `error`: The difference between the target height and the current water level.
+  - `control`: The control signal calculated using the proportional control formula.
+
+- **Equations**:
+  - The error is calculated as the difference between the target height and the current water level.
+  - The control signal is calculated by multiplying the error by the proportional gain (`Kp`).
+  - The rate of change of the water level (`der(waterLevel)`) is set to the control signal, simulating the effect of the control action on the water level.
+
+- **Annotations**:
+  - The `experiment` annotation specifies the simulation parameters, such as start time, stop time, tolerance, and interval.
+  - The `__OpenModelica_simulationFlags` annotation specifies the solver to be used for the simulation.
+
+This model will simulate the water level in the reservoir over time, adjusting it towards the target height using proportional control. You can run this model in a Modelica environment like OpenModelica to observe the behavior of the water level over time.

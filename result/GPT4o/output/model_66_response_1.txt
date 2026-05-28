@@ -1,0 +1,21 @@
+```modelica
+block Impedance
+  extends Modelica.Blocks.Icons.Block;
+
+  import Modelica.Constants.pi;
+  import Modelica.ComplexMath.Complex;
+  import Modelica.ComplexMath.'+';
+  import Modelica.ComplexMath.'/';
+  import Modelica.ComplexMath.sum;
+
+  parameter Modelica.Electrical.Batteries.ParameterRecords.TransientData.CellData cellData;
+
+  Modelica.Blocks.Interfaces.RealInput f(unit="Hz");
+  Modelica.ComplexBlocks.Interfaces.ComplexOutput z(re(unit="Ohm"), im(unit="Ohm"));
+
+equation
+  z = Complex(cellData.R0, 0) + sum({1/Complex(1/cellData.rcData[k].R, 2*pi*f*cellData.rcData[k].C) for k in 1:cellData.nRC});
+end Impedance;
+```
+
+This Modelica block named `Impedance` calculates the complex impedance of a battery based on the given frequency and cell data. It extends the `Modelica.Blocks.Icons.Block` and uses necessary imports from `Modelica.Constants` and `Modelica.ComplexMath`. The block includes a parameter for transient cell data, a real input for frequency, and a complex output for the impedance. The equation provided calculates the complex impedance using the given formula.

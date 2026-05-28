@@ -1,0 +1,34 @@
+model TestTrackingFO
+  extends Modelica.Icons.Example;
+  parameter Real T = 0.4;
+  parameter Real mu = 1;
+  parameter Real Ymin = 0;
+  parameter Real Ymax = 2;
+  parameter Real height = 2;
+  parameter Real startTime = 2;
+  parameter Real width = 10;
+  parameter Real period = 40;
+  parameter Real amplitude = 5;
+  parameter Real rising = 1;
+  parameter Real width2 = 2;
+  parameter Real falling = 1;
+  parameter Real period2 = 8;
+  parameter Integer nperiod = 1;
+  parameter Real startTime2 = 4;
+  IndustrialControlSystems.Controllers.Blocks.FO FO(T = T);
+  IndustrialControlSystems.Controllers.Blocks.FO FOtr(T = T, useTS = true);
+  IndustrialControlSystems.Controllers.Blocks.FO FOaw(T = T, useTS = true, AntiWindup = true, Ymin = Ymin, Ymax = Ymax);
+  Modelica.Blocks.Sources.Step Signal(height = height, startTime = startTime);
+  Modelica.Blocks.Sources.BooleanPulse TSsignal(width = width, period = period, startTime = startTime2);
+  Modelica.Blocks.Sources.Trapezoid TrackRef(amplitude = amplitude, rising = rising, width = width2, falling = falling, period = period2, nperiod = nperiod, startTime = startTime2);
+  IndustrialControlSystems.Controllers.Blocks.FO FO3(mu = mu, T = T);
+equation 
+  connect(Signal.y, FO.u);
+  connect(Signal.y, FOtr.u);
+  connect(Signal.y, FOaw.u);
+  connect(Signal.y, FO3.u);
+  connect(TSsignal.y, FOtr.TS);
+  connect(TSsignal.y, FOaw.TS);
+  connect(TrackRef.y, FOtr.TR);
+  connect(TrackRef.y, FOaw.TR);
+end TestTrackingFO;

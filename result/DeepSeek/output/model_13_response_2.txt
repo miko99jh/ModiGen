@@ -1,0 +1,272 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+equation 
+  assert(nInput>=2, "The number of inputs must be at least 2");
+  if Ts > 0 then
+    when sample(0, Ts) then
+      y[1] = not Functions.Xor(u[:], nInput);
+  else
+    y[1] = not Functions.Xor(u[:], nInput);
+  end if;
+end Xnor;
+```
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it throws an error. The error message is the string that follows the condition.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the properties and functionality of the `LogicalBlock` model.
+
+The `final` keyword is used to declare a parameter as a constant.
+
+The `nInput` and `nOutput` parameters are defined in the `LogicalBlock` model and are used to specify the number of input and output signals.
+
+The `Ts` parameter is a sample time parameter that is defined in the `LogicalBlock` model. If `Ts` is greater than 0, the model should sample the input signals at regular intervals.
+
+The `if` and `else` keywords are used to perform conditional execution of statements.
+
+The `when` keyword is used to trigger an event when a condition is met.
+
+The `assert` statement is used to check a condition and if the condition is false, it throws an error.
+
+The `Functions.Xor` function is a predefined function in Modelica that performs an XOR operation on an array of boolean inputs and returns a single boolean output.
+
+The `sample` function is a predefined function in Modelica that triggers an event when the time since the last trigger exceeds the given time interval. The first argument of the `sample` function is the offset time and the second argument is the time interval.
+
+The `not` function is a predefined function in Modelica that performs a logical NOT operation on a boolean input and returns a boolean output.
+
+The `u[:]` syntax is used to refer to all elements of the input array.
+
+The `y[1]` syntax is used to refer to the first element of the output array.
+
+The `extends` keyword is used to inherit the

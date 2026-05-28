@@ -1,0 +1,25 @@
+model ShiftSample
+ // Import necessary libraries
+  import Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock;
+  import Modelica.Clocked.ClockSignals.Sampler.ShiftSample;
+  import Modelica.Clocked.RealSignals.Sampler.SampleClocked;
+  import Modelica.Blocks.Sources.Sine;
+  import Modelica.Clocked.Types.Resolution;
+
+  // Components
+  PeriodicExactClock periodicClock(factor=20, resolution=Resolution.ms) "Periodic clock with 20 ms interval";
+  ShiftSample shiftSample1(shiftCounter=4, resolution=3) "Shift sample block with shift counter of 4 and resolution of 3";
+  SampleClocked sample1 "Sample clocked block";
+  Sine sineSource(frequency=2, offset=0.1, startTime=0) "Sine wave source with frequency 2 Hz, offset 0.1, and start time 0";
+
+equation
+  // Connect periodic clock to shift sample block
+  connect(periodicClock.y, shiftSample1.u);
+
+  // Connect shifted clock signal to sample clocked block
+  connect(shiftSample1.y, sample1.clock);
+
+  // Sample the sine wave using the sample clocked block
+  connect(sineSource.y, sample1.u);
+
+end ShiftSample;

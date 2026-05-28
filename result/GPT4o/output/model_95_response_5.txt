@@ -1,0 +1,35 @@
+Certainly! Below is a Modelica model for the described spring-mass-damper system. This model defines the displacement (`x`), velocity (`v`), and resultant force (`F`) applied to the mass. The equations describe the dynamics of the system based on the spring and damping effects, and use Newton's second law to relate the force to the acceleration of the mass.
+
+```modelica
+model SpringMassDamper
+  // Parameters
+  parameter Real k = 1;   // Spring coefficient
+  parameter Real c = 0.1; // Damping coefficient
+  parameter Real m = 1;   // Mass
+
+  // Variables
+  Real x(start=1); // Displacement, starting at 1
+  Real v;          // Velocity
+  Real F;          // Resultant force
+
+equation
+  // Resultant force based on spring and damping effects
+  F = -k*x - c*v;
+
+  // Newton's second law: m*a = F, where a is the derivative of velocity
+  m*der(v) = F;
+
+  // Derivative of displacement is the velocity
+  der(x) = v;
+end SpringMassDamper;
+```
+
+### Explanation:
+- **Parameters**: `k`, `c`, and `m` are defined as parameters representing the spring coefficient, damping coefficient, and mass, respectively.
+- **Variables**: `x` is the displacement with an initial value of 1, `v` is the velocity, and `F` is the resultant force.
+- **Equations**:
+  - The resultant force `F` is calculated using Hooke's law for the spring (`-k*x`) and the damping force (`-c*v`).
+  - Newton's second law relates the force to the acceleration (`m*der(v) = F`), where `der(v)` is the derivative of velocity (acceleration).
+  - The derivative of displacement `x` is the velocity `v`.
+
+This model captures the dynamics of the spring-mass-damper system in a vertical direction without external forces.

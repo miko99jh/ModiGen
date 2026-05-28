@@ -1,0 +1,17 @@
+```modelica
+model Reactions_Array
+  // Parameters
+  parameter Real k[3] = {0.1, 0.1, 10}; // Reaction rate constants
+
+  // Variables
+  Real C[3](start={1, 1, 0}); // Concentrations of chemicals
+
+equation
+  // Differential equations representing the rate of change of concentrations
+  der(C[1]) = -k[1]*C[1]*C[2] + k[2]*C[3];
+  der(C[2]) = -k[1]*C[1]*C[2] + k[2]*C[3] - k[3]*C[2]*C[3];
+  der(C[3]) = k[1]*C[1]*C[2] - k[2]*C[3] - k[3]*C[2]*C[3];
+end Reactions_Array;
+```
+
+This Modelica model `Reactions_Array` simulates the dynamics of a chemical reaction using arrays to manage multiple components. The model uses differential equations to describe the rate of change of concentrations based on the given reaction rate constants and initial concentrations.

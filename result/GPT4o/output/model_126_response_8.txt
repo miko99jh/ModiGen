@@ -1,0 +1,26 @@
+Certainly! Below is a simple Modelica model named `FirstOrderExperiment` that defines a first-order differential equation. The model includes a real variable `x` initialized to 2, and it is set up to converge towards 1.0 over time.
+
+```modelica
+model FirstOrderExperiment
+  // Declare a real variable 'x'
+  Real x(start=2);
+
+equation
+  // Define the first-order differential equation
+  der(x) = -x + 1;
+
+  // The equation above represents a system where 'x' will converge towards 1.0
+  // The term '-x' pulls 'x' towards zero, while the '+1' term shifts the equilibrium to 1.0
+
+  // Experiment annotation to specify simulation settings
+  annotation(
+    experiment(StartTime=0, StopTime=10, Tolerance=1e-6, Interval=0.1));
+end FirstOrderExperiment;
+```
+
+### Explanation:
+- **Variable Declaration**: The model declares a real variable `x` with an initial value of 2.
+- **Differential Equation**: The equation `der(x) = -x + 1` is a simple first-order linear differential equation. It describes a system where `x` will exponentially decay towards the equilibrium point at `x = 1`.
+- **Experiment Annotation**: The `annotation(experiment(...))` specifies the simulation settings, such as the start and stop times, the tolerance for the solver, and the output interval.
+
+This model can be simulated using a Modelica tool to observe how `x` changes over time and converges towards 1.0.

@@ -1,0 +1,29 @@
+
+Please use modelica to help me implement a model named `NewtonCoolingDynamic`: Simulate the temperature change of a water under Newton's law of cooling. Among them, the initial temperature of water (`T0`) is 100 °C, the ambient temperature (`T_inf`) is 25 °C, the water meter area (`A`) is 1 square meter, the mass (`m`) is 1kg, the specific heat (`c_p`) is 4200 J/(kg.°C), and the convection cooling coefficient (`h`) is 767 W/(m2.°C). Use an initial equation to set `T` to `T0`. 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+//modelica
+```model NewtonCoolingDynamic
+  parameter Real T0 = 100 "Initial temperature of water";
+  parameter Real T_inf_initial = 25 "Initial ambient temperature";
+  parameter Real A = 1 "Water meter area";
+  parameter Real m = 1 "Mass";
+  parameter Real c_p = 4200 "Specific heat";
+  parameter Real h = 767 "Convection cooling coefficient";
+  Real T(start=T0) "Temperature of water";
+  Real T_inf(start=T_inf_initial) "Ambient temperature";
+  Real Q_dot "Heat transfer rate";
+equation
+  der(T) = (Q_dot - m*c_p*der(T))/m/c_p;
+  Q_dot = h*A*(T_inf - T);
+  when time == 20 "20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C" then
+    der(T_inf) = -1;
+    T_inf = 0;
+  end when;
+end NewtonCoolingDynamic;
+```
+
+This model should be able to simulate the temperature change of the water under Newton's law of cooling. The initial temperature of the water is 100 °C, the ambient temperature is 25 °C, the water meter area is 1 square meter, the mass is 1kg, the specific heat is 4200 J/(kg.°C), and the convection cooling coefficient is 767 W/(m2.°C). 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+Please help me to implement this model in Modelica.
+
+Note: The `der(T_inf)` equation is not necessary for this model, as the ambient temperature is constant after 20 seconds. The `T_inf` is only used to trigger the change in ambient temperature at 20 seconds.

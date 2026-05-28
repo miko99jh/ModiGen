@@ -1,0 +1,20 @@
+
+Generate a Modelica model that implements an on-off actuator for a thermal control system. The model should be named `ConventionOnOffActuator` and extend from the `ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator` model. The actuator should have a parameter `heating_capacity` of type `Real`, representing the heating capacity of the actuator. Internally, the model should include a `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component named `heater` to model the heat flow, and a `Modelica.Blocks.Math.BooleanToReal` component named `command` with redeclared parameters 'realTrue=heating_capacity' and 'realFalse=0'. The heating process is regulated by the command component. Specifically, link the output signal of the command to the heater's heat flow rate input (Q_flow). Additionally, connect the heater's thermal port (port) to the external furnace interface.
+
+//modelica
+```model ConventionOnOffActuator
+  extends ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator;
+  parameter Real heating_capacity "Heating capacity of the actuator";
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater;
+  Modelica.Blocks.Math.BooleanToReal command(realTrue=heating_capacity, realFalse=0);
+equation 
+  connect(heater.port, externalFurnace.port);
+  connect(command.y, heater.Q_flow);
+end ConventionOnOffActuator;
+```
+
+The `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component models a heat flow source that can be controlled by setting the heat flow rate (Q_flow). The `Modelica.Blocks.Math.BooleanToReal` component is used to convert a boolean control signal into a real value. In this case, it is used to control the heating capacity of the actuator. When the control signal is true, the actuator is in the "on" state and the heating capacity is set to the value of the `heating_capacity` parameter. When the control signal is false, the actuator is in the "off" state and the heating capacity is set to 0.
+
+The `connect` statements are used to connect the components together. The heater's thermal port is connected to the external furnace interface, and the output signal of the command component is connected to the heat flow rate input of the heater.
+
+Note: The `externalFurnace` is assumed to be connected to the actuator and provides the necessary thermal connection for the actuator to function.

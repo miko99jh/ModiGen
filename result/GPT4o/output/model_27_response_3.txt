@@ -1,0 +1,51 @@
+To create a Modelica block named `EventClock` that generates a clock signal when the Boolean input changes from false to true, you can extend `Modelica.Clocked.ClockSignals.Interfaces.PartialClock` and implement the required functionality. Below is an example of how you might define this block:
+
+```modelica
+block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+
+  parameter Boolean useSolver = false "Flag to use solver-based clock";
+  parameter String solverMethod = "default" "Solver method for nested clock";
+
+  Modelica.Blocks.Interfaces.BooleanInput u "Boolean input signal";
+  output Modelica.Clocked.ClockSignals.Clock y "Output clock signal";
+
+protected 
+  Boolean previous_u = false "Stores the previous value of u";
+
+equation
+  // Check for rising edge of the input signal 'u'
+  when u and not previous_u then
+    if useSolver then
+      // Instantiate a nested clock associated with the specified solver method
+      y = Modelica.Clocked.ClockSignals.Clock(solverMethod);
+    else
+      // Define 'y' as a standard event clock triggered directly by 'u'
+      y = Modelica.Clocked.ClockSignals.Clock();
+    end if;
+  end when;
+
+  // Update the previous value of 'u'
+  previous_u = u;
+end EventClock;
+```
+
+### Explanation:
+- **Parameters**:
+  - `useSolver`: A Boolean parameter to decide whether to use a solver-based clock.
+  - `solverMethod`: A string parameter specifying the solver method for the nested clock.
+
+- **Inputs/Outputs**:
+  - `u`: A Boolean input signal that triggers the clock.
+  - `y`: The output clock signal.
+
+- **Protected Variables**:
+  - `previous_u`: A Boolean variable to store the previous value of `u` for detecting rising edges.
+
+- **Equations**:
+  - The `when` clause detects a rising edge in the input signal `u` (i.e., when `u` changes from false to true).
+  - If `useSolver` is true, a nested clock is instantiated using the specified `solverMethod`.
+  - Otherwise, a standard event clock is triggered directly by `u`.
+  - The `previous_u` variable is updated to the current value of `u` after each event detection.
+
+This block should be placed within a Modelica environment that supports clocked signals and event handling.

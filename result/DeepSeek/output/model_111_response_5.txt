@@ -1,0 +1,22 @@
+
+Create a Modelica model named `NewtonCooling` for Newton's law of cooling. Key parameters include ambient temperature (Temperature T_inf=300.0), initial temperature (Temperature T0=280.0), convective cooling coefficient (ConvectionCoefficient h=0.7), surface area (Area A=1.0), mass of thermal capacitance (Mass m=0.1), and specific heat capacity (SpecificHeat c_p=1.2). The output should be the temperature change over time, governed by the formula m*c_p*der(T) = h*A*(T_inf-T), depicting the cooling process. This model is commonly used in thermal analysis to understand the cooling dynamics of objects exposed to an environment with a different temperature.
+
+//modelica
+```model NewtonCooling
+  parameter Real T_inf = 300.0 "Ambient temperature";
+  parameter Real T0 = 280.0 "Initial temperature";
+  parameter Real h = 0.7 "Convection coefficient";
+  parameter Real A = 1.0 "Surface area";
+  parameter Real m = 0.1 "Mass of thermal capacitance";
+  parameter Real c_p = 1.2 "Specific heat capacity";
+  Real T(start=T0) "Temperature";
+equation
+  der(T) = (h*A*(T_inf-T) - m*c_p*der(T))/m/c_p;
+end NewtonCooling;
+```
+
+This model uses Newton's law of cooling, which states that the rate of heat loss of a body is directly proportional to the difference in temperatures between the body and its surroundings. The model assumes that the heat transfer is only due to convection and that the heat capacity of the body is constant.
+
+The equation `der(T) = (h*A*(T_inf-T) - m*c_p*der(T))/m/c_p;` represents the rate of change of temperature (dT/dt) in terms of the ambient temperature, initial temperature, convective cooling coefficient, surface area, mass of thermal capacitance, and specific heat capacity.
+
+The model starts with the initial temperature T0 and as time progresses, the temperature T decreases according to Newton's law of cooling. The model can be used to simulate the cooling process of an object exposed to an environment with a different temperature.

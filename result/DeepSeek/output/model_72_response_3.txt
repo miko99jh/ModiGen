@@ -1,0 +1,157 @@
+
+Generate a Modelica model named `IMC_Transformer` that represents a test example for starting an induction machine with a squirrel cage using a transformer. The model should include the following components and details:
+1. Components:
+- The model should extend from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`.
+ Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model IMC_Transformer
+  extends Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer;
+end IMC_Transformer;
+```
+
+2. Details:
+- The model should include a transformer that steps down the voltage from the primary to the secondary side.
+- The transformer should have a rated voltage of 400 V and a rated current of 10 A.
+- The induction machine should be connected to the secondary side of the transformer.
+- The transformer should be modeled using the `Modelica.Electrical.Machines.Transformers.Transformer` component.
+- The induction machine should be modeled using the `Modelica.Electrical.Machines.InductionMachines.IMC_Transformer` component.
+- The transformer and induction machine should be connected in series, with the primary side of the transformer connected to the input voltage source and the secondary side of the transformer connected to the induction machine.
+- The model should include a voltage source that provides the input voltage to the primary side of the transformer.
+- The voltage source should have a rated voltage of 400 V and a rated current of 10 A.
+- The model should include a load resistor that represents the mechanical load of the induction machine.
+- The load resistor should have a resistance of 10 Ω.
+- The model should include a switch that can be used to start the induction machine.
+- The switch should be initially closed and should be opened after a certain time to simulate the start of the induction machine.
+- The model should include a current sensor that measures the current flowing through the induction machine.
+- The current sensor should be connected to the secondary side of the transformer.
+- The model should include a voltage sensor that measures the voltage across the load resistor.
+- The voltage sensor should be connected to the secondary side of the transformer.
+- The model should include a mechanical sensor that measures the mechanical torque of the induction machine.
+- The mechanical sensor should be connected to the mechanical port of the induction machine.
+- The model should include a parameter for the rated power of the transformer and induction machine, which should be 10 kW.
+- The model should include a parameter for the rated frequency of the transformer and induction machine, which should be 50 Hz.
+- The model should include a parameter for the rated voltage of the transformer and induction machine, which should be 400 V.
+- The model should include a parameter for the rated current of the transformer and induction machine, which should be 10 A.
+- The model should include a parameter for the rated torque of the induction machine, which should be 10 Nm.
+- The model should include a parameter for the rated speed of the induction machine, which should be 1500 rpm.
+- The model should include a parameter for the rated power factor of the induction machine, which should be 0.8.
+- The model should include a parameter for the rated efficiency of the induction machine, which should be 0.9.
+- The model should include a parameter for the rated inertia of the induction machine, which should be 0.01 kg*m^2.
+- The model should include a parameter for the rated damping coefficient of the induction machine, which should be 0.01 N*m*s/rad.
+- The model should include a parameter for the rated friction coefficient of the induction machine, which should be 0.01 N*m*s/rad.
+- The model should include a parameter for the rated stator resistance of the induction machine, which should be 0.01 Ω.
+- The model should include a parameter for the rated stator inductance of the induction machine, which should be 0.01 H.
+- The model should include a parameter for the rated rotor resistance of the induction machine, which should be 0.01 Ω.
+- The model should include a parameter for the rated rotor inductance of the induction machine, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the induction machine, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the induction machine, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated magnetizing inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the rated leakage inductance of the transformer, which should be 0.01 H.
+- The model should include a parameter for the

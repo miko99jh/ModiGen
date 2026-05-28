@@ -1,0 +1,44 @@
+To create a Modelica block named `EventClock` that generates a clock signal when the Boolean input changes from false to true, you can follow the structure below. This block extends `Modelica.Clocked.ClockSignals.Interfaces.PartialClock` and uses a Boolean input `u` to trigger the clock signal `y`. The implementation considers the `useSolver` flag to determine how the clock is instantiated.
+
+```modelica
+block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+
+  parameter Boolean useSolver = false "Flag to use solver method for clock generation";
+  parameter String solverMethod = "default" "Solver method to be used if useSolver is true";
+
+  Modelica.Blocks.Interfaces.BooleanInput u "Boolean input signal";
+
+  output Modelica.Clocked.ClockSignals.Clock y "Output clock signal";
+
+equation
+  if useSolver then
+    // Instantiate y as a nested clock associated with the specified solverMethod
+    y = Modelica.Clocked.ClockSignals.Clock(
+          solverMethod=solverMethod,
+          baseClock=Modelica.Clocked.ClockSignals.Clock(u));
+  else
+    // Define y as a standard event clock triggered directly by u
+    when u then
+      y = Modelica.Clocked.ClockSignals.Clock(u);
+    end when;
+  end if;
+end EventClock;
+```
+
+### Explanation:
+- **Parameters**:
+  - `useSolver`: A Boolean parameter that determines whether to use a solver method for clock generation.
+  - `solverMethod`: A string parameter specifying the solver method to be used if `useSolver` is true.
+
+- **Inputs**:
+  - `u`: A Boolean input signal that triggers the clock signal.
+
+- **Outputs**:
+  - `y`: The output clock signal.
+
+- **Equation Section**:
+  - If `useSolver` is true, the clock `y` is instantiated as a nested clock associated with the specified `solverMethod`.
+  - If `useSolver` is false, the clock `y` is defined as a standard event clock triggered directly by changes in `u`.
+
+This model provides flexibility in clock generation based on the `useSolver` flag, allowing for either direct event-based clocking or solver-based clocking.

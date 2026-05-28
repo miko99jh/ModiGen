@@ -1,0 +1,258 @@
+
+Generate a Modelica function named `Mean` to compute the mean of a vector. The function should extends `IndustrialControlSystems.MathOperations.RealType.Functions.GeneralFunction`. It should have one input parameter 'u' which is a Real type vector. It should output a Real type 'y' which is the mean of the vector 'u'. The input 'u' and output 'y' exist in `RealType.Functions.GeneralFunction` and does not need to be redeclared. The algorithmic part of the function should calculate the number of elements 'n' in the vector 'u' and then compute the sum of the elements divided by 'n' as output 'y'. Where 'n' is a protected variable of type Integer.
+
+//modelica
+```function Mean
+  extends IndustrialControlSystems.MathOperations.RealType.Functions.GeneralFunction;
+  input Real u[:];
+  output Real y;
+  protected Integer n;
+algorithm 
+  n := size(u, 1);
+  y := sum(u)/n;
+end Mean;
+```
+
+//modelica
+```function Mean
+  extends IndustrialControlSystems.MathOperations.RealType.Functions.GeneralFunction;
+  input Real u[:];
+  output Real y;
+  protected Integer n;
+algorithm 
+  n := size(u, 1);
+  y := sum(u)/n;
+end Mean;
+```
+
+//modelica
+```function Mean
+  extends IndustrialControlSystems.MathOperations.RealType.Functions.GeneralFunction;
+  input Real u[:];
+  output Real y;
+  protected Integer n;
+algorithm 
+  n := size(u, 1);
+  y := sum(u)/n;
+end Mean;
+```
+
+//modelica
+```function Mean
+  extends IndustrialControlSystems.MathOperations.RealType.Functions.GeneralFunction;
+  input Real u[:];
+  output Real y;
+  protected Integer n;
+algorithm 
+  n := size(u, 1);
+  y := sum(u)/n;
+end Mean;
+```
+
+//modelica
+```function Mean
+  extends IndustrialControlSystems.MathOperations.RealType.Functions.GeneralFunction;
+  input Real u[:];
+  output Real y;
+  protected Integer n;
+algorithm 
+  n := size(u, 1);
+  y := sum(u)/n;
+end Mean;
+```Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit
+================================================================================================
+
+**Components related to field circuit of asynchronous induction machines**
+
+Information
+-----------
+
+::
+
+This package contains components related to the field circuit of
+asynchronous induction machines.
+
+::
+
+Extends from
+    Modelica.Icons.Package (Icon for standard packages),
+    Modelica.Electrical.Machines.Interfaces.PartialFieldCircuit (Partial model of field circuit of asynchronous induction machines).
+
+Package Content
+---------------
+
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Type                                                                                                   | Description                                                                                              |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| model                                                                                                  | **Induction Machine Field Circuit**                                                                    |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         | Model of the field circuit of an asynchronous induction machine.                                         |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| model                                                                                                  | **Induction Machine Field Circuit with Saturable Core**                                               |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         | Model of the field circuit of an asynchronous induction machine with a saturable core.                     |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| model                                                                                                  | **Induction Machine Field Circuit with Saturable Core and Saturation Model**                            |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         | Model of the field circuit of an asynchronous induction machine with a saturable core and a saturation model.|
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| model                                                                                                  | **Induction Machine Field Circuit with Saturable Core, Saturation Model and Saturation Losses**           |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         | Model of the field circuit of an asynchronous induction machine with a saturable core, a saturation model and |
+|                                                                                                         | saturation losses.                                                                                       |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| model                                                                                                  | **Induction Machine Field Circuit with Saturable Core, Saturation Model, Saturation Losses and Flux Linkage|
+|                                                                                                         | Losses**                                                                                                 |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         | Model of the field circuit of an asynchronous induction machine with a saturable core, a saturation model,   |
+|                                                                                                         | saturation losses and flux linkage losses.                                                                |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
+|                                                                                                         |                                                                                                          |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+
+* * * * *
+
+![image2](Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuitI.png) [Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit)
+--------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuit](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuit.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuit)
+-------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCore](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuitWithSaturableCore.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCore)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreAndSaturationModel](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuitWithSaturableCoreAndSaturationModel.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreAndSaturationModel)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreSaturationModelAndSaturationLosses](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuitWithSaturableCoreSaturationModelAndSaturationLosses.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreSaturationModelAndSaturationLosses)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreSaturationModelSaturationLossesAndFluxLinkageLosses](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuitWithSaturableCoreSaturationModelSaturationLossesAndFluxLinkageLosses.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreSaturationModelSaturationLossesAndFluxLinkageLosses)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.PartialInductionMachineFieldCircuit](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_PartialInductionMachineFieldCircuit.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.PartialInductionMachineFieldCircuit)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+* * * * *
+
+![image3](Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuitI.png) [Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit)
+--------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuit](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuit.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuit)
+-------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCore](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuitWithSaturableCore.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCore)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreAndSaturationModel](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuitWithSaturableCoreAndSaturationModel.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreAndSaturationModel)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreSaturationModelAndSaturationLosses](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuitWithSaturableCoreSaturationModelAndSaturationLosses.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreSaturationModelAndSaturationLosses)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreSaturationModelSaturationLossesAndFluxLinkageLosses](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_InductionMachineFieldCircuitWithSaturableCoreSaturationModelSaturationLossesAndFluxLinkageLosses.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.InductionMachineFieldCircuitWithSaturableCoreSaturationModelSaturationLossesAndFluxLinkageLosses)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.PartialInductionMachineFieldCircuit](Modelica_Electrical_Machines_BasicMachines_AsynchronousInductionMachines_Components_FieldCircuit_PartialInductionMachineFieldCircuit.html#Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.PartialInductionMachineFieldCircuit)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Modelica.Electrical.Machines.BasicMachines.AsynchronousInductionMachines.Components.FieldCircuit.PartialInductionMachineFieldCircuit
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+::
+
+Partial model of field circuit of asynchronous induction machines
+
+Information
+-----------
+
+::
+
+This model is used to model the field circuit of an asynchronous
+induction machine. It is a partial model and can be used to model the
+field circuit of an asynchronous induction machine with different types
+of saturation and losses.
+
+::
+
+Extends from
+    Modelica.Electrical.Machines.Interfaces.PartialFieldCircuit (Partial model of field circuit of asynchronous induction machines).
+
+Parameters
+----------
+
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Type                                                                                                   | Description                                                                                              |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **R**                                                                                                    |
+|                                                                                                         | Resistance of the field winding [Ohm]                                                                     |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **L**                                                                                                    |
+|                                                                                                         | Inductance of the field winding [H]                                                                       |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **p**                                                                                                    |
+|                                                                                                         | Number of pole pairs                                                                                     |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **sigma**                                                                                                |
+|                                                                                                         | Conductivity of the core material [S/m]                                                                    |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **mu0**                                                                                                  |
+|                                                                                                         | Permeability of free space [Vs/Am]                                                                       |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **l_m**                                                                                                  |
+|                                                                                                         | Length of the magnetic path [m]                                                                          |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **A_m**                                                                                                  |
+|                                                                                                         | Cross-section area of the magnetic path [m^2]                                                               |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_fe**                                                                                             |
+|                                                                                                         | Fraction of the magnetic flux that links the field circuit with the electrical machine stator              |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_be**                                                                                             |
+|                                                                                                         | Fraction of the magnetic flux that links the field circuit with the electrical machine rotor               |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_se**                                                                                             |
+|                                                                                                         | Fraction of the magnetic flux that links the stator with the electrical machine stator                      |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_sr**                                                                                             |
+|                                                                                                         | Fraction of the magnetic flux that links the rotor with the electrical machine stator                       |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_er**                                                                                             |
+|                                                                                                         | Fraction of the magnetic flux that links the electrical machine rotor with the electrical machine stator   |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_ee**                                                                                             |
+|                                                                                                         | Fraction of the magnetic flux that links the electrical machine stator with the electrical machine rotor    |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_re**                                                                                             |
+|                                                                                                         | Fraction of the magnetic flux that links the electrical machine rotor with the electrical machine rotor     |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_rr**                                                                                             |
+|                                                                                                         | Fraction of the magnetic flux that links the electrical machine rotor with the electrical machine rotor     |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_fe_ref**                                                                                           |
+|                                                                                                         | Fraction of the magnetic flux that links the field circuit with the electrical machine stator in the        |
+|                                                                                                         | reference machine                                                                                         |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_be_ref**                                                                                           |
+|                                                                                                         | Fraction of the magnetic flux that links the field circuit with the electrical machine rotor in the         |
+|                                                                                                         | reference machine                                                                                         |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_se_ref**                                                                                           |
+|                                                                                                         | Fraction of the magnetic flux that links the stator with the electrical machine stator in the               |
+|                                                                                                         | reference machine                                                                                         |
++---------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| Real                                                                                                  | **alpha_sr_ref**                                                                                           |
+|                                                                                                         | Fraction of the magnetic flux that links

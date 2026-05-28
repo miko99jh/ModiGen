@@ -1,0 +1,159 @@
+
+Generate a Modelica model named `FirstOrder` to simulate a first order process, defined by the transfer function mu/(1+tau*s). It extends from a base block `IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock`. The model should include real type parameters for the time constant 'tau' with value 2, the gain 'mu' with value 1, and the output 'y_start' with value 0. The initial equations is initial output 'y' equals to 'y_start'. The equations should describe the dynamic behavior where the derivative of output 'y' scaled with 'tau' plus the output itself equals the input 'u' multiplied by 'mu'.
+
+//modelica
+```model FirstOrder
+  extends IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock;
+  parameter Real tau=2 "Time constant";
+  parameter Real mu=1 "Gain";
+  parameter Real y_start=0 "Initial output";
+  Real y(start=y_start) "Output";
+equation 
+  der(y) = (mu/tau)*u - (1/tau)*y;
+end FirstOrder;```
+
+This model represents a first order system with a transfer function of mu/(1+tau*s). The parameters 'tau' and'mu' define the time constant and the gain of the system respectively. The initial output 'y_start' is used to set the initial condition of the output 'y'. The equation describes the dynamic behavior of the system, where the derivative of the output 'y' is proportional to the input 'u' and the output 'y' itself, with the proportionality constants being'mu/tau' and '-1/tau' respectively.
+
+Please note that the model is based on the assumption that the input 'u' is a step input. If the input is not a step input, the model may not accurately represent the system dynamics.
+
+The model extends from the base block 'BaseBlock' which provides the basic structure for all blocks in the IndustrialControlSystems library. The base block includes the input 'u' and the output 'y', and defines the connectors and the equations that are common to all blocks.
+
+The model is parameterized with the time constant 'tau' and the gain'mu', which can be used to tune the behavior of the system. The initial output 'y_start' is used to set the initial condition of the output 'y'.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a library of models for industrial control systems. The library includes a variety of models for different types of systems, including first order systems, second order systems, and more complex systems.
+
+The model is defined in the IndustrialControlSystems library, which is a

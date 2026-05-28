@@ -1,0 +1,27 @@
+```modelica
+model IndependentSampling
+  // Real type variables
+  Real x;
+  Real y;
+  Real e;
+  Real next_time(start=0);
+
+equation
+  // Direct sampling of x at 10Hz
+  when sample(0, 0.1) then
+    x = time; // Example: x is sampled as the current time
+  end when;
+
+  // Sampling of y at 10Hz using next_time
+  when initial() or time > pre(next_time) then
+    y = time; // Example: y is sampled as the current time
+    next_time = pre(next_time) + 0.1; // Update next_time for the next sample
+  end when;
+
+  // Compute the error e as the difference between x and y
+  e = x - y;
+
+end model IndependentSampling
+```
+
+This Modelica model `IndependentSampling` demonstrates independent sampling of two variables `x` and `y` at a rate of 10Hz. The variable `x` is sampled directly using the `sample` function, while `y` is sampled based on the condition involving `next_time`. The error `e` is calculated as the difference between `x` and `y`.

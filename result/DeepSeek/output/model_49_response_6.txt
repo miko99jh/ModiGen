@@ -1,0 +1,70 @@
+
+Generate a Modelica model for an ideal linear electrical resistor with variable resistance, named `VariableResistor`. The model should extend `Modelica.Electrical.Analog.Interfaces.OnePort` and `Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort` with reset T=T_ref.
+The model should include the following variables and parameters: 
+
+- `T_ref` (Modelica.Units.SI.Temperature): Reference temperature, default value `300.15 K`. 
+- `alpha` (Modelica.Units.SI.LinearTemperatureCoefficient): Temperature coefficient of resistance, default value `0`. 
+- `R` (RealInput, unit="Ohm"): Variable resistance input. 
+- `R_actual` (Modelica.Units.SI.Resistance).
+
+In the equation part, ensure the model includes an assertion to check that the temperature is within a valid scope.
+The resistor's resistance is dependent on temperature, with the actual resistance `R_actual` calculated as `R*(1 + alpha*(T_heatPort - T_ref))`, where `alpha` is the temperature coefficient of resistance and `T_ref` is the reference temperature.
+Calculates the voltage `v` and power loss `LossPower` using the relationships `v = R_actual*i` and `LossPower = v*i`.
+
+//modelica
+```model VariableResistor
+  extends Modelica.Electrical.Analog.Interfaces.OnePort;
+  extends Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort;
+  parameter Modelica.Units.SI.Temperature T_ref=300.15 "Reference temperature";
+  parameter Modelica.Units.SI.LinearTemperatureCoefficient alpha=0 
+    "Temperature coefficient of resistance";
+  RealInput R(unit="Ohm") "Variable resistance input";
+  Modelica.Units.SI.Resistance R_actual 
+    "Actual resistance at the actual temperature";
+equation 
+  assert(T >= Modelica.Units.SI.T_min and T <= Modelica.Units.SI.T_max,
+    "Temperature out of valid range");
+  R_actual = R*(1 + alpha*(T_heatPort - T_ref));
+  v = R_actual*i;
+  LossPower = v*i;
+end VariableResistor;
+```
+
+This model should be placed in a package named `Resistors` under the `Modelica.Electrical.Analog` library.
+
+//modelica
+```modelica
+package Resistors
+  extends Modelica.Electrical.Analog;
+model VariableResistor
+  extends Modelica.Electrical.Analog.Interfaces.OnePort;
+  extends Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort;
+  parameter Modelica.Units.SI.Temperature T_ref=300.15 "Reference temperature";
+  parameter Modelica.Units.SI.LinearTemperatureCoefficient alpha=0 
+    "Temperature coefficient of resistance";
+  RealInput R(unit="Ohm") "Variable resistance input";
+  Modelica.Units.SI.Resistance R_actual 
+    "Actual resistance at the actual temperature";
+equation 
+  assert(T >= Modelica.Units.SI.T_min and T <= Modelica.Units.SI.T_max,
+    "Temperature out of valid range");
+  R_actual = R*(1 + alpha*(T_heatPort - T_ref));
+  v = R_actual*i;
+  LossPower = v*i;
+end VariableResistor;
+end Resistors;
+```
+
+Please note that the `Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort` interface is used to model the heat port of the resistor. The heat port is used to model the thermal behavior of the resistor and the power loss in the resistor.
+
+The `assert` statement is used to check if the temperature is within a valid range. If the temperature is out of the valid range, an error message is displayed.
+
+The `RealInput` type is used for the resistance `R` to indicate that the resistance can be a real number and can be an input.
+
+The `Modelica.Units.SI.Resistance` type is used for the actual resistance `R_actual` to indicate that the actual resistance is a resistance.
+
+The voltage `v` and the power loss `LossPower` are calculated using the relationships `v = R_actual*i` and `LossPower = v*i`, respectively.
+
+The model is placed in a package named `Resistors` under the `Modelica.Electrical.Analog` library.
+
+Please note that the actual implementation may require additional details depending on the specific requirements of the model.

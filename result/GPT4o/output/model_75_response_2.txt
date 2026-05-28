@@ -1,0 +1,16 @@
+```modelica
+block FromPolar
+  extends Modelica.Blocks.Interfaces.MIMOs(final n=2);
+
+protected 
+  // Local variables can be declared here if needed
+
+equation 
+  // Coordinate transformation from polar to Cartesian
+  y[1] = u[1] * Modelica.Math.cos(u[2]); // x-component
+  y[2] = u[1] * Modelica.Math.sin(u[2]); // y-component
+
+end FromPolar;
+```
+
+This Modelica block named `FromPolar` extends from `Modelica.Blocks.Interfaces.MIMOs` with `n` set to 2, indicating that it has two inputs and two outputs. The equations section implements the transformation from polar to Cartesian coordinates, where `u[1]` is the magnitude and `u[2]` is the angle of the space phasor. The outputs `y[1]` and `y[2]` are calculated using the cosine and sine of the angle, respectively.

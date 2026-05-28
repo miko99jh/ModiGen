@@ -1,0 +1,26 @@
+
+Implement a Modelica function named `PotentialEnergy` for solving gravitational potential energy, where the inputs are mass (`m`), height (`h`), and gravitational acceleration (`g`) which defaults to 9.81, and the output is the gravitational potential energy (`pe`) of the object. The function should use an `algorithm` block to calculate the potential energy.
+
+//modelica
+```function PotentialEnergy
+  input Real m "Mass";
+  input Real h "Height";
+  input Real g = 9.81 "Gravitational acceleration";
+  output Real pe "Gravitational potential energy";
+algorithm 
+  pe := 0.5 * m * h * g;
+end PotentialEnergy;```
+
+This function calculates the gravitational potential energy of an object given its mass, height, and gravitational acceleration. The potential energy is calculated using the formula `0.5 * m * h * g`, where `m` is the mass of the object, `h` is the height of the object, and `g` is the gravitational acceleration. The function returns the calculated potential energy.
+
+The default value for `g` is set to 9.81 m/s^2, which is the acceleration due to gravity on Earth. If no value is provided for `g`, this default value will be used.
+
+The function uses an `algorithm` block to perform the calculation. The `algorithm` block is used for calculations that do not depend on time and are not part of an initial or equation section. In this case, the calculation is straightforward and does not depend on time, so the `algorithm` block is appropriate.
+
+The function's inputs and outputs are declared at the beginning of the function. The input `m` is the mass of the object, the input `h` is the height of the object, the input `g` is the gravitational acceleration, and the output `pe` is the gravitational potential energy of the object.
+
+The function's name, `PotentialEnergy`, is descriptive of its purpose, and the input and output variables are named using descriptive variable names. This makes the function easier to understand and use.
+
+The function is defined using the `function` keyword, and it ends with the `end` keyword followed by the function name.
+
+The function is a simple implementation of the gravitational potential energy calculation, but it could be extended or modified to include additional features or functionality as needed.

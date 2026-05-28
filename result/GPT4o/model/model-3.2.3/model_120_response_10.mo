@@ -1,0 +1,25 @@
+model PID_Controller
+ extends ModelicaByExample.Architectures.SensorComparison.Interfaces.Controller;
+
+  // Parameters
+  parameter Real k = 1 "Gain of controller";
+  parameter Modelica.SIunits.Time Ti = 1 "Time constant of Integrator block";
+  parameter Modelica.SIunits.Time Td = 0 "Time constant of Derivative block";
+  parameter Real yMax = 10 "Upper limit of output";
+
+protected 
+  // PID block
+  Modelica.Blocks.Continuous.LimPID PID(
+    k = k,
+    Ti = Ti,
+    Td = Td,
+    yMax = yMax
+  );
+
+equation 
+  // Signal connections
+  connect(setpoint, PID.u_s) "Connect external setpoint to PID setpoint input";
+  connect(measurement, PID.u_m) "Connect measured signal to PID measurement input";
+  connect(PID.y, command) "Route PID output to external command interface";
+
+end PID_Controller;

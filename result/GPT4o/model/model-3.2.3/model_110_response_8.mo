@@ -1,0 +1,24 @@
+model SubsamplingWithIntegers
+ // Variables
+  Integer tick(start=0); // Counts the number of clock ticks
+  Real x; // Captures the current simulation time when the clock tick changes
+  Real y; // Captures the current simulation time when the clock tick changes
+  Real z; // Captures the current simulation time when the clock tick satisfies a modulo condition
+
+  // Parameters
+  parameter Real tickInterval = 0.1; // Interval for clock ticks
+
+  // Equations
+  equation
+    // When statement to increment tick every 0.1 seconds
+    when time >= tickInterval * (tick + 1) then
+      tick = pre(tick) + 1;
+      x = time;
+      y = time;
+    end when;
+
+    // When statement to update z when (tick-1) mod 2 == 0
+    when (tick - 1) mod 2 == 0 then
+      z = time;
+    end when;
+end SubsamplingWithIntegers;

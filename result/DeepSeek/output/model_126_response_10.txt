@@ -1,0 +1,14 @@
+
+Generate a Modelica model named `FirstOrderExperiment` that defines first order equation with experiment conditions for a simple system. The model should include a real variable 'x' and initialize 'x=2'. This variable should dynamically change based on the differential equation defined, aiming for the value of 'x' to converge towards 1.0.
+
+//modelica
+```model FirstOrderExperiment
+  parameter Real a = 0.1 "Rate of change";
+  Real x(start=2) "State variable";
+equation
+  der(x) = -a*x;
+  annotation(experiment(StartTime=0, StopTime=10, Tolerance=1e-6, Interval=0.01));
+end FirstOrderExperiment;
+```
+
+This model defines a first order differential equation where the rate of change of 'x' is proportional to its current value with a constant of proportionality 'a'. The initial value of 'x' is set to 2. The experiment annotation is used to simulate the model from 0 to 10 seconds with a tolerance of 1e-6 and a simulation step size of 0.01 seconds.

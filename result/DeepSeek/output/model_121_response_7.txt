@@ -1,0 +1,26 @@
+
+Generate a Modelica model for a thermal control system with on-off control variation. The model should be compatible with Modelica version 3.2.3. The model, named 'OnOffVariant', should extend from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel' and should include two redeclared and replaceable components: an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' named 'actuator' with 'heating_capacity=500' and an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' named 'controller' with a 'setpoint=300'.
+
+//modelica
+```model OnOffVariant
+  extends ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel;
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator actuator(
+    heating_capacity=500);
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl controller(
+    setpoint=300);
+end OnOffVariant;
+```
+
+This model should be compatible with Modelica version 3.2.3 and should extend from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel'. The model should include two redeclared and replaceable components: an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' named 'actuator' with 'heating_capacity=500' and an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' named 'controller' with a'setpoint=300'.
+
+Please note that the 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel' is a placeholder and should be replaced with the actual model that extends from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel' in your Modelica library.
+
+Also, please note that the 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' are placeholders and should be replaced with the actual components that extend from 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' in your Modelica library.
+
+The model should be saved with the name 'OnOffVariant.mo'.
+
+Please ensure that the Modelica library 'ModelicaByExample' and the models 'ExpandableModel', 'OnOffActuator', and 'OnOffControl' are available in your Modelica environment.
+
+The model should be compatible with Modelica version 3.2.3 and should be tested in a Modelica environment that supports this version.
+
+Please note that the actual implementation of the 'ExpandableModel', 'OnOffActuator', and 'OnOffControl' components may vary depending on the specific library and version you are using. The provided code is a generic representation and may require adjustments to fit the specific library you are working with.

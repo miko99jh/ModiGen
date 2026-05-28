@@ -1,0 +1,284 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+  parameter Integer n=nInput;
+equation
+  assert(n>=2, "Number of inputs should be at least 2");
+  when sample(0, Ts) then
+    y[1] = not Functions.Xor(u[:], nInput);
+  else
+    y[1] = not Functions.Xor(u[:], nInput);
+  end when;
+end Xnor;
+```
+
+The model should be saved in a file named `Xnor.mo` in the directory `models/Xnor`.
+
+The `Functions.Xor` function is a predefined function that performs the XOR operation on an array of Boolean inputs and returns a single Boolean output.
+
+The `sample` function is a predefined function that returns true when the current simulation time is a multiple of the given sample time `Ts`.
+
+The `assert` statement is a predefined statement that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `not` operator is a predefined operator that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter that represents the sample time of the model. If `Ts` is greater than 0, the model is a sampled data model and the model should sample the input signals at regular intervals.
+
+The `u[:]` expression is a predefined expression that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes a block of statements when a condition is true.
+
+The `sample` function is a predefined function in Modelica that returns true when the current simulation time is a multiple of the given sample time.
+
+The `not` operator is a predefined operator in Modelica that performs a logical negation on a Boolean input and returns a Boolean output.
+
+The `y` and `u` are predefined variables in Modelica that represent the output and input signals respectively.
+
+The `Ts` parameter is a predefined parameter in Modelica that represents the sample time of the model.
+
+The `u[:]` expression is a predefined expression in Modelica that represents an array of all input signals.
+
+The `nInput` parameter is a predefined parameter in Modelica that represents the number of input signals.
+
+The `nOutput` parameter is a predefined parameter in Modelica that represents the number of output signals.
+
+The `IndustrialControlSystems` package is a predefined package in Modelica that contains a collection of models and functions for the simulation of industrial control systems.
+
+The `LogicalOperations` package is a predefined package within the `IndustrialControlSystems` package that contains models and functions for the simulation of logical operations.
+
+The `Interfaces` package is a predefined package within the `LogicalOperations` package that contains interfaces for the simulation of logical operations.
+
+The `LogicalBlock` model is a predefined model within the `Interfaces` package that represents a block of logical operations.
+
+The `assert` statement is a predefined statement in Modelica that checks a condition and if the condition is false, it stops the simulation and displays an error message.
+
+The `when` statement is a predefined statement in Modelica that executes

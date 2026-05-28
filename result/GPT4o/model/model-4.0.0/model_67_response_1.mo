@@ -1,0 +1,17 @@
+model IdealCore
+ extends PartialCore;
+
+  parameter Real n12 "Voltage transformation ratio between winding 1 and winding 2";
+  parameter Real n13 "Voltage transformation ratio between winding 1 and winding 3";
+
+  // Declare the magnetizing current vector for m phases
+  Real im[m] = zeros(m);
+
+equation
+  // Voltage transformation equations
+  v1 = n12 * v2;
+  v1 = n13 * v3;
+
+  // Magnetizing current set to zero for all m phases
+  im = zeros(m);
+end IdealCore;

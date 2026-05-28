@@ -1,0 +1,16 @@
+
+Generate a Modelica model that represents a step voltage source. The model should extend the `ModelicaByExample.Components.Electrical.DryApproach.TwoPin` class and be compatible with Modelica version 3.2.3. The model should have three parameters: `V0` (initial voltage) and `Vf` (final voltage), both of type `Modelica.SIunits.Voltage`, and `stepTime` of type `Modelica.SIunits.Time`. The voltage output `v` should switch from `V0` to `Vf` at `stepTime`. The model's name should be `StepVoltage`.
+
+//modelica
+```model StepVoltage
+  extends ModelicaByExample.Components.Electrical.DryApproach.TwoPin;
+  parameter Modelica.SIunits.Voltage V0 "Initial voltage";
+  parameter Modelica.SIunits.Voltage Vf "Final voltage";
+  parameter Modelica.SIunits.Time stepTime "Time at which voltage switches";
+  Modelica.SIunits.Voltage v;
+equation
+  v = if time < stepTime then V0 else Vf;
+end StepVoltage;
+```
+
+This Modelica model represents a step voltage source. The voltage `v` switches from `V0` to `Vf` at `stepTime`. The model extends the `ModelicaByExample.Components.Electrical.DryApproach.TwoPin` class and is compatible with Modelica version 3.2.3. The parameters `V0` and `Vf` are the initial and final voltages, respectively, and `stepTime` is the time at which the voltage switches.

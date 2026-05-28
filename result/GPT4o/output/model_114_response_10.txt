@@ -1,0 +1,50 @@
+Certainly! Below is a Modelica model named `SecondOrderSystem` that represents a second-order rotational system. It imports `Modelica.SIunits.*` and includes the specified parameters, initial conditions, and equations for kinematics and kinetics.
+
+```modelica
+model SecondOrderSystem
+  import Modelica.SIunits.*;
+
+  // Parameters
+  parameter Angle phi1_init = 0 "Initial angle of rotor 1";
+  parameter Angle phi2_init = 1 "Initial angle of rotor 2";
+  parameter AngularVelocity omega1_init = 0 "Initial angular velocity of rotor 1";
+  parameter AngularVelocity omega2_init = 0 "Initial angular velocity of rotor 2";
+  parameter Inertia J1 = 0.4 "Inertia of rotor 1";
+  parameter Inertia J2 = 1.0 "Inertia of rotor 2";
+  parameter RotationalSpringConstant c1 = 11 "Rotational spring constant between rotors";
+  parameter RotationalSpringConstant c2 = 5 "Rotational spring constant for rotor 2";
+  parameter RotationalDampingConstant d1 = 0.2 "Rotational damping constant between rotors";
+  parameter RotationalDampingConstant d2 = 1.0 "Rotational damping constant for rotor 2";
+
+  // Variables
+  Angle phi1 "Angle of rotor 1";
+  Angle phi2 "Angle of rotor 2";
+  AngularVelocity omega1 "Angular velocity of rotor 1";
+  AngularVelocity omega2 "Angular velocity of rotor 2";
+
+initial equation
+  // Set initial conditions
+  phi1 = phi1_init;
+  phi2 = phi2_init;
+  omega1 = omega1_init;
+  omega2 = omega2_init;
+
+equation
+  // Kinematics: Angular velocities as time derivatives of angles
+  der(phi1) = omega1;
+  der(phi2) = omega2;
+
+  // Kinetics: Newton's second law for rotation
+  J1 * der(omega1) = -c1 * (phi1 - phi2) - d1 * (omega1 - omega2);
+  J2 * der(omega2) = c1 * (phi1 - phi2) + d1 * (omega1 - omega2) - c2 * phi2 - d2 * omega2;
+
+end SecondOrderSystem;
+```
+
+### Explanation:
+1. **Parameters**: The model defines parameters for initial angles, angular velocities, inertias, spring constants, and damping constants.
+2. **Variables**: The model includes variables for angles and angular velocities.
+3. **Initial Equations**: These set the initial conditions for the angles and angular velocities.
+4. **Equations**:
+   - **Kinematics**: The angular velocities (`omega1`, `omega2`) are defined as the time derivatives of their respective angles (`phi1`, `phi2`).
+   - **Kinetics**: Newton's second law for rotation is applied to each rotor. The first rotor (`J1`) is subject to a restorative torque from a rotational spring (`c1`) and a damping torque (`d1`), both proportional to the relative displacement and relative velocity between the two rotors. The second rotor (`J2`) is affected by the same coupling torque (in the opposite direction), plus an additional grounding spring (`c2`) and damper (`d2`) acting on its absolute position and velocity.

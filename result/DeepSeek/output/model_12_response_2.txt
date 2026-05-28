@@ -1,0 +1,24 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual
+  extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison(final outputType = Boolean);
+  parameter Real eps = 1e-6 "Small threshold for comparison";
+  parameter Real Ts = 0 "Sample time for comparison";
+equation
+  if Ts > 0 then
+    y = notEqual(u1, u2, eps, Ts);
+  else
+    y = notEqual(u1, u2, eps);
+  end if;
+end NotEqual;
+```
+
+In the above model, the `notEqual` function is called with the inputs `u1`, `u2`, the small threshold `eps`, and the sample time `Ts`. If `Ts` is greater than 0, the function is called at regular intervals specified by `Ts`. Otherwise, the function is called continuously. The output `y` is then assigned the result of the `notEqual` function.
+
+Please note that the `notEqual` function is not defined in the provided code. You would need to define this function elsewhere in your Modelica library or use an existing function that performs the desired comparison.
+
+Also, please ensure that the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model and its `outputType` parameter are correctly defined in your Modelica library. If they are not, you will need to adjust the model accordingly.
+
+Remember to test your model to ensure it behaves as expected.

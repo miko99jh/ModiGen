@@ -1,0 +1,38 @@
+
+Generate a Modelica model named `SignalVoltage` that represents a generic voltage source using an input signal as the source voltage. The model extends `Modelica.Electrical.Analog.Icons.VoltageSource`. 
+
+The model should include the following components and details:
+1. Components:
+ - `Modelica.Electrical.Analog.Interfaces.PositivePin p`
+ - `Modelica.Electrical.Analog.Interfaces.NegativePin n`
+ - `Modelica.Blocks.Interfaces.RealInput v` is Voltage between pin p and n (= p.v - n.v) as input signal
+ - `Modelica.Units.SI.Current i` is Current flowing from pin p to pin n
+2. Equations and Expressions:
+ The model should include the following equations:
+ v = p.v - n.v;
+ 0 = p.i + n.i;
+ i = p.i;
+
+ - Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model SignalVoltage
+  extends Modelica.Electrical.Analog.Icons.VoltageSource;
+  Modelica.Electrical.Analog.Interfaces.PositivePin p;
+  Modelica.Electrical.Analog.Interfaces.NegativePin n;
+  Modelica.Blocks.Interfaces.RealInput v;
+  Modelica.Units.SI.Current i;
+equation 
+  v = p.v - n.v;
+  0 = p.i + n.i;
+  i = p.i;
+end SignalVoltage;
+```
+
+The model `SignalVoltage` is a voltage source that uses an input signal to determine the voltage between its positive and negative pins. The voltage is represented by the `v` input signal, and the current flowing through the source is calculated based on the voltage difference between the pins. The current flowing from the positive pin to the negative pin is represented by the `i` variable.
+
+Please note that the equation `0 = p.i + n.i;` is redundant and can be omitted, as it is implied by the definition of the current `i` as flowing from the positive pin to the negative pin.
+
+The model `SignalVoltage` extends the `VoltageSource` icon from the `Modelica.Electrical.Analog.Icons` package, which is a visual representation of a voltage source. The positive pin `p` and the negative pin `n` are defined as part of the `VoltageSource` icon, and the input signal `v` is used to define the voltage between these two pins. The current `i` is calculated based on the voltage difference between the pins.
+
+The model `SignalVoltage` adheres to the Modelica language standard and is syntactically correct. It can be used in a Modelica simulation environment to represent a generic voltage source with an input signal as the source voltage.

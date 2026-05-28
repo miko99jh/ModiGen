@@ -1,0 +1,28 @@
+To implement a Lorenz system in Modelica, you can define a model named `Lorenz` with the specified parameters and initial conditions. The Lorenz system is a set of three differential equations that describe the rate of change of the variables `x`, `y`, and `z`. Here's how you can implement it:
+
+```modelica
+model Lorenz
+  // Parameters
+  parameter Real sigma = 10;
+  parameter Real rho = 28;
+  parameter Real beta = 8/3;
+
+  // State variables
+  Real x(start = 1);
+  Real y(start = 1);
+  Real z(start = 1);
+
+equation
+  // Lorenz system equations
+  der(x) = sigma * (y - x);
+  der(y) = x * (rho - z) - y;
+  der(z) = x * y - beta * z;
+end Lorenz;
+```
+
+### Explanation:
+- **Parameters**: `sigma`, `rho`, and `beta` are the parameters of the Lorenz system, set to 10, 28, and 8/3, respectively.
+- **State Variables**: `x`, `y`, and `z` are the state variables of the system, initialized to 1.
+- **Equations**: The `der()` function is used to define the differential equations for the system, representing the rate of change of each state variable.
+
+This model will simulate the Lorenz attractor, which is known for its chaotic behavior. You can simulate this model using a Modelica simulation environment to observe the evolution of the system over time.

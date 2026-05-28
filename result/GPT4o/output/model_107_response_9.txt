@@ -1,0 +1,39 @@
+Here is the Modelica function `PolynomialWithDerivative` that computes the value of a polynomial and its derivative based on the input `x` and an array of coefficients `c`:
+
+```modelica
+function PolynomialWithDerivative
+  input Real x; // Independent variable
+  input Real c[:]; // Array of polynomial coefficients
+  output Real y; // Computed polynomial value
+  output Real dy; // Computed derivative of the polynomial
+protected
+  Integer n = size(c, 1); // Number of coefficients
+algorithm
+  y := 0; // Initialize polynomial value
+  dy := 0; // Initialize derivative value
+  for i in 1:n loop
+    y := y + c[i] * x^(i-1); // Compute polynomial value
+    if i > 1 then
+      dy := dy + (i-1) * c[i] * x^(i-2); // Compute derivative value
+    end if;
+  end for;
+end PolynomialWithDerivative;
+```
+
+### Explanation:
+1. **Inputs**:
+   - `x`: The independent variable.
+   - `c`: Array of coefficients for the polynomial. The coefficient `c[i]` corresponds to the term `c[i] * x^(i-1)`.
+
+2. **Outputs**:
+   - `y`: The computed value of the polynomial at `x`.
+   - `dy`: The computed value of the derivative of the polynomial at `x`.
+
+3. **Protected Variable**:
+   - `n`: The size of the coefficient array `c`, which determines the number of terms in the polynomial.
+
+4. **Algorithm**:
+   - The polynomial value `y` is computed by iterating over the coefficients and summing up the terms `c[i] * x^(i-1)`.
+   - The derivative value `dy` is computed similarly, but only for terms where `i > 1`. The derivative of `c[i] * x^(i-1)` is `(i-1) * c[i] * x^(i-2)`.
+
+This function efficiently calculates both the polynomial value and its derivative using a single loop.

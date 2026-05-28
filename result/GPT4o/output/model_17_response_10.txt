@@ -1,0 +1,38 @@
+Certainly! Below is a Modelica model named `Add` that extends the `IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation`. It adds two integer inputs `u1` and `u2` and outputs their sum `y`. The model handles the addition through a conditional operation based on the sampling time `Ts`.
+
+```modelica
+model Add
+  extends IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+
+  parameter Real Ts = 0 "Sampling time";
+
+protected 
+  Integer u1, u2;
+
+equation
+  // Assign inputs to u1 and u2
+  u1 = u[1];
+  u2 = u[2];
+
+  // Conditional operation based on sampling time Ts
+  if Ts > 0 then
+    when sample(Ts, Ts) then
+      y = u1 + u2;
+    end when;
+  else
+    y = u1 + u2;
+  end if;
+
+end Add;
+```
+
+### Explanation:
+- **Extending `IntSimpleOperation`:** The model extends `IntSimpleOperation`, which already includes the input `u` and output `y`.
+- **Parameters and Variables:**
+  - `Ts`: A parameter representing the sampling time.
+  - `u1`, `u2`: Integer variables to hold the two inputs.
+- **Equations:**
+  - The inputs `u1` and `u2` are assigned from the input array `u`.
+  - The conditional operation checks if `Ts` is greater than zero. If true, the addition is performed at each sample point using the `when sample(Ts, Ts)` construct. Otherwise, the addition is performed directly without sampling.
+
+This model effectively handles both continuous and discrete-time addition based on the sampling time `Ts`.

@@ -1,0 +1,18 @@
+```modelica
+model SawToothCurrent
+  extends Modelica.Electrical.Analog.Interfaces.CurrentSource;
+
+  parameter Modelica.Units.SI.Current I = 1 "Amplitude of saw tooth";
+  parameter Modelica.Units.SI.Time period = 1 "Time for one period";
+
+  redeclare final Modelica.Blocks.Sources.SawTooth signalSource(
+    final amplitude = I,
+    final period = period) "Saw tooth waveform generator";
+
+equation
+  // The current source is driven by the saw tooth signal
+  i = signalSource.y;
+end SawToothCurrent;
+```
+
+This Modelica model defines a `SawToothCurrent` source that generates a saw tooth waveform for the current. It extends the `Modelica.Electrical.Analog.Interfaces.CurrentSource` and uses a `Modelica.Blocks.Sources.SawTooth` block to generate the waveform. The parameters `I` and `period` are used to set the amplitude and period of the saw tooth waveform, respectively.

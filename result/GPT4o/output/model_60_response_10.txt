@@ -1,0 +1,37 @@
+```modelica
+model ZDiode
+  extends Modelica.Electrical.Analog.Interfaces.OnePort;
+  extends Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort(final useHeatPort=false, T=293.15);
+
+  parameter Modelica.Units.SI.Current Ids = 1e-6 "Saturation current";
+  parameter Modelica.Units.SI.Voltage Vt = 0.04 "Voltage equivalent of temperature (kT/qn)";
+  parameter Real Maxexp(final min=Modelica.Constants.small) = 30;
+  parameter Modelica.Units.SI.Resistance R = 1e8;
+  parameter Modelica.Units.SI.Voltage Bv = 5.1;
+  parameter Modelica.Units.SI.Current Ibv = 0.7;
+  parameter Real Nbv = 0.74;
+  parameter Real T = 293.15;
+
+  Modelica.Units.SI.Current i;
+  Modelica.Units.SI.Voltage v;
+  Modelica.Units.SI.Power LossPower;
+
+equation
+  v = port.v;
+  i = smooth(1, if (v > Maxexp * Vt) then
+        Ids * (exp(Maxexp) * (1 + v / Vt - Maxexp) - 1) + v / R
+      else if ((v + Bv) < -Maxexp * (Nbv * Vt)) then
+        -Ids - Ibv * exp(Maxexp) * (1 - (v + Bv) / (Nbv * Vt) - Maxexp) + v / R
+      else
+        Ids * (exp(v / Vt) - 1) - Ibv * exp(-(v + Bv) / (Nbv * Vt)) + v / R);
+
+  port.i = i;
+  LossPower = v * i;
+
+  if useHeatPort then
+    heatPort.Q_flow = LossPower;
+  end if;
+end ZDiode;
+```
+
+This Modelica model defines a Zener diode with three distinct operating regions: forward bias, reverse bias, and breakdown (Zener) region. The model extends the `OnePort` and `ConditionalHeatPort` interfaces, allowing for electrical and thermal interactions. The current through the diode is calculated using a piecewise function based on the voltage across it, and the power loss is computed as the product of voltage and current.

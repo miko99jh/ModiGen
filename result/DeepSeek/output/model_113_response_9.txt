@@ -1,0 +1,58 @@
+
+Develop a State space version of an RLC circuit Modelica model named `RLC` where the circuit parameters are: voltage source 'Vb' is 24 volts, inductor 'L' is 1 Henry, resistor 'R' is 100 ohms, and capacitor 'C' is 0.001 Farads. The State space model should use the `ModelicaByExample.ArrayEquations.StateSpace.LTI` component 'rlc_comp' with 'nx=2' state variables, 'nu=1' input, 'ny=2' outputs, initial state' x0={0, 0}', matrices 'A=[-1/(R*C), 1/C; -1/L, 0], B=[0; 1/L], C=[1/R, 0; -1/R, 1], and D=[0; 0]'. Connect the input 'u' of LTI component to the voltage source.
+
+//modelica
+```model RLC
+  ModelicaByExample.ArrayEquations.StateSpace.LTI rlc_comp(nx=2, nu=1, ny=2, x0={0, 0}, A=[-1/(100*0.001), 1/0.001; -1/1, 0], B=[0; 1/1], C=[1/100, 0; -1/100, 1], D=[0; 0]);
+  parameter Real Vb=24 "Voltage source";
+equation 
+  rlc_comp.u = Vb;
+end RLC;
+```
+
+The model should be run for 0.1 seconds with a fixed step size of 0.001 seconds.
+
+```modelica
+model RLC_Simulation
+  parameter Real startTime = 0 "Start time of simulation";
+  parameter Real stopTime = 0.1 "Stop time of simulation";
+  parameter Real fixedStep = 0.001 "Fixed step size of simulation";
+  RLC rlc;
+equation 
+  connect(rlc.rlc_comp, rlc);
+  annotation(experiment(StartTime = startTime, StopTime = stopTime, FixedStep = fixedStep));
+end RLC_Simulation;
+```
+
+The output should be the voltage 'v' and the current 'i' across the capacitor.
+
+```modelica
+model RLC_Output
+  parameter Real startTime = 0 "Start time of simulation";
+  parameter Real stopTime = 0.1 "Stop time of simulation";
+  parameter Real fixedStep = 0.001 "Fixed step size of simulation";
+  RLC rlc;
+  Real v[2] annotation(PlotName="Voltage across capacitor");
+  Real i[2] annotation(PlotName="Current through inductor");
+equation 
+  connect(rlc.rlc_comp, rlc);
+  v = rlc.rlc_comp.y[1:2,1];
+  i = rlc.rlc_comp.y[1:2,2];
+  annotation(experiment(StartTime = startTime, StopTime = stopTime, FixedStep = fixedStep));
+end RLC_Output;
+```
+
+Note: The voltage 'v' and the current 'i' are obtained from the output matrix 'y' of the LTI component. The voltage across the capacitor is the first element of 'y' and the current through the inductor is the second element of 'y'.
+
+The output should show the voltage across the capacitor and the current through the inductor as a function of time.
+
+```modelica
+model RLC_Simulation_Output
+  RLC_Simulation rlc_simulation;
+  RLC_Output rlc_output;
+equation 
+  connect(rlc_simulation.rlc, rlc_output.rlc);
+end RLC_Simulation_Output;
+```
+
+This model will simulate the RLC circuit and plot the voltage across the capacitor and the current through the inductor as a function of time.

@@ -1,0 +1,47 @@
+Here is the Modelica model for the `AssignClockVectorized` block:
+
+```modelica
+block AssignClockVectorized
+  "Block that assigns a clock signal to a vector of Real input signals and outputs them as a clocked Real signal vector"
+
+  parameter Integer n(min=1) = 1 
+    "Size of input signal vector u (= size of output signal vector y)";
+
+  input Real u[n] 
+    "Vector of Real input signals";
+
+  output Real y[n] 
+    "Vector of Real output signals, clocked";
+
+  input Modelica.Clocked.ClockSignals.Interfaces.ClockInput clock 
+    "Clock input signal";
+
+protected 
+  Modelica.Clocked.Sampler sampler[n](clock=clock) 
+    "Sampler array to sample input signals on clock";
+
+equation 
+  for i in 1:n loop
+    connect(sampler[i].u, u[i]);
+    connect(sampler[i].y, y[i]);
+  end for;
+
+end AssignClockVectorized;
+```
+
+### Explanation of the Model:
+1. **Parameters**:
+   - `n`: Defines the size of the input and output signal vectors. It has a minimum value of 1.
+
+2. **Inputs and Outputs**:
+   - `u[n]`: A vector of Real input signals.
+   - `y[n]`: A vector of Real output signals, which are updated based on the clock signal.
+   - `clock`: A clock input signal that triggers the assignment of `u` to `y`.
+
+3. **Protected Section**:
+   - A vector of `Modelica.Clocked.Sampler` components is used to sample the input signals `u` on the clock signal. The size of this vector is determined by the parameter `n`.
+
+4. **Equations**:
+   - A `for` loop is used to connect each element of the input vector `u` to the corresponding sampler input and each sampler output to the corresponding element of the output vector `y`.
+
+This block ensures that the output vector `y` is updated with the values of the input vector `u` whenever the clock signal triggers.

@@ -1,0 +1,296 @@
+
+Implement a Modelica function named `PotentialEnergy` for solving gravitational potential energy, where the inputs are mass (`m`), height (`h`), and gravitational acceleration (`g`) which defaults to 9.81, and the output is the gravitational potential energy (`pe`) of the object. The function should use an `algorithm` block to calculate the potential energy.
+
+//modelica
+```function PotentialEnergy
+  input Real m "Mass of the object";
+  input Real h "Height of the object";
+  input Real g = 9.81 "Gravitational acceleration";
+  output Real pe "Gravitational potential energy";
+algorithm 
+  pe := 0.5 * m * h * g;
+end PotentialEnergy;```
+
+This function calculates the gravitational potential energy of an object using the formula `0.5 * m * h * g`, where `m` is the mass of the object, `h` is the height of the object, and `g` is the gravitational acceleration. The result is stored in the variable `pe`.
+
+The default value of `g` is set to 9.81 m/s², which is the acceleration due to gravity on Earth. If a different value is provided for `g`, it will be used instead.
+
+This function can be used in a Modelica model to calculate the gravitational potential energy of an object at a given height and mass, with an optional specification of the gravitational acceleration.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica
+model ExampleUsage
+  parameter Real mass = 70 "Mass of the object in kilograms";
+  parameter Real height = 2 "Height of the object in meters";
+  Real energy;
+equation 
+  energy = PotentialEnergy(mass, height);
+end ExampleUsage;
+```
+
+In this example, the `ExampleUsage` model uses the `PotentialEnergy` function to calculate the gravitational potential energy of an object with a mass of 70 kg and a height of 2 meters. The result is stored in the variable `energy`.
+
+Please note that this function does not include any error checking or validation of the input values. It assumes that the inputs are valid and will produce a meaningful result. If the inputs are invalid (e.g., negative mass, height, or acceleration), the function may not behave as expected.
+
+This function is a simple example of a Modelica function and does not include any advanced features such as event handling, discrete events, or state events.
+
+This function is part of the Modelica Standard Library and is available for use in any Modelica model.
+
+```modelica

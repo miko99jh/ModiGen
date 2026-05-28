@@ -1,0 +1,42 @@
+To create a Modelica model named `IndependentSampling` that demonstrates independent sampling of two variables `x` and `y` at 10Hz, we can use the `when` clause to manage the sampling events. The model will compute the error `e` as the difference between `x` and `y`. Here's how you can implement this:
+
+```modelica
+model IndependentSampling
+  // Declare variables
+  Real x;
+  Real y;
+  Real e;
+  Real next_time(start=0.1); // Initialize next_time to 0.1 for the first sample
+
+equation
+  // Direct sampling of x at 10Hz
+  when sample(0, 0.1) then
+    x = time; // Example: x is sampled as the current time
+  end when;
+
+  // Sampling of y based on next_time
+  when {initial(), time > pre(next_time)} then
+    y = time; // Example: y is sampled as the current time
+    next_time = pre(next_time) + 0.1; // Update next_time for the next sample
+  end when;
+
+  // Compute the error as the difference between x and y
+  e = x - y;
+
+end IndependentSampling;
+```
+
+### Explanation:
+- **Variables**: 
+  - `x` and `y` are the sampled variables.
+  - `e` is the error computed as the difference between `x` and `y`.
+  - `next_time` is used to manage the sampling of `y`.
+
+- **Sampling**:
+  - `x` is sampled directly at 10Hz using `when sample(0, 0.1)`.
+  - `y` is sampled based on the condition `time > pre(next_time)`, which ensures it is sampled every 0.1 seconds starting from `next_time = 0.1`.
+
+- **Initialization**:
+  - `next_time` is initialized to 0.1 to ensure the first sample of `y` occurs at `t = 0.1`.
+
+This model demonstrates how to independently sample two variables at the same rate but with different initiation conditions, which is useful for synchronizing separate processes.

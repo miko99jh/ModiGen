@@ -1,0 +1,54 @@
+To create a Modelica model named `IMC_Transformer` that extends from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`, you need to ensure that the model is syntactically correct and adheres to the Modelica language standard. Below is an example of how you might structure this model:
+
+```modelica
+model IMC_Transformer
+  extends Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer;
+
+  // Parameters
+  parameter Modelica.SIunits.Voltage V_nominal = 400 "Nominal voltage";
+  parameter Modelica.SIunits.Frequency f_nominal = 50 "Nominal frequency";
+  parameter Modelica.SIunits.Power P_nominal = 10000 "Nominal power";
+
+  // Components
+  Modelica.Electrical.Machines.Basic.InductionMachines.IMC_SquirrelCage squirrelCageMachine(
+    V_nominal = V_nominal,
+    f_nominal = f_nominal,
+    P_nominal = P_nominal) "Squirrel cage induction machine";
+
+  Modelica.Electrical.Analog.Basic.Resistor loadResistor(R = 10) "Load resistor";
+  Modelica.Electrical.Analog.Basic.Transformer transformer(
+    V1_nominal = V_nominal,
+    V2_nominal = V_nominal / sqrt(3)) "Transformer";
+
+  // Connections
+  equation
+    connect(transformer.port1, squirrelCageMachine.port);
+    connect(transformer.port2, loadResistor.p);
+    connect(loadResistor.n, squirrelCageMachine.port);
+
+  // Simulation settings
+  annotation(
+    experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-6, Interval = 0.01),
+    documentation(info="<html>
+      <p>Model representing the starting of an induction machine with a squirrel cage using a transformer.</p>
+      <p>Components include a squirrel cage induction machine, a transformer, and a load resistor.</p>
+      </html>")
+  );
+end IMC_Transformer;
+```
+
+### Explanation:
+1. **Model Extension**: The model extends from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`, which means it inherits properties and components from this base model.
+
+2. **Parameters**: Nominal voltage, frequency, and power are defined as parameters to allow easy configuration of the model.
+
+3. **Components**:
+   - **Squirrel Cage Induction Machine**: Represents the induction machine with a squirrel cage.
+   - **Load Resistor**: Represents a load connected to the machine.
+   - **Transformer**: Steps down the voltage for the induction machine.
+
+4. **Connections**: The components are connected using the `connect` statement, which is essential for defining the electrical connections between components.
+
+5. **Simulation Settings**: The `annotation` section includes simulation settings and documentation for the model.
+
+This model provides a basic structure for simulating the starting of an induction machine using a transformer in Modelica. You may need to adjust parameters and components based on specific requirements or additional details from the `IMC_Transformer` example in the Modelica library.

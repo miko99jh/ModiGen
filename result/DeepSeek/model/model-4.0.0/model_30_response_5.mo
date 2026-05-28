@@ -1,0 +1,30 @@
+model MixingUnit
+  parameter Real c0 = 0.848 "Nominal concentration";
+  parameter Modelica.Units.SI.Temperature T0 = 308.5 "Nominal temperature";
+  parameter Real a1 = 0.2674 "Process parameter";
+  parameter Real a21 = 1.815 "Process parameter";
+  parameter Real a22 = 0.4682 "Process parameter";
+  parameter Real b = 1.5476 "Process parameter";
+  parameter Real k0 = 1.05e14 "Process parameter";
+  parameter Real eps = 34.2894 "Process parameter";
+  parameter Modelica.Units.SI.Time tau0 = 60 "Protected parameter related to time constants in the system";
+  Real wk0(start = k0/c0) "Frequency factor";
+  Real weps(start = eps*T0) "Activation energy constant";
+  Real wa11(start = a1/tau0) "Dilution/feed term";
+  Real wa12(start = c0/tau0) "Linear decay term";
+  Real wa13(start = c0*a1/tau0) "Consumption due to reaction";
+  Real wa21(start = a21/tau0) "Heat loss/gain via flow";
+  Real wa22(start = a22*T0/tau0) "Heat of reaction";
+  Real wa23(start = T0*(a21 - b)/tau0) "Influence of the external cooling temperature";
+  Real wb(start = b/tau0) "Coefficient";
+  Real c(start = c0) "Concentration";
+  Real T(start = T0) "Temperature";
+  Real gamma "Reaction speed";
+  RealInput RealInput T_c "Cooling temperature";
+  RealOutput RealOutput c "Concentration";
+  RealOutput RealOutput T "Temperature";
+equation 
+  gamma = wk0*exp(-weps/(R*T))*c;
+  der(c) = wa13 - wa11*c - wa12*gamma;
+  der(T) = wa22*gamma - wa21*T + wb*T_c;
+end MixingUnit;

@@ -1,0 +1,27 @@
+
+Generate a Modelica model named `ConstantCurrent` that represents a source for constant current. The model should include the following components and details:
+1. Model Functionality: The model represents a constant current source, providing a fixed current regardless of the voltage across its terminals.
+2. Parameters:
+  - Value of constant current: Modelica.Units.SI.Current I(start=1)
+3. Equations and Expressions:
+   The current i through the source is defined as:
+   i = I;
+4. Inheritance and Interfaces:
+  - The model extends Modelica.Electrical.Analog.Interfaces.OnePort.
+  - It also extends Modelica.Electrical.Analog.Icons.CurrentSource.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model ConstantCurrent
+  extends Modelica.Electrical.Analog.Interfaces.OnePort;
+  parameter Modelica.Units.SI.Current I(start=1) "Value of constant current";
+  Modelica.Electrical.Analog.Interfaces.PositivePlug p "Positive plug of source";
+  Modelica.Electrical.Analog.Interfaces.NegativePlug n "Negative plug of source";
+equation 
+  i = I;
+  v = p.v - n.v;
+end ConstantCurrent;
+```
+
+This model represents a constant current source where the current `i` is equal to the parameter `I`, regardless of the voltage `v` across its terminals. The voltage `v` is calculated as the potential difference between the positive and negative plugs `p` and `n`, respectively.

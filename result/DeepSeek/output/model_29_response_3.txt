@@ -1,0 +1,85 @@
+
+Create a Modelica model named `SpeedControl` for the discrete control of crankshaft speed by throttle actuation. The model should include the following details:
+
+1. **Components and Parameters**:
+- `k_p`: Proportional gain, a real number with a value of 0.0614. 
+- `k_I`: Integral gain, a real number with a value of 0.0723.
+- `N_des`: Desired speed, a `Modelica.Blocks.Interfaces.RealInput` with units of rad/s and an initial value of 0.
+- `N`: Measured speed, a `Modelica.Blocks.Interfaces.RealInput` with units of rad/s and an initial value of 0.
+- `Theta`: Throttle angle, a `Modelica.Blocks.Interfaces.RealOutput` of with units of degrees and an initial value of 8.9.
+- `x_d`: With type `Modelica.Units.NonSI.Angle_deg`, a protected variable representing an angle in degrees, initialized to 8.973 and fixed.
+
+2. **Equations and Expressions**:
+- Implement a discrete-time Proportional-Integral (PI) control law within a `when Clock() then` block:
+Integral State Update: The protected state 'x_d' should be updated at each clock tick. It accumulates the speed error (difference between 'previous(N_des') and 'previous(N)'), scaled by the integral gain 'k_I' and the specific clock interval.
+Output Calculation: The throttle angle 'Theta' should be calculated as the sum of the proportional correction (based on current speed error and 'k_p') and the current integral state 'x_d'.
+Use appropriate clocked operators like previous() and interval() to ensure correct discrete-time behavior.
+
+//modelica
+```block SpeedControl
+  extends Modelica.Icons.Example;
+  parameter Real k_p=0.0614 "Proportional gain";
+  parameter Real k_I=0.0723 "Integral gain";
+  Modelica.Blocks.Interfaces.RealInput N_des(unit="rad/s", start=0) "Desired speed";
+  Modelica.Blocks.Interfaces.RealInput N(unit="rad/s", start=0) "Measured speed";
+  Modelica.Blocks.Interfaces.RealOutput Theta(unit="deg", start=8.9) "Throttle angle";
+  protected 
+  Real x_d=8.973 "Integral state";
+  when Clock() then
+    x_d = x_d + (N_des - N)*k_I*interval();
+    Theta = k_p*(N_des - N) + x_d;
+  end when;
+end SpeedControl;
+```
+
+3. **Simulation**:
+- Use a `Modelica.Blocks.Sources.Clock` block to provide a discrete-time clock signal.
+- Use a `Modelica.Blocks.Sources.RealExpression` block to provide a constant desired speed of 10 rad/s.
+- Use a `Modelica.Blocks.Sources.RealExpression` block to provide a measured speed of 9 rad/s.
+- Connect the clock, desired speed, and measured speed to the `SpeedControl` model.
+- Connect the throttle angle output of the `SpeedControl` model to a `Modelica.Blocks.Sources.RealExpression` block to visualize the throttle angle.
+- Run the simulation for 10 seconds with a fixed step size of 0.001 seconds.
+
+4. **Plot**:
+- Plot the throttle angle over time.
+- Plot the difference between the desired speed and the measured speed over time.
+
+5. **Validation**:
+- The throttle angle should increase when the desired speed is higher than the measured speed, and decrease when the desired speed is lower than the measured speed.
+- The integral state 'x_d' should accumulate when the speed error is positive, and decrease when the speed error is negative.
+- The throttle angle should converge to the desired speed when the speed error is zero.
+- The throttle angle should not exceed 90 degrees (or its equivalent in radians).
+- The throttle angle should not go below 0 degrees (or its equivalent in radians).
+
+6. **Documentation**:
+- Include a comment at the top of the model explaining its purpose and functionality.
+- Include comments within the model to describe the purpose of each variable and block.
+- Include a comment at the end of the model explaining how to use it in a simulation environment.
+
+7. **Naming Conventions**:
+- Use descriptive names for the components and variables in the model.
+- Use camelCase for variable names.
+- Use PascalCase for component names.
+- Use underscore_separated_names for protected variables.
+- Use UPPERCASE for constants.
+- Use lowercase with words separated by underscores for parameters.
+
+8. **Code Formatting**:
+- Use 2 spaces for indentation.
+- Place each component on a new line.
+- Use spaces around operators and after commas.
+- Place opening and closing braces on new lines.
+- Use comments to explain complex expressions or sections of code.
+
+9. **Simulation**:
+- Run the simulation and verify that the throttle angle converges to the desired speed.
+- Check that the throttle angle does not exceed its maximum or minimum values.
+- Check that the integral state 'x_d' accumulates when the speed error is positive and decreases when the speed error is negative.
+
+10. **Documentation**:
+- Document the model's functionality and usage in a README file or comments within the model file.
+- Include information on how to connect the model to other blocks and how to run the simulation.
+- Include any assumptions or limitations of the model.
+- Include any further improvements or extensions that could be made to the model.
+
+Please note that this is a high-level description of the model and the code provided is a simplified example. A full implementation would require additional details and validation.

@@ -1,0 +1,20 @@
+
+Generate a Modelica model named `IMC_Transformer` that represents a test example for starting an induction machine with a squirrel cage using a transformer. The model should include the following components and details:
+1. Components:
+- The model should extend from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`.
+ Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model IMC_Transformer
+  extends Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer;
+end IMC_Transformer;
+```
+
+2. Details:
+- The model should be named `IMC_Transformer`.
+- The model should extend from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`.
+- The model should be syntactically correct and adhere to the Modelica language standard.
+
+Please provide the complete Modelica code for the model.
+
+Note: The model should be named `IMC_Transformer` and should extend from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`. The provided code is incorrect because it is not named `IMC_Transformer` and does not extend from the correct base model.

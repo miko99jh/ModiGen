@@ -1,0 +1,54 @@
+Certainly! Below is a simple Modelica model for a PI controller that maintains the water level in a container at a target height of 1 meter. The model includes proportional and integral control components to adjust the water inflow based on the error between the current water level and the target height.
+
+```modelica
+model PIController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0;            // Proportional coefficient
+  parameter Real Ki = 0.5;            // Integral coefficient
+  parameter Real leak_rate = 0.1;     // Leak rate in meters per unit time
+
+  // Variables
+  Real waterLevel(start = 0.2);       // Current water level in meters
+  Real error;                         // Error between target and current water level
+  Real Pcontrol;                      // Proportional control component
+  Real Icontrol;                      // Integral control component
+  Real inflow;                        // Water inflow rate
+
+  // Integral state
+  Real integralError(start = 0.0);    // Accumulated error for integral control
+
+equation
+  // Calculate error
+  error = target_height - waterLevel;
+
+  // Proportional control
+  Pcontrol = Kp * error;
+
+  // Integral control
+  der(integralError) = error;         // Accumulate error over time
+  Icontrol = Ki * integralError;
+
+  // Total inflow rate
+  inflow = Pcontrol + Icontrol;
+
+  // Water level dynamics
+  der(waterLevel) = inflow - leak_rate;
+
+  // Simulation time settings
+  annotation (experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-6, Interval = 0.1));
+end PIController;
+```
+
+### Explanation:
+- **Parameters**: `target_height`, `Kp`, `Ki`, and `leak_rate` are defined to set the target water level, proportional and integral coefficients, and the leak rate, respectively.
+- **Variables**: `waterLevel` represents the current water level, `error` is the difference between the target and current water level, `Pcontrol` and `Icontrol` are the proportional and integral control components, and `inflow` is the rate at which water is added to the container.
+- **Integral State**: `integralError` accumulates the error over time, which is used in the integral control component.
+- **Equations**:
+  - The error is calculated as the difference between the target height and the current water level.
+  - The proportional control component is calculated using the proportional coefficient and the error.
+  - The integral control component is calculated using the integral coefficient and the accumulated error.
+  - The inflow rate is the sum of the proportional and integral control components.
+  - The change in water level (`der(waterLevel)`) is determined by the inflow rate minus the leak rate.
+
+This model simulates the water level dynamics over time, adjusting the inflow to maintain the target water level using PI control.

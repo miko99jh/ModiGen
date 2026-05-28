@@ -1,0 +1,34 @@
+Certainly! Below is a Modelica model named `Xnor` that performs an n-bit XNOR operation. It extends the `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` and includes the necessary logic to handle sampling based on the `Ts` parameter.
+
+```modelica
+model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(
+    nInput=2, 
+    final nOutput=1);
+
+  parameter Real Ts = 0 "Sample time";
+
+equation
+  // Ensure that the number of inputs is at least 2
+  assert(nInput >= 2, "The number of inputs must be at least 2.");
+
+  if Ts > 0 then
+    // Sample the input signals at regular intervals if Ts > 0
+    when sample(0, Ts) then
+      y[1] = not Functions.Xor(u[:], nInput);
+    end when;
+  else
+    // Directly perform the XNOR operation if Ts <= 0
+    y[1] = not Functions.Xor(u[:], nInput);
+  end if;
+end Xnor;
+```
+
+### Explanation:
+- **Inheritance**: The model extends `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`.
+- **Parameters**: `Ts` is a parameter representing the sample time.
+- **Assertion**: An assertion ensures that `nInput` is at least 2.
+- **Conditional Sampling**: If `Ts` is greater than 0, the XNOR operation is performed within a `when sample(0, Ts)` block, allowing the model to sample inputs at regular intervals. Otherwise, the operation is performed directly.
+- **XNOR Operation**: The XNOR operation is performed using `not Functions.Xor(u[:], nInput)`, which negates the result of an XOR operation on the inputs.
+
+This model should be placed within a Modelica environment that supports the `IndustrialControlSystems` library and the necessary logical functions.

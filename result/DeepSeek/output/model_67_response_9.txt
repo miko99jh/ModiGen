@@ -1,0 +1,31 @@
+
+Generate a Modelica model named `IdealCore` that represents an ideal transformer with 3 windings. The model should include the following components and details:
+ 1.Components:
+- The model should extend `PartialCore`.
+2. Equations and Expressions:
+ The model should include the following equations to define the relationships between the voltages and currents of the windings:
+- The magnetizing current vector 'im' should be set to zero for all 'm' phases using the 'zeros()' function.
+- Define the voltage transformation ratios: 'v1 = n12 * v2' and 'v1 = n13 * v3'.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model IdealCore
+  extends Modelica.Electrical.Machines.Interfaces.PartialCore;
+  parameter Integer m=3 "Number of phases";
+  parameter Real n12=1 "Voltage transformation ratio from winding 1 to winding 2";
+  parameter Real n13=1 "Voltage transformation ratio from winding 1 to winding 3";
+  parameter Real v2[m] "Voltage in winding 2";
+  parameter Real v3[m] "Voltage in winding 3";
+  parameter Real im[m] "Magnetizing current";
+  parameter Real i1[m] "Current in winding 1";
+  parameter Real i2[m] "Current in winding 2";
+  parameter Real i3[m] "Current in winding 3";
+  Real im[m] = zeros(m) "Magnetizing current";
+equation 
+  v1 = n12 * v2;
+  v1 = n13 * v3;
+  i1 = i2 + i3;
+end IdealCore;
+```
+This model represents an ideal transformer with 3 windings. The magnetizing current is set to zero for all phases. The voltage transformation ratios are defined by the parameters 'n12' and 'n13'. The current in winding 1 is equal to the sum of the currents in windings 2 and 3.

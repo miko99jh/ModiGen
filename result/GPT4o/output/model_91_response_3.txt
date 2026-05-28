@@ -1,0 +1,51 @@
+Certainly! Below is a simple Modelica model implementing a PI controller to maintain the water level in a container. The model uses proportional and integral control to adjust the inflow to compensate for the leak and reach the target water level.
+
+```modelica
+model PIController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0;            // Proportional coefficient
+  parameter Real Ki = 0.5;            // Integral coefficient
+  parameter Real leak_rate = 0.1;     // Leak rate in meters per unit time
+
+  // Variables
+  Real waterLevel(start=0.2);         // Current water level in meters
+  Real inflow;                        // Inflow rate in meters per unit time
+  Real error;                         // Error in water level
+  Real integralError(start=0.0);      // Integral of the error
+
+equation
+  // Calculate the error
+  error = target_height - waterLevel;
+
+  // Proportional control to handle the leak
+  inflow = Kp * error + Ki * integralError;
+
+  // Update the integral of the error
+  der(integralError) = error;
+
+  // Update the water level considering inflow and leak
+  der(waterLevel) = inflow - leak_rate;
+end PIController;
+```
+
+### Explanation:
+- **Parameters**: 
+  - `target_height`: The desired water level.
+  - `Kp`: Proportional gain.
+  - `Ki`: Integral gain.
+  - `leak_rate`: The rate at which water leaks from the container.
+
+- **Variables**:
+  - `waterLevel`: The current water level, initialized to 0.2 meters.
+  - `inflow`: The rate at which water is added to the container.
+  - `error`: The difference between the target and current water level.
+  - `integralError`: Accumulates the error over time to account for past errors.
+
+- **Equations**:
+  - The `error` is calculated as the difference between the target height and the current water level.
+  - The `inflow` is determined by both proportional and integral control actions.
+  - The `integralError` is updated continuously as the integral of the error.
+  - The `waterLevel` is updated based on the inflow and the leak rate.
+
+This model will simulate the water level over time, adjusting the inflow to maintain the target height despite the leak. You can simulate this model in a Modelica environment to observe how the water level changes over time.

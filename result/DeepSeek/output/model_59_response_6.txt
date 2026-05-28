@@ -1,0 +1,29 @@
+
+Generate a Modelica model named `IdealOpAmp3Pin` for an ideal operational amplifier (norator-nullator pair) with 3 pins. The model should include the following components:
+1. `Modelica.Electrical.Analog.Interfaces.PositivePin in_p` as the positive input pin.
+2. `Modelica.Electrical.Analog.Interfaces.NegativePin in_n` as the negative input pin.
+3. `Modelica.Electrical.Analog.Interfaces.PositivePin out` as the output pin.
+
+In the equation section, define the following behavior:
+- The voltage at the positive input pin `in_p.v` should be equal to the voltage at the negative input pin `in_n.v`.
+- The current at both the positive input pin `in_p.i` and the negative input pin `in_n.i` should be zero.
+
+Provide the necessary equations to represent the ideal operational amplifier's behavior, with balanced input voltages and zero input currents.
+
+//modelica
+```model IdealOpAmp3Pin
+  extends Modelica.Electrical.Analog.Interfaces.PartialOnePin;
+  Modelica.Electrical.Analog.Interfaces.PositivePin in_p;
+  Modelica.Electrical.Analog.Interfaces.NegativePin in_n;
+  Modelica.Electrical.Analog.Interfaces.PositivePin out;
+equation 
+  // Define the behavior of the operational amplifier
+  in_p.v = in_n.v; // Balanced input voltages
+  in_p.i = 0; // Zero input current
+  in_n.i = 0; // Zero input current
+  out.v = in_p.v; // Output voltage is equal to the positive input voltage
+  out.i = 0; // Zero output current
+end IdealOpAmp3Pin;
+```
+
+This Modelica model represents an ideal operational amplifier with balanced input voltages and zero input currents. The output voltage is equal to the positive input voltage, and the output current is zero.

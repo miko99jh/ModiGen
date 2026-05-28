@@ -1,0 +1,31 @@
+```modelica
+model IdealCore
+  extends PartialCore;
+
+  parameter Integer m = 3 "Number of phases";
+  parameter Real n12 "Voltage transformation ratio between winding 1 and winding 2";
+  parameter Real n13 "Voltage transformation ratio between winding 1 and winding 3";
+
+  // Declare variables for voltages and currents
+  Real v1[m] "Voltages of winding 1";
+  Real v2[m] "Voltages of winding 2";
+  Real v3[m] "Voltages of winding 3";
+  Real i1[m] "Currents of winding 1";
+  Real i2[m] "Currents of winding 2";
+  Real i3[m] "Currents of winding 3";
+  Real im[m] "Magnetizing currents";
+
+equation
+  // Magnetizing current is zero for all phases
+  im = zeros(m);
+
+  // Voltage transformation equations
+  v1 = n12 * v2;
+  v1 = n13 * v3;
+
+  // Additional equations can be added here if needed
+
+end IdealCore;
+```
+
+This Modelica model defines an ideal transformer with three windings, extending a `PartialCore` model. It includes parameters for voltage transformation ratios and equations to set magnetizing currents to zero and define voltage relationships between the windings.

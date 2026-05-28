@@ -1,0 +1,24 @@
+
+Generate a Modelica model named `CellStack` that represents a battery with open-circuit voltage dependent on state of charge, self-discharge, and inner resistance. The model should include the following components and details:
+1.Components:
+- The model should extend `Modelica.Electrical.Batteries.BaseClasses.BaseCellStack` with the following modifications:
+- The parameter 'r0' should be set with a final value of 'R' equal to 'Ns*cellData.Ri/Np'.
+- The 'cellData' parameter should be redeclared as 'Modelica.Electrical.Batteries.ParameterRecords.CellData'.
+2.Connections:
+ The model should include the following connection:
+- connect(r0.n, n)
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model CellStack
+  extends Modelica.Electrical.Batteries.BaseClasses.BaseCellStack(
+    final parameter Modelica.SIunits.Resistance R = Ns*cellData.Ri/Np,
+    parameter Modelica.Electrical.Batteries.ParameterRecords.CellData cellData);
+  Modelica.Electrical.Analog.Basic.Resistor r0(R = R);
+equation 
+  connect(r0.n, n);
+end CellStack;
+```
+
+This model extends the `BaseCellStack` model from the Modelica library and overrides the 'r0' parameter with a new value. It also redeclares the 'cellData' parameter as a `CellData` record. The `Resistor` component `r0` is instantiated with a resistance value calculated as 'Ns*cellData.Ri/Np'. The connection between the resistor and the 'n' port of the model is established.

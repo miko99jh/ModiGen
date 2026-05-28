@@ -1,0 +1,15 @@
+
+Generate a Modelica model named `Capacitor` for a DRY capacitor within an electrical system. The model should have a capacitance parameter 'C' with units in Farads. This capacitor extends the 'ModelicaByExample.Components.Electrical.DryApproach.TwoPin' model, functioning to relate the current 'i' and the voltage rate of change 'der(v)' through the equation 'C*der(v) = i'. Ensure accurate representation of this component's functionality and parameters in the system.
+
+//modelica
+```model Capacitor
+  extends ModelicaByExample.Components.Electrical.DryApproach.TwoPin;
+  parameter Modelica.SIunits.Capacitance C "Capacitance";
+equation
+  C*der(v) = i;
+end Capacitor;
+```
+
+This model extends the TwoPin model from the DryApproach package in the Components.Electrical package. It has a parameter 'C' of type Modelica.SIunits.Capacitance, which represents the capacitance of the capacitor. The equation 'C*der(v) = i' represents the relationship between the current 'i' and the rate of change of voltage 'der(v)' in a capacitor.
+
+Note: This model assumes that the capacitor is ideal and does not have any losses or internal resistance.

@@ -1,0 +1,23 @@
+
+Generate a Modelica function named `moh` to calculate the minute of an hour given a specific time. The function should correctly handle the conversion from a continuous time input to discrete minute output, factoring in the starting hour, minute, and second. The real type input parameters 't', 'hour_start=0', 'min_start=0', and 'sec_start=0' represent the current time in seconds and the initial hour, minute, and second respectively. The real type output 'y' should represent the minute of the current hour, ranging from 0 to 59. Use `AES.Functions.sod` and `AES.Functions.hod` to calculate seconds of the day and hour of the day as intermediate steps(represented by two protection variables s and h), ensuring accurate minute calculation within an hour frame.
+
+//modelica
+```function moh
+  input Real t;
+  input Real hour_start=0;
+  input Real min_start=0;
+  input Real sec_start=0;
+  output Real y;
+algorithm 
+  Real s, h;
+  s := AES.Functions.sod(t, hour_start, min_start, sec_start);
+  h := AES.Functions.hod(t, hour_start, min_start, sec_start);
+  y := floor((s + 30) / 60) + 60 * floor(h);
+end moh;
+```
+
+The function `moh` calculates the minute of an hour given a specific time. The function `sod` calculates the seconds of the day and the function `hod` calculates the hour of the day. The function `moh` uses these intermediate calculations to determine the minute of the current hour. The minute is calculated by first adding 30 seconds to the seconds of the day, then dividing by 60 to get the number of full minutes that have passed since the last hour. This number is then multiplied by 60 to convert it back to seconds. The total number of seconds is then added to the product of the hour of the day and 3600 (the number of seconds in an hour). The result is the minute of the current hour.
+
+The function `moh` ensures that the minute is always in the range 0 to 59, even if the input time is slightly off. This is because the minute is calculated as a floating-point number, and then rounded down to the nearest integer using the `floor` function. The `floor` function always rounds down, so if the minute is slightly above 59, it will be rounded down to 59.
+
+The function `moh` is a useful tool for any situation where you need to calculate the minute of an hour, such as in a clock or a time-based simulation.

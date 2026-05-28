@@ -1,0 +1,56 @@
+Below is the Modelica model named `Pipe` that simulates the flow of fluid through a pipe using the Hagen-Poiseuille relationship. The model calculates the flow coefficient (`c`), the flow rate (`Q`), and the velocity (`v`).
+
+```modelica
+model Pipe
+  // Parameters
+  parameter Real P1 = 1080; // Pressure at inlet [Pa]
+  parameter Real P2 = 900;  // Pressure at outlet [Pa]
+  parameter Real L = 1;     // Pipe length [m]
+  parameter Real D = 0.05;  // Pipe inner diameter [m]
+  parameter Real mu = 2e-3; // Fluid viscosity [Pa.s]
+
+  // Variables
+  Real c;                   // Flow coefficient [m^3/(Pa.s)]
+  Real Q;                   // Flow rate [m^3/s]
+  Real v;                   // Velocity [m/s]
+  Real deltaP;              // Pressure difference [Pa]
+  Real A;                   // Cross-sectional area [m^2]
+
+equation
+  // Calculate pressure difference
+  deltaP = P1 - P2;
+
+  // Cross-sectional area of the pipe
+  A = pi * (D/2)^2;
+
+  // Hagen-Poiseuille flow coefficient
+  c = (pi * D^4) / (128 * mu * L);
+
+  // Flow rate using Hagen-Poiseuille relationship
+  Q = c * deltaP;
+
+  // Velocity derived from flow rate and cross-sectional area
+  v = Q / A;
+end Pipe;
+```
+
+### Explanation:
+1. **Parameters**:
+   - `P1` and `P2` are the pressures at the inlet and outlet of the pipe, respectively.
+   - `L` is the length of the pipe.
+   - `D` is the inner diameter of the pipe.
+   - `mu` is the dynamic viscosity of the fluid.
+
+2. **Variables**:
+   - `c` is the flow coefficient, calculated using the Hagen-Poiseuille formula.
+   - `Q` is the volumetric flow rate, determined by the pressure difference (`deltaP`) and the flow coefficient (`c`).
+   - `v` is the fluid velocity, derived from the flow rate (`Q`) and the pipe's cross-sectional area (`A`).
+
+3. **Equations**:
+   - The pressure difference (`deltaP`) is calculated as `P1 - P2`.
+   - The cross-sectional area (`A`) is calculated using the formula for the area of a circle: `pi * (D/2)^2`.
+   - The flow coefficient (`c`) is derived from the Hagen-Poiseuille equation: `(pi * D^4) / (128 * mu * L)`.
+   - The flow rate (`Q`) is calculated as `c * deltaP`.
+   - The velocity (`v`) is calculated as `Q / A`.
+
+This model can be simulated in a Modelica environment to compute the desired values for `c`, `Q`, and `v`.

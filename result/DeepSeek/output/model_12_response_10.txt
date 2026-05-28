@@ -1,0 +1,34 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual
+  extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+  parameter Real eps = 1e-6 "Small threshold for comparison";
+  parameter Real Ts = 0 "Sample time for comparison";
+equation
+  if Ts > 0 then
+    y = not(equals(u1, u2, eps, Ts));
+  else
+    y = not(equals(u1, u2, eps));
+  end if;
+end NotEqual;
+```
+
+This model should be used in a Modelica model to perform a 'not equal' comparison between two real signals. The 'eps' parameter can be adjusted to set the tolerance for the comparison, and the 'Ts' parameter can be used to perform the comparison at regular intervals.
+
+//modelica
+```model NotEqualExample
+  parameter Real u1_start = 1 "Start value for u1";
+  parameter Real u2_start = 2 "Start value for u2";
+  Real u1(start = u1_start) "Input signal 1";
+  Real u2(start = u2_start) "Input signal 2";
+  NotEqual notEqual(u1 = u1, u2 = u2);
+equation
+  // Example usage
+  der(u1) = 0.1; // u1 increases at a rate of 0.1
+  der(u2) = -0.1; // u2 decreases at a rate of 0.1
+end NotEqualExample;
+```
+
+In this example, `u1` and `u2` are two real signals that are compared using the `NotEqual` model. The `NotEqual` model returns true if the absolute difference between `u1` and `u2` is greater than `eps`, and false otherwise. In this example, `u1` and `u2` are set to start values of 1 and 2 respectively, and they both increase and decrease at a rate of 0.1. Therefore, the output of the `NotEqual` model will be true for the first few seconds, and false for the rest of the simulation time.

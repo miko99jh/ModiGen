@@ -1,0 +1,47 @@
+
+Generate a Modelica block named `FractionalDelay` for a FractionalDelay component that delays the incoming clocked input signal by a fractional multiple of the sample period. This model is typically used in systems requiring fine-grained control of signal processing, such as digital communication or signal filtering. The model extends `Modelica.Clocked.IntegerSignals.Interfaces.PartialClockedSISO`, adhering to a single input, single output methodology within clocked behavior constraints.
+
+Inputs:
+- 'shift(min=0)' (Integer parameter, default value: 0): Specifies the delay as a product of the sample period (interval()) and the ratio shift/resolution.
+- 'resolution(min=1)' (Integer parameter, default value: 1): Represents the time quantization resolution of the sample period.
+
+The model contains the following protected variables:
+- 'n = div(shift,resolution)', Integer;
+- 'u_buffer[n+1](each start=0)', Integer, representing the previous values of the inputs, u_last[1] = u, u_last[2] = previous(u_last[1]);
+- 'first(start=true)', Boolean, Used to identify the first clock tick.
+
+Equation Handling:
+- Flag Update: Reset 'first' to false immediately upon execution to ensure it only stays true during the first tick.
+- Buffer Management: At each tick, if it's the initial step (checked via 'previous(first)'), fill the entire 'u_buffer' with the current input 'u'. Otherwise, shift the buffer: prepend the current input 'u' and drop the oldest value using 'previous(u_buffer)'.
+- Output Calculation: Use the 'shiftSample' operator to calculate the final output y based on the oldest buffer value, the 'shift', and the 'resolution'.
+
+//modelica
+```block FractionalDelay extends Modelica.Clocked.IntegerSignals.Interfaces.PartialClockedSISO
+  parameter Integer shift(min=0) = 0 "Delay as a product of the sample period and the ratio shift/resolution";
+  parameter Integer resolution(min=1) = 1 "Time quantization resolution of the sample period";
+  protected 
+    Integer n = div(shift,resolution) if resolution!= 0 else 0 "Number of delay steps";
+    Integer u_buffer[n+1](each start=0) if n >= 0;
+    Boolean first(start=true) = true;
+  equation 
+    first = false when first() or not first;
+    if first then
+      for i in 1:n+1 loop
+        u_buffer[i] = u;
+      end for;
+    else
+      u_buffer = shiftSample(u_buffer, 1, resolution);
+    end if;
+    y = shiftSample(u_buffer[1], shift, resolution);
+end FractionalDelay;
+```
+
+This model ensures that the output signal is delayed by the specified fractional multiple of the sample period, with the delay being adjustable through the'shift' and'resolution' parameters. The buffer management ensures that the delay is correctly calculated, even when the delay is an integer number of samples.
+
+Please note that this model assumes that the'shiftSample' operator is defined in a way that allows for fractional delay calculations. If such an operator does not exist in your Modelica library, you will need to implement it or use a different approach for fractional delay calculations.
+
+Also, the model assumes that the'shiftSample' operator correctly handles the shifting of buffer values and the calculation of the output sample with the specified delay and resolution. If these operations are not correctly implemented, the behavior of the model may not be as expected.
+
+The model is designed to work with integer-based clock signals and integer-valued input signals. If you need to use fractional clock signals or fractional-valued input signals, you may need to modify the model accordingly.
+
+Please ensure that the Modelica library you are using supports the'shiftSample' operator and the integer-based clock signals and integer-valued input signals used in this model. If not, you may need to adjust the model to fit the capabilities of your specific Modelica library.

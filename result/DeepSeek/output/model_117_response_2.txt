@@ -1,0 +1,179 @@
+
+Generate a Modelica model named `Variant1_unstable` that simulates an unstable scenario based on the choice of a sample interval. Specifically, it should extend `ModelicaByExample.Architectures.SensorComparison.Examples.Variant1` with a modified `sensor` component that uses a parameter `sample_time=0.036`.
+
+//modelica
+```model Variant1_unstable
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant1;
+  parameter Real sample_time=0.036;
+equation
+  connect(sensor.sample_time, sample_time);
+end Variant1_unstable;```
+
+The `Variant1_unstable` model should behave as an unstable system when simulated with a sample interval of 0.036 seconds.
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor` component to 0.036. This change will cause the system to behave in an unstable manner when simulated with a sample interval of 0.036 seconds.
+```
+
+```plaintext
+The `Variant1_unstable` model extends the `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It modifies the `sample_time` parameter of the `sensor

@@ -1,0 +1,23 @@
+```modelica
+model Variant2_tuned
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(
+    redeclare Modelica.Blocks.Continuous.PID controller(
+      yMax=50, 
+      Ti=0.07, 
+      Td=0.01, 
+      k=4
+    ),
+    redeclare Modelica.Blocks.Interfaces.RealOutput actuator(
+      uMax=50
+    ),
+    redeclare Modelica.Blocks.Interfaces.RealInput sensor(
+      sample_time=0.01
+    )
+  );
+  
+  // Additional components or modifications can be added here if needed
+
+end Variant2_tuned;
+```
+
+This Modelica model `Variant2_tuned` extends the `Variant2` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package. It redeclares the `controller`, `actuator`, and `sensor` components with the specified parameters to enhance performance. This setup is intended to improve sensor and control dynamics for testing different architecture scenarios. Make sure that the components being redeclared (like `controller`, `actuator`, and `sensor`) are compatible with the types and parameters specified in the original `Variant2` model.

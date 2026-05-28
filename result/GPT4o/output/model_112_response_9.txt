@@ -1,0 +1,22 @@
+```modelica
+model StepVoltage
+  extends ModelicaByExample.Components.Electrical.DryApproach.TwoPin;
+
+  parameter Modelica.SIunits.Voltage V0 = 0 "Initial voltage";
+  parameter Modelica.SIunits.Voltage Vf = 1 "Final voltage";
+  parameter Modelica.SIunits.Time stepTime = 1 "Time at which voltage steps from V0 to Vf";
+
+  Modelica.SIunits.Voltage v "Voltage across the component";
+
+equation
+  // Voltage output switches from V0 to Vf at stepTime
+  v = if time < stepTime then V0 else Vf;
+
+  // Connect the voltage to the TwoPin interface
+  p.v = v;
+  n.v = 0; // Assuming the negative pin is grounded
+
+end StepVoltage;
+```
+
+This Modelica model defines a step voltage source that extends the `TwoPin` class from the `ModelicaByExample.Components.Electrical.DryApproach` package. The model includes three parameters: `V0`, `Vf`, and `stepTime`. The voltage `v` switches from `V0` to `Vf` at the specified `stepTime`. The positive pin `p` is assigned the voltage `v`, while the negative pin `n` is assumed to be grounded.

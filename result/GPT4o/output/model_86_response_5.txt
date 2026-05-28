@@ -1,0 +1,51 @@
+Certainly! Below is a simple implementation of a `BouncingBall` model in Modelica. This model simulates a ball bouncing under the influence of gravity, with a specified coefficient of restitution for the bounce.
+
+```modelica
+model BouncingBall
+  parameter Real radius = 0.1 "Radius of the ball";
+  parameter Real e = 0.9 "Coefficient of restitution";
+  parameter Real g = 9.81 "Acceleration due to gravity";
+  parameter Real initialHeight = 1 "Initial height of the ball";
+  parameter Real initialVelocity = 0 "Initial velocity of the ball";
+
+  Real h(start=initialHeight) "Height of the ball";
+  Real v(start=initialVelocity) "Velocity of the ball";
+
+equation
+  // Differential equation for velocity
+  der(v) = -g;
+
+  // Differential equation for height
+  der(h) = v;
+
+  // Event for bouncing
+  when h <= radius then
+    reinit(v, -e*v);
+    reinit(h, radius);
+  end when;
+
+end BouncingBall;
+```
+
+### Explanation:
+- **Parameters**:
+  - `radius`: The radius of the ball.
+  - `e`: The coefficient of restitution, which determines how much velocity is retained after a bounce.
+  - `g`: The acceleration due to gravity.
+  - `initialHeight`: The initial height from which the ball is dropped.
+  - `initialVelocity`: The initial velocity of the ball.
+
+- **Variables**:
+  - `h`: The height of the ball, initialized to `initialHeight`.
+  - `v`: The velocity of the ball, initialized to `initialVelocity`.
+
+- **Equations**:
+  - `der(v) = -g`: The velocity changes due to gravity.
+  - `der(h) = v`: The height changes according to the velocity.
+
+- **Event Handling**:
+  - `when h <= radius then`: This event triggers when the ball hits the ground (considering the radius).
+  - `reinit(v, -e*v)`: The velocity is reversed and scaled by the coefficient of restitution.
+  - `reinit(h, radius)`: The height is reset to the radius to simulate the bounce.
+
+This model will simulate the ball bouncing indefinitely, losing some energy on each bounce due to the coefficient of restitution. You can simulate this model using a Modelica tool like OpenModelica or Dymola to observe the behavior of the bouncing ball.

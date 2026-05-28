@@ -1,0 +1,29 @@
+
+Generate a Modelica model representing an ideal switch with resistance named `RealSwitch`. The model should include the following components:
+1. `Modelica.Electrical.Analog.Ideal.ControlledIdealTwoWaySwitch S` with the parameter `level=2.5` to define the ideal two-way switch with a control level.
+2. `Modelica.Electrical.Analog.Basic.Resistor R` with a resistance value `R=0.01` to represent the resistor in series with the switch.
+3. `Modelica.Electrical.Analog.Interfaces.Pin` named `p`, `n1`, `n2`, and `control` to define the electrical pins for the circuit connections, including the control pin for the switch.
+
+In the equation section, define the connections as follows:
+- Input Series Path: Integrate the resistor 'R' as a current-limiting element by routing the electrical path from input pin 'p' into 'R.p', and then continuing from R.n to the common supply terminal 'S.p' of the switch.
+- Dual Output Routing: Direct the switch's internal output channels ('n1' and 'n2') to their respective external interface pins 'n1' and 'n2'.
+- Control Logic: Map the external 'control' terminal to the switch's internal trigger to enable voltage-based switching.
+
+//modelica
+```model RealSwitch
+  extends Modelica.Electrical.Analog.Basic.Resistor(R=0.01);
+  Modelica.Electrical.Analog.Ideal.ControlledIdealTwoWaySwitch S(level=2.5);
+  Modelica.Electrical.Analog.Interfaces.Pin p, n1, n2, control;
+equation 
+  // Input Series Path
+  connect(p, R.p);
+  connect(R.n, S.p);
+  // Dual Output Routing
+  connect(S.n1, n1);
+  connect(S.n2, n2);
+  // Control Logic
+  connect(control, S.trigger);
+end RealSwitch;
+```
+
+This Modelica model represents an ideal switch with resistance, which can be controlled by an external signal. The switch is controlled by the 'control' pin, and the switch's internal output channels are connected to the 'n1' and 'n2' pins. The resistor 'R' is connected in series with the switch to limit the current.

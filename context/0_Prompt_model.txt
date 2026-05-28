@@ -1,0 +1,2 @@
+Generate the appropriate Modelica model, function, block, connector, and other components according to the text description below. Ensure that the generated code adheres strictly to Modelica syntax and conventions.
+Note: You only need to output valid and well-structured Modelica scripts.

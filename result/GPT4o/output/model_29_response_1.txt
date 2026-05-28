@@ -1,0 +1,55 @@
+Here is the Modelica model `SpeedControl` implementing the described discrete-time PI control for crankshaft speed control:
+
+```modelica
+block SpeedControl
+  // Parameters
+  parameter Real k_p = 0.0614 "Proportional gain";
+  parameter Real k_I = 0.0723 "Integral gain";
+
+  // Inputs
+  Modelica.Blocks.Interfaces.RealInput N_des(unit = "rad/s") "Desired speed";
+  Modelica.Blocks.Interfaces.RealInput N(unit = "rad/s") "Measured speed";
+
+  // Output
+  Modelica.Blocks.Interfaces.RealOutput Theta(unit = "deg", start = 8.9) "Throttle angle";
+
+protected
+  Modelica.Units.NonSI.Angle_deg x_d(start = 8.973, fixed = true) "Integral state (angle in degrees)";
+
+equation
+  // Discrete-time PI control law
+  when Clock() then
+    // Update integral state
+    x_d = previous(x_d) + k_I * (previous(N_des) - previous(N)) * interval();
+
+    // Calculate throttle angle
+    Theta = k_p * (N_des - N) + x_d;
+  end when;
+
+end SpeedControl;
+```
+
+### Explanation of the Model:
+1. **Parameters**:
+   - `k_p` and `k_I` are the proportional and integral gains, respectively, used in the PI control law.
+   
+2. **Inputs**:
+   - `N_des`: The desired crankshaft speed (rad/s).
+   - `N`: The measured crankshaft speed (rad/s).
+
+3. **Output**:
+   - `Theta`: The throttle angle (degrees), which is the control output.
+
+4. **Protected Variable**:
+   - `x_d`: The integral state, representing the accumulated error in degrees.
+
+5. **Equations**:
+   - The `when Clock() then` block ensures that the control law is executed at discrete time intervals.
+   - The integral state `x_d` is updated using the previous value of `x_d`, the speed error (`previous(N_des) - previous(N)`), the integral gain `k_I`, and the clock interval (`interval()`).
+   - The throttle angle `Theta` is calculated as the sum of the proportional term (`k_p * (N_des - N)`) and the integral state `x_d`.
+
+6. **Clocked Operators**:
+   - `previous()`: Accesses the value of a variable from the previous clock tick.
+   - `interval()`: Provides the time interval between clock ticks.
+
+This model is designed for discrete-time control and assumes that the `Clock()` is defined elsewhere in the simulation environment or inherited from the enclosing system.

@@ -1,0 +1,76 @@
+model AD_DA_conversion
+ // Import necessary Modelica libraries
+  import Modelica.Electrical.Analog;
+  import Modelica.Electrical.Digital;
+  import Modelica.Electrical.Analog.Basic;
+  import Modelica.Electrical.Analog.Sources;
+  import Modelica.Electrical.Digital.Sources;
+  import Modelica.Electrical.Analog.Ideal;
+  import Modelica.Electrical.Digital.Interfaces;
+
+  // Components
+  Ideal.AD_Converter aD_Converter(
+    N=7, 
+    Rin=1000000, 
+    VRefLow=0, 
+    VRefHigh=10) 
+    annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
+
+  Digital.Sources.Pulse pulse(
+    pulse=Interfaces.Logic.'1', 
+    quiet=Interfaces.Logic.'0', 
+    nperiod=-1, 
+    width=1, 
+    period=0.001, 
+    startTime=0) 
+    annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
+
+  Ideal.DA_Converter dA_Converter(
+    N=7, 
+    Vref=10) 
+    annotation (Placement(transformation(extent={{20,40},{40,60}})));
+
+  Sources.SineVoltage sineVoltage(
+    V=5, 
+    f=10, 
+    offset=5) 
+    annotation (Placement(transformation(extent={{-140,40},{-120,60}})));
+
+  Basic.Resistor resistor(R=1) 
+    annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
+
+  Analog.Basic.Ground ground 
+    annotation (Placement(transformation(extent={{-140,-20},{-120,0}})));
+
+equation
+  // Connect pulse output to trigger inputs
+  connect(pulse.y, aD_Converter.trig) 
+    annotation (Line(points={{-60,-10},{-40,-10},{-40,50},{-60,50}}, color={0,0,127}));
+  connect(pulse.y, dA_Converter.trig) 
+    annotation (Line(points={{-60,-10},{0,-10},{0,50},{20,50}}, color={0,0,127}));
+
+  // Connect sine voltage to AD converter
+  connect(sineVoltage.p, aD_Converter.p) 
+    annotation (Line(points={{-120,50},{-80,50}}, color={0,0,127}));
+  connect(sineVoltage.n, aD_Converter.n) 
+    annotation (Line(points={{-120,40},{-80,40}}, color={0,0,127}));
+
+  // Connect digital output of AD converter to DA converter
+  connect(aD_Converter.y, dA_Converter.x) 
+    annotation (Line(points={{-60,50},{0,50}}, color={0,0,127}));
+
+  // Connect DA converter output to resistor
+  connect(dA_Converter.p, resistor.p) 
+    annotation (Line(points={{40,50},{-20,50}}, color={0,0,127}));
+
+  // Connect resistor to sine voltage
+  connect(resistor.n, sineVoltage.p) 
+    annotation (Line(points={{-40,50},{-120,50}}, color={0,0,127}));
+
+  // Ground connections
+  connect(sineVoltage.n, ground.p) 
+    annotation (Line(points={{-120,40},{-120,-10},{-130,-10},{-130,-10}}, color={0,0,127}));
+  connect(dA_Converter.n, ground.p) 
+    annotation (Line(points={{20,40},{20,-10},{-130,-10}}, color={0,0,127}));
+
+end AD_DA_conversion;

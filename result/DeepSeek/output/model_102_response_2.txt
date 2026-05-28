@@ -1,0 +1,22 @@
+
+Define an array (`data`) of length (`n = 5`) and initialize it with the values {1, 2, 3, 4, 5}. Solve for the absolute values (`abs1`) of the array elements, the minimum value (`min1`), the maximum value (`max1`), and the sum (`sum1`) of all elements. Please help me generate a Modelica model named `ArrayExample` to do this using an equation block.
+
+//modelica
+```model ArrayExample
+  parameter Integer n = 5;
+  Real data[n] = {1, 2, 3, 4, 5};
+  Real abs1[n];
+  Real min1;
+  Real max1;
+  Real sum1;
+equation
+  for i in 1:n loop
+    abs1[i] = abs(data[i]);
+  end for;
+  min1 = min(data);
+  max1 = max(data);
+  sum1 = sum(data);
+end ArrayExample;
+```
+
+This Modelica model named `ArrayExample` calculates the absolute values of the elements in the array `data`, the minimum value of `data`, the maximum value of `data`, and the sum of all elements in `data`.

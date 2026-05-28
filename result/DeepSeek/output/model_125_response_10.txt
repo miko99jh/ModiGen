@@ -1,0 +1,19 @@
+
+Generate a Modelica model named `Damper` for a rotational damper. The model should include a single parameter 'd' of type 'Modelica.SIunits.RotationalDampingConstant' representing the rotational damping constant with units of Newton meters per radian per second. The model should extend 'ModelicaByExample.Components.Rotational.Interfaces.Compliant' and implement an equation for the damping relationship, where the torque 'tau' equals 'd' multiplied by the derivative of 'phi_rel'. This model simulates the damping effect in rotational systems, mitigating oscillations and stabilizing motion.
+
+//modelica
+```model Damper
+  extends ModelicaByExample.Components.Rotational.Interfaces.Compliant;
+  parameter Modelica.SIunits.RotationalDampingConstant d;
+equation 
+  tau = d * der(phi_rel);
+end Damper;
+```
+
+This model is a simple representation of a rotational damper. It takes in the relative angle 'phi_rel' and outputs the torque 'tau' based on the damping constant 'd'. The torque is calculated as the product of the damping constant and the derivative of the relative angle, which models the damping effect in rotational systems.
+
+The 'RotationalDampingConstant' unit is defined in the Modelica Standard Library as 'Newton meters per radian per second', which is a measure of the damping effect in rotational systems. The damping constant 'd' is a parameter of the model, meaning it can be set by the user.
+
+The model extends the 'Compliant' interface from the 'ModelicaByExample.Components.Rotational.Interfaces' package, which provides the necessary connectors and variables for rotational systems. The 'tau' equation is implemented in the model to satisfy the 'Compliant' interface, providing the torque output.
+
+This model can be used in rotational systems to simulate the damping effect, helping to stabilize the motion and mitigate oscillations.

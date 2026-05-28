@@ -1,0 +1,37 @@
+
+Generate a Modelica model that represents an example of a Hold block for Boolean signals named `Hold`. The model should extend `Modelica.Icons.Example` and include the following components: 
+1. `Modelica.Blocks.Sources.BooleanTable table` with data `table={0.05, 0.15}` to provide Boolean values as input.
+2. `Modelica.Clocked.BooleanSignals.Sampler.SampleClocked sample1` for sampling the clocked Boolean signals.
+3. `Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock` with parameters `factor=20` and `resolution=Modelica.Clocked.Types.Resolution.ms` (milliseconds).
+4. `Modelica.Clocked.BooleanSignals.Sampler.Hold hold1` with an initial output `y_start=false` to hold the sampled Boolean signal.
+5. `Modelica.Clocked.BooleanSignals.Sampler.ShiftSample shiftSample1` with the parameter `shiftCounter=2` to shift the sampled signal.
+
+In the equation section, establish the following topology to demonstrate the Boolean signal lifecycle:
+- Clocking & Sampling: Use the 'periodicClock' to define the timing for the 'sample1' block, which captures the continuous Boolean values from the 'table'.
+- Signal Delay: Route the captured signal from 'sample1' into the 'shiftSample1' block to apply the specified sample shift.
+- Re-conversion: Finally, pass the shifted clocked signal into 'hold1' to convert it back into a continuous-time Boolean signal with the specified initial output.
+
+//modelica
+```model Hold
+  extends Modelica.Icons.Example;
+  Modelica.Blocks.Sources.BooleanTable table;
+  Modelica.Clocked.BooleanSignals.Sampler.SampleClocked sample1;
+  Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock;
+  Modelica.Clocked.BooleanSignals.Sampler.Hold hold1;
+  Modelica.Clocked.BooleanSignals.Sampler.ShiftSample shiftSample1;
+equation 
+  // Clocking & Sampling
+  periodicClock.f = 20;
+  periodicClock.resolution = Modelica.Clocked.Types.Resolution.ms;
+  sample1.u = table.y;
+  sample1.clock = periodicClock.y;
+  // Signal Delay
+  shiftSample1.u = sample1.y;
+  shiftSample1.shiftCounter = 2;
+  // Re-conversion
+  hold1.y_start = false;
+  hold1.u = shiftSample1.y;
+end Hold;
+```
+
+This model will simulate a Boolean signal that is sampled, delayed, and then held at its new value.

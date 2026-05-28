@@ -1,0 +1,18 @@
+
+Generate a Modelica model for a component that performs a 'greater than or equal to' (>=) comparison between two integer inputs. The model should be named `GreatEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 >= u2`, otherwise `false`.
+
+//modelica
+```model GreatEq
+  extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison(redeclare input Integer u1, redeclare input Integer u2, redeclare output Boolean y);
+equation
+  if Ts > 0 then
+    y = if sample(u1, u2, Ts) >= 0 then true else false;
+  else
+    y = if u1 >= u2 then true else false;
+  end if;
+end GreatEq;
+```
+
+In the above model, `sample(u1, u2, Ts)` is a function that returns the difference between `u1` and `u2` sampled at a regular interval `Ts`. If the difference is greater than or equal to 0, it returns 1, otherwise it returns -1. This function is used to perform the comparison in discrete time when `Ts > 0`. When `Ts = 0`, the comparison is performed continuously.
+
+Please note that the `sample` function is not a standard Modelica function, it is just a placeholder for the actual implementation of the comparison in discrete time.

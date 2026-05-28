@@ -1,0 +1,53 @@
+Certainly! Below is a simple implementation of a `BouncingBall` model in Modelica. This model simulates a ball bouncing under the influence of gravity, with a specified coefficient of restitution.
+
+```modelica
+model BouncingBall
+  parameter Real radius = 0.1 "Radius of the ball";
+  parameter Real e = 0.9 "Coefficient of restitution";
+  parameter Real g = 9.81 "Acceleration due to gravity";
+  parameter Real initialHeight = 1 "Initial height of the ball";
+  parameter Real initialVelocity = 0 "Initial velocity of the ball";
+
+  Real height(start=initialHeight) "Height of the ball";
+  Real velocity(start=initialVelocity) "Velocity of the ball";
+  Boolean isFalling(start=true) "Flag to indicate if the ball is falling";
+
+equation
+  // Dynamics of the ball
+  der(height) = velocity;
+  der(velocity) = if isFalling then -g else g;
+
+  // Condition for bouncing
+  when height <= radius then
+    velocity = -e * velocity;
+    isFalling = not isFalling;
+  end when;
+
+  // Ensure the ball doesn't go below the ground
+  when height < radius then
+    height = radius;
+  end when;
+
+end BouncingBall;
+```
+
+### Explanation:
+- **Parameters**: 
+  - `radius`: The radius of the ball.
+  - `e`: The coefficient of restitution, which determines how much velocity is retained after a bounce.
+  - `g`: The acceleration due to gravity.
+  - `initialHeight`: The initial height from which the ball is dropped.
+  - `initialVelocity`: The initial velocity of the ball.
+
+- **Variables**:
+  - `height`: The current height of the ball.
+  - `velocity`: The current velocity of the ball.
+  - `isFalling`: A boolean flag indicating whether the ball is falling or rising.
+
+- **Equations**:
+  - The ball's height changes according to its velocity.
+  - The ball's velocity changes due to gravity, depending on whether it is falling or rising.
+  - When the ball hits the ground (height <= radius), it bounces back with a reduced velocity determined by the coefficient of restitution.
+  - The ball's height is reset to the radius if it goes below the ground level.
+
+This model should simulate the bouncing behavior of the ball under the specified conditions. You can simulate this model using a Modelica environment like OpenModelica or Dymola to observe the ball's motion over time.

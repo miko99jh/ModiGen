@@ -1,0 +1,34 @@
+
+Implement a Modelica function named `CircleProperties` to calculate the circumference (`circumference`) and area (`area`) of a circle based on its radius (`radius`). The function should include a protected section to define the diameter (`diameter`) and use an algorithm block to implement the logic for both outputs. Assume the value of pi is 3.14159 for the calculations.
+
+//modelica
+```function CircleProperties
+  input Real radius;
+  output Real circumference;
+  output Real area;
+protected 
+  Real diameter;
+algorithm 
+  diameter := 2*radius;
+  circumference := 3.14159 * diameter;
+  area := 3.14159 * radius * radius;
+end CircleProperties;
+```
+
+This function takes the radius of the circle as an input and calculates the diameter by multiplying the radius by 2. It then calculates the circumference by multiplying pi (3.14159) by the diameter, and the area by multiplying pi by the square of the radius. The results are then returned as the output parameters.
+
+The function is defined with the keyword `function`, followed by the name of the function `CircleProperties`. The input and output parameters are defined within parentheses. The protected section is used to define variables that are not exposed to the outside world, but are used within the function for calculations. The algorithm block contains the calculations for the outputs.
+
+In this case, the function `CircleProperties` is used to calculate the properties of a circle given its radius. The function can be called in a model or script with a specific radius value, and it will return the calculated circumference and area.
+
+```modelica
+model TestCircleProperties
+  Real radius = 5;
+  Real circumference;
+  Real area;
+equation 
+  (circumference, area) = CircleProperties(radius);
+end TestCircleProperties;
+```
+
+In the above model, the function `CircleProperties` is called with the input `radius` set to 5. The function returns the circumference and area of the circle, which are then assigned to the variables `circumference` and `area` respectively.

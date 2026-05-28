@@ -1,0 +1,28 @@
+Certainly! Below is a Modelica function named `convertAlpha` that converts a linear temperature coefficient from one temperature to another. The function extends from `Modelica.Icons.Function` and includes the specified components and algorithm.
+
+```modelica
+function convertAlpha
+  extends Modelica.Icons.Function;
+  
+  input Modelica.Units.SI.LinearTemperatureCoefficient alpha1;
+  input Modelica.Units.SI.Temperature T2;
+  input Modelica.Units.SI.Temperature T1 = 293.15;
+  output Modelica.Units.SI.LinearTemperatureCoefficient alpha2;
+  
+algorithm
+  // Calculate the new linear temperature coefficient at temperature T2
+  alpha2 := alpha1 / (1 + alpha1 * (T2 - T1));
+end convertAlpha;
+```
+
+### Explanation:
+- **Inputs:**
+  - `alpha1`: The linear temperature coefficient at the initial temperature `T1`.
+  - `T2`: The target temperature to which the coefficient is being converted.
+  - `T1`: The initial temperature, with a default value of 293.15 K (approximately 20°C).
+
+- **Output:**
+  - `alpha2`: The linear temperature coefficient at the target temperature `T2`.
+
+- **Algorithm:**
+  - The algorithm calculates `alpha2` by adjusting `alpha1` for the temperature difference between `T1` and `T2`. The formula used accounts for the reciprocal nature of linear coefficients when changing reference points, ensuring that the conversion is accurate.

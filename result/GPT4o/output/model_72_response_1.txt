@@ -1,0 +1,47 @@
+To create a Modelica model named `IMC_Transformer` that extends from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`, you need to ensure that the model is syntactically correct and adheres to the Modelica language standard. Below is an example of how you might define such a model. Note that this is a basic template and you may need to adjust parameters and components based on your specific requirements.
+
+```modelica
+model IMC_Transformer
+  extends Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer;
+
+  // Parameters
+  parameter Modelica.SIunits.Voltage V_nominal = 400 "Nominal voltage";
+  parameter Modelica.SIunits.Frequency f_nominal = 50 "Nominal frequency";
+  parameter Modelica.SIunits.Power P_nominal = 10000 "Nominal power";
+
+  // Components
+  Modelica.Electrical.Machines.BasicMachines.InductionMachines.SquirrelCage squirrelCageMachine(
+    V_nominal = V_nominal,
+    f_nominal = f_nominal,
+    P_nominal = P_nominal) "Squirrel cage induction machine";
+
+  Modelica.Electrical.Analog.Basic.Transformer transformer(
+    V1 = V_nominal,
+    V2 = V_nominal / sqrt(3)) "Transformer for starting the induction machine";
+
+  Modelica.Electrical.Analog.Basic.Resistor loadResistor(R = 10) "Load resistor";
+
+  // Connections
+  equation
+    connect(transformer.port1, squirrelCageMachine.stator);
+    connect(transformer.port2, loadResistor.p);
+    connect(loadResistor.n, squirrelCageMachine.stator);
+
+  annotation(
+    uses(Modelica(version = "4.0.0")),
+    experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-6, Interval = 0.01),
+    Documentation(info = "Test example for starting an induction machine with a squirrel cage using a transformer.")
+  );
+end IMC_Transformer;
+```
+
+### Explanation:
+- **Parameters**: These are the nominal values for voltage, frequency, and power, which you can adjust as needed.
+- **Components**: 
+  - `SquirrelCage`: Represents the induction machine with a squirrel cage.
+  - `Transformer`: Used to start the induction machine.
+  - `Resistor`: Represents a load connected to the system.
+- **Connections**: These define how the components are electrically connected.
+- **Annotations**: Provide metadata about the model, such as the Modelica version and simulation settings.
+
+Make sure to adjust the parameters and components to fit the specific requirements of your system. This template provides a basic structure to get you started.

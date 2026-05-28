@@ -1,0 +1,26 @@
+
+Use the Modelica model named Lorenz to implement a Lorenz system. The system uses parameters 'sigma = 10', 'rho = 28', and 'beta = 8/3'. The variables 'x', 'y', and 'z' represent the coordinates, starting from initial values 'x0', 'y0', and 'z0' all equal to 1. The equations should describe the rate of change for each coordinate to simulate the chaotic attractor behavior.
+
+//modelica
+```model Lorenz
+  parameter Real sigma = 10;
+  parameter Real rho = 28;
+  parameter Real beta = 8/3;
+  parameter Real x0 = 1;
+  parameter Real y0 = 1;
+  parameter Real z0 = 1;
+  Real x(start = x0);
+  Real y(start = y0);
+  Real z(start = z0);
+equation
+  der(x) = sigma*(y - x);
+  der(y) = x*(rho - z) - y;
+  der(z) = x*y - beta*z;
+end Lorenz;
+```
+
+This Modelica model defines a Lorenz system with the given parameters and initial conditions. The equations for the derivatives of 'x', 'y', and 'z' are defined in terms of the system parameters and the current values of 'x', 'y', and 'z'. The 'der' function is used to denote the time derivative of a variable.
+
+The Lorenz system is known for its chaotic behavior, which can be seen in the simulation results. The system's variables 'x', 'y', and 'z' evolve over time according to the given differential equations, and the trajectories can form a complex, deterministic pattern known as the Lorenz attractor.
+
+To simulate this model, you can use a Modelica simulation software that supports the Modelica language, such as Dymola or OpenModelica.

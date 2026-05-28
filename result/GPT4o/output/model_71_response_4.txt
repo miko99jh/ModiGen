@@ -1,0 +1,30 @@
+```modelica
+model Yd01
+  extends Modelica.Electrical.Machines.Interfaces.PartialBasicTransformer(final VectorGroup="Yd01");
+
+  // Components
+  Modelica.Electrical.Polyphase.Basic.Star star1(final m=m) "Star connection for primary winding";
+  Modelica.Electrical.Analog.Interfaces.NegativePin starpoint1 "Negative pin for star point";
+  Modelica.Electrical.Polyphase.Basic.Delta Delta2(final m=m) "Delta connection for secondary winding";
+
+  // Connections
+  equation
+    // Primary Star & Neutral
+    connect(star1.pin_n, starpoint1);
+
+    // Primary Winding Path
+    connect(l1sigma.plug_n, core.plug_p1);
+    connect(core.plug_n1, star1.plug_p);
+
+    // Vector Group Bridge (Yd1 phase shift logic)
+    connect(core.plug_n2, core.plug_p3);
+
+    // Secondary Delta & Leakage
+    connect(core.plug_p2, l2sigma.plug_n);
+    connect(core.plug_n3, Delta2.plug_n);
+    connect(Delta2.plug_p, r2.plug_p);
+
+end Yd01;
+```
+
+This Modelica model defines a transformer with a Yd1 vector group, including the specified components and connections. The model extends the `PartialBasicTransformer` interface and sets up the primary and secondary windings with star and delta connections, respectively, while implementing the necessary phase shift logic for the Yd1 vector group.

@@ -1,0 +1,49 @@
+To implement a proportional control system in Modelica for maintaining the water level in a reservoir, you can create a simple model named `PController`. This model will simulate the change in water level over time using a proportional control strategy. Below is a basic implementation of the `PController` model:
+
+```modelica
+model PController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0; // Proportional gain
+
+  // Variables
+  Real waterLevel(start = 0.2); // Initial water level in meters
+  Real error; // Altitude error
+  Real control; // Control signal
+
+equation
+  // Calculate the error
+  error = target_height - waterLevel;
+
+  // Calculate the control signal using proportional control
+  control = Kp * error;
+
+  // Update the water level based on the control signal
+  der(waterLevel) = control;
+
+  // Simulation time settings
+  annotation (experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-6, Interval = 0.1));
+
+end PController;
+```
+
+### Explanation:
+
+1. **Parameters**:
+   - `target_height`: The desired water level in the reservoir (1 meter).
+   - `Kp`: The proportional gain, which determines how aggressively the control system responds to the error (set to 1).
+
+2. **Variables**:
+   - `waterLevel`: The current water level in the reservoir, initialized to 0.2 meters.
+   - `error`: The difference between the target height and the current water level.
+   - `control`: The control signal calculated using the proportional control formula.
+
+3. **Equations**:
+   - The `error` is calculated as the difference between the `target_height` and the `waterLevel`.
+   - The `control` signal is calculated using the proportional control formula: `control = Kp * error`.
+   - The change in `waterLevel` over time (`der(waterLevel)`) is determined by the `control` signal.
+
+4. **Simulation Settings**:
+   - The simulation runs from 0 to 10 seconds with a specified tolerance and interval.
+
+This model will simulate how the water level in the reservoir changes over time as the proportional controller works to maintain the target height. You can adjust the `StopTime` and other parameters to observe different behaviors in the simulation.

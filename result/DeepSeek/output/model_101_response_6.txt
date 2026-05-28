@@ -1,0 +1,57 @@
+
+Implement a Modelica function named `SphereProperties` to calculate the surface area (`surface`) and volume (`volume`) of a sphere based on its radius (`radius`). The function should use an algorithm block to implement the calculation logic and utilize the pi constant from the standard Modelica library (Modelica.Constants.pi) for the formulas.
+
+//modelica
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function takes the radius of the sphere as input and calculates the surface area and volume based on the formulas for a sphere:
+
+- Surface Area = 4 * pi * radius^2
+- Volume = 4/3 * pi * radius^3
+
+The function then returns these two calculated values.
+
+This function can be used in other models to calculate the properties of a sphere based on its radius.
+
+Note: The Modelica.Constants.pi constant should be used for the pi value in the formulas to ensure the correct value of pi is used.
+
+This function is a simple example of a Modelica function that takes input parameters, performs calculations, and returns output parameters.
+
+Here is the complete Modelica code:
+
+```modelica
+function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;
+```
+
+This function can be used in other models to calculate the surface area and volume of a sphere based on its radius.
+
+For example, if you have a sphere with a radius of 5 meters, you can use this function like this:
+
+```modelica
+model Example
+  Real radius = 5;
+  Real surface;
+  Real volume;
+initial equation
+  surface = SphereProperties(radius).surface;
+  volume = SphereProperties(radius).volume;
+equation
+  // More equations here...
+end Example;
+```
+
+In this example, the `Example` model calculates the surface area and volume of a sphere with a radius of 5 meters. The `initial equation` section is used to calculate these values when the model is first initialized.

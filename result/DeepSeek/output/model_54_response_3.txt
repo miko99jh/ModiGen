@@ -1,0 +1,257 @@
+
+Generate a Modelica model named `Subtracter` that represents an inverting subtracter circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.OpAmps` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 5) representing the amplitude of the input voltage
+- `f` (Modelica.Units.SI.Frequency, default value: 10) representing the frequency of the input voltage.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn1` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = f`.
+- `vIn2` (Modelica.Electrical.Analog.Sources.ConstantVoltage) to generate a constant input voltage with parameter `V = Vin`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `feedback` (Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback) to implement the feedback loop, with the initial current `i` of `p1_2` set to 0.
+
+The following connections should be made:
+- Dual-Source Integration: Route the dynamic signal 'vIn1' and the static signal 'vIn2' into the 'feedback' network's input ports 'p1' and 'p1_2' respectively.
+- Reference & Return: Establish a common reference by tying the return pins ('.n') of both sources ('vIn1', 'vIn2') and the feedback input ('n1') to the 'ground.p'.
+- Output Differential: Link the output stage of the feedback circuit ('p2', 'n2') to the 'vOut' sensor. Note: Ensure the polarity is set such that 'p2' connects to the sensor's negative terminal.
+
+The model should accurately represent the behavior of an inverting subtracter circuit.
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i(start=0));
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(vOut.n, feedback.n2);
+  connect(vIn1.n, ground.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i(start=0));
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(vOut.n, feedback.n2);
+  connect(vIn1.n, ground.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i(start=0));
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(vOut.n, feedback.n2);
+  connect(vIn1.n, ground.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i(start=0));
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(vOut.n, feedback.n2);
+  connect(vIn1.n, ground.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i(start=0));
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(vOut.n, feedback.n2);
+  connect(vIn1.n, ground.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```Generate a Modelica model named `VoltageDivider` that represents a voltage divider circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.Circuits` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 10) representing the amplitude of the input voltage
+- `R1` (Modelica.Units.SI.Resistance, default value: 1e3) representing the resistance of the first resistor
+- `R2` (Modelica.Units.SI.Resistance, default value: 1e6) representing the resistance of the second resistor
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = 100`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `resistor1` (Modelica.Electrical.Analog.Basic.Resistor) to represent the first resistor with parameter `R = R1`.
+- `resistor2` (Modelica.Electrical.Analog.Basic.Resistor) to represent the second resistor with parameter `R = R2`.
+
+The following connections should be made:
+- Connect the positive terminal of the `vIn` source to the positive terminal of `resistor1`.
+- Connect the negative terminal of `resistor1` to the positive terminal of `resistor2`.
+- Connect the negative terminal of `resistor2` to the `ground`.
+- Connect the positive terminal of `resistor2` to the `vOut` sensor.
+
+The model should accurately represent the behavior of a voltage divider circuit.
+
+//modelica
+```model VoltageDivider
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=10 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Resistance R1=1e3 "Resistance of first resistor";
+  parameter Modelica.Units.SI.Resistance R2=1e6 "Resistance of second resistor";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=100);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Basic.Resistor resistor1(R=R1);
+  Modelica.Electrical.Analog.Basic.Resistor resistor2(R=R2);
+equation 
+  connect(vIn.p, resistor1.p);
+  connect(resistor1.n, resistor2.p);
+  connect(resistor2.n, ground.p);
+  connect(resistor2.p, vOut.n);
+end VoltageDivider;
+```
+
+//modelica
+```model VoltageDivider
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=10 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Resistance R1=1e3 "Resistance of first resistor";
+  parameter Modelica.Units.SI.Resistance R2=1e6 "Resistance of second resistor";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=100);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Basic.Resistor resistor1(R=R1);
+  Modelica.Electrical.Analog.Basic.Resistor resistor2(R=R2);
+equation 
+  connect(vIn.p, resistor1.p);
+  connect(resistor1.n, resistor2.p);
+  connect(resistor2.n, ground.p);
+  connect(resistor2.p, vOut.n);
+end VoltageDivider;
+```
+
+//modelica
+```model VoltageDivider
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=10 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Resistance R1=1e3 "Resistance of first resistor";
+  parameter Modelica.Units.SI.Resistance R2=1e6 "Resistance of second resistor";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=100);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Basic.Resistor resistor1(R=R1);
+  Modelica.Electrical.Analog.Basic.Resistor resistor2(R=R2);
+equation 
+  connect(vIn.p, resistor1.p);
+  connect(resistor1.n, resistor2.p);
+  connect(resistor2.n, ground.p);
+  connect(resistor2.p, vOut.n);
+end VoltageDivider;
+```Generate a Modelica model named `RCFilter` that represents a simple RC filter circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.Circuits` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 10) representing the amplitude of the input voltage
+- `R` (Modelica.Units.SI.Resistance, default value: 1e3) representing the resistance of the resistor
+- `C` (Modelica.Units.SI.Capacitance, default value: 1e-6) representing the capacitance of the capacitor
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = 100`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `resistor` (Modelica.Electrical.Analog.Basic.Resistor) to represent the resistor with parameter `R = R`.
+- `capacitor` (Modelica.Electrical.Analog.Basic.Capacitor) to represent the capacitor with parameter `C = C`.
+
+The following connections should be made:
+- Connect the positive terminal of the `vIn` source to the positive terminal of `resistor`.
+- Connect the negative terminal of `resistor` to the positive terminal of `capacitor`.
+- Connect the negative terminal of `capacitor` to the `ground`.
+- Connect the positive terminal of `capacitor` to the `vOut` sensor.
+
+The model should accurately represent the behavior of a simple RC filter circuit.
+
+//modelica
+```model RCFilter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=10 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Resistance R=1e3 "Resistance of resistor";
+  parameter Modelica.Units.SI.Capacitance C=1e-6 "Capacitance of capacitor";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=100);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=R);
+  Modelica.Electrical.Analog.Basic.Capacitor capacitor(C=C);
+equation 
+  connect(vIn.p, resistor.p);
+  connect(resistor.n, capacitor.p);
+  connect(capacitor.n, ground.p);
+  connect(capacitor.p, vOut.n);
+end RCFilter;
+```
+
+//modelica
+```model RCFilter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=10 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Resistance R=1e3 "Resistance of resistor";
+  parameter Modelica.Units.SI.Capacitance C=1e-6 "Capacitance of capacitor";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=100);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=R);
+  Modelica.Electrical.Analog.Basic.Capacitor capacitor(C=C);
+equation 
+  connect(vIn.p, resistor.p);
+  connect(resistor.n, capacitor.p);
+  connect(capacitor.n, ground.p);
+  connect(capacitor.p, vOut.n);
+end RCFilter;
+```
+
+//modelica

@@ -1,0 +1,67 @@
+To implement a PD (Proportional-Derivative) controller in Modelica, you can create a simple model that simulates the water level control in a container. Below is a basic implementation of the `PDController` model in Modelica:
+
+```modelica
+model PDController
+  // Parameters
+  parameter Real Kp = 1.0 "Proportional gain";
+  parameter Real Kd = 0.1 "Derivative gain";
+  parameter Real target_height = 1.0 "Target water level in meters";
+  parameter Real initial_waterLevel = 0.2 "Initial water level in meters";
+  parameter Real dt = 0.1 "Time step for simulation";
+
+  // Variables
+  Real waterLevel(start = initial_waterLevel) "Current water level";
+  Real error "Error between target and current water level";
+  Real previous_error = 0.0 "Previous error for derivative calculation";
+  Real Pcontrol "Proportional control action";
+  Real Dcontrol "Derivative control action";
+  Real control_signal "Control signal to adjust water level";
+
+equation
+  // Calculate the error
+  error = target_height - waterLevel;
+
+  // Proportional control
+  Pcontrol = Kp * error;
+
+  // Derivative control
+  Dcontrol = Kd * (error - previous_error) / dt;
+
+  // Control signal
+  control_signal = Pcontrol + Dcontrol;
+
+  // Update water level
+  der(waterLevel) = control_signal;
+
+  // Update previous error
+  when sample(0, dt) then
+    previous_error = error;
+  end when;
+
+end PDController;
+```
+
+### Explanation:
+
+- **Parameters**: 
+  - `Kp` and `Kd` are the proportional and derivative gains, respectively.
+  - `target_height` is the desired water level.
+  - `initial_waterLevel` is the starting water level.
+  - `dt` is the time step for the simulation.
+
+- **Variables**:
+  - `waterLevel` represents the current water level.
+  - `error` is the difference between the target and current water levels.
+  - `previous_error` is used to calculate the derivative of the error.
+  - `Pcontrol` and `Dcontrol` are the proportional and derivative control actions.
+  - `control_signal` is the sum of `Pcontrol` and `Dcontrol`, which determines how the water level is adjusted.
+
+- **Equations**:
+  - The error is calculated as the difference between the target and current water levels.
+  - The proportional control action is calculated using the proportional gain and the error.
+  - The derivative control action is calculated using the derivative gain and the change in error over time.
+  - The control signal is the sum of the proportional and derivative actions.
+  - The water level is updated based on the control signal.
+  - The `when` statement updates the `previous_error` at each time step.
+
+This model will simulate the change in water level over time as the PD controller attempts to maintain the water level at the target height. You can simulate this model using a Modelica simulation environment like OpenModelica or Dymola.

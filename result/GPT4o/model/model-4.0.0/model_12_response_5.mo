@@ -1,0 +1,15 @@
+model NotEqual
+ extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+
+  parameter Real Ts = 0 "Sample time for discrete comparison, continuous if Ts <= 0";
+  parameter Real eps = 1e-6 "Threshold for determining equality";
+
+equation
+  if Ts > 0 then
+    when sample(0, Ts) then
+      y = abs(u1 - u2) >= eps;
+    end when;
+  else
+    y = abs(u1 - u2) >= eps;
+  end if;
+end NotEqual;

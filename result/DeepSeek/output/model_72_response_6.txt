@@ -1,0 +1,31 @@
+
+Generate a Modelica model named `IMC_Transformer` that represents a test example for starting an induction machine with a squirrel cage using a transformer. The model should include the following components and details:
+1. Components:
+- The model should extend from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`.
+ Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model IMC_Transformer
+  extends Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer;
+end IMC_Transformer;
+```
+
+2. Parameters:
+- The model should have a parameter `final parameter Modelica.SIunits.Frequency f=50 "Frequency"` that sets the frequency of the transformer.
+- The model should have a parameter `final parameter Modelica.SIunits.Voltage Vnom=400 "Nominal voltage"` that sets the nominal voltage of the transformer.
+- The model should have a parameter `final parameter Modelica.SIunits.Inductance Lnom=1e-3 "Nominal inductance"` that sets the nominal inductance of the transformer.
+
+3. Variables:
+- The model should have a variable `Modelica.SIunits.Voltage Vnom_squirrel_cage "Nominal voltage of squirrel cage"` that represents the nominal voltage of the squirrel cage.
+- The model should have a variable `Modelica.SIunits.Voltage Vnom_transformer "Nominal voltage of transformer"` that represents the nominal voltage of the transformer.
+
+4. Equations:
+- The model should have an equation `Vnom_squirrel_cage = Vnom * sqrt(2)` that calculates the nominal voltage of the squirrel cage.
+- The model should have an equation `Vnom_transformer = Vnom * sqrt(2)` that calculates the nominal voltage of the transformer.
+
+5. Initialization:
+- The model should have an initialization algorithm that sets the nominal voltage of the squirrel cage and the transformer.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+Note: The model should be a test example for starting an induction machine with a squirrel cage using a transformer. The model should include the components and details as specified above. The model should be written in Modelica language and should be syntactically correct. The model should be tested and validated to ensure its correctness and functionality.

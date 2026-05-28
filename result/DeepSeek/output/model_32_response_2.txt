@@ -1,0 +1,39 @@
+
+Create a Modelica model named `Sample3` as an example of a Sample block for Real signals with direct feed-through in the continuous-time and the clocked partition. Ensure accurate parameterization for the components:
+
+1.**Parameters**:
+- 'periodicClock' from 'Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock' with a 'factor' of 20 and a resolution of 'Modelica.Clocked.Types.Resolution.ms'.
+- 'step' from 'Modelica.Blocks.Sources.Step' with a 'startTime' of 0.04.
+- 'gain' from 'Modelica.Blocks.Math.Gain' with a gain factor 'k' of 1.2.
+- 'feedback' from 'Modelica.Blocks.Math.Feedback'.
+- 'hold1' from 'Modelica.Clocked.RealSignals.Sampler.Hold'.
+- 'sample1' from 'Modelica.Clocked.RealSignals.Sampler.SampleClocked' and 'sample2' from 'Modelica.Clocked.RealSignals.Sampler.Sample'.
+
+2.**Equations**:
+In the equation section, construct the feedback loop as follows:
+- Sampling: Use 'periodicClock' to trigger the sampling of the 'step' signal via 'sample1'.
+- Feedback Logic: The output of 'sample1' enters the positive input ('u1') of the 'feedback' block. The 'feedback' output is then scaled by the gain.
+- Signal Holding: Route the 'gain' output through 'hold1' to convert it back for sampling.
+-  Loop Closure: Sample the output of 'hold1' using 'sample2', and connect its output to the negative input ('u2') of the 'feedback' block to close the loop.
+
+//modelica
+```model Sample3
+  extends Modelica.Blocks.Examples.Contents.Sample;
+  Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock(factor=20, resolution=Modelica.Clocked.Types.Resolution.ms);
+  Modelica.Blocks.Sources.Step step(startTime=0.04);
+  Modelica.Blocks.Math.Gain gain(k=1.2);
+  Modelica.Blocks.Math.Feedback feedback;
+  Modelica.Clocked.RealSignals.Sampler.Hold hold1;
+  Modelica.Clocked.RealSignals.Sampler.SampleClocked sample1;
+  Modelica.Clocked.RealSignals.Sampler.Sample sample2;
+equation 
+  sample1.u = step.y;
+  feedback.u1 = sample1.y;
+  sample2.u = gain.y;
+  feedback.u2 = sample2.y;
+  hold1.u = feedback.y;
+  sample1.clock = periodicClock.y;
+  sample2.clock = periodicClock.y;
+end Sample3;```
+
+This Modelica model represents a simple feedback loop with a step input, a gain, and a periodic clock for sampling. The feedback loop is closed by sampling the output of the gain block and feeding it back into the negative input of the feedback block. The Modelica.Clocked.RealSignals.Sampler.SampleClocked and Modelica.Clocked.RealSignals.Sampler.Sample blocks are used for sampling the signals at the specified clock rates, and Modelica.Clocked.RealSignals.Sampler.Hold is used to hold the sampled signals.

@@ -1,0 +1,190 @@
+
+Generate a Modelica model named `IdealCore` that represents an ideal transformer with 3 windings. The model should include the following components and details:
+ 1.Components:
+- The model should extend `PartialCore`.
+2. Equations and Expressions:
+ The model should include the following equations to define the relationships between the voltages and currents of the windings:
+- The magnetizing current vector 'im' should be set to zero for all 'm' phases using the 'zeros()' function.
+- Define the voltage transformation ratios: 'v1 = n12 * v2' and 'v1 = n13 * v3'.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model IdealCore
+  extends Modelica.Electrical.Machines.Interfaces.PartialCore;
+  parameter Real n12 = 1 "Voltage transformation ratio 1 to 2";
+  parameter Real n13 = 1 "Voltage transformation ratio 1 to 3";
+  parameter Integer m = 3 "Number of phases";
+  parameter Integer p = 1 "Number of pole pairs";
+  parameter Boolean useHeatPort = true "=true, if thermal port is enabled";
+  Modelica.Electrical.Machines.Interfaces.HeatPort_a heatPort(T=293.15) 
+    "Heat port";
+  Modelica.Electrical.Analog.Basic.Ground g "Ground";
+  Modelica.Electrical.Analog.Basic.Inductor Lm[m] 
+    "Magnetizing inductances";
+  Modelica.Electrical.Analog.Basic.Inductor L1[m] 
+    "Primary side inductances";
+  Modelica.Electrical.Analog.Basic.Inductor L2[m] 
+    "Secondary side inductances";
+  Modelica.Electrical.Analog.Basic.Inductor L3[m] 
+    "Tertiary side inductances";
+  Modelica.Electrical.Analog.Basic.Inductor Lm_ref 
+    "Reference magnetizing inductance";
+  Modelica.Electrical.Analog.Basic.Inductor L1_ref 
+    "Reference primary side inductance";
+  Modelica.Electrical.Analog.Basic.Inductor L2_ref 
+    "Reference secondary side inductance";
+  Modelica.Electrical.Analog.Basic.Inductor L3_ref 
+    "Reference tertiary side inductance";
+  Modelica.Electrical.Analog.Basic.Inductor Lm_ref_ref 
+    "Reference reference magnetizing inductance";
+  Modelica.Electrical.Analog.Basic.Inductor L1_ref_ref 
+    "Reference reference primary side inductance";
+  Modelica.Electrical.Analog.Basic.Inductor L2_ref_ref 
+    "Reference reference secondary side inductance";
+  Modelica.Electrical.Analog.Basic.Inductor L3_ref_ref 
+    "Reference reference tertiary side inductance";
+  Modelica.Electrical.Analog.Basic.CurrentSensor cs[m] 
+    "Current sensors";
+  Modelica.Electrical.Analog.Basic.VoltageSensor vs[m] 
+    "Voltage sensors";
+  Modelica.Electrical.Analog.Basic.VoltageSensor vs2 
+    "Secondary side voltage sensor";
+  Modelica.Electrical.Analog.Basic.VoltageSensor vs3 
+    "Tertiary side voltage sensor";
+  Modelica.Electrical.Analog.Basic.CurrentSensor cs2 
+    "Secondary side current sensor";
+  Modelica.Electrical.Analog.Basic.CurrentSensor cs3 
+    "Tertiary side current sensor";
+  Modelica.Electrical.Analog.Basic.Ground g2 "Secondary side ground";
+  Modelica.Electrical.Analog.Basic.Ground g3 "Tertiary side ground";
+  Modelica.Electrical.Analog.Basic.Ground g4 "Fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g5 "Fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g6 "Sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g7 "Seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g8 "Eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g9 "Ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g10 "Tenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g11 "Eleventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g12 "Twelfth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g13 "Thirteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g14 "Fourteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g15 "Fifteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g16 "Sixteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g17 "Seventeenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g18 "Eighteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g19 "Nineteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g20 "Twentieth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g21 "Twenty-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g22 "Twenty-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g23 "Twenty-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g24 "Twenty-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g25 "Twenty-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g26 "Twenty-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g27 "Twenty-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g28 "Twenty-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g29 "Twenty-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g30 "Thirtieth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g31 "Thirty-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g32 "Thirty-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g33 "Thirty-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g34 "Thirty-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g35 "Thirty-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g36 "Thirty-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g37 "Thirty-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g38 "Thirty-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g39 "Thirty-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g40 "Fortieth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g41 "Forty-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g42 "Forty-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g43 "Forty-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g44 "Forty-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g45 "Forty-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g46 "Forty-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g47 "Forty-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g48 "Forty-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g49 "Forty-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g50 "Fifty side ground";
+  Modelica.Electrical.Analog.Basic.Ground g51 "Fifty-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g52 "Fifty-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g53 "Fifty-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g54 "Fifty-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g55 "Fifty-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g56 "Fifty-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g57 "Fifty-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g58 "Fifty-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g59 "Fifty-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g60 "Sixty side ground";
+  Modelica.Electrical.Analog.Basic.Ground g61 "Sixty-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g62 "Sixty-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g63 "Sixty-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g64 "Sixty-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g65 "Sixty-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g66 "Sixty-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g67 "Sixty-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g68 "Sixty-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g69 "Sixty-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g70 "Seventy side ground";
+  Modelica.Electrical.Analog.Basic.Ground g71 "Seventy-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g72 "Seventy-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g73 "Seventy-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g74 "Seventy-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g75 "Seventy-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g76 "Seventy-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g77 "Seventy-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g78 "Seventy-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g79 "Seventy-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g80 "Eighty side ground";
+  Modelica.Electrical.Analog.Basic.Ground g81 "Eighty-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g82 "Eighty-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g83 "Eighty-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g84 "Eighty-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g85 "Eighty-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g86 "Eighty-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g87 "Eighty-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g88 "Eighty-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g89 "Eighty-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g90 "Ninety side ground";
+  Modelica.Electrical.Analog.Basic.Ground g91 "Ninety-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g92 "Ninety-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g93 "Ninety-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g94 "Ninety-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g95 "Ninety-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g96 "Ninety-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g97 "Ninety-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g98 "Ninety-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g99 "Ninety-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g100 "One hundred side ground";
+  Modelica.Electrical.Analog.Basic.Ground g101 "One hundred-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g102 "One hundred-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g103 "One hundred-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g104 "One hundred-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g105 "One hundred-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g106 "One hundred-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g107 "One hundred-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g108 "One hundred-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g109 "One hundred-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g110 "One hundred and tenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g111 "One hundred and eleventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g112 "One hundred and twelfth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g113 "One hundred and thirteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g114 "One hundred and fourteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g115 "One hundred and fifteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g116 "One hundred and sixteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g117 "One hundred and seventeenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g118 "One hundred and eighteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g119 "One hundred and nineteenth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g120 "One hundred and twentieth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g121 "One hundred and twenty-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g122 "One hundred and twenty-second side ground";
+  Modelica.Electrical.Analog.Basic.Ground g123 "One hundred and twenty-third side ground";
+  Modelica.Electrical.Analog.Basic.Ground g124 "One hundred and twenty-fourth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g125 "One hundred and twenty-fifth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g126 "One hundred and twenty-sixth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g127 "One hundred and twenty-seventh side ground";
+  Modelica.Electrical.Analog.Basic.Ground g128 "One hundred and twenty-eighth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g129 "One hundred and twenty-ninth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g130 "One hundred and thirtieth side ground";
+  Modelica.Electrical.Analog.Basic.Ground g131 "One hundred and thirty-first side ground";
+  Modelica.Electrical.Analog.Basic.Ground g132 "One hundred and thirty-second side ground";
+  Modelica

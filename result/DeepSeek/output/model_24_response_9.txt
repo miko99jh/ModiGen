@@ -1,0 +1,13 @@
+
+Generate a Modelica function named `largerTimeConstant`. This function calculates the larger time constant in a polynomial representing a voltage characteristic in a power grid. The polynomial is described by (1 + sT1)(1 + sT2) = 1 + as + bs^2 with T1 > T2. The input parameters are 'a' and 'b', both of type Real, where 'a' represents the coefficient of s and 'b' represents the coefficient of s^2. The output parameter of the function is a Real type variable 'T', which is the larger time constant T1. The specific formula used in the algorithm part is T := (a + sqrt(abs(a^2-4*b)))/2.
+
+//modelica
+```function largerTimeConstant
+  input Real a "Coefficient of s";
+  input Real b "Coefficient of s^2";
+  output Real T "Larger time constant";
+algorithm 
+  T := (a + sqrt(abs(a^2-4*b)))/2;
+end largerTimeConstant;```
+
+This function can be used in a Modelica model to calculate the larger time constant of a voltage characteristic in a power grid.

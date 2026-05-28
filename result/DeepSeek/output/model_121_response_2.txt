@@ -1,0 +1,31 @@
+
+Generate a Modelica model for a thermal control system with on-off control variation. The model should be compatible with Modelica version 3.2.3. The model, named 'OnOffVariant', should extend from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel' and should include two redeclared and replaceable components: an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' named 'actuator' with 'heating_capacity=500' and an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' named 'controller' with a 'setpoint=300'.
+
+//modelica
+```model OnOffVariant
+  extends ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel;
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator actuator(
+    final heating_capacity = 500);
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl controller(
+    final setpoint = 300);
+equation 
+  connect(controller.y, actuator.u);
+  connect(controller.y, plant.u);
+  connect(actuator.u, plant.u);
+  connect(controller.y, sensor.u);
+  connect(actuator.u, sensor.u);
+end OnOffVariant;```
+
+The model should include the following components:
+
+1. An 'OnOffActuator' component named 'actuator' with a 'heating_capacity' parameter set to 500.
+2. An 'OnOffControl' component named 'controller' with a'setpoint' parameter set to 300.
+3. Connections between the 'controller' and 'actuator' components.
+4. Connections between the 'controller' and 'plant' component.
+5. Connections between the 'actuator' and 'plant' component.
+6. Connections between the 'controller' and'sensor' component.
+7. Connections between the 'actuator' and'sensor' component.
+
+The model should be compatible with Modelica version 3.2.3 and should extend from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel'.
+
+Please note that the 'plant','sensor', and 'controller' components are not defined in the provided text, so you will need to assume their existence and functionality based on their typical use in thermal control systems.

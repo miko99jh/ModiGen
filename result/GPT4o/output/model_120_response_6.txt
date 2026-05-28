@@ -1,0 +1,35 @@
+Certainly! Below is a Modelica model named `PID_Controller` that extends the `ModelicaByExample.Architectures.SensorComparison.Interfaces.Controller` and includes the specified parameters and configurations.
+
+```modelica
+model PID_Controller
+  extends ModelicaByExample.Architectures.SensorComparison.Interfaces.Controller;
+
+  // Parameters
+  parameter Real k = 1 "Gain of controller";
+  parameter Modelica.SIunits.Time Ti = 1 "Time constant of Integrator block";
+  parameter Modelica.SIunits.Time Td = 0 "Time constant of Derivative block";
+  parameter Real yMax = 10 "Upper limit of output";
+
+protected 
+  // PID block
+  Modelica.Blocks.Continuous.LimPID PID(
+    k = k,
+    Ti = Ti,
+    Td = Td,
+    yMax = yMax
+  );
+
+equation 
+  // Connect the setpoint to the PID block's setpoint input
+  connect(setpoint, PID.u_s);
+
+  // Connect the measured signal to the PID block's measurement input
+  connect(measurement, PID.u_m);
+
+  // Connect the PID block's output to the command interface
+  connect(PID.y, command);
+
+end PID_Controller;
+```
+
+This model defines a PID controller with parameters for gain, integrator time constant, derivative time constant, and an upper limit for the output. The `LimPID` block is used to implement the PID control logic, and the necessary signal connections are established in the `equation` section.

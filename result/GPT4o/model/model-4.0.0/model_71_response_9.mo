@@ -1,0 +1,30 @@
+model Yd01
+ extends Modelica.Electrical.Machines.Interfaces.PartialBasicTransformer(final VectorGroup="Yd01");
+
+  parameter Integer m = 3 "Number of phases";
+
+  // Primary star connection
+  Modelica.Electrical.Polyphase.Basic.Star star1(final m=m);
+  Modelica.Electrical.Analog.Interfaces.NegativePin starpoint1;
+
+  // Secondary delta connection
+  Modelica.Electrical.Polyphase.Basic.Delta Delta2(final m=m);
+
+  // Connections
+equation
+  // Primary Star & Neutral
+  connect(star1.pin_n, starpoint1);
+
+  // Primary Winding Path
+  connect(l1sigma.plug_n, core.plug_p1);
+  connect(core.plug_n1, star1.plug_p);
+
+  // Vector Group Bridge (Yd1 phase shift logic)
+  connect(core.plug_n2, core.plug_p3);
+
+  // Secondary Delta & Leakage
+  connect(core.plug_p2, l2sigma.plug_n);
+  connect(core.plug_n3, Delta2.plug_n);
+  connect(Delta2.plug_p, r2.plug_p);
+
+end Yd01;

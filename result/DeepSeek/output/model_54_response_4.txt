@@ -1,0 +1,217 @@
+
+Generate a Modelica model named `Subtracter` that represents an inverting subtracter circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.OpAmps` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 5) representing the amplitude of the input voltage
+- `f` (Modelica.Units.SI.Frequency, default value: 10) representing the frequency of the input voltage.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn1` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = f`.
+- `vIn2` (Modelica.Electrical.Analog.Sources.ConstantVoltage) to generate a constant input voltage with parameter `V = Vin`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `feedback` (Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback) to implement the feedback loop, with the initial current `i` of `p1_2` set to 0.
+
+The following connections should be made:
+- Dual-Source Integration: Route the dynamic signal 'vIn1' and the static signal 'vIn2' into the 'feedback' network's input ports 'p1' and 'p1_2' respectively.
+- Reference & Return: Establish a common reference by tying the return pins ('.n') of both sources ('vIn1', 'vIn2') and the feedback input ('n1') to the 'ground.p'.
+- Output Differential: Link the output stage of the feedback circuit ('p2', 'n2') to the 'vOut' sensor. Note: Ensure the polarity is set such that 'p2' connects to the sensor's negative terminal.
+
+The model should accurately represent the behavior of an inverting subtracter circuit.
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn2.p, feedback.p1_2) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn1.n, vIn2.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.n1, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.p2, vOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn2.p, feedback.p1_2) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn1.n, vIn2.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.n1, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.p2, vOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn2.p, feedback.p1_2) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn1.n, vIn2.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.n1, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.p2, vOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Subtracter;
+```Generate a Modelica model named `Resistor` that represents a simple resistor circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples` package and extends the `Modelica.Icons.Example` class.
+
+The model should have the following parameters:
+- `R` (Modelica.SIunits.Resistance, default value: 1000) representing the resistance of the resistor.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = 5` and `f = 100`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `iOut` (Modelica.Electrical.Analog.Sensors.CurrentSensor) to measure the output current.
+- `resistor` (Modelica.Electrical.Analog.Basic.Resistor) to represent the resistor with parameter `R = R`.
+
+The following connections should be made:
+- Connect the positive terminal of `vIn` to the positive terminal of `resistor`.
+- Connect the negative terminal of `vIn` to the positive terminal of `vOut` and the negative terminal of `iOut`.
+- Connect the negative terminal of `resistor` to the `ground.p`.
+- Connect the positive terminal of `vOut` to the positive terminal of `iOut`.
+
+The model should accurately represent the behavior of a simple resistor circuit.
+
+//modelica
+```model Resistor
+  extends Modelica.Icons.Example;
+  parameter Modelica.SIunits.Resistance R=1000 "Resistance of the resistor";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=5, f=100);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Sensors.CurrentSensor iOut;
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=R);
+equation 
+  connect(vIn.p, resistor.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, vOut.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, iOut.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(resistor.n, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vOut.n, iOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Resistor;
+```
+
+//modelica
+```model Resistor
+  extends Modelica.Icons.Example;
+  parameter Modelica.SIunits.Resistance R=1000 "Resistance of the resistor";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=5, f=100);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Sensors.CurrentSensor iOut;
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=R);
+equation 
+  connect(vIn.p, resistor.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, vOut.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, iOut.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(resistor.n, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vOut.n, iOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Resistor;
+```
+
+//modelica
+```model Resistor
+  extends Modelica.Icons.Example;
+  parameter Modelica.SIunits.Resistance R=1000 "Resistance of the resistor";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=5, f=100);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Sensors.CurrentSensor iOut;
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=R);
+equation 
+  connect(vIn.p, resistor.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, vOut.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, iOut.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(resistor.n, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vOut.n, iOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Resistor;
+```Generate a Modelica model named `OpAmp` that represents an operational amplifier circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples` package and extends the `Modelica.Icons.Example` class.
+
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 5) representing the amplitude of the input voltage.
+- `f` (Modelica.Units.SI.Frequency, default value: 10) representing the frequency of the input voltage.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = f`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `opAmp` (Modelica.Electrical.Analog.Basic.OpAmp) to represent the operational amplifier.
+
+The following connections should be made:
+- Connect the positive terminal of `vIn` to the non-inverting input of `opAmp`.
+- Connect the negative terminal of `vIn` to the inverting input of `opAmp`.
+- Connect the output of `opAmp` to `vOut`.
+- Connect the negative terminal of `opAmp` to the `ground.p`.
+
+The model should accurately represent the behavior of an operational amplifier circuit.
+
+//modelica
+```model OpAmp
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Basic.OpAmp opAmp;
+equation 
+  connect(vIn.p, opAmp.nonInv) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, opAmp.inv) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(opAmp.out, vOut.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(opAmp.n, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end OpAmp;
+```
+
+//modelica
+```model OpAmp
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Basic.OpAmp opAmp;
+equation 
+  connect(vIn.p, opAmp.nonInv) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, opAmp.inv) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(opAmp.out, vOut.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(opAmp.n, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end OpAmp;
+```
+
+//modelica
+```model OpAmp
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Basic.OpAmp opAmp;
+equation 
+  connect(vIn.p, opAmp.nonInv) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn.n, opAmp.inv) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(opAmp.

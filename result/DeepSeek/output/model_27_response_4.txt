@@ -1,0 +1,175 @@
+
+Create a Modelica block named `EventClock`. The purpose of the model is to generate a clock signal when the Boolean input changes from false to true. The model should extend `Modelica.Clocked.ClockSignals.Interfaces.PartialClock`. The input parameter is a Boolean signal 'u' of type `Modelica.Blocks.Interfaces.BooleanInput`. The output is a clock signal 'y'. In the equation section, generate the output clock 'y' based on the events in the Boolean signal 'u'. If the 'useSolver' flag is enabled, the clock should be instantiated as a nested clock associated with the specified 'solverMethod'. Otherwise, define 'y' as a standard event clock triggered directly by 'u'.
+
+//modelica
+```block EventClock extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock
+  parameter Modelica.Blocks.Interfaces.BooleanInput u(start=false) "Boolean input";
+  Modelica.Blocks.Interfaces.Clock y(redeclare parameter Boolean start=false) "Clock output";
+  parameter Boolean useSolver=false "Use nested solver";
+  parameter Modelica.Blocks.Interfaces.Types.SolverMethod solverMethod=Modelica.Blocks.Interfaces.Types.SolverMethod.FixedStep "Solver method";
+equation 
+  if useSolver then
+    Modelica.Blocks.Continuous.NestedClock(clock=y, solverMethod=solverMethod) annotation(Placement(transformation(extent={{-10,-10},{-10,-10}})));
+  else
+    y = Modelica.Blocks.Interfaces.Clock(when=u and not Modelica.Blocks.Interfaces.Clock(when=u.lastEvent));
+  end if;
+end EventClock;
+```
+
+This block can be used in a Modelica model to generate a clock signal that is triggered by a Boolean input signal. The clock signal can be used to control the timing of other blocks in the model.
+
+Please note that the 'useSolver' parameter is optional and can be set to false by default. If it is set to true, the clock will be instantiated as a nested clock associated with the specified'solverMethod'. If it is set to false, the clock will be defined as a standard event clock triggered directly by the Boolean input signal 'u'.
+
+The'solverMethod' parameter is also optional and can be used when 'useSolver' is set to true. It specifies the solver method to be used for the nested clock.
+
+The 'y' output signal is a clock signal that is true when the Boolean input 'u' changes from false to true and false otherwise.
+
+The 'u.lastEvent' is used to detect the last event of the Boolean input 'u'. This is necessary to ensure that the clock signal 'y' is only true for one time step when the Boolean input 'u' changes from false to true.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Continuous.NestedClock' is a built-in Modelica block that can be used to create a nested clock signal. It has a 'clock' parameter that specifies the clock signal to be nested and a'solverMethod' parameter that specifies the solver method to be used.
+
+The 'Modelica.Blocks.Interfaces.Types.SolverMethod' is a built-in Modelica type that defines the available solver methods.
+
+The 'Modelica.Blocks.Interfaces.BooleanInput' is a built-in Modelica type that represents a Boolean input signal. It has a single Boolean parameter'start' that specifies the initial value of the Boolean input signal.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type that represents a clock signal. It has a single Boolean parameter 'when' that is true when the clock signal is active.
+
+The 'Modelica.Blocks.Interfaces.Clock' is a built-in Modelica type

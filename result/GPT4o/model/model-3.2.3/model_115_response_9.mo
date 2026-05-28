@@ -1,0 +1,14 @@
+model ConventionOnOffActuator
+ extends ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator;
+
+  parameter Real heating_capacity "Heating capacity of the actuator";
+
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater(
+    Q_flow=command.y) "Heat flow source representing the actuator";
+
+  Modelica.Blocks.Math.BooleanToReal command(
+    realTrue=heating_capacity, realFalse=0) "Converts boolean control signal to real heat flow";
+
+equation
+  connect(heater.port, port) "Connect heater's thermal port to external furnace interface";
+end ConventionOnOffActuator;

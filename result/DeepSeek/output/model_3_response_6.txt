@@ -1,0 +1,25 @@
+
+Generate a Modelica block named `SignalRanker` that ranks output signals such that the output signals are ordered in descending order (y[i] >= y[i+1]). The block should extend the `Modelica.Blocks.Interfaces.MIMO` interface, ensuring that the number of outputs (nout) matches the number of inputs (nin). Use the `Modelica.Math.Vectors.sort` function to sort the input vector (u) in descending order with the 'ascending' parameter set to false.
+
+//modelica
+```block SignalRanker extends Modelica.Blocks.Interfaces.MIMO;
+  parameter Integer nin=size(u, 2);
+  parameter Integer nout=nin;
+  parameter Integer[nin] rank=sort([1:nin], false);
+  output Real y[:, nin](each final min=0, each final max=1) = 
+    u[:, rank];
+end SignalRanker;```
+
+In this model, the `SignalRanker` block sorts the input signals in descending order based on their magnitude. The sorted signals are then outputted in the same order. The `Modelica.Math.Vectors.sort` function is used to sort the input vector (u) in descending order. The 'ascending' parameter is set to false to ensure the sorting is done in descending order. The sorted input vector is then used to index the output vector (y), effectively reordering the output signals in descending order.
+
+The `final min=0` and `final max=1` annotations ensure that the output signals are within the range of 0 to 1. This is a common practice in Modelica to set bounds on the output signals.
+
+The `each` keyword is used to apply the bounds to each element of the output vector. This means that each element of the output vector (y) is constrained to be between 0 and 1.
+
+The `size` function is used to determine the number of inputs (nin) and outputs (nout) based on the size of the input vector (u). This ensures that the number of inputs and outputs match.
+
+The `parameter Integer[nin] rank=sort([1:nin], false)` line creates a parameter array (rank) that holds the indices of the sorted input signals. This array is used to index the input vector (u) and reorder the output signals.
+
+The `output Real y[:, nin](each final min=0, each final max=1) = u[:, rank];` line creates the output vector (y) based on the sorted input vector (u). The output vector is reordered in descending order based on the indices in the rank array. The bounds of the output signals are also enforced.
+
+The `SignalRanker` block can be used in a Modelica model to sort the output signals in descending order based on their magnitude.

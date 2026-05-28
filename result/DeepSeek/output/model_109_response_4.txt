@@ -1,0 +1,34 @@
+
+Create a Modelica model named `IndependentSampling`. The model includes real type variables 'x', 'y', 'e' and 'next_time'. This model specifically demonstrates the technique of independent sampling where two variables, 'x' and 'y', are sampled at 10Hz using different methods. The model should compute the error 'e' as the difference between 'x' and 'y'. Additionally, 'x' is a direct sample, manage the sampling rate for 'y' using a variable 'next_time' which updates every 0.1 seconds based on the previous 'next_time', when {initial(), time>pre(next_time)} then 'y' sample. This model is crucial for systems that require synchronization of separate processes that are sampled at the same rate but initiated differently.
+
+//modelica
+```model IndependentSampling
+  parameter Real sampleRate = 10 "Sampling rate of x and y";
+  Real x(start=0) "Variable sampled at a fixed rate";
+  Real y(start=0) "Variable sampled at a different rate";
+  Real e "Difference between x and y";
+  Real next_time "Time for the next sample of y";
+initial equation
+  next_time = time;
+equation
+  // Sampling of x
+  when sampleRate*pre(next_time) <= time then
+    x = x + 1;
+  end when;
+
+  // Sampling of y
+  when time > pre(next_time) then
+    y = y + 1;
+    next_time = time + 0.1;
+  end when;
+
+  // Computing the error
+  e = x - y;
+end IndependentSampling;
+```
+
+This model is a good example of how to handle independent sampling in Modelica. The 'when' clause is used to conditionally update the variables 'x' and 'y' based on the time. The 'e' variable is updated every time step to reflect the difference between 'x' and 'y'. The 'next_time' variable is used to schedule the next update of 'y' at a rate of 10Hz.
+
+Please note that this model assumes that the simulation time step is smaller than the reciprocal of the sample rate. If this is not the case, the model may behave incorrectly.
+
+This model can be used as a starting point for more complex models that require independent sampling of variables.

@@ -1,0 +1,51 @@
+To create a Modelica block named `EventClock` that generates a clock signal based on changes in a Boolean input, you can follow the structure below. This block extends `Modelica.Clocked.ClockSignals.Interfaces.PartialClock` and uses a Boolean input to trigger the clock signal. The implementation considers the `useSolver` flag to determine how the clock is instantiated.
+
+```modelica
+block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+
+  parameter Boolean useSolver = false "Flag to use solver-based clock";
+  parameter String solverMethod = "default" "Solver method for nested clock";
+
+  Modelica.Blocks.Interfaces.BooleanInput u "Boolean input signal";
+  output Modelica.Clocked.ClockSignals.Clock y "Output clock signal";
+
+protected 
+  Boolean previous_u = false "Stores the previous value of u";
+
+equation
+  // Detect rising edge of the Boolean input signal
+  when u and not previous_u then
+    if useSolver then
+      // Instantiate nested clock with solver method
+      y = Modelica.Clocked.ClockSignals.Clock(solverMethod);
+    else
+      // Directly trigger event clock
+      y = Modelica.Clocked.ClockSignals.Clock();
+    end if;
+  end when;
+
+  // Update previous_u at each time step
+  previous_u = u;
+end EventClock;
+```
+
+### Explanation:
+- **Parameters:**
+  - `useSolver`: A Boolean parameter to decide whether to use a solver-based nested clock.
+  - `solverMethod`: A string parameter specifying the solver method for the nested clock.
+
+- **Inputs/Outputs:**
+  - `u`: A Boolean input signal that triggers the clock.
+  - `y`: The output clock signal.
+
+- **Protected Variables:**
+  - `previous_u`: A Boolean variable to store the previous value of `u` for edge detection.
+
+- **Equations:**
+  - The `when` clause detects a rising edge in the Boolean input `u` (i.e., when `u` changes from `false` to `true`).
+  - If `useSolver` is `true`, a nested clock is instantiated using the specified `solverMethod`.
+  - If `useSolver` is `false`, a standard event clock is triggered directly by the change in `u`.
+  - The `previous_u` variable is updated at each time step to facilitate edge detection.
+
+This block effectively generates a clock signal based on the specified conditions and parameters.

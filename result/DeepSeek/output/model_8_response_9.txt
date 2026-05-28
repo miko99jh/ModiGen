@@ -1,0 +1,46 @@
+
+Generate a Modelica model named `FirstOrder` to simulate a first order process, defined by the transfer function mu/(1+tau*s). It extends from a base block `IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock`. The model should include real type parameters for the time constant 'tau' with value 2, the gain 'mu' with value 1, and the output 'y_start' with value 0. The initial equations is initial output 'y' equals to 'y_start'. The equations should describe the dynamic behavior where the derivative of output 'y' scaled with 'tau' plus the output itself equals the input 'u' multiplied by 'mu'.
+
+//modelica
+```model FirstOrder
+  extends IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock;
+  parameter Real tau=2 "Time constant";
+  parameter Real mu=1 "Gain";
+  parameter Real y_start=0 "Initial output";
+  Real y(start=y_start) "Output";
+equation
+  der(y) = (mu/tau)*u - y/tau;
+  y_out = y;
+end FirstOrder;
+```
+
+The model should be saved in a file named `FirstOrder.mo` in the directory `models/FirstOrder`.
+
+The model should be compilable and runnable in the Modelica environment.
+
+The model should be tested by creating a new Modelica model named `TestFirstOrder` in the directory `models/TestFirstOrder`. This model should instantiate the `FirstOrder` model and connect the input 'u' to a constant input source with value 1, and the output 'y_out' to a sink. The simulation should be run for 10 seconds with a step size of 0.01 seconds. The simulation results should be plotted in a graph.
+
+//modelica
+```model TestFirstOrder
+  import IndustrialControlSystems.LinearSystems.Interfaces.Sources.Constant;
+  import IndustrialControlSystems.LinearSystems.Interfaces.Sinks.Sink;
+  FirstOrder firstOrder;
+equation
+  connect(firstOrder.u, Constant(k=1).output);
+  connect(firstOrder.y_out, Sink.input);
+end TestFirstOrder;
+```
+
+The simulation results should be saved in a file named `TestFirstOrder.mat`.
+
+The Modelica code should be formatted according to the Modelica Coding Standard.
+
+The Modelica code should be well-documented with comments explaining the purpose of each parameter and variable.
+
+The Modelica code should be saved in a file named `FirstOrder.mo` and `TestFirstOrder.mo` in the directory `models/FirstOrder` and `models/TestFirstOrder` respectively.
+
+The Modelica code should be compilable and runnable in the Modelica environment.
+
+Please note that the Modelica code provided is a template and should be filled in with the appropriate values and connections for the specific first order process being modeled.
+
+Note: The Modelica code provided is a template and should be filled in with the appropriate values and connections for the specific first order process being modeled.

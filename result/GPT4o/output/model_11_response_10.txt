@@ -1,0 +1,27 @@
+Certainly! Below is a Modelica model for the `GreatEq` component that performs a 'greater than or equal to' comparison between two integer inputs, extending from the specified interface:
+
+```modelica
+model GreatEq
+  extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+
+  parameter Real Ts = 0 "Sample time parameter";
+
+equation
+  if Ts > 0 then
+    when sample(0, Ts) then
+      y = u1 >= u2;
+    end when;
+  else
+    y = u1 >= u2;
+  end if;
+end GreatEq;
+```
+
+### Explanation:
+- **Extends**: The model extends from `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison`, which means it inherits the inputs `u1`, `u2`, and the output `y`.
+- **Parameter `Ts`**: This parameter determines the sample time. If `Ts` is greater than 0, the comparison is triggered at regular intervals defined by `Ts`. If `Ts` is 0 or less, the comparison is continuous.
+- **Equation Section**: 
+  - If `Ts > 0`, the `when sample(0, Ts)` construct is used to perform the comparison at regular intervals.
+  - If `Ts <= 0`, the comparison is continuous, and `y` is updated whenever `u1` or `u2` changes.
+
+This model allows for both continuous and discrete-time operation based on the value of `Ts`.

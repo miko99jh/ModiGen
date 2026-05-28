@@ -1,0 +1,25 @@
+```modelica
+model PQBus
+  extends PowerGrids.Icons.Load(
+    PIcon = port.P,
+    QIcon = port.Q,
+    PPuIcon = port.PPu,
+    QPuIcon = port.QPu);
+
+  extends PowerGrids.Electrical.BaseClasses.SolutionChecking(
+    VPuCheck = port.VPu,
+    IPuCheck = port.IPu);
+
+  extends PowerGrids.Electrical.BaseClasses.OnePortACPF(
+    final portVariablesPhases = true);
+
+  parameter PowerGrids.Types.ActivePower P = SNom "Active power entering the bus";
+  parameter PowerGrids.Types.ReactivePower Q = 0 "Reactive power entering the bus";
+
+equation
+  port.P = P;
+  port.Q = Q;
+end PQBus;
+```
+
+This Modelica model defines a `PQBus` within a power grid system, incorporating the necessary inheritance and interfaces to accurately represent the active and reactive power entering the bus. The model uses parameters to specify the power values and equations to ensure proper assignment and conservation of these values within the system.

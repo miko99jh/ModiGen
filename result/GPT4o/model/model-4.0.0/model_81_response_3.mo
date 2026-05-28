@@ -1,0 +1,22 @@
+model PlugToPins_p
+ parameter Integer m(final min=1) = 3; // Number of phases
+
+  // Positive plug interface for polyphase systems
+  Modelica.Electrical.Polyphase.Interfaces.PositivePlug plug_p(final m=m);
+
+  // Array of positive pins for analog connections
+  Modelica.Electrical.Analog.Interfaces.PositivePin pin_p[m];
+
+equation
+  // Equate the voltage vector of the pins in the analog array 'pin_p'
+  // with the voltage vector 'v' of the internal pins 'pin' within the polyphase plug 'plug_p'
+  for i in 1:m loop
+    pin_p[i].v = plug_p.pin[i].v;
+  end for;
+
+  // Define the current flow such that the current leaving the polyphase plug's internal pins
+  // is the negative of the current entering the analog pin array 'pin_p'
+  for i in 1:m loop
+    pin_p[i].i + plug_p.pin[i].i = 0;
+  end for;
+end PlugToPins_p;

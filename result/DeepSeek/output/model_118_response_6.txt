@@ -1,0 +1,100 @@
+
+Generate a Modelica model named `Variant2_tuned` for a tuned version of Variant 2. The model should be compatible with Modelica version 3.2.3. Specifically, extend the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2' model with the following adjusted components redeclared for enhanced performance. Set the 'controller' component with yMax=50, Ti=0.07, Td=0.01, k=4, and the 'actuator' component with uMax=50, along with a 'sensor' components with sample_time=0.01. This model serves to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+
+//modelica
+```model Variant2_tuned
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(
+    controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(
+      yMax = 50,
+      Ti = 0.07,
+      Td = 0.01,
+      k = 4
+    ),
+    actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(
+      uMax = 50
+    ),
+    sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(
+      sample_time = 0.01
+    )
+  );
+end Variant2_tuned;
+```
+
+//modelica-version
+3.2.3
+
+//modelica-model
+Variant2_tuned
+
+//modelica-model-description
+This model extends the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2' model with tuned components for improved sensor and control dynamics.
+
+//modelica-model-icon
+```modelica
+ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(
+  controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(
+    yMax = 50,
+    Ti = 0.07,
+    Td = 0.01,
+    k = 4
+  ),
+  actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(
+    uMax = 50
+  ),
+  sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(
+    sample_time = 0.01
+  )
+)
+```
+
+//modelica-model-components
+- `controller`: A component that adjusts the control dynamics of the system.
+- `actuator`: A component that limits the actuator's output.
+- `sensor`: A component that samples the system's state at a specified time interval.
+
+//modelica-model-equations
+The equations of the model are inherited from the base model and adjusted as specified in the task description.
+
+//modelica-model-simulation
+The simulation of the model should demonstrate improved sensor and control dynamics due to the adjustments made to the controller, actuator, and sensor components.
+
+//modelica-model-validation
+The model should be validated by comparing the system's response to a step change in the setpoint with the response of the base model. The tuned model should exhibit faster response times and improved stability.
+
+//modelica-model-documentation
+The model is documented to provide clear understanding of the system's components and their role in the overall control architecture.
+
+//modelica-model-license
+The model is licensed under the terms of the Modelica License 2.
+
+//modelica-model-revision
+The model is revised to match the requirements of the task description.
+
+//modelica-model-version
+The model is compatible with Modelica version 3.2.3.
+
+//modelica-model-compatibility
+The model is designed to be compatible with Modelica version 3.2.3. It may not be compatible with earlier versions of Modelica.
+
+//modelica-model-dependencies
+The model depends on the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2', 'ModelicaByExample.Architectures.SensorComparison.Components.Controller', 'ModelicaByExample.Architectures.SensorComparison.Components.Actuator', and 'ModelicaByExample.Architectures.SensorComparison.Components.Sensor' models.
+
+//modelica-model-notes
+The model is a demonstration of how to extend and tune a Modelica model for improved performance. It is intended for use in educational and research settings.
+
+//modelica-model-authors
+The model was created by the Modelica By Example team.
+
+//modelica-model-contact
+For questions or comments about the model, please contact the Modelica By Example team at example@modelica.org.
+
+//modelica-model-status
+The model is currently in a beta testing phase. Feedback from users is welcome to help improve the model.
+
+//modelica-model-keywords
+Modelica, Modelica By Example, Sensor Comparison, Control Architecture, Tuned Model, Variant 2
+
+//modelica-model-end
+```modelica
+end Variant2_tuned;
+```

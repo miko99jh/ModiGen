@@ -1,0 +1,27 @@
+
+Generate a Modelica model that represents an example of a SuperSample block for Integer signals named `SuperSample`. The model should extend `Modelica.Icons.Example` and use the following components: 
+1. `Modelica.Clocked.IntegerSignals.Sampler.SampleClocked sample1` for sampling clocked integer signals.
+2. `Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock` with parameters `factor=20` and `resolution=Modelica.Clocked.Types.Resolution.ms` (milliseconds).
+3. `Modelica.Clocked.IntegerSignals.Sampler.SuperSample superSample1` with parameters `inferFactor=false` and `factor=3` for supersampling.
+4. `Modelica.Blocks.Sources.IntegerTable table` to provide integer values as a table, with the data `table=[0,1; 0.05,2; 0.1,0; 0.15,-1; 0.2,3]`.
+
+In the equation section, establish the following topology:
+- Clocking Logic: Use the 'periodicClock' to provide the timing (sampling clock) for the 'sample1' block.
+- Data Path: Sample the integer values provided by the 'table' using 'sample1'.
+- Signal Processing: Pass the resulting sampled integer signal into the 'superSample1' block to increase the sampling rate by the specified factor.
+
+//modelica
+```model SuperSample
+  extends Modelica.Icons.Example;
+  Modelica.Clocked.IntegerSignals.Sampler.SampleClocked sample1;
+  Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock(factor=20, resolution=Modelica.Clocked.Types.Resolution.ms);
+  Modelica.Clocked.IntegerSignals.Sampler.SuperSample superSample1(inferFactor=false, factor=3);
+  Modelica.Blocks.Sources.IntegerTable table(table=[0,1; 0.05,2; 0.1,0; 0.15,-1; 0.2,3]);
+equation 
+  connect(periodicClock.y, sample1.clock);
+  connect(table.y, sample1.u);
+  connect(sample1.y, superSample1.u);
+end SuperSample;
+```
+
+This model should be a complete example of how to use the components to create a SuperSample block for Integer signals.

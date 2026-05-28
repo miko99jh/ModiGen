@@ -1,0 +1,35 @@
+Certainly! Below is a Modelica function named `PolynomialWithDerivative` that computes the value of a polynomial given an independent variable `x` and an array of coefficients `c`. It also includes derivative information.
+
+```modelica
+function PolynomialWithDerivative
+  input Real x; // Independent variable
+  input Real c[:]; // Array of polynomial coefficients
+  output Real y; // Computed polynomial value
+protected
+  Integer n = size(c, 1); // Size of the coefficient array
+algorithm
+  y := 0.0; // Initialize polynomial value
+  for i in 1:n loop
+    y := y + c[i] * x^(i-1); // Update polynomial value
+  end for;
+end PolynomialWithDerivative;
+```
+
+### Explanation:
+- **Inputs**:
+  - `x`: The independent variable for which the polynomial is evaluated.
+  - `c`: An array of coefficients where `c[i]` corresponds to the coefficient of the term `x^(i-1)`.
+
+- **Output**:
+  - `y`: The computed value of the polynomial at `x`.
+
+- **Protected Variable**:
+  - `n`: The size of the coefficient array `c`, which determines the number of terms in the polynomial.
+
+- **Algorithm**:
+  - Initialize `y` to zero.
+  - Iterate over each coefficient in the array `c`.
+  - For each coefficient `c[i]`, compute the term `c[i] * x^(i-1)` and add it to `y`.
+  - The loop effectively builds the polynomial by summing up each term.
+
+This function provides a straightforward way to evaluate polynomials of any degree, given the coefficients and the value of `x`.

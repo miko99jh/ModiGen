@@ -1,0 +1,50 @@
+To create a Modelica block named `EventClock` that generates a clock signal when a Boolean input changes from false to true, you can follow the structure below. This block extends `Modelica.Clocked.ClockSignals.Interfaces.PartialClock` and uses a Boolean input to trigger the clock signal. The implementation considers the `useSolver` flag to determine how the clock is instantiated.
+
+```modelica
+block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+
+  // Input Boolean signal
+  Modelica.Blocks.Interfaces.BooleanInput u;
+
+  // Output clock signal
+  output Modelica.Clocked.ClockSignals.Clock y;
+
+  // Parameter to decide if a solver should be used
+  parameter Boolean useSolver = false;
+  parameter String solverMethod = "default";
+
+protected 
+  // Internal variable to detect rising edge
+  Boolean pre_u(start=false);
+
+equation 
+  // Detect rising edge of the input signal
+  pre_u = pre(u);
+
+  // Generate clock signal based on the rising edge of 'u'
+  when {u and not pre_u} then
+    if useSolver then
+      // Instantiate clock as a nested clock with solver
+      y = Modelica.Clocked.Clocks.NestedClock(solverMethod=solverMethod);
+    else
+      // Define 'y' as a standard event clock
+      y = Modelica.Clocked.Clocks.EventClock();
+    end if;
+  end when;
+
+end EventClock;
+```
+
+### Explanation:
+- **Input and Output**: The block has a Boolean input `u` and a clock output `y`.
+- **Parameters**: 
+  - `useSolver`: A Boolean parameter to decide if a solver should be used for the clock.
+  - `solverMethod`: A string parameter to specify the solver method if `useSolver` is true.
+- **Internal Variable**: `pre_u` is used to store the previous value of `u` to detect a rising edge.
+- **Equation Section**:
+  - The `when` clause is used to detect a rising edge (`u` changes from false to true).
+  - If `useSolver` is true, `y` is instantiated as a nested clock with the specified solver method.
+  - Otherwise, `y` is defined as a standard event clock triggered by the rising edge of `u`.
+
+This block will generate a clock signal `y` whenever the input `u` transitions from false to true, with the option to use a solver for the clock if needed.

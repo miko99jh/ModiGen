@@ -1,0 +1,37 @@
+
+Generate a Modelica model named `SubsamplingWithIntegers` to implement subsampling using integers. The model should count clock ticks and update three output variables x, y, and z based on the clock ticks.
+
+# Variables:
+ - `tick`: Integer, counts the number of clock ticks.
+ - `x`: Real, captures the current simulation time when the clock tick changes.
+ - `y`: Real, captures the current simulation time when the clock tick changes.
+ - `z`: Real, captures the current simulation time when the clock tick satisfies a modulo condition.
+
+# Equations:
+ - The model uses `when` statements to trigger updates based on clock ticks:
+ - `tick` is incremented every 0.1 seconds.
+ - `x` and `y` are updated with the current time whenever `tick` changes.
+ - `z` is updated with the current time when `(tick-1) mod 2 == 0`.
+
+//modelica
+```model SubsamplingWithIntegers
+  parameter Real dt = 0.1;
+  Integer tick(start=0);
+  Real x(start=0), y(start=0), z(start=0);
+equation
+  when sample(tick, dt) then
+    tick = tick + 1;
+    x = time;
+    y = time;
+  end when;
+  when sample((tick-1) mod 2 == 0, dt) then
+    z = time;
+  end when;
+end SubsamplingWithIntegers;
+```
+
+This model implements a simple subsampling mechanism using integers. It uses the `sample` function to trigger updates based on the clock ticks. The `sample` function is a built-in function in Modelica that checks if a condition is met at every simulation step and if so, it triggers the update. The `when` statement is used to specify the condition for triggering the update.
+
+Note: The `sample` function is not a standard function in Modelica, but it is used here to illustrate the concept. In a real-world scenario, you would use a different approach to implement subsampling.
+
+Please note that this model does not take into account the initial condition of `tick` and the start values of `x`, `y`, and `z`. You may need to adjust these according to your specific requirements.

@@ -1,0 +1,28 @@
+model MutualInductor
+ extends Modelica.Electrical.Polyphase.Interfaces.OnePort;
+
+  // Parameters
+  parameter Real epsilon = 1e-9 "Relative accuracy tolerance for matrix symmetry";
+  parameter Modelica.Units.SI.Inductance L[m, m] "Mutual inductance matrix";
+
+protected 
+  // Helper variable for symmetry check
+  Real symmetryError;
+
+initial equation
+  // Check for singularity of the mutual inductance matrix
+  if abs(Modelica.Math.Matrices.det(L)) < epsilon then
+    Modelica.Utilities.Streams.print("Warning: mutual inductance matrix singular!");
+  end if;
+
+equation
+  // Symmetry verification
+  symmetryError = sum(abs(L - transpose(L)));
+  assert(symmetryError < epsilon, "Mutual inductance matrix L is not symmetric within the tolerance epsilon.");
+
+  // Voltage-current relationship
+  for i in 1:m loop
+    v[i] = sum(L[i, :] .* der(i[:]));
+  end for;
+
+end MutualInductor;

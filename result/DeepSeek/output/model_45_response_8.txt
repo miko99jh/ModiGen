@@ -1,0 +1,32 @@
+
+Generate a Modelica block named `ExtractSignal` that extracts specific signals from an input signal vector. The model should inherit from `Modelica.ComplexBlocks.Interfaces.ComplexMIMO`, indicating that it handles multiple input and output signals in a complex multi-input multi-output system.  The key parameter is `extract`, which is an integer array with a size of `nout`, specifying the indices of the input vector to be extracted and sent to the output. The model should iterate over the range of output signals (`nout`) and assign each input `u[extract[i]]` to the corresponding output `y[i]`. Ensure accurate handling of the parameterization and iteration to correctly map input signals to outputs.
+
+//modelica
+```block ExtractSignal
+  extends Modelica.ComplexBlocks.Interfaces.ComplexMIMO;
+  parameter Integer extract[:];
+  output Modelica.ComplexBlocks.Interfaces.ComplexInput y[:] 
+    "Output signals";
+
+equation 
+  assert(size(extract, 1) == nout, "Size of extract must match nout");
+
+  for i in 1:nout loop
+    y[i] = u[extract[i]];
+  end for;
+end ExtractSignal;
+```
+
+The model should also include an assertion to check that the size of the `extract` parameter matches the number of output signals (`nout`). This ensures that the correct number of signals are being extracted.
+
+The `ExtractSignal` block should be able to handle complex numbers, as indicated by the `Modelica.ComplexBlocks.Interfaces.ComplexInput` and `Modelica.ComplexBlocks.Interfaces.ComplexOutput` types. This means that it can be used in systems where signals are represented as complex numbers, such as in control systems or signal processing applications.
+
+The model should be written in Modelica, a standardized language for multi-domain simulation and model-based design. This ensures that it can be used in a wide range of simulation environments that support the Modelica language.
+
+The model should be simple and straightforward to understand, with clear variable names and comments. This makes it easy for others to use and modify the model.
+
+The model should be tested in a Modelica simulation environment to ensure that it works correctly. This involves providing a set of test inputs and checking that the outputs match the expected results.
+
+Finally, the model should be documented with a description of its purpose, its parameters, and its inputs and outputs. This makes it easy for others to understand how to use and modify the model.
+
+Please note that this model assumes that the input signal vector `u` is ordered in a way that the signal at index `extract[i]` is the `i`-th signal in the vector. If this is not the case, additional preprocessing of the input signals may be needed.

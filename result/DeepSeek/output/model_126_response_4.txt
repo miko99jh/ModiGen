@@ -1,0 +1,21 @@
+
+Generate a Modelica model named `FirstOrderExperiment` that defines first order equation with experiment conditions for a simple system. The model should include a real variable 'x' and initialize 'x=2'. This variable should dynamically change based on the differential equation defined, aiming for the value of 'x' to converge towards 1.0.
+
+//modelica
+```model FirstOrderExperiment
+  parameter Real k = 0.1 "Rate constant";
+  Real x(start = 2) "Variable to converge towards 1.0";
+equation
+  der(x) = -k * (x - 1);
+  when x < 1.0 then
+    terminate("Convergence reached");
+  end when;
+end FirstOrderExperiment;```
+
+This model defines a first-order differential equation where 'x' converges towards 1.0. The rate of convergence is determined by the parameter 'k'. The model terminates when 'x' is less than 1.0, indicating that the convergence has been reached.
+
+The `der(x) = -k * (x - 1)` line defines the differential equation for 'x'. The `when x < 1.0 then terminate("Convergence reached");` line is an experiment condition that stops the simulation when 'x' is less than 1.0.
+
+The'start = 2' attribute initializes 'x' to 2.0. The 'k' parameter is a rate constant that determines the rate of convergence.
+
+Please note that this model is a simple example and does not include any physical units or other advanced features.

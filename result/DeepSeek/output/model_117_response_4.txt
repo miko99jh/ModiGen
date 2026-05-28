@@ -1,0 +1,20 @@
+
+Generate a Modelica model named `Variant1_unstable` that simulates an unstable scenario based on the choice of a sample interval. Specifically, it should extend `ModelicaByExample.Architectures.SensorComparison.Examples.Variant1` with a modified `sensor` component that uses a parameter `sample_time=0.036`.
+
+//modelica
+```model Variant1_unstable
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant1;
+  parameter Real sample_time=0.036;
+equation 
+  connect(sensor.sample_time, sample_time);
+end Variant1_unstable;```
+
+```Variant1_unstable``` model extends the original ```Variant1``` model and overrides the ```sample_time``` parameter of the ```sensor``` component. The new ```sample_time``` is set to ```0.036```, which makes the system unstable.
+
+Please note that the ```connect``` statement is used to connect the ```sample_time``` parameter of the ```sensor``` component to the new ```sample_time``` value. This is necessary because the ```sample_time``` parameter is not a simple variable, but a connector. Therefore, it needs to be connected to another connector or a variable.
+
+In this case, the ```sample_time``` parameter of the ```sensor``` component is connected to the new ```sample_time``` value. This means that the ```sample_time``` parameter of the ```sensor``` component is set to ```0.036```.
+
+This change makes the system unstable because the sample time is too small. The system can't process the input signal fast enough, which leads to a loss of stability.
+
+Please note that this model is only for educational purposes. In a real-world application, you should never change the sample time of a system to make it unstable. This would lead to a loss of stability and could cause the system to behave unpredictably.

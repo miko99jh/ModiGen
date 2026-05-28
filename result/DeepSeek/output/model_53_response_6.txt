@@ -1,0 +1,32 @@
+
+Generate a Modelica model named `HighPass` for a High-pass filter. The model should filter out low-frequency components from an input voltage signal. The input signal is a trapezoidal waveform defined by parameters such as amplitude, frequency, and timing characteristics.
+
+The model includes the following parameters: `Vin` (Modelica.Units.SI.Voltage, 5 V), `f` (Modelica.Units.SI.Frequency, 10 Hz), and a limiting frequency `fG` set to `f/10`.
+
+The model includes the following components: `ground` (`Modelica.Electrical.Analog.Basic.Ground`), a voltage sensor `vOut` (`Modelica.Electrical.Analog.Sensors.VoltageSensor`), `derivative` (Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Derivative) with parameters `T=1/(2*pi*fG), v(fixed=true)`, `vIn` (Modelica.Electrical.Analog.Sources.TrapezoidVoltage) with parameters `V=Vin, rising=0.2/f, width=0.3/f, falling=0.2/f, period=1/f, nperiod=-1, offset=0, startTime=-(vIn.rising + vIn.width/2)`.
+
+The model should also include connections between the components as follows:
+- Input Loop: Connect the source 'vIn.p' to the derivative circuit input 'derivative.p1'.
+- Grounding & Return: Tie the source return 'vIn.n', the derivative circuit negative terminal 'derivative.n1', and the 'ground.p' together.
+- Output Measurement: Link the output of the derivative circuit ('derivative.p2', 'derivative.n2') directly to the voltage sensor 'vOut' terminals ('.p' and '.n').
+
+//modelica
+```model HighPass
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input frequency";
+  parameter Modelica.Units.SI.Frequency fG=f/10 "Limiting frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Derivative derivative(T=1/(2*pi*fG), v(fixed=true));
+  Modelica.Electrical.Analog.Sources.TrapezoidVoltage vIn(V=Vin, rising=0.2/f, width=0.3/f, falling=0.2/f, period=1/f, nperiod=-1, offset=0, startTime=-(vIn.rising + vIn.width/2));
+equation 
+  connect(vIn.p, derivative.p1);
+  connect(vIn.n, derivative.n1);
+  connect(ground.p, vIn.n);
+  connect(ground.p, derivative.n1);
+  connect(vOut.p, derivative.p2);
+  connect(vOut.n, derivative.n2);
+end HighPass;
+```
+
+This model should be tested in simulation to ensure it correctly filters out low-frequency components from the input signal.

@@ -1,0 +1,22 @@
+
+Generate a Modelica model for a thermal control system with on-off control variation. The model should be compatible with Modelica version 3.2.3. The model, named 'OnOffVariant', should extend from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel' and should include two redeclared and replaceable components: an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' named 'actuator' with 'heating_capacity=500' and an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' named 'controller' with a 'setpoint=300'.
+
+//modelica
+```model OnOffVariant
+  extends ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel;
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator actuator(heating_capacity=500)
+    redeclare replaceable
+      extends ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator;
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl controller(setpoint=300)
+    redeclare replaceable
+      extends ModelicaByExample.Architectures.ThermalControl.Interfaces.Controller;
+end OnOffVariant;
+```
+
+This model should be compatible with Modelica version 3.2.3 and should extend from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel' and should include two redeclared and replaceable components: an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' named 'actuator' with 'heating_capacity=500' and an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' named 'controller' with a'setpoint=300'.
+
+Please note that the'redeclare replaceable' keyword is used to replace the original components with the new ones in the extended model. The new components should be compatible with the interfaces defined in 'ModelicaByExample.Architectures.ThermalControl.Interfaces'.
+
+The model should be saved as 'OnOffVariant.mo' in the current directory.
+
+Please ensure that the Modelica version you are using is compatible with the provided code. If you are using a different version, please adjust the code accordingly.

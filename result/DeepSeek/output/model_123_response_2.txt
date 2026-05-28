@@ -1,0 +1,49 @@
+
+Generate a Modelica block that computes feedback terms. The model should have two 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput' (u1 and u2) and one 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput' (y). The equation for the output y is the difference between the inputs u1 and u2. The model should be based on Modelica version 3.2.3 and be named `Feedback`.
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput(n=2);
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1 - u2;
+end Feedback;
+```
+
+```python
+#python
+from pymodelica import compile_fmu
+from pyfmi import load_fmu
+import matplotlib.pyplot as plt
+
+# Compile the model
+model_name = 'Feedback'
+model_path = compile_fmu(model_name, model_name)
+
+# Load the compiled FMU
+fmu = load_fmu(model_path)
+
+# Set the initial conditions
+fmu.set('u1', 1.0)
+fmu.set('u2', 2.0)
+
+# Simulate the model
+res = fmu.simulate(final_time=10.0)
+
+# Plot the results
+plt.figure()
+plt.plot(res['time'], res['y'])
+plt.xlabel('Time [s]')
+plt.ylabel('Output y')
+plt.show()
+```
+
+This Python script uses the PyFMI and PyModelica libraries to compile and simulate the model, and then plots the output. The script sets the initial conditions for the inputs u1 and u2, and then simulates the model for 10 seconds. The output is plotted against time.
+
+Note: The provided Python script requires PyFMI and PyModelica to be installed in your Python environment. If they are not installed, you can install them using pip:
+
+```bash
+pip install pyfmi pymodelica
+```
+
+Please ensure that you have the necessary permissions to install packages in your Python environment.

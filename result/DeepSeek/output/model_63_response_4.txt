@@ -1,0 +1,34 @@
+
+Generate a Modelica model named `SignalVoltage` that represents a generic voltage source using an input signal as the source voltage. The model extends `Modelica.Electrical.Analog.Icons.VoltageSource`. 
+
+The model should include the following components and details:
+1. Components:
+ - `Modelica.Electrical.Analog.Interfaces.PositivePin p`
+ - `Modelica.Electrical.Analog.Interfaces.NegativePin n`
+ - `Modelica.Blocks.Interfaces.RealInput v` is Voltage between pin p and n (= p.v - n.v) as input signal
+ - `Modelica.Units.SI.Current i` is Current flowing from pin p to pin n
+2. Equations and Expressions:
+ The model should include the following equations:
+ v = p.v - n.v;
+ 0 = p.i + n.i;
+ i = p.i;
+
+ - Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model SignalVoltage
+  extends Modelica.Electrical.Analog.Icons.VoltageSource;
+  Modelica.Electrical.Analog.Interfaces.PositivePin p;
+  Modelica.Electrical.Analog.Interfaces.NegativePin n;
+  Modelica.Blocks.Interfaces.RealInput v;
+  Modelica.Units.SI.Current i;
+equation 
+  v = p.v - n.v;
+  0 = p.i + n.i;
+  i = p.i;
+end SignalVoltage;
+```
+
+In this model, the voltage `v` is defined as the voltage difference between the positive pin `p` and the negative pin `n`. The current `i` flowing from pin `p` to pin `n` is also defined. The equation `0 = p.i + n.i;` ensures that the current flowing into the positive pin equals the current flowing out of the negative pin, which is a fundamental law of electrical circuits.
+
+Please note that this model does not include any dynamics or time-varying behavior, as it is a simple representation of a voltage source with an input signal.

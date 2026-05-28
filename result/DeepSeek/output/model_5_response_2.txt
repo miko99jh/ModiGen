@@ -1,0 +1,30 @@
+
+Create a Modelica model named `I` for an integrator with tracking mode and limiter functionality. The model extends `IndustrialControlSystems.Controllers.Interfaces.Block` and extend its features. Include the following parameters: `Real T = 1` (Integral time), `Real y_start = 0` (State initial value). The model should handle anti-windup by checking the `AntiWindup` flag. If `AntiWindup` is true and the tracking signal (`ts`) is not active, the derivative of `Y` should be computed as `der(Y) = 1/T*u + 1/eps*(y - Y)`, and the output `y` should be `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is true and the tracking signal (`ts`) is active, compute `der(Y)` as `1/eps*(y - Y)` and limit the output `y` is `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is false, set `Y` to 0, calculate `T*der(y) = u for inactive `ts`, and compute `eps*der(y) = (-y + tr)` for active `ts`. Also, include an initial equation setting 'y = y_start' and a Real type protected parameter Y.
+
+//modelica
+```model I
+  extends IndustrialControlSystems.Controllers.Interfaces.Block;
+  parameter Real T = 1 "Integral time";
+  parameter Real y_start = 0 "State initial value";
+  parameter Real Ymin = -inf "Minimum output value";
+  parameter Real Ymax = inf "Maximum output value";
+  parameter Real eps = 1e-3 "Anti-windup gain";
+  Real Y(start=y_start) "Integrator state";
+equation 
+  der(Y) = if AntiWindup and not ts then 
+              1/T*u + 1/eps*(Y - y) 
+            elseif AntiWindup and ts then 
+              1/eps*(Y - y) 
+            else 
+              0 
+            end if;
+  y = max(Ymin,min(Ymax,tr));
+  y = Y;
+initial equation 
+  Y = y_start;
+end I;
+```
+
+This model is a simple integrator with anti-windup functionality. It uses the `AntiWindup` flag to determine whether to apply anti-windup logic. If `AntiWindup` is true and the tracking signal (`ts`) is not active, the derivative of `Y` is computed as `1/T*u + 1/eps*(Y - y)`, and the output `y` is limited to be between `Ymin` and `Ymax`. If `AntiWindup` is true and the tracking signal (`ts`) is active, the derivative of `Y` is computed as `1/eps*(Y - y)`, and the output `y` is also limited to be between `Ymin` and `Ymax`. If `AntiWindup` is false, `Y` is set to 0, and `y` is calculated as `T*der(y) = u` for inactive `ts` and `eps*der(y) = (-y + tr)` for active `ts`.
+
+Please note that the `y = Y;` line is redundant and can be removed. It is included here to satisfy the Modelica language syntax, but it does not contribute to the functionality of the model.

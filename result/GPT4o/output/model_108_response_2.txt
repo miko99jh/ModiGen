@@ -1,0 +1,19 @@
+Certainly! Below is a Modelica model for a `Capacitor` that extends the `ModelicaByExample.Components.Electrical.DryApproach.TwoPin` model. This model includes a capacitance parameter `C` and relates the current `i` and the voltage rate of change `der(v)` through the equation `C*der(v) = i`.
+
+```modelica
+model Capacitor
+  extends ModelicaByExample.Components.Electrical.DryApproach.TwoPin;
+
+  parameter Real C(unit="F") "Capacitance in Farads";
+
+equation
+  C * der(v) = i;
+end Capacitor;
+```
+
+### Explanation:
+- **Extends**: The model extends `ModelicaByExample.Components.Electrical.DryApproach.TwoPin`, which is assumed to be a base class for two-terminal electrical components.
+- **Parameter**: `C` is a parameter representing the capacitance of the capacitor, with units of Farads (`unit="F"`).
+- **Equation**: The equation `C * der(v) = i` describes the relationship between the current `i` through the capacitor and the rate of change of voltage `der(v)` across it, which is the fundamental behavior of a capacitor in an electrical circuit.
+
+This model can be used in simulations to represent the behavior of a capacitor in an electrical system. Make sure that the base class `ModelicaByExample.Components.Electrical.DryApproach.TwoPin` is correctly defined in your Modelica environment for this model to function properly.

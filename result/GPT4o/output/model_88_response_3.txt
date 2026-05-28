@@ -1,0 +1,49 @@
+To implement the `RLC1` Modelica model for the described RLC circuit, you can follow the structure below. This model will simulate the behavior of the circuit with the given parameters and variables.
+
+```modelica
+model RLC1
+  // Parameters
+  parameter Real R = 100;       // Resistance in ohms
+  parameter Real C = 1e-3;      // Capacitance in farads
+  parameter Real L = 1;         // Inductance in henrys
+  parameter Real Vb = 24;       // Supply voltage in volts
+
+  // Variables
+  Real V;                       // Voltage across the parallel branch
+  Real i_L;                     // Current through the inductor
+  Real i_R;                     // Current through the resistor
+  Real i_C;                     // Current through the capacitor
+
+  // Components
+  Resistor R1(R=R);
+  Capacitor C1(C=C);
+  Inductor L1(L=L);
+  VoltageSource Vsource(V=Vb);
+
+equation
+  // Connect the components
+  connect(Vsource.p, R1.p);
+  connect(R1.n, C1.p);
+  connect(C1.n, Vsource.n);
+  connect(R1.n, L1.p);
+  connect(L1.n, Vsource.n);
+
+  // Define the variables
+  V = R1.v;                     // Voltage across the parallel branch
+  i_R = R1.i;                   // Current through the resistor
+  i_C = C1.i;                   // Current through the capacitor
+  i_L = L1.i;                   // Current through the inductor
+
+  // Kirchhoff's current law at the node between R, C, and L
+  i_R + i_C = i_L;
+
+end RLC1;
+```
+
+### Explanation:
+- **Components**: The model uses `Resistor`, `Capacitor`, `Inductor`, and `VoltageSource` components from the Modelica Standard Library.
+- **Connections**: The `connect` statements define how the components are connected in the circuit.
+- **Equations**: The equations define the relationships between the variables, including Kirchhoff's current law at the node where the resistor, capacitor, and inductor meet.
+- **Parameters**: The parameters `R`, `C`, `L`, and `Vb` are set according to the given values.
+
+This model can be simulated using a Modelica simulation environment to analyze the behavior of the RLC circuit over time.

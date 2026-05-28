@@ -1,0 +1,24 @@
+```modelica
+block BooleanChange
+  extends Modelica.Clocked.ClockSignals.Interfaces.ClockedBlockIcon;
+
+  Modelica.Blocks.Interfaces.BooleanInput u "Boolean input signal";
+  Modelica.Blocks.Interfaces.BooleanOutput y "Boolean output signal";
+
+protected 
+  Boolean u_prev(start=false) "Previous value of the input signal";
+
+equation 
+  when Clock() then
+    if previous(Clock()) then
+      y = (u <> u_prev);
+    else
+      y = false;
+    end if;
+    u_prev = u;
+  end when;
+
+end BooleanChange;
+```
+
+This Modelica block `BooleanChange` is designed to detect changes in a Boolean input signal `u` within a clocked, non-periodic context. The block extends from `Modelica.Clocked.ClockSignals.Interfaces.ClockedBlockIcon` and includes a Boolean input `u` and a Boolean output `y`. The output `y` is set to `true` if the input `u` changes its value from the previous clock tick, otherwise, it remains `false`. On the initial activation of the clock, the output defaults to `false`.

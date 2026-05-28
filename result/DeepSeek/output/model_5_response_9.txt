@@ -1,0 +1,33 @@
+
+Create a Modelica model named `I` for an integrator with tracking mode and limiter functionality. The model extends `IndustrialControlSystems.Controllers.Interfaces.Block` and extend its features. Include the following parameters: `Real T = 1` (Integral time), `Real y_start = 0` (State initial value). The model should handle anti-windup by checking the `AntiWindup` flag. If `AntiWindup` is true and the tracking signal (`ts`) is not active, the derivative of `Y` should be computed as `der(Y) = 1/T*u + 1/eps*(y - Y)`, and the output `y` should be `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is true and the tracking signal (`ts`) is active, compute `der(Y)` as `1/eps*(y - Y)` and limit the output `y` is `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is false, set `Y` to 0, calculate `T*der(y) = u for inactive `ts`, and compute `eps*der(y) = (-y + tr)` for active `ts`. Also, include an initial equation setting 'y = y_start' and a Real type protected parameter Y.
+
+//modelica
+```model I
+  extends IndustrialControlSystems.Controllers.Interfaces.Block;
+  parameter Real T = 1 "Integral time";
+  parameter Real y_start = 0 "State initial value";
+  parameter Real Ymin = -infinity "Lower limit for output";
+  parameter Real Ymax = infinity "Upper limit for output";
+  parameter Real eps = 1e-6 "Anti-windup parameter";
+  Real Y(start=y_start) "Integrator state";
+equation 
+  if not AntiWindup or not ts then
+    der(Y) = 1/T*u + 1/eps*(y - Y);
+    y = max(Ymin,min(Ymax,tr));
+  else
+    der(Y) = 1/eps*(y - Y);
+    y = max(Ymin,min(Ymax,tr));
+  end if;
+  y = max(Ymin,min(Ymax,tr));
+  initial equation 
+    y = y_start;
+end I;
+```
+
+This model should be used in a control system where the integrator is used to track a reference signal (`tr`). The `AntiWindup` flag is used to enable or disable the anti-windup functionality. If `AntiWindup` is true, the model will prevent the integrator from saturating, thus preventing windup. If `AntiWindup` is false, the model will behave as a simple integrator. The `eps` parameter is used to determine the rate at which the integrator will respond to changes in the tracking signal.
+
+Please note that this model does not include a derivative term. If a derivative term is required, it should be added separately.
+
+The `y` output is limited between `Ymin` and `Ymax` to prevent the integrator from saturating. The `Y` state is initialized to `y_start`.
+
+The model is designed to be used in a larger control system, and it is not intended to be run independently.

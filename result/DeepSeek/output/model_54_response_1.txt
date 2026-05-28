@@ -1,0 +1,186 @@
+
+Generate a Modelica model named `Subtracter` that represents an inverting subtracter circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.OpAmps` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 5) representing the amplitude of the input voltage
+- `f` (Modelica.Units.SI.Frequency, default value: 10) representing the frequency of the input voltage.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn1` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = f`.
+- `vIn2` (Modelica.Electrical.Analog.Sources.ConstantVoltage) to generate a constant input voltage with parameter `V = Vin`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `feedback` (Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback) to implement the feedback loop, with the initial current `i` of `p1_2` set to 0.
+
+The following connections should be made:
+- Dual-Source Integration: Route the dynamic signal 'vIn1' and the static signal 'vIn2' into the 'feedback' network's input ports 'p1' and 'p1_2' respectively.
+- Reference & Return: Establish a common reference by tying the return pins ('.n') of both sources ('vIn1', 'vIn2') and the feedback input ('n1') to the 'ground.p'.
+- Output Differential: Link the output stage of the feedback circuit ('p2', 'n2') to the 'vOut' sensor. Note: Ensure the polarity is set such that 'p2' connects to the sensor's negative terminal.
+
+The model should accurately represent the behavior of an inverting subtracter circuit.
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn2.p, feedback.p1_2) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn1.n, vIn2.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.n1, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.p2, vOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn2.p, feedback.p1_2) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn1.n, vIn2.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.n1, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.p2, vOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn2.p, feedback.p1_2) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn1.n, vIn2.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.n1, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.p2, vOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn2.p, feedback.p1_2) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(vIn1.n, vIn2.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.n1, ground.p) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+  connect(feedback.p2, vOut.n) annotation(Line(color={0,0,128}, smooth=Smooth.None));
+end Subtracter;
+```The `Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits` package contains a number of examples of operational amplifier circuits.
+
+- `Differentiator`: A model of a differentiator circuit using an operational amplifier.
+- `Integrator`: A model of an integrator circuit using an operational amplifier.
+- `NonInvertingAmplifier`: A model of a non-inverting amplifier circuit using an operational amplifier.
+- `InvertingAmplifier`: A model of an inverting amplifier circuit using an operational amplifier.
+- `VoltageFollower`: A model of a voltage follower circuit using an operational amplifier.
+- `Feedback`: A model of a feedback circuit using an operational amplifier.
+- `PhaseShifter`: A model of a phase shifter circuit using an operational amplifier.
+- `VoltageControlledOscillator`: A model of a voltage-controlled oscillator circuit using an operational amplifier.
+- `VoltageControlledVoltageSource`: A model of a voltage-controlled voltage source circuit using an operational amplifier.
+- `CurrentControlledCurrentSource`: A model of a current-controlled current source circuit using an operational amplifier.
+- `DifferentialAmplifier`: A model of a differential amplifier circuit using operational amplifiers.
+- `DifferentialPair`: A model of a differential pair circuit using operational amplifiers.
+- `CurrentMirror`: A model of a current mirror circuit using operational amplifiers.
+- `CurrentSource`: A model of a current source circuit using operational amplifiers.
+- `TransimpedanceAmplifier`: A model of a transimpedance amplifier circuit using operational amplifiers.
+
+Each of these models can be used as a starting point for designing and simulating more complex circuits.
+
+```modelica
+package OpAmpCircuits
+  "Package of operational amplifier circuits"
+  extends Modelica.Icons.Package;
+
+  model Differentiator "Model of a differentiator circuit"
+   ...
+  end Differentiator;
+
+  model Integrator "Model of an integrator circuit"
+   ...
+  end Integrator;
+
+  model NonInvertingAmplifier "Model of a non-inverting amplifier circuit"
+   ...
+  end NonInvertingAmplifier;
+
+  model InvertingAmplifier "Model of an inverting amplifier circuit"
+   ...
+  end InvertingAmplifier;
+
+  model VoltageFollower "Model of a voltage follower circuit"
+   ...
+  end VoltageFollower;
+
+  model Feedback "Model of a feedback circuit"
+   ...
+  end Feedback;
+
+  model PhaseShifter "Model of a phase shifter circuit"
+   ...
+  end PhaseShifter;
+
+  model VoltageControlledOscillator "Model of a voltage-controlled oscillator circuit"
+   ...
+  end VoltageControlledOscillator;
+
+  model VoltageControlledVoltageSource "Model of a voltage-controlled voltage source circuit"
+   ...
+  end VoltageControlledVoltageSource;
+
+  model CurrentControlledCurrentSource "Model of a current-controlled current source circuit"
+   ...
+  end CurrentControlledCurrentSource;
+
+  model DifferentialAmplifier "Model of a differential amplifier circuit"
+   ...
+  end DifferentialAmplifier;
+
+  model DifferentialPair "Model of a differential pair circuit"
+   ...
+  end DifferentialPair;
+
+  model CurrentMirror "Model of a current mirror circuit"
+   ...
+  end CurrentMirror;
+
+  model CurrentSource "Model of a current source circuit"
+   ...
+  end CurrentSource;
+
+  model TransimpedanceAmplifier "Model of a transimpedance amplifier circuit"
+   ...
+  end TransimpedanceAmplifier;
+
+end OpAmpCircuits;
+```
+
+Each of these models can be used as a starting point for designing and simulating more complex circuits. The models are designed to be flexible and can be easily adapted to different applications.
+
+Please note that the actual implementation of these models may vary depending on the specific requirements of the circuit and the operational amplifier used. The provided models are simplified and may not accurately represent all the complexities of real-world operational amplifier circuits.

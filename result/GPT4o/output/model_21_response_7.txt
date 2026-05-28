@@ -1,0 +1,39 @@
+Certainly! Below is a Modelica model named `TransformerWithPhaseShifterTarget` that extends the `TransformerWithPhaseShifterInterval` model. It includes parameters for target values and dead-bands for current magnitude and active power, along with initial conditions and assertions based on the selected quantity.
+
+```modelica
+model TransformerWithPhaseShifterTarget
+  extends TransformerWithPhaseShifterInterval;
+
+  // Parameters for target values and dead-bands
+  parameter Types.Current targetValueI = Types.Current.NotUsed "Target current value";
+  parameter Types.Current deadBandI = Types.Current.NotUsed "Acceptable dead-band around the current target value";
+  parameter Types.ActivePower targetValueP = Types.ActivePower.NotUsed "Target active power value";
+  parameter Types.ActivePower deadBandP = Types.ActivePower.NotUsed "Acceptable dead-band around the active power target value";
+
+  // Final parameters for interval limits
+  final parameter Types.Current IMax = targetValueI + deadBandI "Maximum current limit";
+  final parameter Types.Current IMin = targetValueI - deadBandI "Minimum current limit";
+  final parameter Types.ActivePower PMax = targetValueP + deadBandP "Maximum power limit";
+  final parameter Types.ActivePower PMin = targetValueP - deadBandP "Minimum power limit";
+
+  // Initial conditions and assertions
+  initial equation
+    if quantitySel == MonitoredQuantitySelection.currentMagnitude then
+      assert(targetValueI > deadBandI, "Target current value must be greater than dead-band.");
+      assert(deadBandI > 0, "Dead-band for current must be positive.");
+      assert(targetValueI >= 0, "Target current value must be non-negative.");
+    elseif quantitySel == MonitoredQuantitySelection.activePower then
+      assert(targetValueP > deadBandP, "Target active power value must be greater than dead-band.");
+      assert(deadBandP > 0, "Dead-band for active power must be positive.");
+      assert(targetValueP >= 0, "Target active power value must be non-negative.");
+    end if;
+
+end TransformerWithPhaseShifterTarget;
+```
+
+### Explanation:
+- **Parameters**: The model includes parameters for target values (`targetValueI`, `targetValueP`) and dead-bands (`deadBandI`, `deadBandP`) for current magnitude and active power.
+- **Final Parameters**: The model calculates the maximum and minimum limits for current and power based on the target values and dead-bands.
+- **Initial Conditions and Assertions**: The initial equation section checks the selected quantity (`quantitySel`) and asserts conditions to ensure valid parameter values. If the selected quantity is current magnitude, it checks that the target current is greater than the dead-band, the dead-band is positive, and the target current is non-negative. Similarly, for active power, it checks the corresponding conditions.
+
+This model is structured to ensure that the transformer operates within specified limits for the selected electrical quantity, maintaining system stability and performance.

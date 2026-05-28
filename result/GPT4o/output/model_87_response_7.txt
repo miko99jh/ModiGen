@@ -1,0 +1,44 @@
+To implement a simple pendulum model in Modelica, you can define a model named `SimplePendulum` with the specified parameters and initial conditions. Below is a Modelica code snippet that sets up the model:
+
+```modelica
+model SimplePendulum
+  // Parameters
+  parameter Real L = 1 "Length of the pendulum (m)";
+  parameter Real m = 1 "Mass of the pendulum (kg)";
+  parameter Real g = 9.81 "Acceleration due to gravity (m/s^2)";
+
+  // State variables
+  Real theta(start = 1.5) "Angle from the vertical (rad)";
+  Real omega(start = 0) "Angular velocity (rad/s)";
+
+  // Equations
+  equation
+    // Differential equation for the pendulum
+    der(theta) = omega;
+    der(omega) = -(g/L) * sin(theta);
+
+  // Simulation settings
+  annotation(
+    experiment(StartTime = 0, StopTime = 10, Tolerance = 1e-6, Interval = 0.01));
+end SimplePendulum;
+```
+
+### Explanation:
+
+- **Parameters**: 
+  - `L` is the length of the pendulum.
+  - `m` is the mass of the pendulum.
+  - `g` is the gravitational acceleration.
+
+- **State Variables**:
+  - `theta` is the angle of the pendulum from the vertical, initialized to 1.5 radians.
+  - `omega` is the angular velocity, initialized to 0 rad/s.
+
+- **Equations**:
+  - The first equation `der(theta) = omega` represents the relationship between the angle and angular velocity.
+  - The second equation `der(omega) = -(g/L) * sin(theta)` is derived from the dynamics of a pendulum, representing the angular acceleration.
+
+- **Simulation Settings**:
+  - The `annotation` section specifies the simulation parameters, such as start time, stop time, tolerance, and interval.
+
+This model will simulate the motion of a simple pendulum under the influence of gravity, starting from the specified initial conditions. You can run this model in a Modelica environment to observe the pendulum's behavior over time.

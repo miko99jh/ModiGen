@@ -1,0 +1,308 @@
+
+Generate a Modelica model named `Variant2_tuned` for a tuned version of Variant 2. The model should be compatible with Modelica version 3.2.3. Specifically, extend the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2' model with the following adjusted components redeclared for enhanced performance. Set the 'controller' component with yMax=50, Ti=0.07, Td=0.01, k=4, and the 'actuator' component with uMax=50, along with a 'sensor' components with sample_time=0.01. This model serves to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+
+//modelica
+```model Variant2_tuned
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2(
+    controller = ModelicaByExample.Architectures.SensorComparison.Components.Controller(
+      yMax = 50,
+      Ti = 0.07,
+      Td = 0.01,
+      k = 4
+    ),
+    actuator = ModelicaByExample.Architectures.SensorComparison.Components.Actuator(
+      uMax = 50
+    ),
+    sensor = ModelicaByExample.Architectures.SensorComparison.Components.Sensor(
+      sample_time = 0.01
+    )
+  );
+end Variant2_tuned;```
+
+//text
+```
+```
+
+//modelica
+```end Variant2_tuned;```
+
+//text
+```
+```
+
+//modelica
+``````
+
+//text
+```This code creates a new model called `Variant2_tuned`. It extends the original `Variant2` model, but with the components redefined to have the specified parameters. The `controller` component is given a `yMax` of 50, a `Ti` of 0.07, a `Td` of 0.01, and a `k` of 4. The `actuator` component is given a `uMax` of 50. The `sensor` component is given a `sample_time` of 0.01. This model is designed to demonstrate the effects of these changes on the overall system dynamics.```
+
+//modelica
+``````
+
+//text
+```
+```Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave
+========================================================================================
+
+**Fundamental wave equivalent circuits of induction machines**
+
+Information
+-----------
+
+::Component Library:: ::Electrical Machines:: ::Induction Machines::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave::
+
+Package Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave contains the fundamental wave equivalent circuits of induction machines.
+
+::Package::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave::
+
+Extends from
+------------
+
+::Modelica.Icons.Package(Icon=iconPackage)::
+
+Package Content
+---------------
+
++ *AsynchronousInductionMachine* : Fundamental wave equivalent circuit of an asynchronous induction machine
++ *SynchronousInductionMachine* : Fundamental wave equivalent circuit of a synchronous induction machine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave::
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+---------------------------------------------------------------------------------------------------------------------------------
+
+.. figure::../Images/AsynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+
+**Fundamental wave equivalent circuit of an asynchronous induction machine**
+
+.. figure::../Images/AsynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine::
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+----------------------------------------------------------------------------------------------------------------------------------
+
+.. figure::../Images/SynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+
+**Fundamental wave equivalent circuit of a synchronous induction machine**
+
+.. figure::../Images/SynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave::
+
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.png
+   :width: 1000
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.png
+   :width: 1000
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.png
+   :width: 1000
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+====================================================================================================================
+
+**Fundamental wave equivalent circuit of a synchronous induction machine**
+
+Information
+-----------
+
+::Component Library:: ::Electrical Machines:: ::Induction Machines::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine::
+
+Package Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine contains the fundamental wave equivalent circuit of a synchronous induction machine.
+
+::Package::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine::
+
+Extends from
+------------
+
+::Modelica.Icons.Package(Icon=iconPackage)::
+
+Package Content
+---------------
+
++ *SynchronousInductionMachine* : Fundamental wave equivalent circuit of a synchronous induction machine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine::
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.SynchronousInductionMachine
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. figure::../Images/SynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.SynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.SynchronousInductionMachine
+
+**Fundamental wave equivalent circuit of a synchronous induction machine**
+
+.. figure::../Images/SynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.SynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.SynchronousInductionMachine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.SynchronousInductionMachine::
+
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.png
+   :width: 1000
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.SynchronousInductionMachine| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.SynchronousInductionMachine.png
+   :width: 1000
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+=====================================================================================================================
+
+**Fundamental wave equivalent circuit of an asynchronous induction machine**
+
+Information
+-----------
+
+::Component Library:: ::Electrical Machines:: ::Induction Machines::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine::
+
+Package Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine contains the fundamental wave equivalent circuit of an asynchronous induction machine.
+
+::Package::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine::
+
+Extends from
+------------
+
+::Modelica.Icons.Package(Icon=iconPackage)::
+
+Package Content
+---------------
+
++ *AsynchronousInductionMachine* : Fundamental wave equivalent circuit of an asynchronous induction machine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine::
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.AsynchronousInductionMachine
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. figure::../Images/AsynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.AsynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.AsynchronousInductionMachine
+
+**Fundamental wave equivalent circuit of an asynchronous induction machine**
+
+.. figure::../Images/AsynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.AsynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.AsynchronousInductionMachine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.AsynchronousInductionMachine::
+
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.png
+   :width: 1000
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.AsynchronousInductionMachine| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.AsynchronousInductionMachine.png
+   :width: 1000
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave
+=======================================================================================
+
+**Fundamental wave equivalent circuits of induction machines**
+
+Information
+-----------
+
+::Component Library:: ::Electrical Machines:: ::Induction Machines::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave::
+
+Package Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave contains the fundamental wave equivalent circuits of induction machines.
+
+::Package::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave::
+
+Extends from
+------------
+
+::Modelica.Icons.Package(Icon=iconPackage)::
+
+Package Content
+---------------
+
++ *AsynchronousInductionMachine* : Fundamental wave equivalent circuit of an asynchronous induction machine
++ *SynchronousInductionMachine* : Fundamental wave equivalent circuit of a synchronous induction machine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave::
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+---------------------------------------------------------------------------------------------------------------------------------
+
+.. figure::../Images/AsynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+
+**Fundamental wave equivalent circuit of an asynchronous induction machine**
+
+.. figure::../Images/AsynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine::
+
+Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+----------------------------------------------------------------------------------------------------------------------------------
+
+.. figure::../Images/SynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+
+**Fundamental wave equivalent circuit of a synchronous induction machine**
+
+.. figure::../Images/SynchronousInductionMachine.png
+   :align: center
+   :alt: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+
+   Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine::
+
+::Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave::
+
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.png
+   :width: 1000
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.AsynchronousInductionMachine.png
+   :width: 1000
+.. |Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine| image:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.FundamentalWave.SynchronousInductionMachine.png
+   :width: 1000
+
+Modelica.Electrical.

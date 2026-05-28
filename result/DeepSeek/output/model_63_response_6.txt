@@ -1,0 +1,33 @@
+
+Generate a Modelica model named `SignalVoltage` that represents a generic voltage source using an input signal as the source voltage. The model extends `Modelica.Electrical.Analog.Icons.VoltageSource`. 
+
+The model should include the following components and details:
+1. Components:
+ - `Modelica.Electrical.Analog.Interfaces.PositivePin p`
+ - `Modelica.Electrical.Analog.Interfaces.NegativePin n`
+ - `Modelica.Blocks.Interfaces.RealInput v` is Voltage between pin p and n (= p.v - n.v) as input signal
+ - `Modelica.Units.SI.Current i` is Current flowing from pin p to pin n
+2. Equations and Expressions:
+ The model should include the following equations:
+ v = p.v - n.v;
+ 0 = p.i + n.i;
+ i = p.i;
+
+ - Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model SignalVoltage
+  extends Modelica.Electrical.Analog.Icons.VoltageSource;
+  Modelica.Electrical.Analog.Interfaces.PositivePin p;
+  Modelica.Electrical.Analog.Interfaces.NegativePin n;
+  Modelica.Blocks.Interfaces.RealInput v;
+  Modelica.Units.SI.Current i;
+equation 
+  v = p.v - n.v;
+  0 = p.i + n.i;
+  i = p.i;
+end SignalVoltage;```
+
+The model `SignalVoltage` is a voltage source that uses an input signal to generate a voltage. The voltage is represented by the `v` input signal, which is the difference in potential between the positive and negative pins. The current flowing through the source is represented by the `i` variable, which is the current flowing from the positive pin to the negative pin. The equations ensure that the voltage and current are correctly related.
+
+Please note that this model does not include any physical laws or principles, as it is a simple representation of a voltage source with an input signal. The actual behavior of the voltage source would depend on the specific implementation of the `Modelica.Electrical.Analog.Interfaces.PositivePin` and `Modelica.Electrical.Analog.Interfaces.NegativePin` components, as well as the behavior of the `Modelica.Blocks.Interfaces.RealInput` component.

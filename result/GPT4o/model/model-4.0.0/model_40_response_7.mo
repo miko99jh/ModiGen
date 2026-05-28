@@ -1,0 +1,27 @@
+block TransferFunction
+ extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO;
+
+  parameter Real b[:] = {1}; // Numerator coefficients
+  parameter Real a[:] "Denominator coefficients";
+
+  output Real x[size(a, 1) - 1] = zeros(size(a, 1) - 1); // State vector
+
+protected
+  parameter Integer nb = size(b, 1); // Size of Numerator
+  parameter Integer na = size(a, 1); // Size of Denominator
+  Real x1; // Intermediate state
+  Real xext[na]; // Extended state vector
+
+equation
+  // Calculate intermediate state x1
+  x1 = (u - sum(a[2:na] .* previous(x))) / a[1];
+
+  // Construct extended state vector xext
+  xext = {x1, previous(x)};
+
+  // Update state vector x
+  x = xext[2:na];
+
+  // Compute output y
+  y = sum(b .* xext[1:nb]);
+end TransferFunction;

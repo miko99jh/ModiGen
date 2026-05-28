@@ -1,0 +1,30 @@
+
+Generate a Modelica model named `BackSample` that represents an example of a BackSample block for Real signals.
+
+The parameters for each component are as follows:
+1. **Sine**: A sine wave signal from 'Modelica.Blocks.Sources.Sine' with parameters: frequency `f=2`, offset `offset=0.1`, and start time `startTime=0`.
+2. **sample1** from 'Modelica.Clocked.RealSignals.Sampler.SampleClocked' for clocked signals.
+3. **periodicClock** from 'Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock' with `factor=20` and a resolution from the `Modelica.Clocked.Types.Resolution` enumeration, set to `ms` (milliseconds).
+4. **shiftSample1** from 'Modelica.Clocked.RealSignals.Sampler.ShiftSample' with parameters `shiftCounter=4` and resolution `resolution=3`.
+5. **backSample1** from 'Modelica.Clocked.RealSignals.Sampler.BackSample' with parameters `backCounter=4`, `resolution=3`, and initial output `y_start=0.5`.
+
+In the equation section, establish the following topology:
+1. Primary Sampling: Use the 'periodicClock' to trigger the sampling of the sine signal via the 'sample1' block.
+2. Shift and Back-Sampling: Route the sampled output from 'sample1 through the 'shiftSample1' block, and then pass the resulting shifted signal into the 'backSample1' component to complete the signal chain.
+
+//modelica
+```model BackSample
+  Modelica.Blocks.Sources.Sine sine(f=2, offset=0.1, startTime=0);
+  Modelica.Clocked.RealSignals.Sampler.SampleClocked sample1;
+  Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock(factor=20, resolution=Modelica.Clocked.Types.Resolution.ms);
+  Modelica.Clocked.RealSignals.Sampler.ShiftSample shiftSample1(shiftCounter=4, resolution=3);
+  Modelica.Clocked.RealSignals.Sampler.BackSample backSample1(backCounter=4, resolution=3, y_start=0.5);
+equation 
+  connect(sine.y, sample1.u);
+  connect(sample1.clock, periodicClock.y);
+  connect(sample1.sample, shiftSample1.u);
+  connect(shiftSample1.y, backSample1.u);
+end BackSample;
+```
+
+The Modelica code above should generate a Modelica model named `BackSample` that represents an example of a BackSample block for Real signals.

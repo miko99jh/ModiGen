@@ -1,0 +1,30 @@
+Here is the `ConjunctiveClock` block implemented in Modelica as per your requirements. This block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock` and configures the block to perform a logical conjunction (AND) by redeclaring the internal `combinator` component with the appropriate Boolean logic block.
+
+```modelica
+block ConjunctiveClock
+  extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock(
+    redeclare Modelica.Blocks.Logical.And combinator);
+
+  annotation(
+    Documentation(info = "A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle."),
+    Icon(graphics = {
+      Rectangle(
+        extent = {{-100, -100}, {100, 100}},
+        lineColor = {0, 0, 255},
+        fillColor = {255, 255, 255},
+        lineThickness = 2),
+      Text(
+        extent = {{-80, 60}, {80, 100}},
+        textString = "ConjunctiveClock",
+        fontSize = 12,
+        textColor = {0, 0, 255})
+    }));
+end ConjunctiveClock;
+```
+
+### Explanation:
+1. **Extending `PartialLogicalClock`:** The block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`, which provides the base functionality for logical clocks.
+2. **Redeclaring `combinator`:** The `combinator` component is redeclared as `Modelica.Blocks.Logical.And`, which performs a logical conjunction (AND) operation on the input clocks.
+3. **Annotation for Documentation and Icon:** The `annotation` section provides a description of the block and defines a simple icon for visualization in Modelica tools.
+
+This block will tick when all input clocks have ticked at least once, and then it resets for the next cycle.

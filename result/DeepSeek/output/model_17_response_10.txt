@@ -1,0 +1,26 @@
+
+Generate a Modelica model named `Add` that adds two integer inputs 'u1' and 'u2' and outputs their sum 'y'. The model should extend the `IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation`. The input 'u' and output 'y' exist in IntSimpleOperation and does not need to be redeclared. It should handle the addition through a conditional operation based on the sampling time Ts. If Ts is greater than zero, the output is computed at each sample point; otherwise, the output is the direct sum of the two inputs.
+
+//modelica
+```model Add
+  extends IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+  parameter Integer u1(start=0) "First integer input";
+  parameter Integer u2(start=0) "Second integer input";
+  parameter Integer y(start=0) "Output";
+  parameter Real Ts(start=0) "Sampling time";
+equation
+  if Ts > 0 then
+    der(y) = (u1 + u2) / Ts;
+  else
+    y = u1 + u2;
+  end if;
+end Add;
+```
+
+This model extends the `IntSimpleOperation` interface and defines two integer inputs `u1` and `u2`, a real parameter `Ts` for the sampling time, and an integer output `y`. The equations determine the output `y` based on the sampling time `Ts`. If `Ts` is greater than zero, the output is computed as the derivative of `y` with respect to time, which is the rate of change of the sum of `u1` and `u2` divided by `Ts`. If `Ts` is not greater than zero, the output is simply the sum of `u1` and `u2`.
+
+Please note that this model does not consider the integer overflow issue. If the sum of `u1` and `u2` exceeds the maximum integer value, the result will wrap around, resulting in an incorrect output. To handle integer overflow, you would need to implement additional logic to manage the range of the sum and handle the overflow condition appropriately.
+
+Also, the `der(y)` notation is used to denote the derivative of `y` with respect to time. This is a standard notation in Modelica for representing derivatives.
+
+Remember to test this model in your Modelica environment to ensure it behaves as expected.

@@ -1,0 +1,20 @@
+
+Suppose we have a simple vibration system consisting of a spring, a damper, and a mass (`m`) that moves in a vertical direction without external forces (`F0` = 0). The spring coefficient (`k`) is 1, the damping coefficient (`c`) is 0.1, and the particle mass (`m`) is 1. Please help me implement the Modelica model named `SpringMassDamper` corresponding to the above system. Define variables for displacement (`x`, starting at 1), velocity (`v`), and the resultant force applied to the mass (`F`). The equations should describe the resultant force (`F`) based on the spring and damping effects, and use Newton's second law to relate this force to the derivative of velocity, while also defining the derivative of displacement.
+
+//modelica
+```model SpringMassDamper
+  parameter Real k = 1 "Spring constant";
+  parameter Real c = 0.1 "Damping constant";
+  parameter Real m = 1 "Mass";
+  Real x(start=1) "Displacement";
+  Real v "Velocity";
+  Real F "Force";
+equation 
+  // Define the equations here
+  // F = -kx -cv + m*x'';
+  // v = x'
+  // x = x
+end SpringMassDamper;
+```
+
+Please provide the Modelica code for the `SpringMassDamper` model.

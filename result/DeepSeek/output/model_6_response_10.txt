@@ -1,0 +1,67 @@
+
+Generate a detailed Modelica model named `TestTrackingFO` for a test mode tracking system for a Fractional Order (FO) controller block. The model is intended to simulate scenarios within industrial control systems. It should include the following components: 
+
+1. **FOtr**: An instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `useTS=true` and `T=0.4`.
+
+2. **FOaw**: Another instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `mu=1`, `AntiWindup=true`, `T=0.4`, `useTS=true`, `Ymin=0`, and `Ymax=2`.
+
+3. **Signal**: A `Modelica.Blocks.Sources.Step` source with parameters `startTime=2` and `height=2`.
+
+4. **TSsignal**: A `Modelica.Blocks.Sources.BooleanPulse` source with parameters `startTime=4`, `width=10`, and `period=40`.
+
+5. **TrackRef**: A `Modelica.Blocks.Sources.Trapezoid` source with parameters `amplitude=5`, `rising=1`, `width=2`, `falling=1`, `period=8`, `nperiod=1`, and `startTime=4`.
+
+6. **FO**: A third instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `mu=1` and `T=0.4`.
+
+Ensure that the following connections are made in the model's equation section:
+
+Interface Reference: - Control inputs are represented by '.u'. 
+- Tracking mode switches are represented by '.TS'.
+- Tracking reference signals are represented by '.TR'.
+- Source outputs are represented by '.y'.
+
+Connection Logic:
+1. Connect the step source signal to the control inputs '.u' of all three FO controller instances (FO, FOtr, and FOaw).
+2. Link the boolean pulse TSsignal to the tracking mode switches '.TS' of the tracking-enabled instances (FOtr and FOaw).
+3. Provide the trapezoidal TrackRef as the tracking reference '.TR' for both FOtr and FOaw.
+
+//modelica
+```model TestTrackingFO
+  parameter Real T = 0.4;
+  parameter Real mu = 1;
+  parameter Real Ymin = 0;
+  parameter Real Ymax = 2;
+  parameter Real amplitude = 5;
+  parameter Real startTime = 4;
+  parameter Real width = 2;
+  parameter Real rising = 1;
+  parameter Real falling = 1;
+  parameter Real period = 8;
+  parameter Real nperiod = 1;
+  parameter Real height = 2;
+  parameter Real startTime_step = 2;
+  parameter Real width_pulse = 10;
+  parameter Real period_pulse = 40;
+  parameter Boolean useTS = true;
+
+  Blocks.Sources.Step step(startTime = startTime_step, height = height);
+  Blocks.Sources.BooleanPulse booleanPulse(startTime = startTime_pulse, width = width_pulse, period = period_pulse);
+  Blocks.Sources.Trapezoid trapezoid(amplitude = amplitude, rising = rising, width = width, falling = falling, period = period, nperiod = nperiod, startTime = startTime);
+
+  Controllers.Blocks.FO fo(mu = mu, T = T, useTS = useTS, Ymin = Ymin, Ymax = Ymax);
+  Controllers.Blocks.FO fotr(mu = mu, T = T, useTS = true, Ymin = Ymin, Ymax = Ymax);
+  Controllers.Blocks.FO fowa(mu = mu, AntiWindup = true, T = T, useTS = true, Ymin = Ymin, Ymax = Ymax);
+
+equation 
+  connect(step.y, fo.u);
+  connect(step.y, fotr.u);
+  connect(step.y, fowa.u);
+  connect(booleanPulse.y, fo.TS);
+  connect(booleanPulse.y, fotr.TS);
+  connect(booleanPulse.y, fowa.TS);
+  connect(trapezoid.y, fotr.TR);
+  connect(trapezoid.y, fowa.TR);
+end TestTrackingFO;
+```
+
+The model should be designed to simulate a test scenario for a fractional order controller under tracking mode with anti-windup.

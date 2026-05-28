@@ -1,0 +1,25 @@
+block ComplexToReal
+ extends Modelica.ComplexBlocks.Icons.ComplexBlock;
+
+  // Parameters
+  parameter Boolean useConjugateInput = false "Use conjugate of the input";
+
+  // Inputs
+  Modelica.ComplexBlocks.Interfaces.ComplexInput u "Complex input signal";
+
+  // Outputs
+  Modelica.Blocks.Interfaces.RealOutput re "Real part of the complex input";
+  Modelica.Blocks.Interfaces.RealOutput im "Imaginary part of the complex input";
+
+equation
+  // Assign real part directly
+  re = Modelica.ComplexMath.real(u);
+
+  // Assign imaginary part, considering conjugate option
+  if useConjugateInput then
+    im = -Modelica.ComplexMath.imag(u);
+  else
+    im = Modelica.ComplexMath.imag(u);
+  end if;
+
+end ComplexToReal;

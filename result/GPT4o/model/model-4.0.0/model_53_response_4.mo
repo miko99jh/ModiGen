@@ -1,0 +1,32 @@
+model HighPass
+ // Import necessary Modelica libraries
+  import Modelica.Units.SI;
+  import Modelica.Electrical.Analog.Basic;
+  import Modelica.Electrical.Analog.Sensors;
+  import Modelica.Electrical.Analog.Sources;
+  import Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits;
+
+  // Parameters
+  parameter SI.Voltage Vin = 5 "Input voltage amplitude";
+  parameter SI.Frequency f = 10 "Input signal frequency";
+  parameter SI.Frequency fG = f / 10 "Limiting frequency for high-pass filter";
+
+  // Components
+  Basic.Ground ground;
+  Sensors.VoltageSensor vOut;
+  OpAmpCircuits.Derivative derivative(T = 1 / (2 * Modelica.Constants.pi * fG), v(fixed = true));
+  Sources.TrapezoidVoltage vIn(V = Vin, rising = 0.2 / f, width = 0.3 / f, falling = 0.2 / f, period = 1 / f, nperiod = -1, offset = 0, startTime = -(0.2 / f + 0.3 / (2 * f)));
+
+  // Connections
+  equation
+    // Input Loop
+    connect(vIn.p, derivative.p1);
+
+    // Grounding & Return
+    connect(vIn.n, ground.p);
+    connect(derivative.n1, ground.p);
+
+    // Output Measurement
+    connect(derivative.p2, vOut.p);
+    connect(derivative.n2, vOut.n);
+end HighPass;

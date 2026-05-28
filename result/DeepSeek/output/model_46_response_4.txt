@@ -1,0 +1,23 @@
+
+Generate a Modelica block named `ComplexToReal`, which converts a complex input signal into its Cartesian components (real and imaginary parts). The model should extend from `Modelica.ComplexBlocks.Icons.ComplexBlock`. The model should include the following: 1. **Functionality**: The model takes a complex input and outputs its real and imaginary components. It should also handle the option to process the conjugate of the input. 2. **Inputs and Outputs**: The model should have one complex input `u` of type `Modelica.ComplexBlocks.Interfaces.ComplexInput`, and two real outputs `re` and `im` of type `Modelica.Blocks.Interfaces.RealOutput`. 3. **Parameters**: Include a Boolean parameter `useConjugateInput` with a default value of `false`, which determines if the input should be treated as its conjugate. 4. **Equations**: The real part 're' of the input 'u' should be assigned to `re`, and the imaginary part 'im' to `im`. If `useConjugateInput` is `true`, negate the imaginary part before assigning it to `im`.
+
+//modelica
+```block ComplexToReal extends Modelica.ComplexBlocks.Icons.ComplexBlock
+  "Convert complex input into Cartesian components"
+  import Modelica.ComplexBlocks.Interfaces;
+  import Modelica.Blocks.Interfaces;
+  parameter Boolean useConjugateInput=false 
+    "If true, the input is treated as its conjugate";
+  Interfaces.ComplexInput u 
+    "Complex input";
+  RealOutput re 
+    "Real part of the input";
+  RealOutput im 
+    "Imaginary part of the input";
+equation 
+  re = useConjugateInput and u.re < 0? -u.re : u.re;
+  im = useConjugateInput and u.im < 0? -u.im : u.im;
+end ComplexToReal;
+```
+
+This model will take a complex input and output its real and imaginary components. If the `useConjugateInput` parameter is set to `true`, the input will be treated as its conjugate, and the imaginary part will be negated before being output.

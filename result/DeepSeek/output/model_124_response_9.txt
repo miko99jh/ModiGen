@@ -1,0 +1,13 @@
+
+Generate a Modelica model that represents an 'infinite reservoir' at some ambient temperature. The model should have a parameter named `T_amb` with the type `Modelica.SIunits.Temperature`, representing the ambient temperature. The model should include a heat transfer interface `node` of type `Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a`, and the equation should ensure that the temperature at the `node.T` is equal to `T_amb`. The model should be named `AmbientCondition`.
+
+//modelica
+```model AmbientCondition
+  parameter Modelica.SIunits.Temperature T_amb "Ambient temperature";
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a node;
+equation
+  node.T = T_amb;
+end AmbientCondition;
+```
+
+In the above model, the parameter `T_amb` is defined as the ambient temperature. The heat transfer interface `node` is defined with the type `Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a`, which is used to represent a heat transfer port. The equation `node.T = T_amb` ensures that the temperature at the `node.T` is equal to the ambient temperature `T_amb`. The model is named `AmbientCondition`.

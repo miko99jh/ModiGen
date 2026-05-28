@@ -1,0 +1,346 @@
+
+Generate a Modelica block that computes feedback terms. The model should have two 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput' (u1 and u2) and one 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput' (y). The equation for the output y is the difference between the inputs u1 and u2. The model should be based on Modelica version 3.2.3 and be named `Feedback`.
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter Modelica.SIunits.Time tDelay = 0 "Delay time";
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput y;
+equation 
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  parameter

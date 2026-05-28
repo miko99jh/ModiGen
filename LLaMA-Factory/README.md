@@ -1,0 +1,1 @@
+This directory is designated for the LLaMA-Factory framework, which is utilized for the supervised fine-tuning (SFT) phase of the ModiGen framework. Users should clone the official repository from GitHub to this directory to replicate the training environment.

@@ -1,0 +1,23 @@
+```modelica
+model TimeBasedSine
+  // Import necessary components
+  import Modelica.Clocked.RealSignals.Sampler.AssignClock;
+  import Modelica.Clocked.ClockSignals.Clocks.PeriodicRealClock;
+  import Modelica.Clocked.RealSignals.TimeBasedSources.Sine;
+
+  // Declare components
+  PeriodicRealClock periodicClock1(period=0.1) "Periodic clock with a period of 0.1 seconds";
+  Sine sine(f=2) "Time-based sine source with frequency 2 Hz";
+  AssignClock assignClock1 "Assign clock to the sine output";
+
+equation
+  // Establish clock assignment logic
+  // Use periodicClock1 as the master clock for assignClock1
+  assignClock1.clock = periodicClock1.clock;
+
+  // Route the output of the sine generator into assignClock1
+  connect(sine.y, assignClock1.u);
+end TimeBasedSine;
+```
+
+This Modelica model defines a `TimeBasedSine` model that uses a clocked time-based sine source. The `periodicClock1` is used as the master timing source, and its clock is assigned to the `assignClock1` block. The output of the `sine` generator is routed into `assignClock1` to ensure the signal is correctly associated with the designated periodic partition.

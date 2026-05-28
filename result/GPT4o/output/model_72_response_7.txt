@@ -1,0 +1,51 @@
+To create a Modelica model named `IMC_Transformer` that extends from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`, you need to ensure that the model is syntactically correct and adheres to the Modelica language standard. Below is an example of how you might define such a model:
+
+```modelica
+model IMC_Transformer
+  extends Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer;
+
+  // Parameters
+  parameter Modelica.SIunits.Frequency fNominal = 50 "Nominal frequency";
+  parameter Modelica.SIunits.Voltage VNominal = 400 "Nominal voltage";
+
+  // Components
+  Modelica.Electrical.Machines.BasicMachines.InductionMachines.SquirrelCage squirrelCageMachine(
+    p=2, 
+    m=3, 
+    fNominal=fNominal, 
+    VNominal=VNominal) 
+    "Squirrel cage induction machine";
+
+  Modelica.Electrical.Analog.Basic.Resistor loadResistor(R=10) "Load resistor";
+
+  Modelica.Electrical.Analog.Basic.Inductor loadInductor(L=0.1) "Load inductor";
+
+  Modelica.Electrical.Analog.Basic.Ground ground "Ground";
+
+  Modelica.Electrical.Analog.Basic.VoltageSourceAC voltageSource(
+    V=VNominal, 
+    f=fNominal) 
+    "AC voltage source";
+
+  // Connections
+  equation
+    connect(voltageSource.p, squirrelCageMachine.plug_p) "Connect voltage source to machine";
+    connect(squirrelCageMachine.plug_n, loadResistor.p) "Connect machine to load resistor";
+    connect(loadResistor.n, loadInductor.p) "Connect load resistor to load inductor";
+    connect(loadInductor.n, ground.p) "Connect load inductor to ground";
+    connect(voltageSource.n, ground.p) "Connect voltage source to ground";
+
+end IMC_Transformer;
+```
+
+### Explanation:
+- **Model Extension**: The model extends from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`, which means it inherits all the properties and components of the base model.
+- **Parameters**: `fNominal` and `VNominal` are defined to set the nominal frequency and voltage for the system.
+- **Components**: 
+  - `squirrelCageMachine`: Represents the induction machine with a squirrel cage rotor.
+  - `loadResistor` and `loadInductor`: Represent the load connected to the machine.
+  - `ground`: Represents the electrical ground.
+  - `voltageSource`: Represents the AC voltage source supplying power to the system.
+- **Connections**: The `connect` statements define how the components are electrically connected to each other.
+
+This model provides a basic setup for simulating the starting of an induction machine using a transformer. You can further customize the parameters and components based on your specific requirements.

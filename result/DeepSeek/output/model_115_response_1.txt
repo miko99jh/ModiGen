@@ -1,0 +1,25 @@
+
+Generate a Modelica model that implements an on-off actuator for a thermal control system. The model should be named `ConventionOnOffActuator` and extend from the `ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator` model. The actuator should have a parameter `heating_capacity` of type `Real`, representing the heating capacity of the actuator. Internally, the model should include a `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component named `heater` to model the heat flow, and a `Modelica.Blocks.Math.BooleanToReal` component named `command` with redeclared parameters 'realTrue=heating_capacity' and 'realFalse=0'. The heating process is regulated by the command component. Specifically, link the output signal of the command to the heater's heat flow rate input (Q_flow). Additionally, connect the heater's thermal port (port) to the external furnace interface.
+
+//modelica
+```model ConventionOnOffActuator
+  extends ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator;
+  parameter Real heating_capacity;
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater;
+  Modelica.Blocks.Math.BooleanToReal command(realTrue=heating_capacity, realFalse=0);
+equation 
+  connect(command.y, heater.Q_flow);
+  connect(heater.port, externalFurnace.port);
+end ConventionOnOffActuator;
+```
+
+//markdown
+The `ConventionOnOffActuator` model extends from the `ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator` model, which is a base model for an actuator in a thermal control system. The actuator has a parameter `heating_capacity` that represents the heating capacity of the actuator.
+
+The actuator is composed of a `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component named `heater`, which is used to model the heat flow. The `heater` component is linked to the actuator's command through the `command` component, which is a `Modelica.Blocks.Math.BooleanToReal` component. The `command` component is redeclared with parameters `realTrue` and `realFalse` set to `heating_capacity` and `0` respectively. This means that when the command is true (1), the heat flow will be set to the `heating_capacity`, and when the command is false (0), the heat flow will be set to 0.
+
+The `heater` component is also connected to the external furnace interface through its thermal port. This allows the actuator to exchange heat with the environment.
+
+The `connect` statements are used to link the components together. The output signal of the `command` component is linked to the `Q_flow` input of the `heater` component, and the `port` of the `heater` component is linked to the `port` of the external furnace.
+
+This model can be used to control the heating capacity of the actuator based on a boolean command signal.

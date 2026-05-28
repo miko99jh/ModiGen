@@ -1,0 +1,53 @@
+model AD_DA_conversion
+ // Components
+  Modelica.Electrical.Analog.Ideal.AD_Converter aD_Converter(
+    N=7, 
+    Rin=1000000, 
+    VRefLow=0, 
+    VRefHigh=10) "Analog-to-Digital Converter";
+  
+  Modelica.Electrical.Digital.Sources.Pulse pulse(
+    pulse=Modelica.Electrical.Digital.Interfaces.Logic.'1', 
+    quiet=Modelica.Electrical.Digital.Interfaces.Logic.'0', 
+    nperiod=-1, 
+    width=1, 
+    period=0.001, 
+    startTime=0) "Digital pulse signal generator";
+  
+  Modelica.Electrical.Analog.Ideal.DA_Converter dA_Converter(
+    N=7, 
+    Vref=10) "Digital-to-Analog Converter";
+  
+  Modelica.Electrical.Analog.Sources.SineVoltage sineVoltage(
+    V=5, 
+    f=10, 
+    offset=5) "Sine wave voltage source";
+  
+  Modelica.Electrical.Analog.Basic.Resistor resistor(
+    R=1) "Resistor for error measurement";
+  
+  Modelica.Electrical.Analog.Basic.Ground ground "Ground reference";
+
+  // Connections
+equation
+  // Connect pulse output to trigger inputs of AD and DA converters
+  connect(pulse.y, aD_Converter.trig);
+  connect(pulse.y, dA_Converter.trig);
+  
+  // Connect sine voltage source to AD converter
+  connect(sineVoltage.p, aD_Converter.p);
+  connect(sineVoltage.n, aD_Converter.n);
+  
+  // Connect AD converter digital output to DA converter digital input
+  connect(aD_Converter.y, dA_Converter.x);
+  
+  // Connect DA converter output to ground
+  connect(dA_Converter.n, ground.p);
+  
+  // Connect sine voltage source and DA converter output through resistor
+  connect(sineVoltage.p, resistor.p);
+  connect(dA_Converter.p, resistor.n);
+  
+  // Connect sine voltage source negative terminal to ground
+  connect(sineVoltage.n, ground.p);
+end AD_DA_conversion;

@@ -1,0 +1,27 @@
+To implement a Van der Pol oscillator in Modelica with the specified parameters, you can define a model named `VanDerPol` with the given initial conditions and equations. Below is a complete Modelica model for the Van der Pol oscillator:
+
+```modelica
+model VanDerPol
+  // Parameters
+  parameter Real lambda = 0.3; // Nonlinearity parameter
+
+  // Variables
+  Real x(start=1); // State variable x with initial condition
+  Real y(start=1); // State variable y with initial condition
+
+equation
+  // Van der Pol oscillator equations
+  der(x) = y;
+  der(y) = lambda * (1 - x^2) * y - x;
+
+end VanDerPol;
+```
+
+### Explanation:
+- **Parameters**: The parameter `lambda` is set to 0.3, which controls the nonlinearity and damping of the system.
+- **Variables**: The state variables `x` and `y` are initialized to 1, as specified.
+- **Equations**: The equations define the derivatives of `x` and `y` according to the Van der Pol oscillator dynamics:
+  - `der(x) = y` represents the relationship where the derivative of `x` is equal to `y`.
+  - `der(y) = lambda * (1 - x^2) * y - x` represents the nonlinear damping and restoring force in the system.
+
+This model can be simulated using a Modelica environment to observe the oscillatory behavior of the Van der Pol system.

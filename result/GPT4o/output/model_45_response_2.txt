@@ -1,0 +1,29 @@
+```modelica
+block ExtractSignal
+  extends Modelica.ComplexBlocks.Interfaces.ComplexMIMO;
+
+  parameter Integer extract[nout] "Indices of input signals to extract";
+
+protected 
+  // Ensure that the extract indices are within the valid range
+  parameter Boolean validIndices = all(extract >= 1 and extract <= nin) "Check if extract indices are valid";
+
+equation 
+  // Check if the extract indices are valid
+  assert(validIndices, "Extract indices must be within the range of input signals");
+
+  // Map the specified input signals to the outputs
+  for i in 1:nout loop
+    y[i] = u[extract[i]];
+  end for;
+
+end ExtractSignal;
+```
+
+### Explanation:
+- **Inheritance**: The block inherits from `Modelica.ComplexBlocks.Interfaces.ComplexMIMO`, which is suitable for handling complex multi-input multi-output systems.
+- **Parameter `extract`**: This is an integer array of size `nout` that specifies which indices of the input vector `u` should be extracted and mapped to the output vector `y`.
+- **Protected Section**: A protected parameter `validIndices` is used to ensure that all indices specified in `extract` are within the valid range of the input vector `u`.
+- **Equation Section**: 
+  - An `assert` statement checks that all indices in `extract` are valid.
+  - A `for` loop iterates over the range of output signals (`nout`) and assigns each specified input signal `u[extract[i]]` to the corresponding output `y[i]`.

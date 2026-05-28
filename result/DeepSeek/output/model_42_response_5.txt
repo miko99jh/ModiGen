@@ -1,0 +1,42 @@
+
+Generate a Modelica block named `Ramp` that generates a ramp signal based on counted clock ticks. The model should extend `Modelica.Clocked.RealSignals.Interfaces.PartialClockedSO`. The purpose of the model is to output a signal that increases linearly over time according to the specified parameters.
+
+**Model Functionality**: The `Ramp` block outputs a ramp signal starting at a given offset and increases linearly until it reaches a specified height. The ramp starts after a defined number of clock ticks (startTick) and continues to increase for a specified duration (durationTicks). After the ramp reaches the specified height, the output signal remains constant.
+
+**Inputs and Outputs**:
+- **Input Parameters**:
+- `Real height = 1`: The height of the ramp signal (unitless).
+- `Integer durationTicks(min=1) = 1`: The duration of the ramp in terms of the number of clock ticks.
+- `Real offset = 0`: The offset value of the output signal before the ramp starts (unitless).
+- `Integer startTick(min=1) = 1`: The clock tick at which the output starts ramping.
+
+- **Protected Variables**:
+- `Integer counter(start=0)`: A counter that tracks the number of clock ticks.
+
+- **Output**:
+- `Real y`: The output signal that starts at the offset value and ramps up to the specified height.
+
+**Equations**:
+- 'counter', which tracks the number of clock ticks. The counter increments by one each tick until it reaches the total of 'startTick + durationTicks'. Once this limit is reached, the counter stops incrementing and holds its value.
+- 'y', if the counter is below startTick, y remains at the initial offset value, indicating the ramp has not started yet. If the counter is between 'startTick' and 'startTick + durationTicks', 'y' equals to 'offset + (counter - startTick)*height/durationTicks', based on how many ticks have passed since 'startTick'. Once the counter exceeds 'startTick + durationTicks', the output 'y' remains constant at 'offset + height', signifying that the ramp has reached its full height and maintains this level.
+
+//modelica
+```block Ramp extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSO
+  parameter Real height = 1 "The height of the ramp signal";
+  parameter Integer durationTicks(min=1) = 1 "The duration of the ramp in terms of the number of clock ticks";
+  parameter Real offset = 0 "The offset value of the output signal before the ramp starts";
+  parameter Integer startTick(min=1) = 1 "The clock tick at which the output starts ramping";
+  Integer counter(start=0) "A counter that tracks the number of clock ticks";
+  output Real y "The output signal that starts at the offset value and ramps up to the specified height";
+equation
+  counter = if clock then counter + 1 else counter;
+  y = if counter < startTick then
+        offset
+      else if counter < startTick + durationTicks then
+        offset + (counter - startTick)*height/durationTicks
+      else
+        offset + height;
+end Ramp;
+```
+
+This model will generate a ramp signal based on the provided parameters and the clock ticks.

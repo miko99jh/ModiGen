@@ -1,0 +1,34 @@
+
+Create a Modelica model named `SpeedControl` for the discrete control of crankshaft speed by throttle actuation. The model should include the following details:
+
+1. **Components and Parameters**:
+- `k_p`: Proportional gain, a real number with a value of 0.0614. 
+- `k_I`: Integral gain, a real number with a value of 0.0723.
+- `N_des`: Desired speed, a `Modelica.Blocks.Interfaces.RealInput` with units of rad/s and an initial value of 0.
+- `N`: Measured speed, a `Modelica.Blocks.Interfaces.RealInput` with units of rad/s and an initial value of 0.
+- `Theta`: Throttle angle, a `Modelica.Blocks.Interfaces.RealOutput` of with units of degrees and an initial value of 8.9.
+- `x_d`: With type `Modelica.Units.NonSI.Angle_deg`, a protected variable representing an angle in degrees, initialized to 8.973 and fixed.
+
+2. **Equations and Expressions**:
+- Implement a discrete-time Proportional-Integral (PI) control law within a `when Clock() then` block:
+Integral State Update: The protected state 'x_d' should be updated at each clock tick. It accumulates the speed error (difference between 'previous(N_des') and 'previous(N)'), scaled by the integral gain 'k_I' and the specific clock interval.
+Output Calculation: The throttle angle 'Theta' should be calculated as the sum of the proportional correction (based on current speed error and 'k_p') and the current integral state 'x_d'.
+Use appropriate clocked operators like previous() and interval() to ensure correct discrete-time behavior.
+
+//modelica
+```block SpeedControl
+  parameter Real k_p=0.0614;
+  parameter Real k_I=0.0723;
+  Modelica.Blocks.Interfaces.RealInput N_des(start=0);
+  Modelica.Blocks.Interfaces.RealInput N(start=0);
+  Modelica.Blocks.Interfaces.RealOutput Theta(start=8.9, fixed=true) "Throttle angle";
+  protected Modelica.Units.NonSI.Angle_deg x_d=8.973;
+equation
+  when Clock() then
+    x_d = x_d + (N_des - N)*k_I*interval();
+    Theta = k_p*(N_des - N) + x_d;
+  end when;
+end SpeedControl;
+```
+
+This model should be able to simulate a discrete-time PI control law for the crankshaft speed control.

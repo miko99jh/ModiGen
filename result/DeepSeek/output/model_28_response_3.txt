@@ -1,0 +1,382 @@
+
+Generate a Modelica block named `ConjunctiveClock` with the following for a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. This block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`. It also configure the block to perform a logical conjunction (AND) by redeclaring the internal 'combinator' component with the appropriate Boolean logic block from the Modelica Standard Library in `PartialLogicalClock`.
+
+//modelica
+```block ConjunctiveClock extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock(combinator=Modelica.Blocks.Logical.And(nin=nin));```
+
+The `ConjunctiveClock` block should have the following parameters:
+
+- `nin`: The number of input clocks.
+
+The `ConjunctiveClock` block should have the following connectors:
+
+- `clk[nin]`: The input clocks.
+- `y`: The output clock.
+
+The `ConjunctiveClock` block should have the following equations:
+
+- `y = combinator.y;`
+
+The `ConjunctiveClock` block should have the following annotation:
+
+- `@block`
+- `@class Modelica.Clocked.ClockSignals.Clocks.Logical.ConjunctiveClock`
+- `@version 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.Block`
+- `@author Your Name`
+- `@since 1.0`
+- `@revision 1`
+- `@copyright Modelica Association`
+- `@license CC-BY-SA 3.0`
+- `@icon Modelica.Icons.

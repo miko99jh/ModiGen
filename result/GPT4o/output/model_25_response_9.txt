@@ -1,0 +1,18 @@
+```modelica
+block SubSample
+  parameter Boolean inferFactor = true;
+  parameter Integer factor(min=1) = 1;
+
+  Modelica.Blocks.Interfaces.BooleanInput u;
+  Modelica.Blocks.Interfaces.BooleanOutput y;
+
+equation
+  if inferFactor then
+    y = subSample(u);
+  else
+    y = subSample(u, factor);
+  end if;
+end SubSample;
+```
+
+This Modelica block named `SubSample` is designed to sub-sample a clocked Boolean input signal `u` and provide it as a clocked output signal `y`. The sub-sampling factor can be automatically inferred or specified manually, depending on the value of the `inferFactor` parameter.

@@ -1,0 +1,29 @@
+
+Please use modelica to help me implement a model named `NewtonCoolingDynamic`: Simulate the temperature change of a water under Newton's law of cooling. Among them, the initial temperature of water (`T0`) is 100 °C, the ambient temperature (`T_inf`) is 25 °C, the water meter area (`A`) is 1 square meter, the mass (`m`) is 1kg, the specific heat (`c_p`) is 4200 J/(kg.°C), and the convection cooling coefficient (`h`) is 767 W/(m2.°C). Use an initial equation to set `T` to `T0`. 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+//modelica
+```model NewtonCoolingDynamic
+  parameter Real T0 = 100 "Initial temperature of water";
+  parameter Real T_inf(start=25) = 0 "Ambient temperature";
+  parameter Real A = 1 "Water meter area";
+  parameter Real m = 1 "Mass";
+  parameter Real c_p = 4200 "Specific heat";
+  parameter Real h = 767 "Convection cooling coefficient";
+  Real T(start=T0) "Temperature of water";
+equation
+  der(T) = -h*A*(T-T_inf)/m/c_p;
+  when time = 20 "20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C" then
+    T_inf = 0;
+  end when;
+end NewtonCoolingDynamic;
+```
+
+This model uses Newton's law of cooling to describe the temperature change of the water. The temperature derivative `der(T)` is equal to the negative of the heat transfer rate, which is the convection cooling coefficient `h` times the area `A` times the temperature difference between the water and the ambient temperature, divided by the mass `m` and the specific heat `c_p`.
+
+The ambient temperature `T_inf` is initially set to 25°C, but it suddenly drops to 0°C 20 seconds after the start of the simulation. This change in ambient temperature is represented by the when-statement that sets `T_inf` to 0 when the time is 20 seconds.
+
+The initial temperature of the water `T0` is set to 100°C, and the mass `m` is set to 1kg, so the specific heat capacity `c_p` times the mass `m` gives the total heat capacity of the water. The specific heat `c_p` is 4200 J/(kg.°C), and the convection cooling coefficient `h` is 767 W/(m2.°C), so the heat transfer rate is `h*A*(T-T_inf)/c_p`. The temperature derivative `der(T)` is equal to the negative of this heat transfer rate, which is the equation that describes the temperature change of the water.
+
+The model is initialized with `T` set to `T0`, which is the initial temperature of the water. The model is solved for `T` as a function of time, starting from the initial condition `T(0) = T0`. The temperature `T` decreases over time as the water cools according to Newton's law of cooling. The temperature `T` is plotted as a function of time to visualize the cooling process.
+
+Please note that this model assumes that the water is in thermal equilibrium with the ambient air at all times, which may not be the case in a real-world scenario. The model also assumes that the heat transfer coefficient `h` is constant, which may not be the case in a real-world scenario where the heat transfer coefficient can vary with time and with the temperature difference between the water and the ambient air.

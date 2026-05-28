@@ -1,0 +1,32 @@
+
+Please use modelica to help me implement a model named `NewtonCoolingDynamic`: Simulate the temperature change of a water under Newton's law of cooling. Among them, the initial temperature of water (`T0`) is 100 °C, the ambient temperature (`T_inf`) is 25 °C, the water meter area (`A`) is 1 square meter, the mass (`m`) is 1kg, the specific heat (`c_p`) is 4200 J/(kg.°C), and the convection cooling coefficient (`h`) is 767 W/(m2.°C). Use an initial equation to set `T` to `T0`. 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+//modelica
+```model NewtonCoolingDynamic
+  parameter Real T0(unit="degC") = 100;
+  parameter Real T_inf(unit="degC") = 25;
+  parameter Real A(unit="m^2") = 1;
+  parameter Real m(unit="kg") = 1;
+  parameter Real c_p(unit="J/(kg.degC)") = 4200;
+  parameter Real h(unit="W/(m^2.degC)") = 767;
+  Real T(start=T0, unit="degC");
+equation
+  der(T) = (T_inf - T) / (m * c_p) + h * A * (T_inf - T) / (m * c_p);
+  when time = 20 "s" then
+    T_inf = 0 "degC";
+  end when;
+end NewtonCoolingDynamic;
+```
+
+This model describes the Newton's law of cooling, which states that the rate of heat loss of a body is directly proportional to the difference in temperature between the body and its surroundings. The model uses the following parameters:
+
+- `T0`: The initial temperature of the water in degrees Celsius.
+- `T_inf`: The ambient temperature in degrees Celsius.
+- `A`: The surface area of the water in square meters.
+- `m`: The mass of the water in kilograms.
+- `c_p`: The specific heat capacity of the water in J/(kg.°C).
+- `h`: The convection cooling coefficient in W/(m2.°C).
+
+The model also includes an initial equation that sets `T` to `T0`. After 20 seconds, the ambient temperature suddenly drops to 0°C. The model uses a when-statement to change the value of `T_inf` at that time.
+
+Please note that the model assumes that the water is in a perfectly insulated container, so there is no heat loss or gain through the container walls.

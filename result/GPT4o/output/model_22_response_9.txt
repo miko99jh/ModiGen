@@ -1,0 +1,45 @@
+Here is the Modelica model for the `PQBus` as per your specifications:
+
+```modelica
+model PQBus
+  extends PowerGrids.Icons.Load(
+    PIcon = port.P,
+    QIcon = port.Q,
+    PPuIcon = port.PPu,
+    QPuIcon = port.QPu);
+
+  extends PowerGrids.Electrical.BaseClasses.SolutionChecking(
+    VPuCheck = port.VPu,
+    IPuCheck = port.IPu);
+
+  extends PowerGrids.Electrical.BaseClasses.OnePortACPF(
+    final portVariablesPhases = true);
+
+  // Parameters
+  parameter PowerGrids.Types.ActivePower P = SNom 
+    "Active power entering the bus (default is nominal power)";
+  parameter PowerGrids.Types.ReactivePower Q = 0 
+    "Reactive power entering the bus (default is 0)";
+
+equation
+  // Assign active and reactive power to the port
+  port.P = P;
+  port.Q = Q;
+
+end PQBus;
+```
+
+### Explanation of the Model:
+1. **Inheritance and Interfaces:**
+   - The model extends `PowerGrids.Icons.Load` to inherit the graphical representation and map the power-related icons (`PIcon`, `QIcon`, `PPuIcon`, `QPuIcon`) to the corresponding port variables.
+   - It extends `PowerGrids.Electrical.BaseClasses.SolutionChecking` to validate the solution using voltage per unit (`VPuCheck`) and current per unit (`IPuCheck`).
+   - It extends `PowerGrids.Electrical.BaseClasses.OnePortACPF` with the `portVariablesPhases` set to `true` to enable phase-specific configurations for the port variables.
+
+2. **Parameters:**
+   - `P`: Represents the active power entering the bus, with a default value of `SNom` (nominal power).
+   - `Q`: Represents the reactive power entering the bus, with a default value of `0`.
+
+3. **Equations:**
+   - The equations `port.P = P;` and `port.Q = Q;` ensure that the active and reactive power values are assigned to the port, representing the power flow into the bus.
+
+This model is structured to accurately represent a PQ bus in a power grid system, adhering to the specified requirements.

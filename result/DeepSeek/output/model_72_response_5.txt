@@ -1,0 +1,250 @@
+
+Generate a Modelica model named `IMC_Transformer` that represents a test example for starting an induction machine with a squirrel cage using a transformer. The model should include the following components and details:
+1. Components:
+- The model should extend from `Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer`.
+ Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model IMC_Transformer
+  extends Modelica.Electrical.Machines.Examples.InductionMachines.IMC_Transformer;
+end IMC_Transformer;
+```
+
+2. Parameters:
+- The model should have the following parameters:
+  - `w`: The angular velocity of the rotor in rad/s.
+  - `p`: The number of pole pairs.
+  - `Lr`: The leakage inductance of the rotor.
+  - `Nr`: The number of turns in the rotor.
+  - `Lm`: The magnetizing inductance.
+  - `Nm`: The number of turns in the magnetizing winding.
+  - `Rs`: The resistance of the stator.
+  - `Ls`: The leakage inductance of the stator.
+  - `Ns`: The number of turns in the stator.
+  - `Rr`: The resistance of the rotor.
+  - `phi`: The magnetic flux linkage.
+  - `Vnom`: The nominal voltage.
+  - `Inom`: The nominal current.
+  - `f`: The nominal frequency.
+  - `P`: The nominal power.
+  - `eta`: The efficiency.
+  - `Tf`: The transformer ratio.
+  - `Vt`: The transformer voltage.
+  - `It`: The transformer current.
+  - `w_nom`: The nominal speed in rad/s.
+  - `w_rated`: The rated speed in rad/s.
+  - `w_max`: The maximum speed in rad/s.
+  - `T_rated`: The rated torque.
+  - `T_max`: The maximum torque.
+  - `T_min`: The minimum torque.
+  - `T_nom`: The nominal torque.
+  - `T_stator`: The stator torque.
+  - `T_rotor`: The rotor torque.
+  - `T_load`: The load torque.
+  - `T_wind`: The wind torque.
+  - `T_gen`: The generator torque.
+  - `T_motor`: The motor torque.
+  - `T_transformer`: The transformer torque.
+  - `T_converter`: The converter torque.
+  - `T_pump`: The pump torque.
+  - `T_compressor`: The compressor torque.
+  - `T_fan`: The fan torque.
+  - `T_heater`: The heater torque.
+  - `T_cooler`: The cooler torque.
+  - `T_valve`: The valve torque.
+  - `T_pump_motor`: The pump motor torque.
+  - `T_pump_gen`: The pump generator torque.
+  - `T_pump_transformer`: The pump transformer torque.
+  - `T_pump_converter`: The pump converter torque.
+  - `T_pump_compressor`: The pump compressor torque.
+  - `T_pump_fan`: The pump fan torque.
+  - `T_pump_heater`: The pump heater torque.
+  - `T_pump_cooler`: The pump cooler torque.
+  - `T_pump_valve`: The pump valve torque.
+  - `T_motor_motor`: The motor motor torque.
+  - `T_motor_gen`: The motor generator torque.
+  - `T_motor_transformer`: The motor transformer torque.
+  - `T_motor_converter`: The motor converter torque.
+  - `T_motor_compressor`: The motor compressor torque.
+  - `T_motor_fan`: The motor fan torque.
+  - `T_motor_heater`: The motor heater torque.
+  - `T_motor_cooler`: The motor cooler torque.
+  - `T_motor_valve`: The motor valve torque.
+  - `T_gen_motor`: The gen motor torque.
+  - `T_gen_gen`: The gen generator torque.
+  - `T_gen_transformer`: The gen transformer torque.
+  - `T_gen_converter`: The gen converter torque.
+  - `T_gen_compressor`: The gen compressor torque.
+  - `T_gen_fan`: The gen fan torque.
+  - `T_gen_heater`: The gen heater torque.
+  - `T_gen_cooler`: The gen cooler torque.
+  - `T_gen_valve`: The gen valve torque.
+  - `T_transformer_motor`: The transformer motor torque.
+  - `T_transformer_gen`: The transformer generator torque.
+  - `T_transformer_transformer`: The transformer transformer torque.
+  - `T_transformer_converter`: The transformer converter torque.
+  - `T_transformer_compressor`: The transformer compressor torque.
+  - `T_transformer_fan`: The transformer fan torque.
+  - `T_transformer_heater`: The transformer heater torque.
+  - `T_transformer_cooler`: The transformer cooler torque.
+  - `T_transformer_valve`: The transformer valve torque.
+  - `T_converter_motor`: The converter motor torque.
+  - `T_converter_gen`: The converter generator torque.
+  - `T_converter_transformer`: The converter transformer torque.
+  - `T_converter_converter`: The converter converter torque.
+  - `T_converter_compressor`: The converter compressor torque.
+  - `T_converter_fan`: The converter fan torque.
+  - `T_converter_heater`: The converter heater torque.
+  - `T_converter_cooler`: The converter cooler torque.
+  - `T_converter_valve`: The converter valve torque.
+  - `T_compressor_motor`: The compressor motor torque.
+  - `T_compressor_gen`: The compressor generator torque.
+  - `T_compressor_transformer`: The compressor transformer torque.
+  - `T_compressor_converter`: The compressor converter torque.
+  - `T_compressor_compressor`: The compressor compressor torque.
+  - `T_compressor_fan`: The compressor fan torque.
+  - `T_compressor_heater`: The compressor heater torque.
+  - `T_compressor_cooler`: The compressor cooler torque.
+  - `T_compressor_valve`: The compressor valve torque.
+  - `T_fan_motor`: The fan motor torque.
+  - `T_fan_gen`: The fan generator torque.
+  - `T_fan_transformer`: The fan transformer torque.
+  - `T_fan_converter`: The fan converter torque.
+  - `T_fan_compressor`: The fan compressor torque.
+  - `T_fan_fan`: The fan fan torque.
+  - `T_fan_heater`: The fan heater torque.
+  - `T_fan_cooler`: The fan cooler torque.
+  - `T_fan_valve`: The fan valve torque.
+  - `T_heater_motor`: The heater motor torque.
+  - `T_heater_gen`: The heater generator torque.
+  - `T_heater_transformer`: The heater transformer torque.
+  - `T_heater_converter`: The heater converter torque.
+  - `T_heater_compressor`: The heater compressor torque.
+  - `T_heater_fan`: The heater fan torque.
+  - `T_heater_heater`: The heater heater torque.
+  - `T_heater_cooler`: The heater cooler torque.
+  - `T_heater_valve`: The heater valve torque.
+  - `T_cooler_motor`: The cooler motor torque.
+  - `T_cooler_gen`: The cooler generator torque.
+  - `T_cooler_transformer`: The cooler transformer torque.
+  - `T_cooler_converter`: The cooler converter torque.
+  - `T_cooler_compressor`: The cooler compressor torque.
+  - `T_cooler_fan`: The cooler fan torque.
+  - `T_cooler_heater`: The cooler heater torque.
+  - `T_cooler_cooler`: The cooler cooler torque.
+  - `T_cooler_valve`: The cooler valve torque.
+  - `T_valve_motor`: The valve motor torque.
+  - `T_valve_gen`: The valve generator torque.
+  - `T_valve_transformer`: The valve transformer torque.
+  - `T_valve_converter`: The valve converter torque.
+  - `T_valve_compressor`: The valve compressor torque.
+  - `T_valve_fan`: The valve fan torque.
+  - `T_valve_heater`: The valve heater torque.
+  - `T_valve_cooler`: The valve cooler torque.
+  - `T_valve_valve`: The valve valve torque.
+  - `T_pump_motor_motor`: The pump motor motor torque.
+  - `T_pump_motor_gen`: The pump motor generator torque.
+  - `T_pump_motor_transformer`: The pump motor transformer torque.
+  - `T_pump_motor_converter`: The pump motor converter torque.
+  - `T_pump_motor_compressor`: The pump motor compressor torque.
+  - `T_pump_motor_fan`: The pump motor fan torque.
+  - `T_pump_motor_heater`: The pump motor heater torque.
+  - `T_pump_motor_cooler`: The pump motor cooler torque.
+  - `T_pump_motor_valve`: The pump motor valve torque.
+  - `T_pump_gen_motor`: The pump gen motor torque.
+  - `T_pump_gen_gen`: The pump gen generator torque.
+  - `T_pump_gen_transformer`: The pump gen transformer torque.
+  - `T_pump_gen_converter`: The pump gen converter torque.
+  - `T_pump_gen_compressor`: The pump gen compressor torque.
+  - `T_pump_gen_fan`: The pump gen fan torque.
+  - `T_pump_gen_heater`: The pump gen heater torque.
+  - `T_pump_gen_cooler`: The pump gen cooler torque.
+  - `T_pump_gen_valve`: The pump gen valve torque.
+  - `T_pump_transformer_motor`: The pump transformer motor torque.
+  - `T_pump_transformer_gen`: The pump transformer generator torque.
+  - `T_pump_transformer_transformer`: The pump transformer transformer torque.
+  - `T_pump_transformer_converter`: The pump transformer converter torque.
+  - `T_pump_transformer_compressor`: The pump transformer compressor torque.
+  - `T_pump_transformer_fan`: The pump transformer fan torque.
+  - `T_pump_transformer_heater`: The pump transformer heater torque.
+  - `T_pump_transformer_cooler`: The pump transformer cooler torque.
+  - `T_pump_transformer_valve`: The pump transformer valve torque.
+  - `T_pump_converter_motor`: The pump converter motor torque.
+  - `T_pump_converter_gen`: The pump converter generator torque.
+  - `T_pump_converter_transformer`: The pump converter transformer torque.
+  - `T_pump_converter_converter`: The pump converter converter torque.
+  - `T_pump_converter_compressor`: The pump converter compressor torque.
+  - `T_pump_converter_fan`: The pump converter fan torque.
+  - `T_pump_converter_heater`: The pump converter heater torque.
+  - `T_pump_converter_cooler`: The pump converter cooler torque.
+  - `T_pump_converter_valve`: The pump converter valve torque.
+  - `T_pump_compressor_motor`: The pump compressor motor torque.
+  - `T_pump_compressor_gen`: The pump compressor generator torque.
+  - `T_pump_compressor_transformer`: The pump compressor transformer torque.
+  - `T_pump_compressor_converter`: The pump compressor converter torque.
+  - `T_pump_compressor_compressor`: The pump compressor compressor torque.
+  - `T_pump_compressor_fan`: The pump compressor fan torque.
+  - `T_pump_compressor_heater`: The pump compressor heater torque.
+  - `T_pump_compressor_cooler`: The pump compressor cooler torque.
+  - `T_pump_compressor_valve`: The pump compressor valve torque.
+  - `T_pump_fan_motor`: The pump fan motor torque.
+  - `T_pump_fan_gen`: The pump fan generator torque.
+  - `T_pump_fan_transformer`: The pump fan transformer torque.
+  - `T_pump_fan_converter`: The pump fan converter torque.
+  - `T_pump_fan_compressor`: The pump fan compressor torque.
+  - `T_pump_fan_fan`: The pump fan fan torque.
+  - `T_pump_fan_heater`: The pump fan heater torque.
+  - `T_pump_fan_cooler`: The pump fan cooler torque.
+  - `T_pump_fan_valve`: The pump fan valve torque.
+  - `T_pump_heater_motor`: The pump heater motor torque.
+  - `T_pump_heater_gen`: The pump heater generator torque.
+  - `T_pump_heater_transformer`: The pump heater transformer torque.
+  - `T_pump_heater_converter`: The pump heater converter torque.
+  - `T_pump_heater_compressor`: The pump heater compressor torque.
+  - `T_pump_heater_fan`: The pump heater fan torque.
+  - `T_pump_heater_heater`: The pump heater heater torque.
+  - `T_pump_heater_cooler`: The pump heater cooler torque.
+  - `T_pump_heater_valve`: The pump heater valve torque.
+  - `T_pump_cooler_motor`: The pump cooler motor torque.
+  - `T_pump_cooler_gen`: The pump cooler generator torque.
+  - `T_pump_cooler_transformer`: The pump cooler transformer torque.
+  - `T_pump_cooler_converter`: The pump cooler converter torque.
+  - `T_pump_cooler_compressor`: The pump cooler compressor torque.
+  - `T_pump_cooler_fan`: The pump cooler fan torque.
+  - `T_pump_cooler_heater`: The pump cooler heater torque.
+  - `T_pump_cooler_cooler`: The pump cooler cooler torque.
+  - `T_pump_cooler_valve`: The pump cooler valve torque.
+  - `T_pump_valve_motor`: The pump valve motor torque.
+  - `T_pump_valve_gen`: The pump valve generator torque.
+  - `T_pump_valve_transformer`: The pump valve transformer torque.
+  - `T_pump_valve_converter`: The pump valve converter torque.
+  - `T_pump_valve_compressor`: The pump valve compressor torque.
+  - `T_pump_valve_fan`: The pump valve fan torque.
+  - `T_pump_valve_heater`: The pump valve heater torque.
+  - `T_pump_valve_cooler`: The pump valve cooler torque.
+  - `T_pump_valve_valve`: The pump valve valve torque.
+  - `T_motor_motor`: The motor motor torque.
+  - `T_motor_gen`: The motor generator torque.
+  - `T_motor_transformer`: The motor transformer torque.
+  - `T_motor_converter`: The motor converter torque.
+  - `T_motor_compressor`: The motor compressor torque.
+  - `T_motor_fan`: The motor fan torque.
+  - `T_motor_heater`: The motor heater torque.
+  - `T_motor_cooler`: The motor cooler torque.
+  - `T_motor_valve`: The motor valve torque.
+  - `T_gen_motor`: The gen motor torque.
+  - `T_gen_gen`: The gen generator torque.
+  - `T_gen_transformer`: The gen transformer torque.
+  - `T_gen_converter`: The gen converter torque.
+  - `T_gen_compressor`: The gen compressor torque.
+  - `T_gen_fan`: The gen fan torque.
+  - `T_gen_heater`: The gen heater torque.
+  - `T_gen_cooler`: The gen cooler torque.
+  - `T_gen_valve`: The gen valve torque.
+  - `T_transformer_motor`: The transformer motor torque.
+  - `T_transformer_gen`: The transformer generator torque.
+  - `T_transformer_transformer`: The transformer transformer torque.
+  - `T_transformer_converter`: The transformer converter torque.
+  - `T_transformer_compressor`: The transformer compressor torque.
+  - `T_transformer_fan`: The transformer fan torque.
+  - `T_transformer_heater`:

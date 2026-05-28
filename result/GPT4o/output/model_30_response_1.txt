@@ -1,0 +1,57 @@
+```modelica
+model MixingUnit
+  // Inputs
+  Modelica.Blocks.Interfaces.RealInput T_c(unit = "K") "Cooling temperature input";
+
+  // Outputs
+  Modelica.Blocks.Interfaces.RealOutput c(unit = "mol/l") "Concentration output";
+  Modelica.Blocks.Interfaces.RealOutput T(unit = "K") "Temperature output";
+
+  // Parameters
+  parameter Real c0 = 0.848 "Nominal concentration (mol/l)";
+  parameter Modelica.Units.SI.Temperature T0 = 308.5 "Nominal temperature (K)";
+  parameter Real a1 = 0.2674 "Process parameter";
+  parameter Real a21 = 1.815 "Process parameter";
+  parameter Real a22 = 0.4682 "Process parameter";
+  parameter Real b = 1.5476 "Process parameter";
+  parameter Real k0 = 1.05e14 "Frequency factor";
+  parameter Real eps = 34.2894 "Activation energy constant";
+
+protected
+  // Protected variables
+  parameter Modelica.Units.SI.Time tau0 = 60 "Time constant (s)";
+  parameter Real wk0 = k0 / c0 "Pre-calculated frequency factor";
+  parameter Real weps = eps * T0 "Pre-calculated activation energy constant";
+  parameter Real wa11 = a1 / tau0 "Coefficient for linear decay term";
+  parameter Real wa12 = c0 / tau0 "Coefficient for reaction consumption term";
+  parameter Real wa13 = c0 * a1 / tau0 "Coefficient for dilution/feed term";
+  parameter Real wa21 = a21 / tau0 "Coefficient for heat flow term";
+  parameter Real wa22 = a22 * T0 / tau0 "Coefficient for heat of reaction term";
+  parameter Real wa23 = T0 * (a21 - b) / tau0 "Coefficient for temperature balance term";
+  parameter Real wb = b / tau0 "Coefficient for cooling temperature influence";
+
+  // State variables
+  Real c_internal(unit = "mol/l") "Internal concentration state";
+  Real T_internal(unit = "K") "Internal temperature state";
+
+equation
+  // Reaction kinetics: gamma = wk0 * c_internal * exp(-weps / T_internal)
+  Real gamma = wk0 * c_internal * exp(-weps / T_internal);
+
+  // Mass balance: der(c_internal) = wa13 - wa11 * c_internal - wa12 * gamma
+  der(c_internal) = wa13 - wa11 * c_internal - wa12 * gamma;
+
+  // Energy balance: der(T_internal) = wa22 * gamma - wa21 * T_internal + wb * T_c
+  der(T_internal) = wa22 * gamma - wa21 * T_internal + wb * T_c;
+
+  // Outputs
+  c = c_internal;
+  T = T_internal;
+
+initial equation
+  // Initial conditions
+  c_internal = c0;
+  T_internal = T0;
+
+end MixingUnit;
+```

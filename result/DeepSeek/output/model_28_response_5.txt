@@ -1,0 +1,383 @@
+
+Generate a Modelica block named `ConjunctiveClock` with the following for a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. This block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`. It also configure the block to perform a logical conjunction (AND) by redeclaring the internal 'combinator' component with the appropriate Boolean logic block from the Modelica Standard Library in `PartialLogicalClock`.
+
+//modelica
+```block ConjunctiveClock extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock(combinator = Modelica.Blocks.Logical.And(size = size(inputClocks)));```
+
+The `ConjunctiveClock` block should have the following parameters:
+
+- `inputClocks` (Integer, default = 2): The number of input clocks.
+
+The `ConjunctiveClock` block should have the following connectors:
+
+- `input` (RealInput[inputClocks]): The input clocks.
+- `output` (RealOutput): The output clock.
+
+The `ConjunctiveClock` block should have the following equations:
+
+- The `output` connector should be connected to the `y` output of the `combinator` component.
+- The `input` connectors should be connected to the `u` input of the `combinator` component.
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Dialog(tab="Causal", group="Clocks"), Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem(extent={{-10,-10},{110,110}}), graphics))```
+
+The `ConjunctiveClock` block should have the following graphics:
+
+- The `output` connector should be drawn at the top center of the block.
+- The `input` connectors should be drawn at the bottom center of the block, one above the other.
+- The `combinator` component should be drawn inside the block.
+
+The `ConjunctiveClock` block should have the following display:
+
+- The `output` connector should be displayed as a green arrow pointing upwards.
+- The `input` connectors should be displayed as green arrows pointing downwards.
+- The `combinator` component should be displayed as a blue rectangle with a green border.
+
+The `ConjunctiveClock` block should have the following documentation:
+
+```documentation(info="A logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.", stateGraph="", stateTable="")```
+
+The `ConjunctiveClock` block should have the following version:
+
+```version(Modelica, "3.2")```
+
+The `ConjunctiveClock` block should have the following copyright:
+
+```copyright("Modelica Association")```
+
+The `ConjunctiveClock` block should have the following license:
+
+```license("Modelica License 2")```
+
+The `ConjunctiveClock` block should have the following revision:
+
+```revision("2018-01-01", "Initial version")```
+
+The `ConjunctiveClock` block should have the following keywords:
+
+```keyword("Clock")```
+
+The `ConjunctiveClock` block should have the following annotation:
+
+```annotation(Icon(coordinateSystem(extent={{-10,-10},{110,110}}), graphics), Diagram(coordinateSystem

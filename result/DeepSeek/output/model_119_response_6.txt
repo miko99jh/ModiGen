@@ -1,0 +1,258 @@
+
+Generate a Modelica model named `LimitedActuator` for an actuator with lag and saturation.
+
+The model should extend the `ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator` and include the following parameters: `delayTime` (of type `Modelica.SIunits.Time`), which represents the delay time of the output with respect to the input signal, and `uMax` (of type `Real`), which represents the upper limit of input signals.
+
+The model should include the following components in protected part: `Modelica.Mechanics.Rotational.Sources. Torque` with `useSupport=true`, `Modelica.Blocks.Nonlinear.Limiter` with `uMax=uMax`, and `Modelica.Blocks.Nonlinear.FixedDelay` with `delayTime=delayTime`.
+
+The model's equations should connect these components appropriately, including 1. Mechanical Output: Link the torque source's output flange (torque.flange) to the external 'shaft', and its support (torque.support) to the 'housing'.
+2. Signal Chain: The input torque command tau should first pass through the input of the lag component (lag.u). The delayed output signal (lag.y) is then processed by the input of the limiter (limiter.u) to enforce saturation constraints.
+3. Actuation: The final limited signal output (limiter.y) must drive the torque generation input (torque.tau) of the torque component.
+
+//modelica
+```model LimitedActuator
+  extends ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator;
+  parameter Modelica.SIunits.Time delayTime;
+  parameter Real uMax;
+protected 
+  Modelica.Mechanics.Rotational.Sources.Torque torque;
+  Modelica.Blocks.Nonlinear.Limiter limiter(uMax=uMax);
+  Modelica.Blocks.Nonlinear.FixedDelay lag(delayTime=delayTime);
+equation 
+  connect(torque.flange, shaft);
+  connect(torque.support, housing);
+  connect(tau, lag.u);
+  connect(lag.y, limiter.u);
+  connect(limiter.y, torque.tau);
+end LimitedActuator;
+```
+
+This model should be placed in the `ModelicaByExample.Architectures.SensorComparison.Actuators` package.
+
+Note: The `ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator` is a predefined model interface. The actual implementation of the actuator model should be placed in the `ModelicaByExample.Architectures.SensorComparison.Actuators.LimitedActuator` model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter` is a limiter block that enforces saturation constraints on the input signal. The `Modelica.Blocks.Nonlinear.FixedDelay` is a delay block that introduces a delay in the input signal.
+
+The `connect` function is used to connect the components in the model.
+
+The `parameter` keyword is used to declare parameters that can be set when the model is instantiated.
+
+The `extends` keyword is used to inherit the properties and functions of the parent model.
+
+The `protected` keyword is used to declare components that are not visible outside the model.
+
+The `equation` keyword is used to declare the equations that define the behavior of the model.
+
+The `Modelica.SIunits.Time` is a package that contains units for time. The `Real` is a data type that represents real numbers.
+
+The `connect` function is used to connect the components in the model.
+
+The `Modelica.Mechanics.Rotational.Sources.Torque` is a torque source model that generates a torque output based on the input signal. The `Modelica.Blocks.Nonlinear.Limiter`

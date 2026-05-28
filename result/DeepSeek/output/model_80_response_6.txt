@@ -1,0 +1,36 @@
+
+Generate a Modelica model named `MutualInductor` that represents a linear mutual inductor. The model should include the following components and details:
+1. Components:
+- The model should extend from Modelica.Electrical.Polyphase.Interfaces.OnePort. 
+- Parameter for the relative accuracy tolerance of matrix symmetry: parameter Real epsilon=1e-9. 
+- Parameter for the mutual inductance matrix: parameter Modelica.Units.SI.Inductance L[m, m].
+2. Initial Equations:
+ The model should include an initial equation to check for the singularity of the mutual inductance matrix:
+- if abs(Modelica.Math.Matrices.det(L)) < epsilon then
+ Modelica.Utilities.Streams.print("Warning: mutual inductance matrix singular!");
+ end if;
+3. Equations:
+ The model should include the following equations to ensure the mutual inductance matrix is symmetric and to define the voltage-current relationship:
+- Symmetry Verification: Use an 'assert' statement to enforce that the mutual inductance matrix 'L' is symmetric. The verification should check if the sum of absolute differences between the matrix and its transpose is within the relative tolerance defined by 'epsilon'.
+- Voltage-Current Relationship: Define the voltage vector 'v' for the multi-phase system. For each phase, the voltage must equal the sum of inductive couplings, calculated as the product of the respective row in the inductance matrix 'L' and the time derivative of the current vector 'i'.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model MutualInductor
+  extends Modelica.Electrical.Polyphase.Interfaces.OnePort;
+  parameter Real epsilon=1e-9 "Relative accuracy tolerance of matrix symmetry";
+  parameter Modelica.Units.SI.Inductance L[m, m] 
+    "Mutual inductance matrix";
+
+  initial equation 
+    if abs(Modelica.Math.Matrices.det(L)) < epsilon then
+      Modelica.Utilities.Streams.print("Warning: mutual inductance matrix singular!");
+    end if;
+
+  equation 
+    assert(abs(L - transpose(L)) < epsilon, "Mutual inductance matrix is not symmetric");
+    v = L * der(i);
+end MutualInductor;```
+
+This model should be able to be used in a simulation environment to model the behavior of a mutual inductor.

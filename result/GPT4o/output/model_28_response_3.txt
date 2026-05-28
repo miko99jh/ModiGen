@@ -1,0 +1,31 @@
+To create a `ConjunctiveClock` block in Modelica that extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock` and performs a logical conjunction (AND) operation, you can follow the structure below. This block will tick when all input clocks have ticked at least once, and then reset for the next cycle. The `combinator` component will be redeclared to use the appropriate Boolean logic block from the Modelica Standard Library.
+
+Here's how you can define the `ConjunctiveClock` block:
+
+```modelica
+block ConjunctiveClock
+  extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock;
+
+  // Redeclare the combinator to use the Boolean AND block
+  redeclare Modelica.Blocks.Logical.And combinator;
+
+equation
+  // The equation section is typically used to define the behavior of the block
+  // In this case, the behavior is defined by the redeclared combinator
+  // and the inherited behavior from PartialLogicalClock
+
+  // Ensure that the output clock ticks when all input clocks have ticked
+  // This is handled by the And block in the combinator
+
+end ConjunctiveClock;
+```
+
+### Explanation:
+
+- **Extending `PartialLogicalClock`:** The `ConjunctiveClock` block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`, which provides the basic structure and functionality for a logical clock.
+
+- **Redeclaring `combinator`:** The `combinator` component is redeclared to use `Modelica.Blocks.Logical.And`, which is a block that performs a logical AND operation. This ensures that the output clock will tick only when all input clocks have ticked.
+
+- **Equation Section:** The behavior of the block is primarily defined by the redeclared `combinator` and the inherited behavior from `PartialLogicalClock`. The `And` block ensures that the output clock ticks when all input clocks have ticked at least once.
+
+This block can be used in a Modelica model where you need a clock that synchronizes with multiple input clocks, ticking only when all of them have ticked.

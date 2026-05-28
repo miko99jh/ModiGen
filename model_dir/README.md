@@ -1,0 +1,1 @@
+This directory is used to store the Large Language Model (LLM) checkpoints and configuration files.

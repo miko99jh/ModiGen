@@ -1,0 +1,26 @@
+
+Generate a Modelica model named `FirstOrder` to simulate a first order process, defined by the transfer function mu/(1+tau*s). It extends from a base block `IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock`. The model should include real type parameters for the time constant 'tau' with value 2, the gain 'mu' with value 1, and the output 'y_start' with value 0. The initial equations is initial output 'y' equals to 'y_start'. The equations should describe the dynamic behavior where the derivative of output 'y' scaled with 'tau' plus the output itself equals the input 'u' multiplied by 'mu'.
+
+//modelica
+```model FirstOrder
+  extends IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock;
+  parameter Real tau=2 "Time constant";
+  parameter Real mu=1 "Gain";
+  parameter Real y_start=0 "Initial output";
+  Real y(start=y_start) "Output";
+equation 
+  der(y) = (mu/tau)*u - (1/tau)*y;
+end FirstOrder;
+```
+
+In the above model, the equation `der(y) = (mu/tau)*u - (1/tau)*y;` describes the first order differential equation that is the characteristic of a first order process. The term `(mu/tau)*u` represents the input scaled by the gain and the time constant, and the term `-(1/tau)*y` represents the rate of change of the output, which is the rate of decay of the first order process.
+
+The initial equation `y(start=y_start)` sets the initial value of the output 'y' to the value of 'y_start'.
+
+The model extends from the base block `IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock`, which provides a common structure for linear systems models.
+
+The parameters 'tau' and'mu' are defined as real numbers and can be adjusted to change the dynamics and gain of the first order process.
+
+The input 'u' and output 'y' are defined as Real variables.
+
+The model is named `FirstOrder` and it is placed in the current package.

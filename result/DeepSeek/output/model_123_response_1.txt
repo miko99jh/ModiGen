@@ -1,0 +1,37 @@
+
+Generate a Modelica block that computes feedback terms. The model should have two 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput' (u1 and u2) and one 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput' (y). The equation for the output y is the difference between the inputs u1 and u2. The model should be based on Modelica version 3.2.3 and be named `Feedback`.
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u1;
+  ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput u2;
+equation
+  y = u1.y - u2.y;
+end Feedback;
+```
+
+//markdown
+```markdown
+The `Feedback` model is a simple block that computes the feedback term in a control system. It takes two real inputs, `u1` and `u2`, and computes the difference between them. The result is then outputted as `y`. This model can be used in a feedback loop to control a system.
+```
+
+```markdown
+## Model Description
+
+The `Feedback` model is a simple block that computes the feedback term in a control system. It takes two real inputs, `u1` and `u2`, and computes the difference between them. The result is then outputted as `y`. This model can be used in a feedback loop to control a system.
+
+## Model Parameters
+
+There are no parameters for the `Feedback` model.
+
+## Model Equations
+
+The equation for the `Feedback` model is as follows:
+
+```
+y = u1.y - u2.y
+```
+
+This equation computes the difference between the outputs of `u1` and `u2`, and outputs the result as `y`.
+```

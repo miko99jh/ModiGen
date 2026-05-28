@@ -1,0 +1,24 @@
+To create a Modelica block named `Feedback` that computes the difference between two inputs (`u1` and `u2`) and provides the result as an output (`y`), you can use the following Modelica code. This block uses the specified interfaces and is compatible with Modelica version 3.2.3.
+
+```modelica
+within ModelicaByExample.Components.BlockDiagrams;
+block Feedback
+  import ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput;
+  import ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput;
+
+  RealInput u1 "First input signal";
+  RealInput u2 "Second input signal";
+  RealOutput y "Output signal (u1 - u2)";
+
+equation
+  y = u1 - u2;
+end Feedback;
+```
+
+### Explanation:
+- **Imports**: The block imports `RealInput` and `RealOutput` from the specified package to define the input and output interfaces.
+- **Inputs**: `u1` and `u2` are defined as inputs of type `RealInput`.
+- **Output**: `y` is defined as an output of type `RealOutput`.
+- **Equation**: The equation `y = u1 - u2;` specifies that the output `y` is the difference between the inputs `u1` and `u2`.
+
+This block can be used in a Modelica model to compute the feedback terms as specified.

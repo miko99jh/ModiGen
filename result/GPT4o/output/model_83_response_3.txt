@@ -1,0 +1,16 @@
+```modelica
+model Short
+  extends Modelica.Electrical.Polyphase.Interfaces.TwoPlug;
+
+  parameter Integer m = 3 "Number of phases";
+  Modelica.Electrical.Analog.Ideal.Short short[m];
+
+equation
+  for i in 1:m loop
+    connect(plug_p.pin[i], short[i].p);
+    connect(short[i].n, plug_n.pin[i]);
+  end for;
+end Short;
+```
+
+This Modelica model named `Short` extends from `Modelica.Electrical.Polyphase.Interfaces.TwoPlug` and represents a polyphase short circuit branch. It includes an array of ideal short circuits and establishes connections between the polyphase plugs and the short circuit array to create a direct electrical bridge. The model is parameterized by the number of phases `m`, which is set to 3 by default.

@@ -1,0 +1,27 @@
+
+Generate a Modelica model named `Short` that represents a polyphase short cut branch. The model should include the following components and details:
+1. Components:
+- The model should extend from `Modelica.Electrical.Polyphase.Interfaces.TwoPlug`. 
+- An array of ideal short circuits: Modelica.Electrical.Analog.Ideal.Short short[m].
+3. Equations:
+ The model should include the following connections:
+- Shortcut Path: Create a direct electrical bridge between the two polyphase plugs using the short circuit array. Connect the internal pins of the positive plug ('plug_p.pin') to the positive terminals of the short array ('short.p').
+- Circuit Completion: Link the negative terminals of the short array ('short.n') to the internal pins of the negative plug ('plug_n.pin').
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model Short
+  extends Modelica.Electrical.Polyphase.Interfaces.TwoPlug;
+  parameter Integer m = 3 "Number of phases";
+  Modelica.Electrical.Analog.Ideal.Short short[m];
+equation 
+  // Shortcut Path
+  for i in 1:m loop
+    plug_p.pin[i].p = short[i].p;
+    short[i].n = plug_n.pin[i].n;
+  end for;
+end Short;
+```
+
+This model represents a polyphase short cut branch. The number of phases is defined by the parameter `m`. The array of ideal short circuits is used to create a direct electrical bridge between the two polyphase plugs. The positive internal pins of the positive plug are connected to the positive terminals of the short array, and the negative terminals of the short array are linked to the internal pins of the negative plug.

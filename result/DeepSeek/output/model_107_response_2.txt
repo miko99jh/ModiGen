@@ -1,0 +1,22 @@
+
+Develop a Modelica function named `PolynomialWithDerivative` that creates a generic polynomial from coefficients (with derivative information). The functionality of this function is to compute a polynomial value based on the input x and an array of coefficients. Inputs include a real number 'x' which is the independent variable, and a real array 'c' which consists of polynomial coefficients. The output is a real number 'y', representing the computed polynomial value. This function includes a protected variable 'n = size(c,1)', Integer, which is used to calculate the size of the array. In the algorithm section, this function calculates the polynomial using a loop that iterates over the coefficients, updating the polynomial calculation with each coefficient. The previous term corresponds to a higher power of x.
+
+//modelica
+```function PolynomialWithDerivative
+  input Real x;
+  input Real c[:];
+  output Real y;
+  protected 
+  Integer n = size(c,1);
+  algorithm 
+    y := c[n];
+    for i in 1:n-1 loop
+      y := y*x + c[n-i];
+    end for;
+  end PolynomialWithDerivative;
+end PolynomialWithDerivative;
+```
+
+This function can be used to compute the value of a polynomial for a given input x. The coefficients of the polynomial are provided in the array c. The function calculates the polynomial value by multiplying each term by x and adding the next coefficient. The loop starts from the last coefficient and goes down to the first coefficient. The polynomial value is updated in each iteration of the loop.
+
+Please note that this function does not compute the derivative of the polynomial. If you need to compute the derivative of the polynomial, you can use the `PolynomialDerivative` function.

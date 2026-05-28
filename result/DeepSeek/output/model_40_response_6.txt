@@ -1,0 +1,43 @@
+
+Generate a Modelica block named `TransferFunction` that implements a discrete-time transfer function within a clocked system.
+The purpose of this block is to represent the relationship between an input signal `u` and an output signal `y` in the z-domain for discrete systems.
+The model should extend `Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO`.
+
+# Inputs:
+- 'b' (Real parameter array, default value: `{1}`): Represents the numerator coefficients of the transfer function. The size of the array `b` determines the order of the numerator.
+- 'a' (Real parameter array): Represents the denominator coefficients of the transfer function. The size of the array `a` determines the order of the denominator.
+
+# Outputs:
+- 'x' (Real output array): A state vector representing the internal states of the system in controller canonical form. The size of `x` is `size(a, 1) - 1` and it is initialized with a starting value of `0.0`.
+
+# Protected Variables:
+- parameter 'nb=size(b, 1)', Integer, Size of Numerator of transfer function.
+- parameter 'na=size(a, 1)', Integer, Size of Denominator of transfer function.
+- 'x1' (Real): An intermediate variable used to calculate the current state.
+- 'xext' (Real array): An extended state vector that includes the current and previous states, with the size `size(a, 1)`.
+
+# Equations:
+- Intermediate State: Calculate 'x1' by subtracting the weighted previous states ('a[2:end] * previous(x)') from input 'u', then normalizing by 'a[1]'.
+- State Composition: Construct the extended vector 'xext' by concatenating 'x1' with the previous state vector previous(x).
+- State Update: Update the output state vector 'x' by taking the relevant slice of 'xext'.
+- Output Calculation: Compute 'y' as the dot product between the state vector 'xext' and the numerator coefficients 'b' (padded with zeros to match the denominator's order).
+
+Ensure that the model accurately implements the transfer function and handles state updates correctly at each clock tick.
+
+//modelica
+```block TransferFunction extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO
+  parameter Real b(start={1}) "Numerator coefficients of the transfer function";
+  parameter Real a(start={1}) "Denominator coefficients of the transfer function";
+  Real x[size(a, 1)-1] init=0.0 "State vector";
+  parameter Integer nb=size(b, 1);
+  parameter Integer na=size(a, 1);
+  Real x1;
+  Real xext[na] init=zeros(na);
+equations 
+  x1 = (u - a[2:end]*previous(x))/a[1];
+  xext = [x1, previous(x)];
+  x = xext[2:na];
+  y = b*xext;
+end TransferFunction;
+```
+This model should be able to represent a wide range of discrete-time transfer functions and should be suitable for use in a variety of control systems applications.

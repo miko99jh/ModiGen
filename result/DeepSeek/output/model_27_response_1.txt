@@ -1,0 +1,144 @@
+
+Create a Modelica block named `EventClock`. The purpose of the model is to generate a clock signal when the Boolean input changes from false to true. The model should extend `Modelica.Clocked.ClockSignals.Interfaces.PartialClock`. The input parameter is a Boolean signal 'u' of type `Modelica.Blocks.Interfaces.BooleanInput`. The output is a clock signal 'y'. In the equation section, generate the output clock 'y' based on the events in the Boolean signal 'u'. If the 'useSolver' flag is enabled, the clock should be instantiated as a nested clock associated with the specified 'solverMethod'. Otherwise, define 'y' as a standard event clock triggered directly by 'u'.
+
+//modelica
+```block EventClock extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock
+  parameter Modelica.Blocks.Interfaces.BooleanInput u(start=false) "Boolean input";
+  Modelica.Blocks.Interfaces.ClockOutput y(redeclare model Modelica.Blocks.Types.Clock y_clock);
+
+equation
+  if useSolver then
+    // Instantiate a nested clock associated with the specified solver method
+    Modelica.Blocks.Types.Clock y_clock(solverMethod=solverMethod);
+  else
+    // Define y as a standard event clock triggered directly by u
+    Modelica.Blocks.Types.EventClock y_clock(trigger=u);
+  end if;
+end EventClock;
+```
+
+This model will generate a clock signal 'y' that is triggered by a change in the Boolean input 'u' from false to true. The clock signal can be used to control other blocks in the model. If the 'useSolver' flag is enabled, the clock will be associated with the specified solver method, allowing for more complex clock-based simulations. If the 'useSolver' flag is disabled, the clock will be a standard event clock triggered directly by the Boolean input 'u'.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.Blocks.Types.Clock' and 'Modelica.Blocks.Types.EventClock' are used to define the type of the output clock signal. The 'Clock' type is used for continuous clock signals, while the 'EventClock' type is used for discrete clock signals triggered by events.
+
+Note: The 'trigger' parameter of the 'EventClock' type is used to specify the Boolean signal that triggers the clock signal. The'solverMethod' parameter of the 'Clock' type is used to specify the solver method to be used for the clock signal.
+
+Note: The 'useSolver' parameter is a Boolean input parameter that determines whether to use a solver-based clock or a standard event-based clock. If 'useSolver' is true, a solver-based clock is used. If 'useSolver' is false, a standard event-based clock is used.
+
+Note: The'start' parameter of the 'u' input signal is set to false by default. This means that the clock signal will not be triggered initially.
+
+Note: The'redeclare model' keyword is used to redefine the 'y' variable as a clock model. This is necessary because the 'y' variable is already used as an output signal in the parent model, so we need to create a new instance of a clock model to use as the output clock signal.
+
+Note: The 'Modelica.

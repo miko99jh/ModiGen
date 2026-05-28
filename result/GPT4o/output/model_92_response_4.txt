@@ -1,0 +1,78 @@
+Below is the implementation of the `PDController` model in Modelica. This model simulates the water level control system using proportional-differential (PD) control.
+
+```modelica
+model PDController
+  // Parameters
+  parameter Real Kp = 1 "Proportional gain";
+  parameter Real Kd = 0.1 "Differential gain";
+  parameter Real target_height = 1 "Target water level (m)";
+  parameter Real initial_waterLevel = 0.2 "Initial water level (m)";
+  parameter Real timeStep = 0.1 "Time step for simulation (s)";
+  
+  // Variables
+  Real waterLevel(start = initial_waterLevel) "Current water level in the container";
+  Real error "Difference between target and current water level";
+  Real dError "Rate of change of error (derivative of error)";
+  Real Pcontrol "Proportional control term";
+  Real Dcontrol "Differential control term";
+  Real controlSignal "Control signal (sum of Pcontrol and Dcontrol)";
+  Real inflowRate "Rate of water inflow (m/s)";
+  Real outflowRate = 0.05 "Constant outflow rate (m/s)";
+  
+equation
+  // Error calculation
+  error = target_height - waterLevel;
+  
+  // Proportional control
+  Pcontrol = Kp * error;
+  
+  // Differential control (rate of change of error)
+  der(error) = dError;
+  Dcontrol = Kd * dError;
+  
+  // Control signal
+  controlSignal = Pcontrol + Dcontrol;
+  
+  // Inflow rate is proportional to the control signal
+  inflowRate = max(0, controlSignal); // Ensure inflow rate is non-negative
+  
+  // Water level dynamics
+  der(waterLevel) = inflowRate - outflowRate;
+  
+  annotation(
+    experiment(StartTime = 0, StopTime = 50, Tolerance = 1e-6, Interval = timeStep),
+    Documentation(info = "PDController model to maintain water level at target height using proportional-differential control."));
+end PDController;
+```
+
+### Explanation of the Model:
+1. **Parameters**:
+   - `Kp` and `Kd` are the proportional and differential coefficients, respectively.
+   - `target_height` is the desired water level in the container.
+   - `initial_waterLevel` is the starting water level in the container.
+   - `timeStep` is the simulation time step.
+
+2. **Variables**:
+   - `waterLevel` represents the current water level in the container.
+   - `error` is the difference between the target height and the current water level.
+   - `dError` is the rate of change of the error (derivative of the error).
+   - `Pcontrol` and `Dcontrol` are the proportional and differential control terms, respectively.
+   - `controlSignal` is the sum of `Pcontrol` and `Dcontrol`, which determines the inflow rate.
+   - `inflowRate` is the rate at which water flows into the container.
+   - `outflowRate` is a constant rate at which water flows out of the container.
+
+3. **Equations**:
+   - The error is calculated as the difference between the target height and the current water level.
+   - The proportional control term is directly proportional to the error.
+   - The differential control term is proportional to the rate of change of the error.
+   - The control signal is the sum of the proportional and differential terms.
+   - The inflow rate is determined by the control signal, ensuring it is non-negative.
+   - The water level changes based on the difference between the inflow and outflow rates.
+
+4. **Simulation**:
+   - The simulation runs from `StartTime = 0` to `StopTime = 50` seconds with a time step of `timeStep = 0.1` seconds.
+   - The goal is to observe how the water level (`waterLevel`) approaches the target height (`target_height`) over time.
+
+### How to Use:
+1. Copy the code into a Modelica environment (e.g., OpenModelica or Dymola).
+2. Simulate the model and plot the `waterLevel` variable to observe how it stabilizes at the target height of 1 meter.

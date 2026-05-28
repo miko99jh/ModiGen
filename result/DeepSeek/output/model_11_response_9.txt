@@ -1,0 +1,33 @@
+
+Generate a Modelica model for a component that performs a 'greater than or equal to' (>=) comparison between two integer inputs. The model should be named `GreatEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 >= u2`, otherwise `false`.
+
+//modelica
+```model GreatEq
+  extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison(redeclare input Integer u1, u2);
+equation
+  if Ts > 0 then
+    y = sample(u1 >= u2, Ts);
+  else
+    y = u1 >= u2;
+  end if;
+end GreatEq;```
+
+//markdown
+```markdown
+The model `GreatEq` extends from the `IntComparison` model and redeclares the inputs `u1` and `u2` as integers. The output `y` is a Boolean that is true if `u1` is greater than or equal to `u2`, otherwise false. The comparison is performed at regular intervals if `Ts` is greater than 0, otherwise it is continuous.
+```
+
+//python
+```python
+class GreatEq(IntComparison):
+    def __init__(self, Ts=0, u1=0, u2=0):
+        super().__init__(Ts, u1, u2)
+
+    def calculate(self):
+        if self.Ts > 0:
+            self.y = self.sample(self.u1 >= self.u2, self.Ts)
+        else:
+            self.y = self.u1 >= self.u2
+```
+
+In the Python code, the `GreatEq` class extends from the `IntComparison` class and redeclares the inputs `u1` and `u2`. The output `y` is calculated in the `calculate` method. If `Ts` is greater than 0, `y` is sampled at regular intervals; otherwise, the comparison is continuous.

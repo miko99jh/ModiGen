@@ -1,0 +1,43 @@
+
+Create a Modelica model named `ShiftSample` demonstrating the usage of a 'ShiftSample' block for Clock signals.
+
+It includes the following components: 1) A 'PeriodicExactClock' named 'periodicClock' from `Modelica.Clocked.ClockSignals.Clocks` with a factor of 20 and resolution set to `Modelica.Clocked.Types.Resolution.ms`. 2) A 'ShiftSample' from `Modelica.Clocked.ClockSignals.Sampler` with a shiftCounter of 4 and resolution of 3. 3) A 'SampleClocked' from `Modelica.Clocked.RealSignals.Sampler`. 4) A 'Sine' block from `Modelica.Blocks.Sources` with frequency 2, offset 0.1, and startTime 0.
+
+Equations & Connectivity:
+In the equation section, establish the following signal flow:
+1. Use the output of 'periodicClock' to drive the input of the 'shiftSample1' block.
+2. The output of the 'shiftSample1' (the shifted clock signal) should then serve as the sampling clock for the 'sample1' component.
+3. Finally, sample the continuous output of the 'sine' source using the 'sample1' block to complete the discrete-time signal generation.
+
+Ensure the model handles accurate clock signals and shifting sample behavior.
+
+//modelica
+```model ShiftSample
+  Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock(factor=20, resolution=Modelica.Clocked.Types.Resolution.ms);
+  Modelica.Clocked.ClockSignals.Sampler.ShiftSample shiftSample1(shiftCounter=4, resolution=3);
+  Modelica.Clocked.RealSignals.Sampler.SampleClocked sample1;
+  Modelica.Blocks.Sources.Sine sine(frequency=2, offset=0.1, startTime=0);
+equation 
+  connect(periodicClock.y, shiftSample1.u);
+  connect(shiftSample1.y, sample1.clock);
+  connect(sine.y, sample1.u);
+end ShiftSample;
+```
+
+This model will generate a discrete-time signal sampled at a rate determined by the'shiftSample1' block, with a shiftCounter of 4 and resolution of 3. The sampled signal will be a shifted version of the clock signal from 'periodicClock', and the continuous signal from the'sine' block will be sampled at this rate.
+
+Please note that the 'ShiftSample' block is used to shift the clock signal by a certain number of time steps. The'shiftCounter' parameter determines the number of time steps to shift the signal, and the'resolution' parameter determines the resolution of the shift.
+
+The 'SampleClocked' block is used to sample a continuous signal at a discrete time determined by a clock signal. The 'clock' parameter is the clock signal that determines the sampling times, and the 'u' parameter is the continuous signal to be sampled.
+
+The 'Sine' block is used to generate a sine wave signal. The 'frequency' parameter determines the frequency of the sine wave, the 'offset' parameter determines the offset of the sine wave, and the'startTime' parameter determines the start time of the sine wave.
+
+The 'connect' function is used to connect the output of one block to the input of another block. In this case, the output of 'periodicClock' is connected to the input of'shiftSample1', the output of'shiftSample1' is connected to the clock input of'sample1', and the output of'sine' is connected to the input of'sample1'.
+
+Please note that the 'ShiftSample' and 'SampleClocked' blocks are part of the Clocked library in Modelica, which is used for modeling systems with clock signals.
+
+The 'Sine' block is part of the Sources library in Modelica, which is used for generating various types of signals.
+
+The 'connect' function is part of the Modelica language, which is used for connecting the outputs of blocks to the inputs of other blocks.
+
+The model should be runnable in any Modelica simulator that supports the Clocked library.

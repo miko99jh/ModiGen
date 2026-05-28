@@ -1,0 +1,122 @@
+
+Generate a Modelica model for a thermal control system with on-off control variation. The model should be compatible with Modelica version 3.2.3. The model, named 'OnOffVariant', should extend from 'ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel' and should include two redeclared and replaceable components: an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' named 'actuator' with 'heating_capacity=500' and an 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' named 'controller' with a 'setpoint=300'.
+
+//modelica
+```model OnOffVariant
+  extends ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel;
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator actuator redeclare replaceable 
+    "Actuator with heating capacity of 500 W"
+    final parameter Modelica.SIunits.HeatingCapacity heating_capacity=500;
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl controller redeclare replaceable 
+    "Controller with setpoint of 300"
+    final parameter Modelica.SIunits.Temperature setpoint=300;
+end OnOffVariant;```
+
+//plaintext
+```
+model OnOffVariant
+  extends ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel;
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator actuator redeclare replaceable 
+    "Actuator with heating capacity of 500 W"
+    final parameter Modelica.SIunits.HeatingCapacity heating_capacity=500;
+  ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl controller redeclare replaceable 
+    "Controller with setpoint of 300"
+    final parameter Modelica.SIunits.Temperature setpoint=300;
+end OnOffVariant;
+```
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are used in the correct units, which are watts for heating capacity and degrees Celsius for temperature.
+
+The'redeclare replaceable' keyword is used to redefine the actuator and controller components from the parent model with new parameters. The 'final' keyword is used to make the parameters immutable, meaning they cannot be changed after the model has been instantiated. The 'parameter' keyword is used to indicate that these values are fixed and do not change during the simulation.
+
+The 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator' and 'ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl' components are assumed to be part of the ModelicaByExample library, which is a library of example models for teaching purposes.
+
+The 'Modelica.SIunits.HeatingCapacity' and 'Modelica.SIunits.Temperature' types are used to specify the units of the actuator's heating capacity and the controller's setpoint, respectively. These types ensure that the values are

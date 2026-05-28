@@ -1,0 +1,30 @@
+model TrackingControlSystem
+ parameter Real setpoint = 1 "Desired output value";
+  parameter Real Kp = 1 "Proportional gain";
+  parameter Real Ki = 1 "Integral gain";
+  parameter Real Kd = 1 "Derivative gain";
+  parameter Real Tf = 1 "Filter time constant";
+  parameter Real y_start = 0 "Initial output value";
+  parameter Real u_max = 10 "Maximum input value";
+  parameter Real u_min = -10 "Minimum input value";
+  parameter Real y_max = 10 "Maximum output value";
+  parameter Real y_min = -10 "Minimum output value";
+  parameter Boolean AntiWindup = true "Enable anti-windup";
+  Real u "Input";
+  Real y "Output";
+  Real tr "Tracking signal";
+  Real e "Error";
+  Real d_e "Derivative of error";
+  Real u_integrator "Integrator input";
+  Real u_differentiator "Differentiator input";
+  I integrator(T=Ki, y_start=y_start, Ymin=y_min, Ymax=y_max, eps=Ki*Tf) if AntiWindup;
+  D differentiator(Tf=Tf) if AntiWindup;
+equation 
+  e = setpoint - y;
+  d_e = der(e);
+  u_integrator = Kp*e + Ki*e + Kd*d_e;
+  u_differentiator = Kp*e + Ki*integrator.y + Kd*differentiator.y;
+  u = if AntiWindup then min(u_max, max(u_min, u_integrator)) else u_differentiator;
+  tr = if AntiWindup then u else u_differentiator;
+  y = if AntiWindup then integrator.y else y_start;
+end TrackingControlSystem;

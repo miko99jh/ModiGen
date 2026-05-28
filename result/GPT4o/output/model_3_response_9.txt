@@ -1,0 +1,29 @@
+Here is the Modelica block `SignalRanker` that ranks output signals in descending order:
+
+```modelica
+block SignalRanker
+  extends Modelica.Blocks.Interfaces.MIMO(nin=2, nout=2);
+
+  parameter Integer nin = 2 "Number of inputs";
+  parameter Integer nout = nin "Number of outputs (must match number of inputs)";
+
+protected
+  Real sortedSignals[nin] "Sorted signals in descending order";
+
+equation
+  // Sort the input signals in descending order
+  sortedSignals = Modelica.Math.Vectors.sort(u, ascending=false);
+
+  // Assign sorted signals to the output
+  y = sortedSignals;
+end SignalRanker;
+```
+
+### Explanation:
+1. **Extending `Modelica.Blocks.Interfaces.MIMO`:** The block extends the `MIMO` interface, which allows multiple inputs (`u`) and outputs (`y`).
+2. **Parameters:** The number of inputs (`nin`) and outputs (`nout`) are defined as parameters. The number of outputs is set to match the number of inputs (`nout = nin`).
+3. **Protected Variable:** A protected variable `sortedSignals` is used to store the sorted input signals.
+4. **Sorting:** The `Modelica.Math.Vectors.sort` function is used to sort the input vector `u` in descending order by setting the `ascending` parameter to `false`.
+5. **Output Assignment:** The sorted signals are assigned to the output vector `y`.
+
+This block ensures that the output signals are ranked in descending order.

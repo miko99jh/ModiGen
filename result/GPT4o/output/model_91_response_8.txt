@@ -1,0 +1,56 @@
+To implement a PI controller in Modelica for maintaining the water level in a container, you can follow the structure below. This model will simulate the water level over time, considering both proportional and integral control actions to counteract the leak and maintain the desired water level.
+
+```modelica
+model PIController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0;            // Proportional gain
+  parameter Real Ki = 0.5;            // Integral gain
+  parameter Real leak_rate = 0.1;     // Leak rate in meters per unit time
+
+  // Variables
+  Real waterLevel(start = 0.2);       // Initial water level in meters
+  Real error;                         // Error between target and actual water level
+  Real Pcontrol;                      // Proportional control action
+  Real Icontrol;                      // Integral control action
+  Real integralError = 0.0;           // Accumulated error for integral control
+
+equation
+  // Calculate the error
+  error = target_height - waterLevel;
+
+  // Proportional control action
+  Pcontrol = Kp * error;
+
+  // Integral control action
+  der(integralError) = error;         // Accumulate the error over time
+  Icontrol = Ki * integralError;
+
+  // Water level dynamics
+  der(waterLevel) = Pcontrol + Icontrol - leak_rate;
+
+end PIController;
+```
+
+### Explanation:
+
+1. **Parameters**:
+   - `target_height`: The desired water level in the container.
+   - `Kp`: Proportional gain, which determines the response to the current error.
+   - `Ki`: Integral gain, which determines the response to the accumulated error over time.
+   - `leak_rate`: The rate at which water leaks from the container.
+
+2. **Variables**:
+   - `waterLevel`: The current water level in the container, initialized to 0.2 meters.
+   - `error`: The difference between the target and current water level.
+   - `Pcontrol`: The proportional control action based on the current error.
+   - `Icontrol`: The integral control action based on the accumulated error.
+   - `integralError`: The accumulated error over time, used for integral control.
+
+3. **Equations**:
+   - The error is calculated as the difference between the target and current water level.
+   - The proportional control action is calculated using the proportional gain and the current error.
+   - The integral control action is calculated using the integral gain and the accumulated error.
+   - The water level dynamics are described by the derivative of the water level, which is influenced by the control actions and the leak rate.
+
+This model will simulate how the water level changes over time, with the PI controller working to maintain the water level at the target height despite the leak. You can simulate this model in a Modelica environment to observe the behavior of the water level over time.

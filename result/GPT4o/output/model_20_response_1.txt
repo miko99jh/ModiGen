@@ -1,0 +1,29 @@
+```modelica
+model Bus
+  // Extend the Bus icon for port characteristics
+  extends PowerGrids.Icons.Bus(
+    VPuIcon = port.VPu,
+    UIcon = port.U,
+    UPhaseIcon = port.UPhase);
+
+  // Extend SolutionChecking for validation of results
+  extends PowerGrids.Electrical.BaseClasses.SolutionChecking(
+    VPuCheck = port.VPu,
+    IPuCheck = port.IPu);
+
+  // Extend OnePortAC for single-phase AC port models
+  extends PowerGrids.Electrical.BaseClasses.OnePortAC(
+    final SNom = 1,          // Nominal apparent power
+    final PStart = 0,        // Initial active power
+    final QStart = 0,        // Initial reactive power
+    final hasSubPF,          // Sub-power flow flag
+    final localInit,         // Local initialization flag
+    final isLinear = true,   // Linear system flag
+    redeclare PowerGrids.Electrical.PowerFlow.BusPF componentPF(UNom = UNom));
+
+  // Equations section
+equation
+  // Set the initial electrical current at the port to zero
+  port.i = Complex(0);
+end Bus;
+```

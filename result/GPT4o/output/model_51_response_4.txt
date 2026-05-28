@@ -1,0 +1,32 @@
+```modelica
+model Resistor
+  extends Modelica.Icons.Example;
+
+  // Electrical components
+  Modelica.Electrical.Analog.Sources.SineVoltage sineVoltage1(
+    V=220, f=1) "Sine voltage source with amplitude 220 V and frequency 1 Hz";
+  Modelica.Electrical.Analog.Basic.Resistor resistor(
+    R=100, alpha=1e-3, T_ref=293.15, i(start=0), useHeatPort=true) 
+    "Resistor with thermal effects enabled";
+  Modelica.Electrical.Analog.Basic.Ground ground "Electrical ground";
+
+  // Thermal components
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor(
+    G=50) "Thermal conductor with conductance 50 W/K";
+  Modelica.Thermal.HeatTransfer.Celsius.FixedTemperature fixedTemperature(
+    T=20) "Fixed temperature set to 20°C";
+
+equation
+  // Electrical circuit connections
+  connect(sineVoltage1.p, resistor.p) "Connect positive pin of sine voltage to resistor";
+  connect(resistor.n, ground.p) "Connect negative pin of resistor to ground";
+  connect(sineVoltage1.n, ground.p) "Connect negative pin of sine voltage to ground";
+
+  // Thermal network connections
+  connect(resistor.heatPort, thermalConductor.port_a) 
+    "Connect resistor's heat port to thermal conductor's port_a";
+  connect(thermalConductor.port_b, fixedTemperature.port) 
+    "Connect thermal conductor's port_b to fixed temperature port";
+
+end Resistor;
+```

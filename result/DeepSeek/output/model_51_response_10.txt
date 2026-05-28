@@ -1,0 +1,53 @@
+
+Create a Modelica model that represents an electrical resistor with a simple thermal network named `Resistor`. The model should extend from `Modelica.Icons.Example`.
+It includes a `resistor` (`Modelica.Electrical.Analog.Basic.Resistor`) with parameters: resistance `R=100 ohms`, temperature coefficient `alpha=1e-3`, reference temperature `T_ref=293.15 K`, an initial current `i(start=0)` and `useHeatPort=true` to enable thermal effects.
+The model also incorporates a `SineVoltage1`(Modelica.Electrical.Analog.Sources.SineVoltage) with an amplitude `V=220 V` and frequency `f=1 Hz`, a `G`(Modelica.Electrical.Analog.Basic.Ground), a `ThermalConductor`(Modelica.Thermal.HeatTransfer.Components.ThermalConductor) with a conductance `G=50 W/K`, and a `FixedTemperature`(Modelica.Thermal.HeatTransfer.Celsius.FixedTemperature) set to `T=20°C`.
+Connections in equation section:
+- Electrical Circuit: Utilize the positive pin ('.p') of 'SineVoltage1' for the high-side supply to 'resistor.p', and the negative pin ('.n') for the return path to the common ground 'G.p' (along with 'resistor.n').
+- Thermal Network: Establish a cooling path starting from the 'resistor.heatPort'. The heat must flow through the 'thermalConductor' (using 'port_a' and 'port_b') before reaching the 'fixedTemperature.port'.
+Ensure accurate parameterization of the resistor's electrical and thermal properties.
+
+//modelica
+```model Resistor
+  extends Modelica.Icons.Example;
+  parameter Modelica.SIunits.Resistance R=100 "Resistance";
+  parameter Modelica.SIunits.TemperatureDifference alpha=1e-3 "Temperature coefficient";
+  parameter Modelica.SIunits.Temperature T_ref=293.15 "Reference temperature";
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=R, alpha=alpha, T_ref=T_ref, i(start=0), useHeatPort=true);
+  Modelica.Electrical.Analog.Sources.SineVoltage1 sineVoltage(V=220, f=1);
+  Modelica.Electrical.Analog.Basic.G ground;
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor(G=50);
+  Modelica.Thermal.HeatTransfer.Celsius.FixedTemperature fixedTemperature(T=20);
+equation 
+  connect(sineVoltage.p, resistor.p);
+  connect(sineVoltage.n, ground.p);
+  connect(resistor.n, ground.p);
+  connect(resistor.heatPort, thermalConductor.port_a);
+  connect(thermalConductor.port_b, fixedTemperature.port);
+end Resistor;```
+
+This model should be used to simulate a resistor with electrical and thermal behavior.
+
+Note: The model is written in Modelica language.
+
+```modelica
+model Resistor
+  extends Modelica.Icons.Example;
+  parameter Modelica.SIunits.Resistance R=100 "Resistance";
+  parameter Modelica.SIunits.TemperatureDifference alpha=1e-3 "Temperature coefficient";
+  parameter Modelica.SIunits.Temperature T_ref=293.15 "Reference temperature";
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=R, alpha=alpha, T_ref=T_ref, i(start=0), useHeatPort=true);
+  Modelica.Electrical.Analog.Sources.SineVoltage1 sineVoltage(V=220, f=1);
+  Modelica.Electrical.Analog.Basic.G ground;
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor(G=50);
+  Modelica.Thermal.HeatTransfer.Celsius.FixedTemperature fixedTemperature(T=20);
+equation 
+  connect(sineVoltage.p, resistor.p);
+  connect(sineVoltage.n, ground.p);
+  connect(resistor.n, ground.p);
+  connect(resistor.heatPort, thermalConductor.port_a);
+  connect(thermalConductor.port_b, fixedTemperature.port);
+end Resistor;
+```
+
+This Modelica model represents an electrical resistor with a simple thermal network. The resistor has a resistance of 100 ohms, a temperature coefficient of 1e-3, and a reference temperature of 293.15 K. The initial current through the resistor is 0. The resistor has a heat port for thermal effects, and a SineVoltage1 source is used to apply a sinusoidal voltage to the resistor. The resistor is cooled by a ThermalConductor that transfers heat to a FixedTemperature at 20°C.

@@ -1,0 +1,19 @@
+model Summation
+ // Parameters
+  parameter Integer n = 10; // Upper limit of the summation
+
+  // Variables
+  Integer sum; // Variable to store the sum
+
+algorithm
+  // Initialize sum
+  sum := 0;
+
+  // Accumulate the sum using a for loop
+  for i in 1:n loop
+    sum := sum + i;
+  end for;
+
+  // Display the result
+  annotation (experiment(StartTime=0, StopTime=1, Tolerance=1e-6, Interval=0.1));
+end Summation;

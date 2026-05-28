@@ -1,0 +1,53 @@
+Below is the Modelica code for the `DeadBand` model based on your specifications:
+
+```modelica
+model DeadBand
+  extends Modelica.Blocks.Interfaces.SISO; // Inherit SISO interface
+
+  // Parameters
+  parameter Real uMax(start=1) "Upper limit of the dead zones";
+  parameter Real uMin = -uMax "Lower limit of the dead zones (default is -uMax)";
+  parameter Boolean smoothed = false "Enable smooth operator";
+
+  // Variables
+  Real y "Output signal";
+
+equation
+  // Ensure consistency of limits
+  assert(uMax >= uMin, "Limits must be consistent");
+
+  // Dead-band functionality
+  if smoothed then
+    y = homotopy(
+      actual = smooth(0, if u < uMin then u - uMin elseif u > uMax then u - uMax else 0),
+      simplified = u
+    );
+  else
+    y = homotopy(
+      actual = if u < uMin then u - uMin elseif u > uMax then u - uMax else 0,
+      simplified = u
+    );
+  end if;
+
+end DeadBand;
+```
+
+### Explanation of the Code:
+1. **Inheritance**: The model extends `Modelica.Blocks.Interfaces.SISO`, which provides the standard single-input, single-output interface (`u` for input and `y` for output).
+
+2. **Parameters**:
+   - `uMax`: Defines the upper limit of the dead-band.
+   - `uMin`: Defines the lower limit of the dead-band, defaulting to `-uMax` for symmetry.
+   - `smoothed`: A Boolean parameter to enable or disable the smooth operator.
+
+3. **Equations**:
+   - The `assert` statement ensures that `uMax` is greater than or equal to `uMin`.
+   - The `homotopy` operator is used to simplify the model during initialization (`simplified = u`) and apply the actual dead-band functionality during simulation (`actual`).
+   - The `smooth` operator is applied when `smoothed` is true, ensuring a continuous transition within the dead-band.
+
+4. **Dead-Band Logic**:
+   - If the input `u` is less than `uMin`, the output `y` is `u - uMin`.
+   - If the input `u` is greater than `uMax`, the output `y` is `u - uMax`.
+   - If the input `u` is within the dead-band (`uMin <= u <= uMax`), the output `y` is `0`.
+
+This model is ready to be used in a Modelica simulation environment. You can test it by connecting it to other components and varying the input `u` to observe the dead-band behavior.

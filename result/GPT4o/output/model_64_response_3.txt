@@ -1,0 +1,13 @@
+```modelica
+model CellStack
+  extends Modelica.Electrical.Batteries.BaseClasses.BaseCellStack(
+    final R = Ns * cellData.Ri / Np);
+
+  redeclare Modelica.Electrical.Batteries.ParameterRecords.CellData cellData;
+
+equation
+  connect(r0.n, n);
+end CellStack;
+```
+
+This Modelica model named `CellStack` extends the `BaseCellStack` from the `Modelica.Electrical.Batteries.BaseClasses` package. It sets the parameter `R` to be dependent on the number of series (`Ns`) and parallel (`Np`) cells, as well as the internal resistance (`Ri`) from the `cellData`. The `cellData` parameter is redeclared to use the `CellData` record from the `Modelica.Electrical.Batteries.ParameterRecords` package. Finally, the model includes a connection between `r0.n` and `n`.

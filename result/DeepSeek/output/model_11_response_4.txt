@@ -1,0 +1,21 @@
+
+Generate a Modelica model for a component that performs a 'greater than or equal to' (>=) comparison between two integer inputs. The model should be named `GreatEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 >= u2`, otherwise `false`.
+
+//modelica
+```model GreatEq
+  extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+equation
+  if Ts > 0 then
+    y = if sample(u1, u2, Ts) >= 0 then true else false;
+  else
+    y = if u1 >= u2 then true else false;
+  end if;
+end GreatEq;```
+
+This model will generate a Boolean output `y` that is `true` when the integer input `u1` is greater than or equal to the integer input `u2`. If `Ts` is greater than 0, the comparison is performed at regular intervals defined by `Ts`. If `Ts` is 0 or not provided, the comparison is continuous.
+
+Please note that the `sample` function is used to perform the comparison at regular intervals. This function is not a standard Modelica function, so you may need to implement it yourself or replace it with an appropriate function or operator that performs the same functionality.
+
+Also note that the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model is not a standard Modelica package, so you may need to replace it with an appropriate model or package that provides the necessary interface for integer comparisons.
+
+Finally, please note that this model assumes that the inputs `u1` and `u2` are integers. If they are not, you may need to convert them to integers before performing the comparison.

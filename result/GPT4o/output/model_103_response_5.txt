@@ -1,0 +1,35 @@
+Below is the Modelica class `DAEexample` that solves the given algebraic differential equations. The equations are implemented using Modelica's `der()` operator for derivatives and the `initial equation` section to specify the initial condition for `x`.
+
+```modelica
+class DAEexample
+  // Variables
+  Real x(start=0.9); // Initial value of x is 0.9
+  Real y;
+  Real time;
+
+equation
+  // Differential equation
+  der(y) + (1 + 0.5*sin(y))*der(x) = sin(time);
+
+  // Algebraic equation
+  x - y = exp(-0.9*x)*cos(y);
+
+  // Initial condition for x
+  initial equation
+    x = 0.9;
+end DAEexample;
+```
+
+### Explanation:
+1. **Variables**:
+   - `x` and `y` are the unknowns in the equations.
+   - `time` is the independent variable (typically provided by the simulation environment).
+
+2. **Equations**:
+   - The first equation is the differential equation involving `der(y)` and `der(x)`.
+   - The second equation is the algebraic equation relating `x` and `y`.
+
+3. **Initial Condition**:
+   - The `initial equation` section specifies the initial value of `x` as `0.9`.
+
+You can simulate this class in a Modelica environment (e.g., OpenModelica or Dymola) to solve the system of equations.

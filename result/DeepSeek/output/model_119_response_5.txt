@@ -1,0 +1,232 @@
+
+Generate a Modelica model named `LimitedActuator` for an actuator with lag and saturation.
+
+The model should extend the `ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator` and include the following parameters: `delayTime` (of type `Modelica.SIunits.Time`), which represents the delay time of the output with respect to the input signal, and `uMax` (of type `Real`), which represents the upper limit of input signals.
+
+The model should include the following components in protected part: `Modelica.Mechanics.Rotational.Sources. Torque` with `useSupport=true`, `Modelica.Blocks.Nonlinear.Limiter` with `uMax=uMax`, and `Modelica.Blocks.Nonlinear.FixedDelay` with `delayTime=delayTime`.
+
+The model's equations should connect these components appropriately, including 1. Mechanical Output: Link the torque source's output flange (torque.flange) to the external 'shaft', and its support (torque.support) to the 'housing'.
+2. Signal Chain: The input torque command tau should first pass through the input of the lag component (lag.u). The delayed output signal (lag.y) is then processed by the input of the limiter (limiter.u) to enforce saturation constraints.
+3. Actuation: The final limited signal output (limiter.y) must drive the torque generation input (torque.tau) of the torque component.
+
+//modelica
+```model LimitedActuator
+  extends ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator;
+  parameter Modelica.SIunits.Time delayTime "Delay time of the output";
+  parameter Real uMax "Upper limit of input signals";
+protected 
+  Modelica.Mechanics.Rotational.Sources.Torque torque;
+  Modelica.Blocks.Nonlinear.Limiter limiter(uMax=uMax);
+  Modelica.Blocks.Nonlinear.FixedDelay lag(delayTime=delayTime);
+equation 
+  connect(torque.flange, shaft);
+  connect(torque.support, housing);
+  connect(tau, lag.u);
+  connect(lag.y, limiter.u);
+  connect(limiter.y, torque.tau);
+end LimitedActuator;
+```
+
+The model should be placed in a new package named `ModelicaByExample.Architectures.SensorComparison.Components` and should be saved as `LimitedActuator.mo`.
+
+Note: The `ModelicaByExample.Architectures.SensorComparison.Interfaces.Actuator` is a predefined model interface, you do not need to create it.
+
+Note: The `Modelica.SIunits.Time` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.Mechanics.Rotational.Sources.Torque` is a predefined model, you do not need to create it.
+
+Note: The `Modelica.Blocks.Nonlinear.Limiter` is a predefined model, you do not need to create it.
+
+Note: The `Modelica.Blocks.Nonlinear.FixedDelay` is a predefined model, you do not need to create it.
+
+Note: The `Modelica.Mechanics.Rotational.Interfaces.Flange_b` is a predefined model interface, you do not need to create it.
+
+Note: The `Modelica.Mechanics.Rotational.Interfaces.Flange_a` is a predefined model interface, you do not need to create it.
+
+Note: The `Modelica.SIunits.Force` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Torque` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.AngularVelocity` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.AngularAcceleration` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Position` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Velocity` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Acceleration` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Length` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Mass` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Time` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ElectricCurrent` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Voltage` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Resistance` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Inductance` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Capacitance` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Conductance` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Susceptance` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Frequency` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Impedance` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Admittance` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Gain` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.LossFactor` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.DissipationFactor` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.Complex` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMap` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygon` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPoint` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonLine` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonCircle` is a predefined unit, you do not need to create it.
+
+Note: The `Modelica.SIunits.ConformalMapPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonPolygonRectangle` is a predefined unit,

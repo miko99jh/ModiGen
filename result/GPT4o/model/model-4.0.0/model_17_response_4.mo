@@ -1,0 +1,24 @@
+model Add
+ extends IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+
+  // Parameters
+  parameter Real Ts = 0 "Sampling time (default is 0 for continuous operation)";
+
+protected
+  Integer u1, u2; // Internal variables for the two integer inputs
+
+equation
+  // Assign inputs to internal variables
+  u1 = u[1];
+  u2 = u[2];
+
+  // Conditional operation based on sampling time
+  if Ts > 0 then
+    when sample(0, Ts) then
+      y = u1 + u2;
+    end when;
+  else
+    y = u1 + u2;
+  end if;
+
+end Add;

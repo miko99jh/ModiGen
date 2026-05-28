@@ -1,0 +1,249 @@
+
+Implement a Modelica function named `PotentialEnergy` for solving gravitational potential energy, where the inputs are mass (`m`), height (`h`), and gravitational acceleration (`g`) which defaults to 9.81, and the output is the gravitational potential energy (`pe`) of the object. The function should use an `algorithm` block to calculate the potential energy.
+
+//modelica
+```function PotentialEnergy
+  input Real m "Mass";
+  input Real h "Height";
+  input Real g = 9.81 "Gravitational acceleration";
+  output Real pe "Gravitational potential energy";
+algorithm 
+  pe := m*g*h;
+end PotentialEnergy;```
+
+This function calculates the gravitational potential energy of an object given its mass, height, and gravitational acceleration. The gravitational potential energy is calculated as the product of the mass, the gravitational acceleration, and the height.
+
+```function PotentialEnergy
+  input Real m "Mass";
+  input Real h "Height";
+  input Real g = 9.81 "Gravitational acceleration";
+  output Real pe "Gravitational potential energy";
+algorithm 
+  pe := m*g*h;
+end PotentialEnergy;```
+
+This function can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy of an object. For example:
+
+```model Example
+  Real m = 10.0 "Mass";
+  Real h = 100.0 "Height";
+  Real pe = PotentialEnergy(m, h) "Gravitational potential energy";
+equation 
+  assert(pe == 9810.0, "Potential energy calculation is incorrect");
+end Example;```
+
+This example model calculates the gravitational potential energy of an object with a mass of 10 kg and a height of 100 m. The calculated potential energy is then asserted to be 9810 J, which is the correct value.
+
+Please note that the gravitational potential energy is a scalar value and does not have a direction. It is always positive and increases with increasing height. The gravitational potential energy is equal to the work done by the gravitational force when the object is moved from a lower height to the height of interest.
+
+The function `PotentialEnergy` can be used in any Modelica model where the gravitational potential energy of an object needs to be calculated. It can be used in combination with other functions and components to create more complex models.
+
+The function `PotentialEnergy` can be used in a Modelica model to calculate the gravitational potential energy

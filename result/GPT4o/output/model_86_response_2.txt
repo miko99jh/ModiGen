@@ -1,0 +1,51 @@
+Certainly! Below is a simple implementation of a `BouncingBall` model in Modelica. This model simulates a ball bouncing under the influence of gravity, with a specified coefficient of restitution for the bounce.
+
+```modelica
+model BouncingBall
+  parameter Real radius = 0.1 "Radius of the ball";
+  parameter Real e = 0.9 "Coefficient of restitution";
+  parameter Real g = 9.81 "Acceleration due to gravity";
+  parameter Real initialHeight = 1 "Initial height of the ball";
+  parameter Real initialVelocity = 0 "Initial velocity of the ball";
+
+  Real height(start = initialHeight) "Height of the ball";
+  Real velocity(start = initialVelocity) "Velocity of the ball";
+
+equation
+  // Differential equation for velocity
+  der(velocity) = -g;
+
+  // Differential equation for height
+  der(height) = velocity;
+
+  // Event for bouncing
+  when height <= radius then
+    velocity = -e * velocity;
+    reinit(height, radius); // Ensure the ball doesn't go below the ground
+  end when;
+
+end BouncingBall;
+```
+
+### Explanation:
+- **Parameters**: 
+  - `radius`: The radius of the ball.
+  - `e`: The coefficient of restitution, which determines how much velocity is retained after a bounce.
+  - `g`: The acceleration due to gravity.
+  - `initialHeight`: The initial height from which the ball is dropped.
+  - `initialVelocity`: The initial velocity of the ball.
+
+- **Variables**:
+  - `height`: The current height of the ball.
+  - `velocity`: The current velocity of the ball.
+
+- **Equations**:
+  - The differential equation for `velocity` accounts for the acceleration due to gravity.
+  - The differential equation for `height` updates the position based on the current velocity.
+
+- **Event Handling**:
+  - The `when` clause detects when the ball hits the ground (i.e., when `height` is less than or equal to `radius`).
+  - Upon hitting the ground, the velocity is updated to simulate the bounce using the coefficient of restitution `e`.
+  - The `reinit` function is used to reset the height to the radius to prevent the ball from going below the ground level.
+
+This model will simulate the bouncing behavior of the ball, taking into account the effects of gravity and the bounce dynamics.

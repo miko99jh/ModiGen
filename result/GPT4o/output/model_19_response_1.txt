@@ -1,0 +1,41 @@
+Below is the Modelica model `DeadBand` implementing the described functionality:
+
+```modelica
+model DeadBand
+  extends Modelica.Blocks.Interfaces.SISO;
+
+  parameter Real uMax(start=1) "Upper limit of the dead zones";
+  parameter Real uMin = -uMax "Lower limit of the dead zones";
+  parameter Boolean smoothed = false "Enable smooth operator";
+
+equation
+  // Ensure the limits are consistent
+  assert(uMax >= uMin, "Limits must be consistent");
+
+  // Dead-band functionality with optional smoothing
+  if smoothed then
+    y = homotopy(
+      actual = smooth(0, if u < uMin then u - uMin elseif u > uMax then u - uMax else 0),
+      simplified = u
+    );
+  else
+    y = homotopy(
+      actual = if u < uMin then u - uMin elseif u > uMax then u - uMax else 0,
+      simplified = u
+    );
+  end if;
+end DeadBand;
+```
+
+### Explanation:
+1. **Inheritance**: The model extends `Modelica.Blocks.Interfaces.SISO`, which provides a single input (`u`) and output (`y`) interface.
+2. **Parameters**:
+   - `uMax`: Defines the upper limit of the dead-band.
+   - `uMin`: Automatically set to the negative of `uMax` unless explicitly overridden.
+   - `smoothed`: A Boolean parameter to enable or disable the smooth operator.
+3. **Equations**:
+   - An `assert` statement ensures that `uMax` is greater than or equal to `uMin`.
+   - The `homotopy` operator simplifies the model during initialization (`simplified = u`) and applies the dead-band logic during simulation (`actual`).
+   - If `smoothed` is true, the `smooth` operator is applied to ensure a continuous transition within the dead-band.
+
+This model is ready to be used in a Modelica simulation environment.

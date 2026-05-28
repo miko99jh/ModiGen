@@ -1,0 +1,37 @@
+
+Generate a Modelica model named `Timer_OffDelay`. This model represents an OFF delay timer, which delays the deactivation of a signal. The model extends `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and includes the following components: 
+1. A Boolean variable 'run' which is true while the timer is counting.
+2. A Real variable 'startTime' representing the start time of the timer counting.
+3. A discrete Boolean variable 'Sd'. 
+
+The initial equations set 'startTime' to 0 and 'run' to false. 
+
+The main equations should include: 
+1. 'Sd' equals 'S'.
+2. Using the 'sample(0,Ts)' function to trigger the timer: 
+- 'startTime' is set by calling `IndustrialControlSystems.Logical.Timers.Functions.positiveEdge` with arguments '(pre(Sd), Sd, R, pre(startTime), time)'.
+- '(run, Q)' are determined using `IndustrialControlSystems.Logical.Timers.Functions.odt` with arguments '(S, R, PV, time, startTime)'.
+- 'tr' is calculated as 'if (not Q) then PV - (time - startTime) else PV'.
+
+Please include the inheritance from `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and ensure all variables are correctly parameterized and integrated.
+
+//modelica
+```model Timer_OffDelay
+  extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer(sample(0,Ts));
+  parameter Real PV = 0 "Preset value";
+  parameter Real R = 0.1 "Residual time";
+  Boolean run;
+  Real startTime;
+  Boolean Sd;
+initial equation 
+  startTime = 0;
+  run = false;
+equation 
+  Sd = S;
+  startTime = positiveEdge(pre(Sd), Sd, R, pre(startTime), time);
+  (run, Q) = odt(S, R, PV, time, startTime);
+  tr = if (not Q) then PV - (time - startTime) else PV;
+end Timer_OffDelay;
+```
+
+This model should be used to delay the deactivation of a signal. The 'PV' parameter represents the preset value of the timer, and 'R' represents the residual time. The 'S' input signal is used to activate the timer, and the 'run' output signal indicates whether the timer is currently counting. The 'Q' output signal indicates whether the timer has reached its preset value. The 'tr' output signal represents the remaining time until the timer reaches its preset value.

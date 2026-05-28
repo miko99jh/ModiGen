@@ -1,0 +1,36 @@
+
+Generate a Modelica block named 'Add' that outputs the sum of two complex input signals.
+
+# Model Functionality:
+- The block computes the sum of two complex input signals, each multiplied by a respective gain factor (k1 and k2). 
+- The parameters 'k1' and 'k2' are complex parameters with default values of Complex(1, 0).
+
+# Inputs and Outputs:
+- **Inputs**:
+- `u1Internal`: Complex input signal 1. 
+- `u2Internal`: Complex input signal 2. 
+- **Outputs**:
+- `y`: Complex output signal, representing the sum of the two weighted inputs. 
+
+# Inheritance and Interfaces:
+- The block extends from `Modelica.ComplexBlocks.Interfaces.ComplexSI2SO`, which indicates that it follows a two-input, single-output interface with complex signal types. 
+
+Ensure the model adheres to the specified input-output relationships and complex arithmetic operations.
+
+//modelica
+```block Add
+  extends Modelica.ComplexBlocks.Interfaces.ComplexSI2SO;
+  parameter Modelica.ComplexBlocks.Types.Complex k1=Complex(1, 0) "Gain factor for input 1";
+  parameter Modelica.ComplexBlocks.Types.Complex k2=Complex(1, 0) "Gain factor for input 2";
+  Modelica.ComplexBlocks.Interfaces.ComplexInput u1(quantity="input", unit="") 
+    annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
+  Modelica.ComplexBlocks.Interfaces.ComplexInput u2(quantity="input", unit="") 
+    annotation (Placement(transformation(extent={{-100,-30},{-80,-10}})));
+  Modelica.ComplexBlocks.Interfaces.ComplexOutput y(quantity="output", unit="") 
+    annotation (Placement(transformation(extent={{10,-30},{30,-10}})));
+equation 
+  y = k1*u1 + k2*u2;
+end Add;
+```
+
+This Modelica block can be used in a complex signal processing system to perform the addition operation with adjustable gain factors.

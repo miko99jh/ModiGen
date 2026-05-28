@@ -1,0 +1,39 @@
+To create a Modelica model named `ShowSaturatingInductor` that demonstrates the behavior of a `SaturatingInductor` component, you can follow the structure below. This model includes the specified parameters and components, and it sets up the connections as described.
+
+```modelica
+model ShowSaturatingInductor
+  // Import necessary Modelica libraries
+  import Modelica.Units.SI;
+  import Modelica.Constants;
+  import Modelica.Electrical.Analog.Sources.SineVoltage;
+  import Modelica.Electrical.Analog.Basic.Ground;
+  import Modelica.Electrical.Analog.Basic.SaturatingInductor;
+  import Modelica.Electrical.Analog.Basic.Inductor;
+
+  // Parameters
+  parameter SI.Inductance Lzer = 2 "Inductance near zero current";
+  parameter SI.Inductance Lnom = 1 "Nominal inductance at nominal current";
+  parameter SI.Current Inom = 1 "Nominal current";
+  parameter SI.Inductance Linf = 0.5 "Inductance at large currents";
+  parameter SI.Voltage U = 1.25 "Source voltage peak";
+  parameter SI.Frequency f = 1/(2*Constants.pi) "Source frequency";
+  parameter SI.Angle phase = Constants.pi/2 "Phase shift for the source voltage";
+
+  // Components
+  SineVoltage SineVoltage1(V=U, phase=phase, f=f) "Sine voltage source";
+  Ground Ground1 "Ground component";
+  SaturatingInductor SaturatingInductance1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true)) "Saturating inductor";
+  Inductor Inductance1(L=Lnom, i(fixed=true)) "Standard inductor";
+
+equation
+  // Connections
+  connect(SineVoltage1.n, Ground1.p) "Ground the negative terminal of the sine voltage source";
+  connect(SineVoltage1.p, SaturatingInductance1.p) "Connect positive terminal of sine voltage to saturating inductor";
+  connect(SineVoltage1.p, Inductance1.p) "Connect positive terminal of sine voltage to standard inductor";
+  connect(SaturatingInductance1.n, SineVoltage1.n) "Connect negative terminal of saturating inductor to sine voltage return path";
+  connect(Inductance1.n, SineVoltage1.n) "Connect negative terminal of standard inductor to sine voltage return path";
+
+end ShowSaturatingInductor;
+```
+
+This model sets up a simple circuit with a sine voltage source, a saturating inductor, and a standard inductor connected in parallel. The parameters and connections are configured to demonstrate the behavior of the saturating inductor under the influence of the sine voltage source.

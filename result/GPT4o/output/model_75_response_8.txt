@@ -1,0 +1,17 @@
+```modelica
+block FromPolar
+  extends Modelica.Blocks.Interfaces.MIMOs(final n=2);
+
+  // Input and output connectors
+  input Real u[2]; // Polar coordinates: u[1] = magnitude, u[2] = angle
+  output Real y[2]; // Cartesian coordinates: y[1] = x, y[2] = y
+
+equation
+  // Coordinate transformation from polar to Cartesian
+  y[1] = u[1] * cos(u[2]); // x-component
+  y[2] = u[1] * sin(u[2]); // y-component
+
+end FromPolar;
+```
+
+This Modelica block named `FromPolar` extends from `Modelica.Blocks.Interfaces.MIMOs` with `n` set to 2, indicating it has two inputs and two outputs. The block transforms polar coordinates (magnitude and angle) into Cartesian coordinates using the cosine and sine functions for the respective x and y components.

@@ -1,0 +1,15 @@
+
+Generate a Modelica model named `Inductor` that represents an ideal linear electrical inductor. The model should extend the 'Modelica.Electrical.Analog.Interfaces.OnePort' interface which provides a single electrical port with current and voltage. The initial value of the current 'i' in it is set to 0 in extends. The main parameter of the model is 'L', representing inductance with the SI unit 'Modelica.Units.SI.Inductance'. Ensure that the initial value of the inductance 'L' is set to 1 henry. The model should include an equation that relates the inductance to the time derivative of the current (i.e., L * di/dt = v, where 'i' is the current and 'v' is the voltage).
+
+//modelica
+```model Inductor
+  extends Modelica.Electrical.Analog.Interfaces.OnePort;
+  parameter Modelica.Units.SI.Inductance L=1 "Inductance";
+  Modelica.SIunits.Current i_start = 0 "Initial value of current";
+equation
+  L * der(i) = v;
+  i = i_start;
+end Inductor;
+```
+
+This model represents an ideal linear electrical inductor. The current 'i' is the dependent variable that depends on the voltage 'v' and the parameter 'L'. The equation L * di/dt = v is used to describe the behavior of the inductor. The initial value of the current 'i' is set to 0. The inductance 'L' is a parameter with an initial value of 1 henry.

@@ -1,0 +1,61 @@
+
+Create a Modelica model named `I` for an integrator with tracking mode and limiter functionality. The model extends `IndustrialControlSystems.Controllers.Interfaces.Block` and extend its features. Include the following parameters: `Real T = 1` (Integral time), `Real y_start = 0` (State initial value). The model should handle anti-windup by checking the `AntiWindup` flag. If `AntiWindup` is true and the tracking signal (`ts`) is not active, the derivative of `Y` should be computed as `der(Y) = 1/T*u + 1/eps*(y - Y)`, and the output `y` should be `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is true and the tracking signal (`ts`) is active, compute `der(Y)` as `1/eps*(y - Y)` and limit the output `y` is `max(Ymin,min(Ymax,tr))`. If `AntiWindup` is false, set `Y` to 0, calculate `T*der(y) = u for inactive `ts`, and compute `eps*der(y) = (-y + tr)` for active `ts`. Also, include an initial equation setting 'y = y_start' and a Real type protected parameter Y.
+
+//modelica
+```model I
+  extends IndustrialControlSystems.Controllers.Interfaces.Block;
+  parameter Real T = 1 "Integral time";
+  parameter Real y_start = 0 "State initial value";
+  parameter Real Ymin = -inf "Lower limit for output";
+  parameter Real Ymax = inf "Upper limit for output";
+  parameter Real eps = 1e-6 "Anti-windup parameter";
+  Real Y(start=y_start) protected;
+equation 
+  if not AntiWindup or not ts then
+    der(Y) = 1/T*u + 1/eps*(y - Y);
+    y = max(Ymin,min(Ymax,tr));
+  else
+    der(Y) = 1/eps*(y - Y);
+    y = max(Ymin,min(Ymax,tr));
+  end if;
+  Y = y;
+  annotation(uses(Modelica(version="3.2.3")));
+end I;
+```
+
+This model should be used in a tracking control system to prevent integral windup.
+
+```modelica
+model TrackingControlSystem
+  parameter Real setpoint = 1 "Desired output value";
+  parameter Real Kp = 1 "Proportional gain";
+  parameter Real Ki = 1 "Integral gain";
+  parameter Real Kd = 1 "Derivative gain";
+  parameter Real Tf = 1 "Filter time constant";
+  parameter Real y_start = 0 "Initial output value";
+  parameter Real u_max = 10 "Maximum input value";
+  parameter Real u_min = -10 "Minimum input value";
+  parameter Real y_max = 10 "Maximum output value";
+  parameter Real y_min = -10 "Minimum output value";
+  parameter Boolean AntiWindup = true "Enable anti-windup";
+  Real u "Input";
+  Real y "Output";
+  Real tr "Tracking signal";
+  Real e "Error";
+  Real d_e "Derivative of error";
+  Real u_integrator "Integrator input";
+  Real u_differentiator "Differentiator input";
+  I integrator(T=Ki, y_start=y_start, Ymin=y_min, Ymax=y_max, eps=Ki*Tf) if AntiWindup;
+  D differentiator(Tf=Tf) if AntiWindup;
+equation 
+  e = setpoint - y;
+  d_e = der(e);
+  u_integrator = Kp*e + Ki*e + Kd*d_e;
+  u_differentiator = Kp*e + Ki*integrator.y + Kd*differentiator.y;
+  u = if AntiWindup then min(u_max, max(u_min, u_integrator)) else u_differentiator;
+  tr = if AntiWindup then u else u_differentiator;
+  y = if AntiWindup then integrator.y else y_start;
+end TrackingControlSystem;
+```
+
+This model uses the integrator and differentiator blocks defined in the previous problem. The tracking signal (`tr`) is used to activate or deactivate the tracking mode. If `AntiWindup` is true, the system uses the integrator block to prevent integral windup. If `AntiWindup` is false, the system uses only the differentiator block. The output `y` is limited by `y_min` and `y_max`. The input `u` is limited by `u_min` and `u_max`. The proportional, integral, and derivative gains (`Kp`, `Ki`, `Kd`) are used to compute the input to the integrator or differentiator. The filter time constant (`Tf`) is used to compute the derivative of the error (`d_e`) in the differentiator block.

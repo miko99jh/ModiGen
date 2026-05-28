@@ -1,0 +1,23 @@
+```modelica
+block Add
+  extends Modelica.ComplexBlocks.Interfaces.ComplexSI2SO;
+
+  parameter Complex k1 = Complex(1, 0) "Gain factor for input u1Internal";
+  parameter Complex k2 = Complex(1, 0) "Gain factor for input u2Internal";
+
+protected 
+  Complex u1Weighted;
+  Complex u2Weighted;
+
+equation 
+  // Compute weighted inputs
+  u1Weighted = k1 * u1Internal;
+  u2Weighted = k2 * u2Internal;
+
+  // Output the sum of the weighted inputs
+  y = u1Weighted + u2Weighted;
+
+end Add;
+```
+
+This Modelica block named `Add` extends from `Modelica.ComplexBlocks.Interfaces.ComplexSI2SO`, which provides a standard interface for blocks with two complex inputs and one complex output. The block computes the sum of two complex input signals, each multiplied by a respective gain factor (`k1` and `k2`). The parameters `k1` and `k2` are complex numbers with default values of `Complex(1, 0)`. The output `y` is the sum of the two weighted inputs.

@@ -1,0 +1,38 @@
+
+Generate a Modelica function named `moh` to calculate the minute of an hour given a specific time. The function should correctly handle the conversion from a continuous time input to discrete minute output, factoring in the starting hour, minute, and second. The real type input parameters 't', 'hour_start=0', 'min_start=0', and 'sec_start=0' represent the current time in seconds and the initial hour, minute, and second respectively. The real type output 'y' should represent the minute of the current hour, ranging from 0 to 59. Use `AES.Functions.sod` and `AES.Functions.hod` to calculate seconds of the day and hour of the day as intermediate steps(represented by two protection variables s and h), ensuring accurate minute calculation within an hour frame.
+
+//modelica
+```function moh
+  input Real t;
+  input Real hour_start=0;
+  input Real min_start=0;
+  input Real sec_start=0;
+  output Real y;
+algorithm 
+  Real s;
+  Real h;
+  s := AES.Functions.sod(t, hour_start, min_start, sec_start);
+  h := AES.Functions.hod(t, hour_start, min_start, sec_start);
+  y := floor(s/60) + floor(h*60);
+end moh;
+```
+
+This function calculates the minute of the hour based on the current time and the initial hour, minute, and second. The function first calculates the seconds of the day and hour of the day using the `AES.Functions.sod` and `AES.Functions.hod` functions. It then calculates the minute of the hour by dividing the seconds of the day by 60 and adding the product of the hour of the day and 60. The floor function is used to round down to the nearest whole number, ensuring that the minute is always within the range 0 to 59.
+
+Please note that this function assumes that the time is always increasing and does not account for time zones or leap seconds.
+
+This function can be used in a Modelica model to calculate the minute of the hour at a specific point in time.
+
+```modelica
+model Example
+  Real t = 100; // time in seconds
+  Real hour_start = 10; // initial hour
+  Real min_start = 30; // initial minute
+  Real sec_start = 0; // initial second
+  Real minute; // minute of the hour
+equation 
+  minute = moh(t, hour_start, min_start, sec_start);
+end Example;
+```
+
+In the example above, the minute of the hour is calculated at 100 seconds into the 10:30 hour. The result will be 100/60 + 10*60 = 130.

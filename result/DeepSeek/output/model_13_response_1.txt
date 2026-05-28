@@ -1,0 +1,245 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+equation 
+  assert(nInput>=2, "The number of inputs should be greater than or equal to 2.");
+  when sample(0, Ts) then
+    y[1] = not Functions.Xor(u[:], nInput);
+  end when;
+end Xnor;
+```
+
+This model should be placed in a package named `XnorPackage` with a namespace of `Xnor`. The package should contain a model named `XnorTest` that tests the functionality of the `Xnor` model. The test should use a single input signal and a single output signal. The input signal should be a step function that changes from 0 to 1 at time 0.5s and back to 0 at time 1s. The output signal should be sampled at regular intervals of 0.1s. The model should be simulated for a total time of 1.5s.
+
+//modelica
+```model XnorTest
+  parameter Real Ts=0.1 "Sample time";
+  Real u[2](start={0, 0}) "Input signals";
+  Real y[1](start={1}) "Output signals";
+  Real y_expected[1](start={1}) "Expected output signals";
+  Real y_sampled[1](start={1}) "Sampled output signals";
+equation 
+  // Define the input signal
+  when time=0.5 then
+    u[1] = 1;
+  end when;
+  when time=1 then
+    u[1] = 0;
+  end when;
+
+  // Define the expected output signal
+  y_expected[1] = not (u[1] xor u[2]);
+
+  // Sample the output signal
+  when sample(0, Ts) then
+    y_sampled[1] = y[1];
+  end when;
+
+  // Instantiate the Xnor model
+  Xnor xnor(u=u, y=y, Ts=Ts);
+
+  // Assert that the output signal matches the expected signal
+  assert(abs(y_sampled[1] - y_expected[1]) < 1e-6, "The output signal does not match the expected signal.");
+end XnorTest;
+```
+
+Please note that the `sample` function is used to sample the output signal at regular intervals. The `sample` function takes two arguments: the initial time to start sampling and the sampling period. The `sample` function returns `true` if the current simulation time is greater than or equal to the initial time plus an integer multiple of the sampling period.
+
+The `assert` function is used to check if a certain condition is true. If the condition is false, the `assert` function throws an error. This can be used to check the correctness of the model.
+
+The `start` attribute is used to specify the initial value of a variable. The `start` attribute can be a constant or an expression.
+
+The `when` statement is used to specify a condition under which a set of equations should be executed. If the condition is true, the set of equations is executed. If the condition is false, the set of equations is skipped.
+
+The `xor` function is used to perform a logical XOR operation on two Boolean inputs. The `xor` function returns `true` if exactly one of the two inputs is `true`. Otherwise, it returns `false`.
+
+The `not` function is used to perform a logical NOT operation on a Boolean input. The `not` function returns `true` if the input is `false`. Otherwise, it returns `false`.
+
+The `extend` statement is used to inherit the properties and equations of a base model. The `extend` statement can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `modelica` keyword is used to declare a Modelica model. A Modelica model is a named collection of properties and equations.
+
+The `assert` keyword is used to check if a certain condition is true. If the condition is false, the `assert` function throws an error. This can be used to check the correctness of the model.
+
+The `sample` keyword is used to sample a signal at regular intervals. The `sample` function takes two arguments: the initial time to start sampling and the sampling period. The `sample` function returns `true` if the current simulation time is greater than or equal to the initial time plus an integer multiple of the sampling period.
+
+The `when` keyword is used to specify a condition under which a set of equations should be executed. If the condition is true, the set of equations is executed. If the condition is false, the set of equations is skipped.
+
+The `xor` keyword is used to perform a logical XOR operation on two Boolean inputs. The `xor` function returns `true` if exactly one of the two inputs is `true`. Otherwise, it returns `false`.
+
+The `not` keyword is used to perform a logical NOT operation on a Boolean input. The `not` function returns `true` if the input is `false`. Otherwise, it returns `false`.
+
+The `extend` keyword is used to inherit the properties and equations of a base model. The `extend` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `modelica` keyword is used to declare a Modelica model. A Modelica model is a named collection of properties and equations.
+
+The `assert` keyword is used to check if a certain condition is true. If the condition is false, the `assert` function throws an error. This can be used to check the correctness of the model.
+
+The `sample` keyword is used to sample a signal at regular intervals. The `sample` function takes two arguments: the initial time to start sampling and the sampling period. The `sample` function returns `true` if the current simulation time is greater than or equal to the initial time plus an integer multiple of the sampling period.
+
+The `when` keyword is used to specify a condition under which a set of equations should be executed. If the condition is true, the set of equations is executed. If the condition is false, the set of equations is skipped.
+
+The `xor` keyword is used to perform a logical XOR operation on two Boolean inputs. The `xor` function returns `true` if exactly one of the two inputs is `true`. Otherwise, it returns `false`.
+
+The `not` keyword is used to perform a logical NOT operation on a Boolean input. The `not` function returns `true` if the input is `false`. Otherwise, it returns `false`.
+
+The `extend` keyword is used to inherit the properties and equations of a base model. The `extend` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties and equations of a base model. The `extends` keyword can be used to add new properties and equations to a base model.
+
+The `parameter` keyword is used to declare a parameter. A parameter is a constant that can be used in equations.
+
+The `Real` keyword is used to declare a real-valued variable. A real-valued variable can be used to represent a real number.
+
+The `equation` keyword is used to declare a set of equations. A set of equations is a collection of equations that must be satisfied simultaneously.
+
+The `model` keyword is used to declare a model. A model is a named collection of properties and equations.
+
+The `package` keyword is used to declare a package. A package is a named collection of models, parameters, and other packages.
+
+The `namespace` keyword is used to declare a namespace. A namespace is a named collection of models, parameters, and other namespaces.
+
+The `extends` keyword is used to inherit the properties

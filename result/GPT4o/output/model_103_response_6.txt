@@ -1,0 +1,47 @@
+To create a Modelica class named `DAEexample` that solves the given system of algebraic differential equations, you can use the Modelica language to define the equations and initial conditions. Below is an example of how you might set up this class:
+
+```modelica
+model DAEexample
+  // Declare variables
+  Real x(start=0.9); // Initial value of x
+  Real y;
+  Real time;
+  Real der_x;
+  Real der_y;
+
+equation
+  // Differential equation
+  der_y + (1 + 0.5 * sin(y)) * der_x = sin(time);
+
+  // Algebraic equation
+  x - y = exp(-0.9 * x) * cos(y);
+
+  // Define derivatives
+  der(x) = der_x;
+  der(y) = der_y;
+
+  // Initial conditions
+  initial equation
+    x = 0.9; // Initial condition for x
+
+end DAEexample;
+```
+
+### Explanation:
+
+1. **Variables**: 
+   - `x` and `y` are the main variables of the system.
+   - `time` is the independent variable, typically provided by the simulation environment.
+   - `der_x` and `der_y` are the derivatives of `x` and `y`, respectively.
+
+2. **Equations**:
+   - The first equation represents the differential equation involving `der(y)` and `der(x)`.
+   - The second equation is the algebraic equation relating `x` and `y`.
+
+3. **Derivatives**:
+   - `der(x)` and `der(y)` are defined to link the derivatives to the variables `der_x` and `der_y`.
+
+4. **Initial Conditions**:
+   - The initial condition for `x` is set to 0.9.
+
+This Modelica model sets up the system of equations and initial conditions. You can simulate this model using a Modelica simulation environment like OpenModelica or Dymola to analyze the behavior of the system over time.

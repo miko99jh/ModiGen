@@ -1,0 +1,33 @@
+
+Generate a Modelica model named `StackRC` that represents a stack with sensors. The model should include the following components and details:
+1. Model Functionality: The model represents a battery stack with integrated sensors.
+2. Components:
+- The model should extend `Modelica.Electrical.Batteries.BaseClasses.BaseStackWithSensors` with the following redeclarations:
+- redeclare `Modelica.Electrical.Batteries.ParameterRecords.TransientData.StackData stackData`
+- `redeclare Modelica.Electrical.Batteries.BatteryStacksWithSensors.CellRC` cell with the following parameters:
+- `cellData = stackData.cellData`
+- `SOC0 = SOC0`
+- `each SOCtolerance = SOCtolerance`
+- `each useHeatPort = useHeatPort`
+- `each T = T`
+- The model should also extend `Modelica.Electrical.Batteries.Icons.TransientModel`.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model StackRC
+  extends Modelica.Electrical.Batteries.BaseClasses.BaseStackWithSensors(
+    redeclare Modelica.Electrical.Batteries.ParameterRecords.TransientData.StackData stackData,
+    redeclare Modelica.Electrical.Batteries.BatteryStacksWithSensors.CellRC cell(
+      cellData = stackData.cellData,
+      SOC0 = SOC0,
+      each SOCtolerance = SOCtolerance,
+      each useHeatPort = useHeatPort,
+      each T = T));
+  extends Modelica.Electrical.Batteries.Icons.TransientModel;
+end StackRC;
+```
+
+Note: The model should be named `StackRC` and it should be placed in the correct directory structure for a Modelica library. The `redeclare` keyword is used to redefine the parameters of the `BaseStackWithSensors` and `CellRC` components. The `extends` keyword is used to inherit the functionality of the base classes. The `redeclare` keyword is used to redefine the parameters of the `CellRC` component. The `each` keyword is used to apply the parameter to all instances of the `CellRC` component.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.

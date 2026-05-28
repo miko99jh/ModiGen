@@ -1,0 +1,17 @@
+
+To solve the sum (`sum`) of all integers from 1 to n (where n is 10), please help me implement a Modelica model named `Summation`. The model should use an algorithm block with a for loop to perform the accumulation, ensuring that sum is initialized before the loop.
+
+//modelica
+```model Summation
+  parameter Integer n = 10;
+  Real sum = 0;
+algorithm 
+  for i in 1:n loop
+    sum := sum + i;
+  end for;
+end Summation;
+```
+
+This Modelica model named `Summation` calculates the sum of all integers from 1 to n using a for loop in the algorithm section. The sum is initialized to 0 before the loop starts. Inside the loop, each integer from 1 to n is added to the sum. The final sum is stored in the variable `sum`.
+
+This model can be used to calculate the sum of any range of integers by changing the value of the `n` parameter.

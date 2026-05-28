@@ -1,0 +1,31 @@
+
+Generate a Modelica model named `Add` that adds two integer inputs 'u1' and 'u2' and outputs their sum 'y'. The model should extend the `IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation`. The input 'u' and output 'y' exist in IntSimpleOperation and does not need to be redeclared. It should handle the addition through a conditional operation based on the sampling time Ts. If Ts is greater than zero, the output is computed at each sample point; otherwise, the output is the direct sum of the two inputs.
+
+//modelica
+```model Add
+  extends IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+  parameter Integer u1(start=0);
+  parameter Integer u2(start=0);
+  parameter Integer y(start=0);
+equation
+  if Ts > 0 then
+    der(y) = (u1 + u2);
+  else
+    y = u1 + u2;
+  end if;
+end Add;```
+
+```model Add
+  extends IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+  parameter Integer u1(start=0);
+  parameter Integer u2(start=0);
+  parameter Integer y(start=0);
+equation
+  if Ts > 0 then
+    der(y) = (u1 + u2);
+  else
+    y = u1 + u2;
+  end if;
+end Add;```
+
+Modelica model `Add` is defined as per the problem statement. It extends the `IntSimpleOperation` interface from the `IndustrialControlSystems.MathOperations.IntegerType.Interfaces` package. The inputs 'u1' and 'u2' are parameters with a start value of 0. The output 'y' is also a parameter with a start value of 0. The equation block uses a conditional operation based on the sampling time 'Ts'. If 'Ts' is greater than 0, the derivative of 'y' is calculated as the sum of 'u1' and 'u2'. If 'Ts' is not greater than 0, 'y' is directly set as the sum of 'u1' and 'u2'.

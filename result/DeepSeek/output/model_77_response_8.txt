@@ -1,0 +1,26 @@
+
+Generate a Modelica function named `convertAlpha` that converts a linear temperature coefficient (alpha) from one temperature to another. The function should include the following components and details:
+1. Components:
+-  The function should extend from Modelica.Icons.Function. 
+-  Input for the linear temperature coefficient at temperature 1: input Modelica.Units.SI.LinearTemperatureCoefficient alpha1. 
+-  Input for temperature 2: input Modelica.Units.SI.Temperature T2. 
+-  Input for temperature 1 with a default value: input Modelica.Units.SI.Temperature T1=293.15. 
+-  Output for the linear temperature coefficient at temperature 2: output Modelica.Units.SI.LinearTemperatureCoefficient alpha2.
+2. Algorithm:
+ The algorithm should calculate the new temperature coefficient 'alpha2' by shifting the reference baseline from 'T1' to 'T2'.
+The conversion should account for the reciprocal nature of linear coefficients when changing reference points, such that the ratio of the coefficients is adjusted by the linear factor defined by the temperature difference and the original coefficient.
+
+Please ensure that the function is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```function convertAlpha
+  extends Modelica.Icons.Function;
+  input Modelica.Units.SI.LinearTemperatureCoefficient alpha1 "Linear temperature coefficient at temperature 1";
+  input Modelica.Units.SI.Temperature T2 "Temperature 2";
+  input Modelica.Units.SI.Temperature T1=293.15 "Temperature 1 with a default value";
+  output Modelica.Units.SI.LinearTemperatureCoefficient alpha2 "Linear temperature coefficient at temperature 2";
+algorithm 
+  alpha2 := alpha1 * (T2/T1);
+end convertAlpha;
+```
+This function takes in a linear temperature coefficient at a certain temperature and converts it to the same linear temperature coefficient at a different temperature. It does this by multiplying the original coefficient by the ratio of the new temperature to the original temperature. This is a direct application of the definition of the linear temperature coefficient.

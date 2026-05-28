@@ -1,0 +1,41 @@
+model Sample3
+ // Import necessary components
+  import Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock;
+  import Modelica.Clocked.Types.Resolution;
+  import Modelica.Blocks.Sources.Step;
+  import Modelica.Blocks.Math.Gain;
+  import Modelica.Blocks.Math.Feedback;
+  import Modelica.Clocked.RealSignals.Sampler.Hold;
+  import Modelica.Clocked.RealSignals.Sampler.SampleClocked;
+  import Modelica.Clocked.RealSignals.Sampler.Sample;
+
+  // Parameters
+  parameter Real factor = 20;
+  parameter Resolution resolution = Resolution.ms;
+
+  // Components
+  PeriodicExactClock periodicClock(factor=factor, resolution=resolution);
+  Step step(startTime=0.04);
+  Gain gain(k=1.2);
+  Feedback feedback;
+  Hold hold1;
+  SampleClocked sample1(clock=periodicClock);
+  Sample sample2;
+
+equation
+  // Sampling the step signal
+  sample1.u = step.y;
+  
+  // Feedback logic
+  feedback.u1 = sample1.y;
+  feedback.u2 = sample2.y;
+  
+  // Gain application
+  gain.u = feedback.y;
+  
+  // Signal holding
+  hold1.u = gain.y;
+  
+  // Loop closure
+  sample2.u = hold1.y;
+end Sample3;

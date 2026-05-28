@@ -1,0 +1,24 @@
+```modelica
+function factorY2DC
+  extends Modelica.Icons.Function;
+  import Modelica.Constants.pi;
+  import Modelica.Electrical.Polyphase.Functions.numberOfSymmetricBaseSystems;
+
+  input Integer m = 3 "Number of phases";
+  output Real y "Factor of DC-voltage from RMS Y-voltage";
+
+protected 
+  Integer mBasic = integer(m / numberOfSymmetricBaseSystems(m));
+
+algorithm 
+  if mBasic == 2 then
+    // Case for full-wave bridge rectification
+    y := 4 / pi;
+  else
+    // General polyphase geometric relationship
+    y := 2 * sin((mBasic - 1) / 2 * pi / mBasic) * sqrt(2) * sin(pi / (2 * m)) / (pi / (2 * m));
+  end if;
+end factorY2DC;
+```
+
+This function calculates the factor of DC-voltage from RMS Y-voltage based on the number of phases provided. It uses different formulas depending on whether the basic phase count is 2 or a general polyphase system. The function is designed to be syntactically correct according to the Modelica language standard.

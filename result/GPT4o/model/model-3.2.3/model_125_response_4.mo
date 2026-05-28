@@ -1,0 +1,8 @@
+model Damper
+ extends ModelicaByExample.Components.Rotational.Interfaces.Compliant;
+
+  parameter Modelica.SIunits.RotationalDampingConstant d "Rotational damping constant (Nm/(rad/s))";
+
+equation
+  tau = d * der(phi_rel);
+end Damper;

@@ -1,0 +1,35 @@
+
+Generate a Modelica model for an inverting operational amplifier circuit named `Gain`. The model should inherit from a `Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.PartialOpAmp` base class. The purpose of the model is to simulate an inverting amplifier with a user-defined gain. 
+
+**Inputs and Parameters:**
+- `k` (Real, minimum value 0, default = 1): This parameter defines the desired amplification factor.
+- `R1` (Modelica.Units.SI.Resistance, default = 1000 ohms): The resistance connected to the negative input of the operational amplifier.
+- `R2` (Modelica.Units.SI.Resistance, calculated as `k * R1`): The resistance required to achieve the desired amplification `k`.
+
+**Components:**
+- Two resistors of type `Modelica.Electrical.Analog.Basic.Resistor` (`r1` and `r2`) should be included, with `r1` having a resistance `final R=R1` and `r2` having a resistance `final R=R2`.
+
+**Connections:**
+- Inverting Path: Establish the input branch by connecting 'p1' to the input resistor 'r1'. Route the signal through 'r1' to the operational amplifier's inverting input ('in_n').
+- Feedback Loop: Create a feedback path by bridging the amplifier's output ('out') back to the summing node ('in_n') via the feedback resistor 'r2'.
+- Common Reference: Tie the non-inverting input ('in_p') to the input reference terminal 'n1', and ensure the entire reference path is shared with the output reference 'n2'.
+- Output Stage: Directly link the amplifier's output to the external terminal 'p2'.
+
+The model should include accurate connections and parameterizations to represent the inverting operational amplifier circuit correctly.
+
+//modelica
+```model Gain
+  extends Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.PartialOpAmp;
+  parameter Modelica.Units.SI.Resistance R1=1000 "Resistance R1";
+  parameter Real k=1 "Gain";
+  Modelica.Electrical.Analog.Basic.Resistor r1(final R=R1) "Resistor R1";
+  Modelica.Electrical.Analog.Basic.Resistor r2(final R=k*R1) "Resistor R2";
+equation 
+  connect(r1.p, in_n) "Inverting path";
+  connect(r2.p, out) "Feedback loop";
+  connect(in_p, n1) "Common reference";
+  connect(out, p2) "Output stage";
+end Gain;
+```
+
+This model should be used to simulate the inverting operational amplifier circuit with a user-defined gain.

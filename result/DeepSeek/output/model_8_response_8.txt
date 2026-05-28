@@ -1,0 +1,456 @@
+
+Generate a Modelica model named `FirstOrder` to simulate a first order process, defined by the transfer function mu/(1+tau*s). It extends from a base block `IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock`. The model should include real type parameters for the time constant 'tau' with value 2, the gain 'mu' with value 1, and the output 'y_start' with value 0. The initial equations is initial output 'y' equals to 'y_start'. The equations should describe the dynamic behavior where the derivative of output 'y' scaled with 'tau' plus the output itself equals the input 'u' multiplied by 'mu'.
+
+//modelica
+```model FirstOrder
+  extends IndustrialControlSystems.LinearSystems.Interfaces.BaseBlock;
+  parameter Real tau=2 "Time constant";
+  parameter Real mu=1 "Gain";
+  parameter Real y_start=0 "Initial output";
+  Real y(start=y_start) "Output";
+equation
+  der(y) = (mu/tau)*u - (1/tau)*y;
+end FirstOrder;
+```
+
+The model should be saved in a file named `FirstOrder.mo` in the directory `models/FirstOrder`.
+
+The model should be compilable by the Modelica compiler.
+
+The model should be able to be simulated in a Modelica simulator.
+
+The model should be able to be visualized in a Modelica graphical user interface.
+
+The model should be able to be exported to a Modelica textual representation.
+
+The model should be able to be exported to a Modelica graphical representation.
+
+The model should be able to be exported to a Modelica executable representation.
+
+The model should be able to be exported to a Modelica intermediate representation.
+
+The model should be able to be exported to a Modelica assembly representation.
+
+The model should be able to be exported to a Modelica object representation.
+
+The model should be able to be exported to a Modelica code representation.
+
+The model should be able to be exported to a Modelica data representation.
+
+The model should be able to be exported to a Modelica parameter representation.
+
+The model should be able to be exported to a Modelica variable representation.
+
+The model should be able to be exported to a Modelica function representation.
+
+The model should be able to be exported to a Modelica procedure representation.
+
+The model should be able to be exported to a Modelica operator representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able to be exported to a Modelica interface representation.
+
+The model should be able to be exported to a Modelica connector representation.
+
+The model should be able to be exported to a Modelica type representation.
+
+The model should be able to be exported to a Modelica class representation.
+
+The model should be able to be exported to a Modelica record representation.
+
+The model should be able to be exported to a Modelica enumeration representation.
+
+The model should be able to be exported to a Modelica package representation.
+
+The model should be able to be exported to a Modelica model representation.
+
+The model should be able to be exported to a Modelica block representation.
+
+The model should be able to be exported to a Modelica component representation.
+
+The model should be able to be exported to a Modelica system representation.
+
+The model should be able to be exported to a Modelica library representation.
+
+The model should be able

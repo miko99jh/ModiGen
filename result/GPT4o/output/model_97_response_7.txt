@@ -1,0 +1,52 @@
+Below is the Modelica model `RTD_Pt100` that simulates the temperature change of a platinum resistance sensor in a medium. The model uses the heat balance equation to calculate the temperature change of the sensor over time.
+
+```modelica
+model RTD_Pt100
+  // Parameters
+  parameter Real V = 1.15e-9 "Volume of the sensor [m^3]";
+  parameter Real c = 456 "Comprehensive specific heat [J/(kg·K)]";
+  parameter Real Ar = 5.31e-6 "Sensor surface area [m^2]";
+  parameter Real alpha = 800 "Convective heat transfer coefficient [W/(m^2·K)]";
+  parameter Real pho = 7980 "Comprehensive density [kg/m^3]";
+  
+  // Inputs
+  input Real Tg "Temperature of the medium [°C]";
+  
+  // Outputs
+  output Real Tj(start=25) "Temperature of the sensor [°C]";
+  
+  // Variables
+  Real dTj_dt "Rate of change of sensor temperature [°C/s]";
+  
+equation
+  // Heat balance equation
+  dTj_dt = (alpha * Ar * (Tg - Tj)) / (pho * V * c);
+  
+  // Differential equation for sensor temperature
+  der(Tj) = dTj_dt;
+  
+end RTD_Pt100;
+```
+
+### Explanation of the Model:
+1. **Parameters**:
+   - `V`: Volume of the sensor.
+   - `c`: Comprehensive specific heat of the sensor material.
+   - `Ar`: Surface area of the sensor.
+   - `alpha`: Convective heat transfer coefficient between the sensor and the medium.
+   - `pho`: Comprehensive density of the sensor material.
+
+2. **Inputs**:
+   - `Tg`: Temperature of the medium (assumed to be stable at 100°C).
+
+3. **Outputs**:
+   - `Tj`: Temperature of the sensor, which is calculated over time.
+
+4. **Equations**:
+   - The heat balance equation calculates the rate of temperature change (`dTj_dt`) based on the heat transfer between the sensor and the medium.
+   - The differential equation (`der(Tj) = dTj_dt`) updates the sensor temperature over time.
+
+### Simulation:
+To simulate this model, you can use a Modelica simulation tool (e.g., OpenModelica or Dymola). Define the input `Tg` as 100°C and simulate the model to observe how the sensor temperature (`Tj`) changes over time starting from the initial temperature of 25°C.
+
+Let me know if you need further assistance!

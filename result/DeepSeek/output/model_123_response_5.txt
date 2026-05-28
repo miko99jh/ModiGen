@@ -1,0 +1,26 @@
+
+Generate a Modelica block that computes feedback terms. The model should have two 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput' (u1 and u2) and one 'ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput' (y). The equation for the output y is the difference between the inputs u1 and u2. The model should be based on Modelica version 3.2.3 and be named `Feedback`.
+
+//modelica
+```block Feedback
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput(n=2);
+  extends ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput(n=1);
+equation
+  y = u1 - u2;
+end Feedback;
+```
+
+This block computes the feedback terms between two inputs and outputs the difference between them.
+
+```python
+# python
+class Feedback(ModelicaByExample.Components.BlockDiagrams.Interfaces.RealInput, ModelicaByExample.Components.BlockDiagrams.Interfaces.RealOutput):
+    def __init__(self):
+        super().__init__(n=2)
+        super().__init__(n=1)
+
+    def equation(self):
+        return f'y = {self.u1} - {self.u2};'
+```
+
+This Python class extends the RealInput and RealOutput classes and defines the equation for the feedback computation.

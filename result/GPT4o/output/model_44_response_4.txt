@@ -1,0 +1,17 @@
+To create a Modelica model that outputs the hyperbolic tangent of a complex input signal, you can extend the `Modelica.ComplexBlocks.Interfaces.ComplexSISO` interface and use the `Modelica.ComplexMath.tanh` function. Below is the complete Modelica code for the `Tanh` block:
+
+```modelica
+block Tanh
+  extends Modelica.ComplexBlocks.Interfaces.ComplexSISO;
+
+equation
+  y = Modelica.ComplexMath.tanh(uInternal);
+end Tanh;
+```
+
+### Explanation:
+- **Block Declaration**: The `Tanh` block is declared, extending the `Modelica.ComplexBlocks.Interfaces.ComplexSISO` interface, which is designed for single-input, single-output complex signal blocks.
+- **Equation Section**: The equation `y = Modelica.ComplexMath.tanh(uInternal);` calculates the hyperbolic tangent of the complex input `uInternal` and assigns it to the output `y`.
+- **Modelica.ComplexMath.tanh**: This function computes the hyperbolic tangent of a complex number, which is used here to process the input signal.
+
+This block can be used in a Modelica simulation environment to process complex signals and output their hyperbolic tangent.

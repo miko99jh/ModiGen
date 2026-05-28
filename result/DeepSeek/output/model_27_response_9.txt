@@ -1,0 +1,30 @@
+
+Create a Modelica block named `EventClock`. The purpose of the model is to generate a clock signal when the Boolean input changes from false to true. The model should extend `Modelica.Clocked.ClockSignals.Interfaces.PartialClock`. The input parameter is a Boolean signal 'u' of type `Modelica.Blocks.Interfaces.BooleanInput`. The output is a clock signal 'y'. In the equation section, generate the output clock 'y' based on the events in the Boolean signal 'u'. If the 'useSolver' flag is enabled, the clock should be instantiated as a nested clock associated with the specified 'solverMethod'. Otherwise, define 'y' as a standard event clock triggered directly by 'u'.
+
+//modelica
+```block EventClock extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock
+  input Modelica.Blocks.Interfaces.BooleanInput u;
+  output Modelica.Clocked.ClockSignals.Interfaces.Clock y;
+  parameter Modelica.Clocked.ClockSignals.Interfaces.SolverMethod solverMethod = Modelica.Clocked.ClockSignals.Interfaces.SolverMethod.None;
+  parameter Boolean useSolver = false;
+equation
+  if useSolver then
+    if solverMethod == Modelica.Clocked.ClockSignals.Interfaces.SolverMethod.None then
+      y = Modelica.Clocked.ClockSignals.Clock(clockOnEvent = u);
+    else
+      y = Modelica.Clocked.ClockSignals.NestedClock(clockOnEvent = u, solverMethod = solverMethod);
+    end if;
+  else
+    y = Modelica.Clocked.ClockSignals.Clock(clockOnEvent = u);
+  end if;
+end EventClock;
+```
+
+//text
+The `EventClock` model is designed to generate a clock signal when the Boolean input changes from false to true. This is achieved by using the `clockOnEvent` attribute of the `Modelica.Clocked.ClockSignals.Clock` or `Modelica.Clocked.ClockSignals.NestedClock` classes, which triggers the clock signal when the input signal changes. 
+
+The `useSolver` parameter is used to determine whether a nested clock should be used. If `useSolver` is true, the `solverMethod` parameter is used to specify the solver method to be used for the nested clock. If `solverMethod` is `None`, a standard clock is used. Otherwise, a nested clock with the specified solver method is used.
+
+In the equation section, the output clock signal 'y' is defined based on the events in the Boolean signal 'u'. If 'useSolver' is true, the clock is instantiated as a nested clock associated with the specified'solverMethod'. Otherwise, 'y' is defined as a standard event clock triggered directly by 'u'.
+
+This model can be used in a Modelica model to generate clock signals based on Boolean input signals.

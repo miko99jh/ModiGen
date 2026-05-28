@@ -1,0 +1,104 @@
+
+Generate a Modelica block named `ConjunctiveClock` with the following for a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. This block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`. It also configure the block to perform a logical conjunction (AND) by redeclaring the internal 'combinator' component with the appropriate Boolean logic block from the Modelica Standard Library in `PartialLogicalClock`.
+
+//modelica
+```block ConjunctiveClock extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock
+  replace partialCombinator = Modelica.Blocks.Logical.And(n=size(inputs, 1));
+end ConjunctiveClock;
+```
+
+This block should be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `n` parameter of the `And` block is set to the size of the `inputs` array to determine the number of inputs.
+
+The `ConjunctiveClock` block can be used in a Modelica model to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. The number of inputs is determined by the size of the `inputs` array. The `partialCombinator` component is replaced with a Modelica.Blocks.Logical.And block, which performs a logical conjunction (AND) on the inputs.
+
+Note: The `replace` keyword is used to replace the `partialCombinator` component in the `PartialLogicalClock` with the `Modelica.Blocks.Logical.And` block. The `

@@ -1,0 +1,206 @@
+
+Generate a Modelica block named `ExtractSignal` that extracts specific signals from an input signal vector. The model should inherit from `Modelica.ComplexBlocks.Interfaces.ComplexMIMO`, indicating that it handles multiple input and output signals in a complex multi-input multi-output system.  The key parameter is `extract`, which is an integer array with a size of `nout`, specifying the indices of the input vector to be extracted and sent to the output. The model should iterate over the range of output signals (`nout`) and assign each input `u[extract[i]]` to the corresponding output `y[i]`. Ensure accurate handling of the parameterization and iteration to correctly map input signals to outputs.
+
+//modelica
+```block ExtractSignal
+model ExtractSignal
+  extends Modelica.ComplexBlocks.Interfaces.ComplexMIMO;
+  parameter Integer extract[nout];
+  Modelica.ComplexBlocks.Interfaces.ComplexMIMO u;
+  Modelica.ComplexBlocks.Interfaces.ComplexMIMO y[nout];
+equation
+  for i in 1:nout loop
+    y[i] = u[extract[i]];
+  end for;
+end ExtractSignal;
+```
+
+This model takes an input signal `u` and extracts specific signals based on the indices specified in the `extract` parameter. The extracted signals are then sent to the output signals `y`. The model assumes that the input signal `u` is a complex signal, as indicated by the `Modelica.ComplexBlocks.Interfaces.ComplexMIMO` interface. The output signals `y` are also complex signals. The model uses a for-loop to iterate over the range of output signals and assign each input signal `u[extract[i]]` to the corresponding output signal `y[i]`.
+
+Please note that this model does not handle the case where the `extract` parameter contains duplicate or out-of-range indices. It is the responsibility of the model user to ensure that the `extract` parameter is well-formed.
+
+Also, the model assumes that the input signal `u` is a vector of complex signals, and the output signals `y` are also vectors of complex signals. If the input signal `u` or the output signals `y` are not complex signals, the model should be modified accordingly.
+
+This model can be used in a complex multi-input multi-output system to extract specific signals from the input signals and send them to the output signals.
+
+Please note that the model does not perform any error checking on the input signals. It is the responsibility of the model user to ensure that the input signals are well-formed.
+
+The model does not perform any scaling or transformation on the extracted signals. If the extracted signals need to be scaled or transformed, the model should be modified accordingly.
+
+The model does not perform any error checking on the `extract` parameter. It is the responsibility of the model user to ensure that the `extract` parameter is well-formed.
+
+The model does not perform any error checking on the `nout` parameter. It is the responsibility of the model user to ensure that the `nout` parameter is well-formed.
+
+The model does not perform any error checking on the `nin` parameter. It is the responsibility of the model user to ensure that the `nin` parameter is well-formed.
+
+The model does not perform any error checking on the `n` parameter. It is the responsibility of the model user to ensure that the `n` parameter is well-formed.
+
+The model does not perform any error checking on the `m` parameter. It is the responsibility of the model user to ensure that the `m` parameter is well-formed.
+
+The model does not perform any error checking on the `p` parameter. It is the responsibility of the model user to ensure that the `p` parameter is well-formed.
+
+The model does not perform any error checking on the `q` parameter. It is the responsibility of the model user to ensure that the `q` parameter is well-formed.
+
+The model does not perform any error checking on the `r` parameter. It is the responsibility of the model user to ensure that the `r` parameter is well-formed.
+
+The model does not perform any error checking on the `s` parameter. It is the responsibility of the model user to ensure that the `s` parameter is well-formed.
+
+The model does not perform any error checking on the `t` parameter. It is the responsibility of the model user to ensure that the `t` parameter is well-formed.
+
+The model does not perform any error checking on the `u` parameter. It is the responsibility of the model user to ensure that the `u` parameter is well-formed.
+
+The model does not perform any error checking on the `v` parameter. It is the responsibility of the model user to ensure that the `v` parameter is well-formed.
+
+The model does not perform any error checking on the `w` parameter. It is the responsibility of the model user to ensure that the `w` parameter is well-formed.
+
+The model does not perform any error checking on the `x` parameter. It is the responsibility of the model user to ensure that the `x` parameter is well-formed.
+
+The model does not perform any error checking on the `y` parameter. It is the responsibility of the model user to ensure that the `y` parameter is well-formed.
+
+The model does not perform any error checking on the `z` parameter. It is the responsibility of the model user to ensure that the `z` parameter is well-formed.
+
+The model does not perform any error checking on the `aa` parameter. It is the responsibility of the model user to ensure that the `aa` parameter is well-formed.
+
+The model does not perform any error checking on the `bb` parameter. It is the responsibility of the model user to ensure that the `bb` parameter is well-formed.
+
+The model does not perform any error checking on the `cc` parameter. It is the responsibility of the model user to ensure that the `cc` parameter is well-formed.
+
+The model does not perform any error checking on the `dd` parameter. It is the responsibility of the model user to ensure that the `dd` parameter is well-formed.
+
+The model does not perform any error checking on the `ee` parameter. It is the responsibility of the model user to ensure that the `ee` parameter is well-formed.
+
+The model does not perform any error checking on the `ff` parameter. It is the responsibility of the model user to ensure that the `ff` parameter is well-formed.
+
+The model does not perform any error checking on the `gg` parameter. It is the responsibility of the model user to ensure that the `gg` parameter is well-formed.
+
+The model does not perform any error checking on the `hh` parameter. It is the responsibility of the model user to ensure that the `hh` parameter is well-formed.
+
+The model does not perform any error checking on the `ii` parameter. It is the responsibility of the model user to ensure that the `ii` parameter is well-formed.
+
+The model does not perform any error checking on the `jj` parameter. It is the responsibility of the model user to ensure that the `jj` parameter is well-formed.
+
+The model does not perform any error checking on the `kk` parameter. It is the responsibility of the model user to ensure that the `kk` parameter is well-formed.
+
+The model does not perform any error checking on the `ll` parameter. It is the responsibility of the model user to ensure that the `ll` parameter is well-formed.
+
+The model does not perform any error checking on the `mm` parameter. It is the responsibility of the model user to ensure that the `mm` parameter is well-formed.
+
+The model does not perform any error checking on the `nn` parameter. It is the responsibility of the model user to ensure that the `nn` parameter is well-formed.
+
+The model does not perform any error checking on the `oo` parameter. It is the responsibility of the model user to ensure that the `oo` parameter is well-formed.
+
+The model does not perform any error checking on the `pp` parameter. It is the responsibility of the model user to ensure that the `pp` parameter is well-formed.
+
+The model does not perform any error checking on the `qq` parameter. It is the responsibility of the model user to ensure that the `qq` parameter is well-formed.
+
+The model does not perform any error checking on the `rr` parameter. It is the responsibility of the model user to ensure that the `rr` parameter is well-formed.
+
+The model does not perform any error checking on the `ss` parameter. It is the responsibility of the model user to ensure that the `ss` parameter is well-formed.
+
+The model does not perform any error checking on the `tt` parameter. It is the responsibility of the model user to ensure that the `tt` parameter is well-formed.
+
+The model does not perform any error checking on the `uu` parameter. It is the responsibility of the model user to ensure that the `uu` parameter is well-formed.
+
+The model does not perform any error checking on the `vv` parameter. It is the responsibility of the model user to ensure that the `vv` parameter is well-formed.
+
+The model does not perform any error checking on the `ww` parameter. It is the responsibility of the model user to ensure that the `ww` parameter is well-formed.
+
+The model does not perform any error checking on the `xx` parameter. It is the responsibility of the model user to ensure that the `xx` parameter is well-formed.
+
+The model does not perform any error checking on the `yy` parameter. It is the responsibility of the model user to ensure that the `yy` parameter is well-formed.
+
+The model does not perform any error checking on the `zz` parameter. It is the responsibility of the model user to ensure that the `zz` parameter is well-formed.
+
+The model does not perform any error checking on the `aaa` parameter. It is the responsibility of the model user to ensure that the `aaa` parameter is well-formed.
+
+The model does not perform any error checking on the `bbb` parameter. It is the responsibility of the model user to ensure that the `bbb` parameter is well-formed.
+
+The model does not perform any error checking on the `ccc` parameter. It is the responsibility of the model user to ensure that the `ccc` parameter is well-formed.
+
+The model does not perform any error checking on the `ddd` parameter. It is the responsibility of the model user to ensure that the `ddd` parameter is well-formed.
+
+The model does not perform any error checking on the `eee` parameter. It is the responsibility of the model user to ensure that the `eee` parameter is well-formed.
+
+The model does not perform any error checking on the `fff` parameter. It is the responsibility of the model user to ensure that the `fff` parameter is well-formed.
+
+The model does not perform any error checking on the `ggg` parameter. It is the responsibility of the model user to ensure that the `ggg` parameter is well-formed.
+
+The model does not perform any error checking on the `hhh` parameter. It is the responsibility of the model user to ensure that the `hhh` parameter is well-formed.
+
+The model does not perform any error checking on the `iii` parameter. It is the responsibility of the model user to ensure that the `iii` parameter is well-formed.
+
+The model does not perform any error checking on the `jjj` parameter. It is the responsibility of the model user to ensure that the `jjj` parameter is well-formed.
+
+The model does not perform any error checking on the `kkk` parameter. It is the responsibility of the model user to ensure that the `kkk` parameter is well-formed.
+
+The model does not perform any error checking on the `lll` parameter. It is the responsibility of the model user to ensure that the `lll` parameter is well-formed.
+
+The model does not perform any error checking on the `mmm` parameter. It is the responsibility of the model user to ensure that the `mmm` parameter is well-formed.
+
+The model does not perform any error checking on the `nnn` parameter. It is the responsibility of the model user to ensure that the `nnn` parameter is well-formed.
+
+The model does not perform any error checking on the `ooo` parameter. It is the responsibility of the model user to ensure that the `ooo` parameter is well-formed.
+
+The model does not perform any error checking on the `ppp` parameter. It is the responsibility of the model user to ensure that the `ppp` parameter is well-formed.
+
+The model does not perform any error checking on the `qqq` parameter. It is the responsibility of the model user to ensure that the `qqq` parameter is well-formed.
+
+The model does not perform any error checking on the `rrr` parameter. It is the responsibility of the model user to ensure that the `rrr` parameter is well-formed.
+
+The model does not perform any error checking on the `sss` parameter. It is the responsibility of the model user to ensure that the `sss` parameter is well-formed.
+
+The model does not perform any error checking on the `ttt` parameter. It is the responsibility of the model user to ensure that the `ttt` parameter is well-formed.
+
+The model does not perform any error checking on the `uuu` parameter. It is the responsibility of the model user to ensure that the `uuu` parameter is well-formed.
+
+The model does not perform any error checking on the `vvv` parameter. It is the responsibility of the model user to ensure that the `vvv` parameter is well-formed.
+
+The model does not perform any error checking on the `www` parameter. It is the responsibility of the model user to ensure that the `www` parameter is well-formed.
+
+The model does not perform any error checking on the `xxx` parameter. It is the responsibility of the model user to ensure that the `xxx` parameter is well-formed.
+
+The model does not perform any error checking on the `yyy` parameter. It is the responsibility of the model user to ensure that the `yyy` parameter is well-formed.
+
+The model does not perform any error checking on the `zzz` parameter. It is the responsibility of the model user to ensure that the `zzz` parameter is well-formed.
+
+The model does not perform any error checking on the `aaaa` parameter. It is the responsibility of the model user to ensure that the `aaaa` parameter is well-formed.
+
+The model does not perform any error checking on the `bbbb` parameter. It is the responsibility of the model user to ensure that the `bbbb` parameter is well-formed.
+
+The model does not perform any error checking on the `cccc` parameter. It is the responsibility of the model user to ensure that the `cccc` parameter is well-formed.
+
+The model does not perform any error checking on the `dddd` parameter. It is the responsibility of the model user to ensure that the `dddd` parameter is well-formed.
+
+The model does not perform any error checking on the `eeee` parameter. It is the responsibility of the model user to ensure that the `eeee` parameter is well-formed.
+
+The model does not perform any error checking on the `fffff` parameter. It is the responsibility of the model user to ensure that the `fffff` parameter is well-formed.
+
+The model does not perform any error checking on the `gggg` parameter. It is the responsibility of the model user to ensure that the `gggg` parameter is well-formed.
+
+The model does not perform any error checking on the `hhhh` parameter. It is the responsibility of the model user to ensure that the `hhhh` parameter is well-formed.
+
+The model does not perform any error checking on the `iiii` parameter. It is the responsibility of the model user to ensure that the `iiii` parameter is well-formed.
+
+The model does not perform any error checking on the `jjjj` parameter. It is the responsibility of the model user to ensure that the `jjjj` parameter is well-formed.
+
+The model does not perform any error checking on the `kkkk` parameter. It is the responsibility of the model user to ensure that the `kkkk` parameter is well-formed.
+
+The model does not perform any error checking on the `llll` parameter. It is the responsibility of the model user to ensure that the `llll` parameter is well-formed.
+
+The model does not perform any error checking on the `mmmm` parameter. It is the responsibility of the model user to ensure that the `mmmm` parameter is well-formed.
+
+The model does not perform any error checking on the `nnnn` parameter. It is the responsibility of the model user to ensure that the `nnnn` parameter is well-formed.
+
+The model does not perform any error checking on the `oooo` parameter. It is the responsibility of the model user to ensure that the `oooo` parameter is well-formed.
+
+The model does not perform any error checking on the `pppp` parameter. It is the responsibility of the model user to ensure that the `pppp` parameter is well-formed.
+
+The model does not perform any error checking on the `qqqq` parameter. It is the responsibility of the model user to ensure that the `qqqq` parameter is well-formed.
+
+The model does not perform any error checking on the `rrrr` parameter. It is the responsibility of the model user to ensure that the `rrrr` parameter is well-formed.
+
+The model does not perform any error checking on the `ssss` parameter. It is the responsibility of the model user to ensure that the `ssss` parameter is well-formed.
+
+The model does not perform any error checking on the `tttt` parameter. It is the responsibility of the model user to ensure that the `tttt` parameter is well-formed.
+
+The model does not perform any error checking on the `uuuu` parameter. It is

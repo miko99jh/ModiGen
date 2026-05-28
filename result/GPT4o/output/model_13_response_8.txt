@@ -1,0 +1,21 @@
+```modelica
+model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(
+    nInput=2, final nOutput=1);
+
+  parameter Real Ts = 0 "Sample time";
+
+equation
+  assert(nInput >= 2, "The number of inputs must be at least 2.");
+
+  if Ts > 0 then
+    when sample(0, Ts) then
+      y[1] = not Functions.Xor(u[:], nInput);
+    end when;
+  else
+    y[1] = not Functions.Xor(u[:], nInput);
+  end if;
+end Xnor;
+```
+
+This Modelica model defines an n-bit XNOR gate by extending the `LogicalBlock` interface with two inputs and one output. The model checks that the number of inputs is at least 2 using an assertion. If the sample time `Ts` is greater than 0, the XNOR operation is performed at regular intervals defined by `Ts`. Otherwise, the operation is performed continuously. The XNOR operation is implemented using the expression `y[1] = not Functions.Xor(u[:], nInput)`.

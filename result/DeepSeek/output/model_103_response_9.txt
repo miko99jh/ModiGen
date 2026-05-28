@@ -1,0 +1,318 @@
+
+Solve algebraic differential equations der(y) + (1+0.5*sin(y))*der(x) = sin(time);   x-y = exp(-0.9*x)*cos(y);  the initial value of 'x' is 0.9. Please help me generate a modelica class named `DAEexample` to do this.
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 = 0.9 "Initial value of y";
+  Real x(start=0.9) "Dependent variable x";
+  Real y(start=y0) "Dependent variable y";
+  Real ydot "Derivative of y";
+equation 
+  der(x) = ydot - 0.5*sin(y)*sin(x);
+  der(y) = -ydot - 0.5*sin(y)*sin(x) + sin(time);
+  x - y = exp(-0.9*x)*cos(y);
+end DAEexample;```
+
+//modelica
+```class DAEexample
+  parameter Real y0 =

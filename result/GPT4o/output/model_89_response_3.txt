@@ -1,0 +1,55 @@
+To implement the `NewtonCoolingDynamic` model in Modelica, you can follow the structure below. This model simulates the temperature change of water under Newton's law of cooling, with a sudden change in ambient temperature after 20 seconds.
+
+```modelica
+model NewtonCoolingDynamic
+  // Parameters
+  parameter Real T0 = 100; // Initial temperature of water in °C
+  parameter Real T_inf_initial = 25; // Initial ambient temperature in °C
+  parameter Real A = 1; // Area in m²
+  parameter Real m = 1; // Mass in kg
+  parameter Real c_p = 4200; // Specific heat in J/(kg.°C)
+  parameter Real h = 767; // Convection cooling coefficient in W/(m².°C)
+
+  // Variables
+  Real T(start = T0); // Temperature of the water in °C
+  Real T_inf; // Ambient temperature in °C
+  Real Q_dot; // Heat transfer rate in W
+
+initial equation
+  T = T0; // Set initial temperature
+
+equation
+  // Define the ambient temperature change after 20 seconds
+  T_inf = if time < 20 then T_inf_initial else 0;
+
+  // Newton's law of cooling
+  Q_dot = h * A * (T - T_inf);
+
+  // Energy balance equation
+  m * c_p * der(T) = -Q_dot;
+
+end NewtonCoolingDynamic;
+```
+
+### Explanation:
+- **Parameters**: These are constants that define the initial conditions and properties of the system.
+  - `T0`: Initial temperature of the water.
+  - `T_inf_initial`: Initial ambient temperature.
+  - `A`: Surface area through which heat is transferred.
+  - `m`: Mass of the water.
+  - `c_p`: Specific heat capacity of the water.
+  - `h`: Convection heat transfer coefficient.
+
+- **Variables**:
+  - `T`: Temperature of the water, initialized to `T0`.
+  - `T_inf`: Ambient temperature, which changes after 20 seconds.
+  - `Q_dot`: Rate of heat transfer.
+
+- **Initial Equation**: Sets the initial temperature of the water.
+
+- **Equations**:
+  - The ambient temperature `T_inf` changes from `T_inf_initial` to 0°C after 20 seconds.
+  - Newton's law of cooling is used to calculate the heat transfer rate `Q_dot`.
+  - The energy balance equation relates the rate of change of temperature to the heat transfer rate.
+
+This model can be simulated in a Modelica environment to observe the temperature change over time.

@@ -1,0 +1,29 @@
+
+Generate a Modelica model for a Bus named `Bus`. The Bus model is designed to connect other components to its port, facilitating the integration and interaction of different electrical systems. It serves as a hub in a power grid system to facilitate electrical connections. 
+
+**Inheritance and Interfaces**: The model should extend three components:
+1. `PowerGrids.Icons.Bus` for port characteristics with parameters VPuIcon = port.VPu, UIcon = port.U and UPhaseIcon = port.UPhase.
+2. `PowerGrids.Electrical.BaseClasses.SolutionChecking` for validation of results using VPuCheck = port.VPu and IPuCheck = port.IPu.
+3. `PowerGrids.Electrical.BaseClasses.OnePortAC` for single-phase AC port models with final SNom = 1, final PStart = 0, final QStart = 0, final hasSubPF, final localInit, final isLinear = true, redeclare PowerGrids.Electrical.PowerFlow.BusPF componentPF(UNom = UNom). 
+
+**Equations and Expressions**: Include the equation 'port.i = Complex(0)' to denote the initial electrical current at the port.
+
+Include these details in a well-structured Modelica model.
+
+//modelica
+```model Bus
+  extends PowerGrids.Icons.Bus,
+       PowerGrids.Electrical.BaseClasses.SolutionChecking(VPuCheck = port.VPu, IPuCheck = port.IPu),
+       PowerGrids.Electrical.BaseClasses.OnePortAC(SNom = 1, PStart = 0, QStart = 0, hasSubPF = true, localInit = true, isLinear = true, redeclare PowerGrids.Electrical.PowerFlow.BusPF componentPF(UNom = UNom));
+equation
+  port.i = Complex(0);
+end Bus;
+```
+
+Note: The `PowerGrids.Electrical.BaseClasses.OnePortAC` model is a base model for single-phase AC port models. It has parameters for nominal values, initial power, initial reactive power, and whether it has a sub-power flow model. It also declares a `PowerGrids.Electrical.PowerFlow.BusPF` component for power flow calculations.
+
+The `PowerGrids.Icons.Bus` model provides port characteristics for the bus. The `PowerGrids.Electrical.BaseClasses.SolutionChecking` model is used for result validation. The equation 'port.i = Complex(0)' denotes the initial electrical current at the port.
+
+The `Bus` model is designed to connect other components to its port, facilitating the integration and interaction of different electrical systems. It serves as a hub in a power grid system to facilitate electrical connections.
+
+Please replace the placeholder values with the actual values as per your requirements.

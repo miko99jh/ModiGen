@@ -1,0 +1,52 @@
+To implement a simple proportional control system in Modelica, you can create a model named `PController` that simulates the change in water level over time. The model will use a proportional controller to adjust the water level towards the target height. Below is a basic implementation of such a model:
+
+```modelica
+model PController
+  // Parameters
+  parameter Real Kp = 1.0 "Proportional gain";
+  parameter Real target_height = 1.0 "Target water level in meters";
+  parameter Real initial_waterLevel = 0.2 "Initial water level in meters";
+  parameter Real timeStep = 0.1 "Time step for simulation in seconds";
+  parameter Real simulationTime = 10.0 "Total simulation time in seconds";
+
+  // Variables
+  Real waterLevel(start = initial_waterLevel) "Current water level in meters";
+  Real error "Difference between target and current water level";
+  Real control "Control signal";
+
+equation
+  // Proportional control equation
+  error = target_height - waterLevel;
+  control = Kp * error;
+
+  // Update water level based on control signal
+  der(waterLevel) = control;
+
+  // Simulation time
+  annotation(experiment(StartTime = 0, StopTime = simulationTime, Interval = timeStep));
+end PController;
+```
+
+### Explanation:
+
+- **Parameters**: 
+  - `Kp`: The proportional gain, which determines how aggressively the controller responds to the error.
+  - `target_height`: The desired water level.
+  - `initial_waterLevel`: The starting water level.
+  - `timeStep`: The time step for the simulation.
+  - `simulationTime`: The total duration of the simulation.
+
+- **Variables**:
+  - `waterLevel`: The current water level, which is updated over time.
+  - `error`: The difference between the target and current water level.
+  - `control`: The control signal calculated using the proportional gain and error.
+
+- **Equations**:
+  - The error is calculated as the difference between the target height and the current water level.
+  - The control signal is calculated using the proportional gain and the error.
+  - The derivative of the water level (`der(waterLevel)`) is set to the control signal, which updates the water level over time.
+
+- **Annotation**:
+  - The `annotation` specifies the simulation parameters, including the start time, stop time, and time interval.
+
+This model will simulate the water level in the reservoir over time, adjusting it towards the target height using proportional control. You can run this model in a Modelica simulation environment to observe the behavior of the water level over time.

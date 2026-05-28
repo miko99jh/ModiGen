@@ -1,0 +1,504 @@
+
+Generate a Modelica function named `moh` to calculate the minute of an hour given a specific time. The function should correctly handle the conversion from a continuous time input to discrete minute output, factoring in the starting hour, minute, and second. The real type input parameters 't', 'hour_start=0', 'min_start=0', and 'sec_start=0' represent the current time in seconds and the initial hour, minute, and second respectively. The real type output 'y' should represent the minute of the current hour, ranging from 0 to 59. Use `AES.Functions.sod` and `AES.Functions.hod` to calculate seconds of the day and hour of the day as intermediate steps(represented by two protection variables s and h), ensuring accurate minute calculation within an hour frame.
+
+//modelica
+```function moh
+  input Real t;
+  input Real hour_start=0;
+  input Real min_start=0;
+  input Real sec_start=0;
+  output Real y;
+algorithm 
+  Real s, h;
+  s := AES.Functions.sod(t, hour_start, min_start, sec_start);
+  h := AES.Functions.hod(t, hour_start, min_start, sec_start);
+  y := floor((s + (min_start * 60 + sec_start)) / 60);
+end moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//test
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real sec_start=0;
+  Real y;
+initial equation 
+  y = moh(t, hour_start, min_start, sec_start);
+equation 
+  assert(y == 1, "Test failed");
+end Test_moh;```
+
+//modelica
+```model Test_moh
+  Real t=100;
+  Real hour_start=0;
+  Real min_start=0;
+  Real

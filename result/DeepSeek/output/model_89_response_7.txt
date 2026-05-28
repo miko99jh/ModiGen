@@ -1,0 +1,25 @@
+
+Please use modelica to help me implement a model named `NewtonCoolingDynamic`: Simulate the temperature change of a water under Newton's law of cooling. Among them, the initial temperature of water (`T0`) is 100 °C, the ambient temperature (`T_inf`) is 25 °C, the water meter area (`A`) is 1 square meter, the mass (`m`) is 1kg, the specific heat (`c_p`) is 4200 J/(kg.°C), and the convection cooling coefficient (`h`) is 767 W/(m2.°C). Use an initial equation to set `T` to `T0`. 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+//modelica
+```model NewtonCoolingDynamic
+  parameter Real T0(unit="degC") = 100;
+  parameter Real T_inf(unit="degC") = 25;
+  parameter Real A(unit="m^2") = 1;
+  parameter Real m(unit="kg") = 1;
+  parameter Real c_p(unit="J/(kg.degC)") = 4200;
+  parameter Real h(unit="W/(m^2.degC)") = 767;
+  Real T(start=T0, unit="degC");
+equation
+  der(T) = (T_inf - T) / (m * c_p) - h * A * (T - T_inf) / (m * c_p);
+  when time = 20 "s" then
+    T_inf = 0 "degC";
+  end when;
+end NewtonCoolingDynamic;
+```
+
+The equation for the Newton's law of cooling is `der(T) = (T_inf - T) / (m * c_p) - h * A * (T - T_inf) / (m * c_p)`. The change in temperature `der(T)` is equal to the rate of heat transfer from the water to the ambient, which is the difference between the temperature of the water and the ambient temperature, divided by the product of the mass and the specific heat of the water. The heat transfer also depends on the convection cooling coefficient and the area of the water.
+
+The ambient temperature suddenly drops to 0°C 20 seconds after the start of the simulation. This change in ambient temperature is represented by the when-statement, which sets `T_inf` to 0 when the time is 20 seconds.
+
+Please note that the initial equation `T = T0` is not needed in this model, because the initial condition for `T` is already set in the start attribute.

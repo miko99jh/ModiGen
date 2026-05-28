@@ -1,0 +1,26 @@
+Certainly! Below is a Modelica block named `ConjunctiveClock` that extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock` and performs a logical conjunction (AND) operation using the appropriate Boolean logic block from the Modelica Standard Library.
+
+```modelica
+block ConjunctiveClock
+  extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock;
+
+  // Redeclare the combinator component to perform logical conjunction (AND)
+  redeclare Modelica.Blocks.Logical.And combinator;
+
+  // Additional configuration or parameters can be added here if needed
+
+  // Initialization or any specific behavior can be defined here
+  initial algorithm
+    // Initialization logic if required
+  algorithm
+    // Main algorithm logic if required
+end ConjunctiveClock;
+```
+
+### Explanation:
+- **Extends**: The block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`, which provides the basic structure for logical clock operations.
+- **Redeclare**: The `combinator` component is redeclared to use `Modelica.Blocks.Logical.And`, which performs a logical conjunction (AND) operation.
+- **Initial Algorithm**: This section can be used for any initialization logic if required.
+- **Algorithm**: This section can be used for the main algorithm logic if required.
+
+This block will tick when all input clocks have ticked at least once, and then reset for the next cycle, effectively performing a logical AND operation on the input clocks.

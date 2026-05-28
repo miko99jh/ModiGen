@@ -1,0 +1,45 @@
+To implement a simple proportional control system in Modelica, you can create a model named `PController` that simulates the change in water level over time. The model will use a proportional controller to adjust the water level towards the target height. Here's a basic implementation:
+
+```modelica
+model PController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0; // Proportional gain
+
+  // Variables
+  Real waterLevel(start = 0.2); // Initial water level in meters
+  Real error; // Error between target and current water level
+  Real control; // Control signal
+
+equation
+  // Calculate the error
+  error = target_height - waterLevel;
+
+  // Proportional control law
+  control = Kp * error;
+
+  // Update the water level based on the control signal
+  der(waterLevel) = control;
+
+end PController;
+```
+
+### Explanation:
+
+1. **Parameters:**
+   - `target_height`: The desired water level in the reservoir.
+   - `Kp`: The proportional gain, which determines how aggressively the controller responds to the error.
+
+2. **Variables:**
+   - `waterLevel`: The current water level in the reservoir, initialized to 0.2 meters.
+   - `error`: The difference between the target water level and the current water level.
+   - `control`: The control signal calculated by the proportional controller.
+
+3. **Equations:**
+   - The `error` is calculated as the difference between the `target_height` and the `waterLevel`.
+   - The `control` signal is computed using the proportional control law: `control = Kp * error`.
+   - The rate of change of the `waterLevel` (`der(waterLevel)`) is set equal to the `control` signal, which means the water level changes over time based on the control signal.
+
+### Simulation:
+
+To simulate this model, you can use a Modelica simulation environment like OpenModelica or Dymola. The simulation will show how the water level approaches the target height over time due to the proportional control action.

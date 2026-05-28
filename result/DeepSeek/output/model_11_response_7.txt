@@ -1,0 +1,374 @@
+
+Generate a Modelica model for a component that performs a 'greater than or equal to' (>=) comparison between two integer inputs. The model should be named `GreatEq` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` model. The inputs `u1` and `u2` are integers, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. The value of `y` is `true` if `u1 >= u2`, otherwise `false`.
+
+//modelica
+```model GreatEq
+  extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+equation
+  if Ts > 0 then
+    y = sample(u1 >= u2, Ts);
+  else
+    y = u1 >= u2;
+  end if;
+end GreatEq;```
+
+//markdown
+```markdown
+```
+
+//modelica
+```model GreatEq
+  extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+equation
+  if Ts > 0 then
+    y = sample(u1 >= u2, Ts);
+  else
+    y = u1 >= u2;
+  end if;
+end GreatEq;```
+
+//markdown
+```markdown
+```
+
+//modelica
+```model GreatEq
+  extends IndustrialControlSystems.Logical.Comparisons.IntegerType.Interfaces.IntComparison;
+equation
+  if Ts > 0 then
+    y = sample(u1 >= u2, Ts);
+  else
+    y = u1 >= u2;
+  end if;
+end GreatEq;```
+
+//markdown
+```markdown
+```Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.SynchronousMachines.Components.SynchronousInductionMachines.Components.SynchronousInductionMachine.SynchronousInductionMachine_winding
+====================================================================================================================================================================================
+
+**Synchronous induction machine with separate windings**
+
+.. figure:: Modelica.Electrical.Machines.BasicMachines.Components.InductionMachines.SynchronousMachines.Components.SynchronousInductionMachines.Components.SynchronousInductionMachine.Resources/SynchronousInductionMachine.png
+   :align: center
+   :alt: SynchronousInductionMachine_winding
+
+Information
+-----------
+::
+
+This model represents a synchronous induction machine with separate
+windings. The machine is defined by the following parameters:
+
+-  Number of phases (1, 2, or 3)
+-  Number of pole pairs
+-  Rated voltage (rms)
+-  Rated frequency
+-  Rated power
+-  Stator resistance per phase
+-  Stator leakage inductance per phase
+-  Stator magnetizing inductance per phase
+-  Rotor resistance per phase
+-  Rotor leakage inductance per phase
+-  Rotor magnetizing inductance per phase
+-  Rotor time constant
+-  Rotor damper cage resistance
+-  Rotor damper cage inductance
+-  Rotor damper cage time constant
+-  Rotor damper cage inertia
+-  Rotor damper cage friction coefficient
+-  Rotor damper cage friction torque
+-  Rotor damper cage nominal current
+-  Rotor damper cage nominal torque
+-  Rotor damper cage nominal speed
+-  Rotor damper cage nominal power
+-  Rotor damper cage nominal voltage
+-  Rotor damper cage nominal frequency
+-  Rotor damper cage nominal efficiency
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal torque constant
+-  Rotor damper cage nominal current constant
+-  Rotor damper cage nominal voltage constant
+-  Rotor damper cage nominal power constant
+-  Rotor damper cage nominal speed

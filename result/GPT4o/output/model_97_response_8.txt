@@ -1,0 +1,51 @@
+To create a Modelica model for simulating the temperature change of a platinum resistance sensor, you can use the following code. This model calculates the temperature change of the sensor over time based on the heat balance between the sensor and the medium.
+
+```modelica
+model RTD_Pt100
+  // Parameters
+  parameter Real V = 1.15e-9; // Volume of the sensor [m^3]
+  parameter Real c = 456; // Comprehensive specific heat [J/(kg·K)]
+  parameter Real Ar = 5.31e-6; // Sensor surface area [m^2]
+  parameter Real alpha = 800; // Convective heat transfer coefficient [W/(m^2·K)]
+  parameter Real pho = 7980; // Comprehensive density [kg/m^3]
+
+  // Inputs
+  input Real Tg; // Temperature of the measured medium [°C]
+
+  // Outputs
+  output Real Tj(start=25); // Sensor temperature [°C]
+
+  // Variables
+  Real Q; // Heat transfer rate [W]
+
+equation
+  // Heat transfer equation
+  Q = alpha * Ar * (Tg - Tj);
+
+  // Temperature change equation
+  der(Tj) = Q / (pho * V * c);
+end RTD_Pt100;
+```
+
+### Explanation:
+- **Parameters**: These are constants that define the physical properties of the sensor and the environment.
+  - `V`: Volume of the sensor.
+  - `c`: Comprehensive specific heat.
+  - `Ar`: Sensor surface area.
+  - `alpha`: Convective heat transfer coefficient.
+  - `pho`: Comprehensive density.
+
+- **Inputs**: 
+  - `Tg`: Temperature of the measured medium, defined as an input to allow dynamic changes.
+
+- **Outputs**: 
+  - `Tj`: Sensor temperature, initialized to 25°C.
+
+- **Variables**:
+  - `Q`: Heat transfer rate between the sensor and the medium.
+
+- **Equations**:
+  - The heat transfer equation calculates the rate of heat transfer based on the difference in temperature between the medium and the sensor.
+  - The temperature change equation calculates the rate of change of the sensor's temperature over time, based on the heat transfer rate and the sensor's physical properties.
+
+This model can be simulated in a Modelica environment to observe how the sensor temperature changes over time when exposed to a medium with a stable temperature of 100°C.

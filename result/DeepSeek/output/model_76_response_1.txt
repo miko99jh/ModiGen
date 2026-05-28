@@ -1,0 +1,40 @@
+
+Generate a Modelica function named `Rotator` that rotates a space phasor by a given angle. The function should include the following components and details:
+1. Components:
+-  The function should extend from Modelica.Icons.Function. 
+-  Input for the space phasor: input Real x[2]. 
+-  Input for the angle of rotation: input Modelica.Units.SI.Angle angle.
+-  Output for the rotated space phasor: output Real y[2] .
+2. Protected Variables:
+-  Rotation matrix: Real RotationMatrix[2, 2] initialized as {{+cos(-angle), -sin(-angle)}, {+sin(-angle), +cos(-angle)}}.
+3. Algorithm:
+ Perform the rotation by multiplying the 'RotationMatrix' with the input vector 'x' and assigning the result to 'y'.
+
+Please ensure that the function is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```function Rotator
+  extends Modelica.Icons.Function;
+  input Real x[2];
+  input Modelica.Units.SI.Angle angle;
+  output Real y[2];
+  protected 
+  Real RotationMatrix[2,2] = {{+cos(-angle), -sin(-angle)}, {+sin(-angle), +cos(-angle)}};
+  algorithm 
+    y = RotationMatrix*x;
+  end Rotator;
+```
+
+This function takes a space phasor 'x' and rotates it by the angle 'angle'. The rotation is performed by multiplying the rotation matrix with the input vector 'x'. The resulting vector is assigned to 'y'.
+
+Please note that the rotation matrix is initialized with the negative of the angle. This is because in Modelica, counterclockwise rotation is considered positive.
+
+The function is protected, which means it can only be used within the model it is defined in.
+
+The function is defined in the Modelica.Icons package, which is a standard package for defining icons in Modelica. The function extends from Modelica.Icons.Function, which is a predefined class for defining functions.
+
+The function is defined with input and output annotations, which are used to specify the input and output variables of the function.
+
+The function is defined with an algorithm section, which is used to specify the algorithm that the function should use to compute the output variables. In this case, the function uses the rotation matrix to rotate the input vector and assign the result to the output vector.
+
+The function is defined with a specific syntax that adheres to the Modelica language standard. This includes the use of the extends keyword to specify the base class of the function, the use of the input and output annotations to specify the input and output variables of the function, and the use of the algorithm section to specify the algorithm that the function should use to compute the output variables.

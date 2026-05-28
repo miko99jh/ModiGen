@@ -1,0 +1,17 @@
+```modelica
+model ControlledIdealOpeningSwitch
+  extends Modelica.Electrical.Analog.Interfaces.IdealSwitch;
+
+  parameter Modelica.Units.SI.Voltage level = 0.5 "Voltage threshold for the switch to open";
+  Modelica.Electrical.Analog.Interfaces.Pin control "Control pin";
+
+equation
+  // The switch is open when control voltage exceeds the threshold level
+  off = control.v > level;
+
+  // Ensure no current flows through the control pin
+  control.i = 0;
+end ControlledIdealOpeningSwitch;
+```
+
+This Modelica model defines a controlled ideal electrical opening switch that opens when the voltage at the control pin exceeds a specified threshold level. The switch is based on the `IdealSwitch` interface, and the control pin is used to determine the state of the switch.

@@ -1,0 +1,25 @@
+```modelica
+model NotEqual
+  extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+
+  parameter Real Ts = 0 "Sample time for discrete comparison, 0 for continuous";
+  parameter Real eps = 1e-6 "Threshold for determining equality";
+
+protected 
+  Boolean pre_y;
+
+equation 
+  when Ts > 0 then
+    // Discrete comparison
+    when sample(0, Ts) then
+      y = abs(u1 - u2) >= eps;
+    end when;
+  else
+    // Continuous comparison
+    y = abs(u1 - u2) >= eps;
+  end when;
+
+end NotEqual;
+```
+
+This Modelica model defines a `NotEqual` function that compares two real input signals, `u1` and `u2`, and outputs a Boolean `y`. The output is true if the absolute difference between `u1` and `u2` is greater than or equal to a small threshold `eps`, indicating that the inputs are not equal. The comparison can be performed either continuously or at discrete intervals, depending on the value of the sample time parameter `Ts`. If `Ts` is greater than 0, the comparison is triggered at regular intervals defined by `Ts`; otherwise, it is continuous.

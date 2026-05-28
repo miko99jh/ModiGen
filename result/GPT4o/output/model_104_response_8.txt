@@ -1,0 +1,33 @@
+Certainly! Below is a Modelica model named `Summation` that calculates the sum of all integers from 1 to `n` (where `n` is 10) using an algorithm block with a for loop.
+
+```modelica
+model Summation
+  // Parameters
+  parameter Integer n = 10; // Upper limit of the summation
+
+  // Variables
+  Integer sum; // Variable to store the sum
+
+algorithm
+  // Initialize sum
+  sum := 0;
+
+  // Accumulate the sum using a for loop
+  for i in 1:n loop
+    sum := sum + i;
+  end for;
+
+  // Display the result
+  annotation (experiment(StartTime=0, StopTime=1, Tolerance=1e-6, Interval=0.1));
+end Summation;
+```
+
+### Explanation:
+- **Parameter `n`:** This is the upper limit of the summation, set to 10.
+- **Variable `sum`:** This variable is used to store the accumulated sum.
+- **Algorithm Block:**
+  - The `sum` is initialized to 0 before the loop starts.
+  - A `for` loop iterates from 1 to `n`, adding each integer to `sum`.
+- **Annotation:** The annotation is used to set up the simulation environment, though it's not strictly necessary for this simple model.
+
+You can simulate this model in a Modelica environment to verify that it correctly calculates the sum of integers from 1 to 10.

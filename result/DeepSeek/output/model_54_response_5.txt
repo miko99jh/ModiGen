@@ -1,0 +1,40 @@
+
+Generate a Modelica model named `Subtracter` that represents an inverting subtracter circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.OpAmps` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 5) representing the amplitude of the input voltage
+- `f` (Modelica.Units.SI.Frequency, default value: 10) representing the frequency of the input voltage.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn1` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = f`.
+- `vIn2` (Modelica.Electrical.Analog.Sources.ConstantVoltage) to generate a constant input voltage with parameter `V = Vin`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `feedback` (Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback) to implement the feedback loop, with the initial current `i` of `p1_2` set to 0.
+
+The following connections should be made:
+- Dual-Source Integration: Route the dynamic signal 'vIn1' and the static signal 'vIn2' into the 'feedback' network's input ports 'p1' and 'p1_2' respectively.
+- Reference & Return: Establish a common reference by tying the return pins ('.n') of both sources ('vIn1', 'vIn2') and the feedback input ('n1') to the 'ground.p'.
+- Output Differential: Link the output stage of the feedback circuit ('p2', 'n2') to the 'vOut' sensor. Note: Ensure the polarity is set such that 'p2' connects to the sensor's negative terminal.
+
+The model should accurately represent the behavior of an inverting subtracter circuit.
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Input voltage amplitude";
+  parameter Modelica.Units.SI.Frequency f=10 "Input voltage frequency";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.n, vIn2.n, ground.p);
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n2, vOut.plug);
+end Subtracter;
+```
+
+This model should be used to simulate an inverting subtracter circuit and should provide accurate results.

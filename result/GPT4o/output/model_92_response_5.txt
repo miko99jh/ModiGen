@@ -1,0 +1,51 @@
+Certainly! Below is a simple Modelica model implementing a proportional-differential (PD) controller to maintain the water level in a container at a target height. The model uses the given proportional coefficient (`Kp`) and differential coefficient (`Kd`) to adjust the water level over time.
+
+```modelica
+model PDController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0;            // Proportional coefficient
+  parameter Real Kd = 0.1;            // Differential coefficient
+
+  // Variables
+  Real waterLevel(start = 0.2);       // Current water level in meters
+  Real error;                         // Error in water level
+  Real Pcontrol;                      // Proportional control
+  Real Dcontrol;                      // Differential control
+  Real controlSignal;                 // Control signal to adjust water level
+  Real previousError(start = 0.0);    // Previous error for differential control
+
+equation
+  // Calculate the error
+  error = target_height - waterLevel;
+
+  // Proportional control
+  Pcontrol = Kp * error;
+
+  // Differential control
+  Dcontrol = Kd * (error - previousError);
+
+  // Control signal
+  controlSignal = Pcontrol + Dcontrol;
+
+  // Update water level based on control signal
+  der(waterLevel) = controlSignal;
+
+  // Update previous error
+  previousError = error;
+
+end PDController;
+```
+
+### Explanation:
+- **Parameters**: `target_height`, `Kp`, and `Kd` are defined as parameters to set the target water level and control coefficients.
+- **Variables**: `waterLevel` is the current water level, starting at 0.2 meters. `error` is the difference between the target and current water level. `Pcontrol` and `Dcontrol` are the proportional and differential control components, respectively. `controlSignal` is the sum of these components, which determines the rate of change of the water level. `previousError` is used to calculate the differential control.
+- **Equations**:
+  - The error is calculated as the difference between the target height and the current water level.
+  - The proportional control is calculated using the proportional coefficient (`Kp`).
+  - The differential control is calculated using the differential coefficient (`Kd`) and the change in error.
+  - The control signal is the sum of the proportional and differential controls.
+  - The rate of change of the water level (`der(waterLevel)`) is determined by the control signal.
+  - The previous error is updated for the next time step.
+
+This model will simulate the adjustment of the water level over time using PD control. You can simulate this model in a Modelica environment to observe how the water level approaches the target height.

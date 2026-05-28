@@ -1,0 +1,52 @@
+Certainly! Below is a simple implementation of a `BouncingBall` model in Modelica. This model simulates a ball bouncing under the influence of gravity, with a specified coefficient of restitution for the bounce.
+
+```modelica
+model BouncingBall
+  parameter Real radius = 0.1; // Radius of the ball in meters
+  parameter Real e = 0.9; // Coefficient of restitution
+  parameter Real g = 9.81; // Acceleration due to gravity in m/s^2
+  parameter Real initialHeight = 1.0; // Initial height in meters
+  parameter Real initialVelocity = 0.0; // Initial velocity in m/s
+
+  Real height(start = initialHeight); // Height of the ball
+  Real velocity(start = initialVelocity); // Velocity of the ball
+
+  // Event to detect collision with the ground
+  Boolean hitGround;
+
+equation
+  // Differential equations for motion under gravity
+  der(height) = velocity;
+  der(velocity) = -g;
+
+  // Condition for hitting the ground
+  hitGround = height <= radius and velocity < 0;
+
+  // When the ball hits the ground, reverse its velocity with restitution
+  when hitGround then
+    velocity = -e * velocity;
+    reinit(height, radius); // Ensure the ball doesn't go below the ground
+  end when;
+
+end BouncingBall
+```
+
+### Explanation:
+- **Parameters**: 
+  - `radius`: The radius of the ball.
+  - `e`: The coefficient of restitution, which determines how much velocity is retained after a bounce.
+  - `g`: The gravitational acceleration.
+  - `initialHeight` and `initialVelocity`: Initial conditions for the simulation.
+
+- **Variables**:
+  - `height`: The current height of the ball.
+  - `velocity`: The current velocity of the ball.
+
+- **Equations**:
+  - The differential equations describe the motion of the ball under gravity.
+  - The `hitGround` condition checks if the ball has hit the ground (i.e., its height is less than or equal to its radius and it's moving downward).
+
+- **Event Handling**:
+  - The `when` clause is used to handle the event of the ball hitting the ground. When this event occurs, the velocity is reversed and scaled by the coefficient of restitution, and the height is reset to the radius to prevent the ball from going below the ground level.
+
+This model should simulate the bouncing behavior of the ball as described. You can run this model in a Modelica environment like OpenModelica or Dymola to observe the ball's motion.

@@ -1,0 +1,36 @@
+
+Generate a Modelica model named `Variant2_tuned` for a tuned version of Variant 2. The model should be compatible with Modelica version 3.2.3. Specifically, extend the 'ModelicaByExample.Architectures.SensorComparison.Examples.Variant2' model with the following adjusted components redeclared for enhanced performance. Set the 'controller' component with yMax=50, Ti=0.07, Td=0.01, k=4, and the 'actuator' component with uMax=50, along with a 'sensor' components with sample_time=0.01. This model serves to demonstrate improved sensor and control dynamics in testing different architecture scenarios.
+
+//modelica
+```model Variant2_tuned
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant2;
+
+  // Redefine the controller component with tuned parameters
+  model Controller extends ModelicaByExample.Architectures.SensorComparison.Components.Controller(
+    yMax = 50,
+    Ti = 0.07,
+    Td = 0.01,
+    k = 4
+  );
+  end Controller;
+
+  // Redefine the actuator component with tuned parameters
+  model Actuator extends ModelicaByExample.Architectures.SensorComparison.Components.Actuator(
+    uMax = 50
+  );
+  end Actuator;
+
+  // Redefine the sensor component with a sample_time of 0.01
+  model Sensor extends ModelicaByExample.Architectures.SensorComparison.Components.Sensor(
+    sample_time = 0.01
+  );
+  end Sensor;
+
+equation
+  // No additional equations needed, all changes are made through redefinition
+end Variant2_tuned;
+```
+
+This model extends the original Variant2 model with tuned parameters for the controller, actuator, and sensor components. The controller has a larger yMax, a shorter Ti, a shorter Td, and a larger k. The actuator has a larger uMax. The sensor has a sample_time of 0.01. These changes are made through the redefinition of the components in the model.
+
+Please note that the Modelica version used here is 3.2.3. If you are using a different version, you may need to adjust the code accordingly.

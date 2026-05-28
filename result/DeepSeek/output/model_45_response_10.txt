@@ -1,0 +1,25 @@
+
+Generate a Modelica block named `ExtractSignal` that extracts specific signals from an input signal vector. The model should inherit from `Modelica.ComplexBlocks.Interfaces.ComplexMIMO`, indicating that it handles multiple input and output signals in a complex multi-input multi-output system.  The key parameter is `extract`, which is an integer array with a size of `nout`, specifying the indices of the input vector to be extracted and sent to the output. The model should iterate over the range of output signals (`nout`) and assign each input `u[extract[i]]` to the corresponding output `y[i]`. Ensure accurate handling of the parameterization and iteration to correctly map input signals to outputs.
+
+//modelica
+```block ExtractSignal
+model ExtractSignal "Extract specific signals from an input signal vector"
+  extends Modelica.ComplexBlocks.Interfaces.ComplexMIMO;
+  parameter Integer extract[:] "Indices of the input vector to be extracted";
+  Modelica.ComplexBlocks.Interfaces.ComplexMIMO u "Input signals";
+  Modelica.ComplexBlocks.Interfaces.ComplexMIMO y[size(extract, 1)] "Output signals";
+
+equation 
+  for i in 1:size(extract, 1) loop
+    y[i] = u[extract[i]];
+  end for;
+end ExtractSignal;
+```
+
+This model will take an input complex signal vector `u` and extract specific signals based on the indices provided in the `extract` parameter. The extracted signals are then sent to the output signal vector `y`. The model ensures that the input and output signals are correctly mapped to each other.
+
+Please note that the `extract` parameter should be an array of integers, where each integer represents the index of the signal to be extracted from the input vector. The size of this array should be equal to the number of output signals (`nout`), as specified by the `size(extract, 1)` expression.
+
+The model uses a for-loop to iterate over the range of output signals and assigns each input signal `u[extract[i]]` to the corresponding output signal `y[i]`. This ensures that the correct signals are extracted and sent to the output.
+
+This model can be used in complex multi-input multi-output systems where specific signals need to be extracted and processed independently.

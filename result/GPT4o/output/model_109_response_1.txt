@@ -1,0 +1,42 @@
+To create a Modelica model named `IndependentSampling` that demonstrates independent sampling of two variables `x` and `y` at 10Hz, with `y` being sampled based on a `next_time` variable, you can use the following code:
+
+```modelica
+model IndependentSampling
+  // Declare variables
+  Real x;
+  Real y;
+  Real e;
+  Real next_time(start=0.1); // Initialize next_time to 0.1 seconds
+
+equation
+  // Sample x directly at 10Hz
+  when sample(0, 0.1) then
+    x = sin(2 * Modelica.Constants.pi * time); // Example: x as a sine wave
+  end when;
+
+  // Sample y based on next_time
+  when {initial(), time > pre(next_time)} then
+    y = cos(2 * Modelica.Constants.pi * time); // Example: y as a cosine wave
+    next_time = pre(next_time) + 0.1; // Update next_time for the next sample
+  end when;
+
+  // Compute the error e as the difference between x and y
+  e = x - y;
+
+end IndependentSampling;
+```
+
+### Explanation:
+- **Variables**: 
+  - `x` and `y` are the two variables being sampled.
+  - `e` is the error computed as the difference between `x` and `y`.
+  - `next_time` is used to manage the sampling of `y`.
+
+- **Sampling**:
+  - `x` is sampled directly at 10Hz using the `sample(0, 0.1)` function.
+  - `y` is sampled based on the condition `{initial(), time > pre(next_time)}`. This ensures that `y` is sampled at 10Hz but is controlled by the `next_time` variable, which is updated every 0.1 seconds.
+
+- **Example Functions**:
+  - `x` is set to a sine wave and `y` to a cosine wave for demonstration purposes. You can replace these with any other functions or data sources as needed.
+
+This model is useful for systems that require synchronization of separate processes that are sampled at the same rate but initiated differently.

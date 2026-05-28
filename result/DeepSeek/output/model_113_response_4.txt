@@ -1,0 +1,15 @@
+
+Develop a State space version of an RLC circuit Modelica model named `RLC` where the circuit parameters are: voltage source 'Vb' is 24 volts, inductor 'L' is 1 Henry, resistor 'R' is 100 ohms, and capacitor 'C' is 0.001 Farads. The State space model should use the `ModelicaByExample.ArrayEquations.StateSpace.LTI` component 'rlc_comp' with 'nx=2' state variables, 'nu=1' input, 'ny=2' outputs, initial state' x0={0, 0}', matrices 'A=[-1/(R*C), 1/C; -1/L, 0], B=[0; 1/L], C=[1/R, 0; -1/R, 1], and D=[0; 0]'. Connect the input 'u' of LTI component to the voltage source.
+
+//modelica
+```model RLC
+  ModelicaByExample.ArrayEquations.StateSpace.LTI rlc_comp(nx=2, nu=1, ny=2, x0={0, 0}, A=[-1/(100*0.001), 1/0.001; -1/1, 0], B=[0; 1/1], C=[1/100, 0; -1/100, 1], D=[0; 0]);
+  parameter Real Vb=24 "Voltage source";
+equation
+  rlc_comp.u = Vb;
+end RLC;
+```
+
+This model is a state-space representation of an RLC circuit, where the voltage source is connected to the input of the state-space component. The state-space matrices are defined according to the given circuit parameters. The output of the state-space component is the voltage across the resistor and the inductor.
+
+Note: The Modelica language does not support the direct simulation of state-space models. In order to simulate this model, you would need to use a tool that supports the Modelica language and can simulate state-space models.

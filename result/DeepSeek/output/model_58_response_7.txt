@@ -1,0 +1,20 @@
+
+Generate a Modelica model for an ideal GTO thyristor named `IdealGTOThyristor`. The model should extend `Modelica.Electrical.Analog.Interfaces.IdealSemiconductor` and include the following components:
+1. `Modelica.Blocks.Interfaces.BooleanInput fire` to define the Boolean input for firing the thyristor.
+
+In the equation section, define the following behavior:
+- The thyristor is off (`off=true`) when the semiconductor state variable `s` is less than 0 or when the `fire` signal is false (`not fire`).
+
+Provide the necessary equations to represent the functionality of the ideal GTO thyristor, where the thyristor's state is controlled by the semiconductor's condition and the `fire` signal.
+
+//modelica
+```model IdealGTOThyristor
+  extends Modelica.Electrical.Analog.Interfaces.IdealSemiconductor;
+  Modelica.Blocks.Interfaces.BooleanInput fire;
+equation
+  // Define the behavior of the thyristor
+  off = (s < 0) or not fire;
+end IdealGTOThyristor;
+```
+
+This model defines an ideal GTO thyristor with a Boolean input `fire` for controlling the thyristor's state. The thyristor is considered off (`off=true`) when the semiconductor state variable `s` is less than 0 or when the `fire` signal is false (`not fire`).

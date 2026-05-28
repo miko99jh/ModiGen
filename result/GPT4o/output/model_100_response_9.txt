@@ -1,0 +1,22 @@
+Certainly! Below is a Modelica function named `CircleProperties` that calculates the circumference and area of a circle based on its radius. It includes a protected section to define the diameter and uses an algorithm block to implement the logic for both outputs.
+
+```modelica
+function CircleProperties
+  input Real radius;
+  output Real circumference;
+  output Real area;
+protected
+  Real diameter;
+algorithm
+  diameter := 2 * radius;
+  circumference := diameter * 3.14159;
+  area := 3.14159 * radius * radius;
+end CircleProperties;
+```
+
+### Explanation:
+- **Inputs and Outputs**: The function takes one input, `radius`, and provides two outputs, `circumference` and `area`.
+- **Protected Section**: The `diameter` is defined in the protected section, meaning it is used internally within the function and not exposed as an output.
+- **Algorithm Block**: The algorithm block contains the logic for calculating the diameter, circumference, and area using the given value of pi (3.14159).
+
+This function can be used in a Modelica model to compute the properties of a circle when the radius is known.

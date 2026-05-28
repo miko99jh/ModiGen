@@ -1,0 +1,41 @@
+
+Generate a Modelica model named `Ctrl_Heating_TES` for a heating curve control system that manages heating based on a water storage tank. The model should extend `IDEAS.Controls.ControlHeating.Interfaces.Partial_Ctrl_Heating_TES`. The model's functionality revolves around setting temperature thresholds for both the top (`TTopSet`) and bottom (`TBotSet`) of the tank, as well as determining the heat pump setpoint (`THPSet`).
+
+Key Parameters:
+- `TTopSet`: Calculated as the maximum of `TDHWSet` (the domestic hot water setpoint) and `heatingCurve.TSup` (the supply temperature from the heating curve), plus a safety margin (`dTSafetyTop`).
+- `TBotSet`: Calculated as the maximum of `TDHWSet` (the domestic hot water setpoint) and `heatingCurve.TSup` (the supply temperature from the heating curve), plus a bottom tank safety margin (`dTSafetyBot`).
+- `THPSet`: The heat pump setpoint is derived from `TTopSet` with an additional margin (`dTHPTankSet`).
+
+Control Logic:
+- The `onOff` signal determines whether the heating system is activated (`onOff = 1`) or deactivated (`onOff = 0`).
+- The system activates (`onOff = 1`) if the top of the tank (`TTankTop`) is below `TTopSet` and the bottom (`TTankBot`) is below `TBotSet - dTSafetyBot`, ensuring that the system operates unless there is a temperature inversion (i.e., the bottom is still very hot).
+- If the heat pump is running and the top of the tank is sufficiently heated(onOff > 0.5) but the bottom is still below `TBotSet`, the system continues to run (`onOff = 1`).
+- In all other scenarios, the system is shut down (`onOff = 0`).
+The if statement uses the `if noEvent(...` to implement.
+Ensure that the model accurately implements these temperature calculations and control logic, representing the conditions and safety margins effectively.
+
+//modelica
+```model Ctrl_Heating_TES
+  extends IDEAS.Controls.ControlHeating.Interfaces.Partial_Ctrl_Heating_TES;
+  parameter Modelica.SIunits.Temperature dTSafetyTop = 1 "Top tank safety margin";
+  parameter Modelica.SIunits.Temperature dTSafetyBot = 1 "Bottom tank safety margin";
+  parameter Modelica.SIunits.Temperature dTHPTankSet = 1 "Heat pump setpoint safety margin";
+  Modelica.SIunits.Temperature TTopSet(start=20);
+  Modelica.SIunits.Temperature TBotSet(start=20);
+  Modelica.SIunits.Temperature THPSet(start=20);
+equation 
+  TTopSet = max(TDHWSet, heatingCurve.TSup) + dTSafetyTop;
+  TBotSet = max(TDHWSet, heatingCurve.TSup) + dTSafetyBot;
+  THPSet = TTopSet + dTHPTankSet;
+  onOff = if (TTankTop < TTopSet and TTankBot < TBotSet - dTSafetyBot) then
+    if (HP_on and TTankTop > TTopSet * 0.5 and TTankBot < TBotSet) then
+      1
+    else
+      0
+    end if
+  else
+    0
+  end if;
+end Ctrl_Heating_TES;
+```
+This model should be used in conjunction with a heating curve model and a tank model to fully represent the heating system.

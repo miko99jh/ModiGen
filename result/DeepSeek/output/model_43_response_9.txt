@@ -1,0 +1,40 @@
+
+Generate a Modelica block named 'Add' that outputs the sum of two complex input signals.
+
+# Model Functionality:
+- The block computes the sum of two complex input signals, each multiplied by a respective gain factor (k1 and k2). 
+- The parameters 'k1' and 'k2' are complex parameters with default values of Complex(1, 0).
+
+# Inputs and Outputs:
+- **Inputs**:
+- `u1Internal`: Complex input signal 1. 
+- `u2Internal`: Complex input signal 2. 
+- **Outputs**:
+- `y`: Complex output signal, representing the sum of the two weighted inputs. 
+
+# Inheritance and Interfaces:
+- The block extends from `Modelica.ComplexBlocks.Interfaces.ComplexSI2SO`, which indicates that it follows a two-input, single-output interface with complex signal types. 
+
+Ensure the model adheres to the specified input-output relationships and complex arithmetic operations.
+
+//modelica
+```block Add
+  extends Modelica.ComplexBlocks.Interfaces.ComplexSI2SO;
+  parameter Modelica.ComplexBlocks.Types.Complex k1 = Complex(1, 0) "Gain factor for input 1";
+  parameter Modelica.ComplexBlocks.Types.Complex k2 = Complex(1, 0) "Gain factor for input 2";
+  Modelica.ComplexBlocks.Interfaces.ComplexInput u1(final quantity="") = k1*Modelica.ComplexBlocks.Interfaces.ComplexInput();
+  Modelica.ComplexBlocks.Interfaces.ComplexInput u2(final quantity="") = k2*Modelica.ComplexBlocks.Interfaces.ComplexInput();
+  Modelica.ComplexBlocks.Interfaces.ComplexOutput y(final quantity="") = u1.y + u2.y;
+equation 
+  connect(u1.pin_p, y.pin_p);
+  connect(u1.pin_n, y.pin_n);
+  connect(u2.pin_p, y.pin_p);
+  connect(u2.pin_n, y.pin_n);
+end Add;
+```
+
+This Modelica code defines a block named 'Add' that takes two complex input signals, multiplies them by the gain factors 'k1' and 'k2', and then adds the results together to produce a single complex output signal. The block inherits from the 'ComplexSI2SO' interface, which specifies that it has two complex input signals and one complex output signal. The gain factors 'k1' and 'k2' are complex parameters with default values of 1+0i.
+
+The block uses two instances of the 'ComplexInput' block, each multiplied by its respective gain factor, to create the weighted input signals. These are then added together to form the output signal. The connections between the input and output pins are established using the 'connect' function.
+
+The 'Add' block can be used in a Modelica model to perform complex addition operations.

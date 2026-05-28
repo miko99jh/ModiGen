@@ -1,0 +1,30 @@
+
+Create a Modelica model named `IndependentSampling`. The model includes real type variables 'x', 'y', 'e' and 'next_time'. This model specifically demonstrates the technique of independent sampling where two variables, 'x' and 'y', are sampled at 10Hz using different methods. The model should compute the error 'e' as the difference between 'x' and 'y'. Additionally, 'x' is a direct sample, manage the sampling rate for 'y' using a variable 'next_time' which updates every 0.1 seconds based on the previous 'next_time', when {initial(), time>pre(next_time)} then 'y' sample. This model is crucial for systems that require synchronization of separate processes that are sampled at the same rate but initiated differently.
+
+//modelica
+```model IndependentSampling
+  parameter Real samplingRate = 10; // Sampling rate in Hz
+  Real x; // Variable sampled directly
+  Real y; // Variable sampled at a different rate
+  Real e; // Error between x and y
+  Real next_time = 0; // Next time to sample y
+
+  equation
+    // Sample x directly at the specified sampling rate
+    when {initial(), time > pre(next_time)} then
+      x = sin(time); // Sample x as a sine wave
+      next_time = next_time + (1/samplingRate); // Update next_time
+    end when;
+
+    // Sample y at a different rate
+    when {initial(), time > pre(next_time)} then
+      y = cos(time); // Sample y as a cosine wave
+      next_time = next_time + (1/samplingRate); // Update next_time
+    end when;
+
+    // Compute the error between x and y
+    e = x - y;
+end IndependentSampling;
+```
+
+This model can be used to simulate the independent sampling of two variables 'x' and 'y' at a specific sampling rate. The error 'e' is computed as the difference between 'x' and 'y'. The sampling rate for 'y' is managed by the variable 'next_time' which updates every 0.1 seconds based on the previous 'next_time'. This model is useful in systems that require synchronization of separate processes that are sampled at the same rate but initiated differently.

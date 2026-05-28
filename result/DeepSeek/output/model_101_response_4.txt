@@ -1,0 +1,38 @@
+
+Implement a Modelica function named `SphereProperties` to calculate the surface area (`surface`) and volume (`volume`) of a sphere based on its radius (`radius`). The function should use an algorithm block to implement the calculation logic and utilize the pi constant from the standard Modelica library (Modelica.Constants.pi) for the formulas.
+
+//modelica
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;
+```
+
+In this function, the input `radius` is a real number representing the radius of the sphere. The output `surface` is the surface area of the sphere, and the output `volume` is the volume of the sphere.
+
+The algorithm block calculates the surface area and volume using the formulas for a sphere:
+
+- Surface Area = 4 * pi * radius^2
+- Volume = 4/3 * pi * radius^3
+
+These formulas are used to calculate the surface area and volume of a sphere given its radius.
+
+Note: The Modelica.Constants.pi constant is used to represent the mathematical constant pi (approximately 3.14159).
+
+Here is the complete Modelica function:
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;
+```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius.

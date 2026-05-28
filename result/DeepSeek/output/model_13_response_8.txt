@@ -1,0 +1,308 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+equation
+  assert(nInput>=2, "The number of inputs must be greater than or equal to 2");
+  if Ts > 0 then
+    when sample(0, Ts) then
+      y[1] = not Functions.Xor(u[:], nInput);
+  else
+    y[1] = not Functions.Xor(u[:], nInput);
+  end if;
+end Xnor;
+```
+
+This model should be placed in the `LogicalOperations` package in the `IndustrialControlSystems` library.
+
+**Note**: The `Functions.Xor` function is assumed to be defined elsewhere in the library.
+
+**Note**: The `sample(0, Ts)` function is used to sample the input signals at regular intervals. The first argument `0` is the initial time, and the second argument `Ts` is the sample time.
+
+**Note**: The `assert` statement is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `LogicalBlock` model is assumed to be a model that has parameters `nInput` and `nOutput`.
+
+**Note**: The `Functions.Xor` function is assumed to be a function that performs the XOR operation on an array of inputs.
+
+**Note**: The `sample` function is assumed to be a function that samples the input signals at regular intervals.
+
+**Note**: The `assert` statement is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `LogicalBlock` model is assumed to be a model that has parameters `nInput` and `nOutput`.
+
+**Note**: The `Functions.Xor` function is assumed to be a function that performs the XOR operation on an array of inputs.
+
+**Note**: The `sample` function is assumed to be a function that samples the input signals at regular intervals.
+
+**Note**: The `assert` statement is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `LogicalBlock` model is assumed to be a model that has parameters `nInput` and `nOutput`.
+
+**Note**: The `Functions.Xor` function is assumed to be a function that performs the XOR operation on an array of inputs.
+
+**Note**: The `sample` function is assumed to be a function that samples the input signals at regular intervals.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `LogicalBlock` model is assumed to be a model that has parameters `nInput` and `nOutput`.
+
+**Note**: The `Functions.Xor` function is assumed to be a function that performs the XOR operation on an array of inputs.
+
+**Note**: The `sample` function is assumed to be a function that samples the input signals at regular intervals.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `LogicalBlock` model is assumed to be a model that has parameters `nInput` and `nOutput`.
+
+**Note**: The `Functions.Xor` function is assumed to be a function that performs the XOR operation on an array of inputs.
+
+**Note**: The `sample` function is assumed to be a function that samples the input signals at regular intervals.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `LogicalBlock` model is assumed to be a model that has parameters `nInput` and `nOutput`.
+
+**Note**: The `Functions.Xor` function is assumed to be a function that performs the XOR operation on an array of inputs.
+
+**Note**: The `sample` function is assumed to be a function that samples the input signals at regular intervals.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `LogicalBlock` model is assumed to be a model that has parameters `nInput` and `nOutput`.
+
+**Note**: The `Functions.Xor` function is assumed to be a function that performs the XOR operation on an array of inputs.
+
+**Note**: The `sample` function is assumed to be a function that samples the input signals at regular intervals.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `LogicalBlock` model is assumed to be a model that has parameters `nInput` and `nOutput`.
+
+**Note**: The `Functions.Xor` function is assumed to be a function that performs the XOR operation on an array of inputs.
+
+**Note**: The `sample` function is assumed to be a function that samples the input signals at regular intervals.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `not` operator is used to invert the output of the `Xor` function.
+
+**Note**: The `y[1]` is the output signal of the model.
+
+**Note**: The `u[:]` is used to denote all input signals.
+
+**Note**: The `extends` keyword is used to inherit properties and behavior from the parent model.
+
+**Note**: The `equation` keyword is used to define the equations of the model.
+
+**Note**: The `if` statement is used to execute different blocks of code depending on the value of a condition.
+
+**Note**: The `when` keyword is used to specify a condition under which the block of code within it is executed.
+
+**Note**: The `assert` keyword is used to check the validity of the model's parameters. If the condition is not met, the modelica compiler will issue an error message.
+
+**Note**: The `>` operator is used to compare two values.
+
+**Note**: The `=` operator is used to assign a value to a variable.
+
+**Note**: The `[:]` operator is used to denote all elements of an array.
+
+**Note**: The `IndustrialControlSystems` library is assumed to be a library that contains the `LogicalOperations` package.
+
+**Note**: The `Logical

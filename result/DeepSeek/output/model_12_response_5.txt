@@ -1,0 +1,19 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual
+  extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+  parameter Real eps = 1e-6;
+  parameter Real Ts = 0;
+equation
+  if Ts > 0 then
+    y = not(abs(u1 - u2) < eps) and time > Ts;
+  else
+    y = not(abs(u1 - u2) < eps);
+  end if;
+end NotEqual;```
+
+This model will generate a Boolean output 'y' which is true when the inputs 'u1' and 'u2' are not equal within a small threshold 'eps'. If the sample time 'Ts' is greater than 0, the comparison will only occur at regular intervals starting from 'Ts'. If 'Ts' is 0, the comparison is continuous.
+
+Note: The IndustrialControlSystems library is assumed to be available in the Modelica environment.

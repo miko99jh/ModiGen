@@ -1,0 +1,27 @@
+model Gain
+ extends Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.PartialOpAmp;
+
+  parameter Real k(min=0) = 1 "Amplification factor";
+  parameter Modelica.Units.SI.Resistance R1 = 1000 "Resistance at the inverting input";
+  parameter Modelica.Units.SI.Resistance R2 = k * R1 "Feedback resistance";
+
+  Modelica.Electrical.Analog.Basic.Resistor r1(R=R1) "Input resistor";
+  Modelica.Electrical.Analog.Basic.Resistor r2(R=R2) "Feedback resistor";
+
+equation
+  // Inverting path: Connect input terminal p1 to resistor r1
+  connect(p1, r1.p);
+  connect(r1.n, in_n);
+
+  // Feedback loop: Connect output to inverting input via r2
+  connect(out, r2.p);
+  connect(r2.n, in_n);
+
+  // Common reference: Connect non-inverting input to reference terminal n1
+  connect(in_p, n1);
+  connect(n1, n2);
+
+  // Output stage: Connect amplifier output to external terminal p2
+  connect(out, p2);
+
+end Gain;

@@ -1,0 +1,54 @@
+
+Generate a detailed Modelica model named `TestTrackingFO` for a test mode tracking system for a Fractional Order (FO) controller block. The model is intended to simulate scenarios within industrial control systems. It should include the following components: 
+
+1. **FOtr**: An instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `useTS=true` and `T=0.4`.
+
+2. **FOaw**: Another instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `mu=1`, `AntiWindup=true`, `T=0.4`, `useTS=true`, `Ymin=0`, and `Ymax=2`.
+
+3. **Signal**: A `Modelica.Blocks.Sources.Step` source with parameters `startTime=2` and `height=2`.
+
+4. **TSsignal**: A `Modelica.Blocks.Sources.BooleanPulse` source with parameters `startTime=4`, `width=10`, and `period=40`.
+
+5. **TrackRef**: A `Modelica.Blocks.Sources.Trapezoid` source with parameters `amplitude=5`, `rising=1`, `width=2`, `falling=1`, `period=8`, `nperiod=1`, and `startTime=4`.
+
+6. **FO**: A third instance of `IndustrialControlSystems.Controllers.Blocks.FO` with parameters `mu=1` and `T=0.4`.
+
+Ensure that the following connections are made in the model's equation section:
+
+Interface Reference: - Control inputs are represented by '.u'. 
+- Tracking mode switches are represented by '.TS'.
+- Tracking reference signals are represented by '.TR'.
+- Source outputs are represented by '.y'.
+
+Connection Logic:
+1. Connect the step source signal to the control inputs '.u' of all three FO controller instances (FO, FOtr, and FOaw).
+2. Link the boolean pulse TSsignal to the tracking mode switches '.TS' of the tracking-enabled instances (FOtr and FOaw).
+3. Provide the trapezoidal TrackRef as the tracking reference '.TR' for both FOtr and FOaw.
+
+//modelica
+```model TestTrackingFO
+  extends Modelica.Icons.Example;
+  import Modelica.Blocks.Sources;
+  import IndustrialControlSystems.Controllers.Blocks;
+  Blocks.FO FO(mu=1, T=0.4, useTS=true) annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
+  Blocks.FO FOtr(T=0.4, useTS=true) annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
+  Blocks.FO FOaw(mu=1, AntiWindup=true, T=0.4, useTS=true, Ymin=0, Ymax=2) annotation (Placement(transformation(extent={{-100,-90},{-80,-70}})));
+  Sources.Step Signal(height=2, startTime=2) annotation (Placement(transformation(extent={{-40,10},{-20,30}})));
+  Sources.BooleanPulse TSsignal(width=10, period=40, startTime=4) annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+  Sources.Trapezoid TrackRef(amplitude=5, rising=1, width=2, falling=1, period=8, nperiod=1, startTime=4) annotation (Placement(transformation(extent={{-40,-90},{-20,-70}})));
+  Blocks.FO FO2(mu=1, T=0.4) annotation (Placement(transformation(extent={{10,-90},{30,-70}})));
+equation 
+  connect(Signal.y, FO.u);
+  connect(Signal.y, FOtr.u);
+  connect(Signal.y, FOaw.u);
+  connect(Signal.y, FO2.u);
+  connect(TSsignal.y, FO.TS);
+  connect(TSsignal.y, FOtr.TS);
+  connect(TSsignal.y, FOaw.TS);
+  connect(TrackRef.y, FOtr.TR);
+  connect(TrackRef.y, FOaw.TR);
+  connect(FO.y, FO2.u);
+end TestTrackingFO;
+```
+
+The `Modelica.Blocks.Sources` package contains the necessary sources for the model. The `IndustrialControlSystems.Controllers.Blocks` package contains the FO controller block. The `Modelica.Blocks.Interfaces` package contains the necessary interfaces for the model. The `Modelica.Blocks.Types` package contains the necessary types for the model. The `Modelica.Blocks.Math` package contains the necessary math functions for the model.

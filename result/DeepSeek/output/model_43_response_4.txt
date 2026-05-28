@@ -1,0 +1,36 @@
+
+Generate a Modelica block named 'Add' that outputs the sum of two complex input signals.
+
+# Model Functionality:
+- The block computes the sum of two complex input signals, each multiplied by a respective gain factor (k1 and k2). 
+- The parameters 'k1' and 'k2' are complex parameters with default values of Complex(1, 0).
+
+# Inputs and Outputs:
+- **Inputs**:
+- `u1Internal`: Complex input signal 1. 
+- `u2Internal`: Complex input signal 2. 
+- **Outputs**:
+- `y`: Complex output signal, representing the sum of the two weighted inputs. 
+
+# Inheritance and Interfaces:
+- The block extends from `Modelica.ComplexBlocks.Interfaces.ComplexSI2SO`, which indicates that it follows a two-input, single-output interface with complex signal types. 
+
+Ensure the model adheres to the specified input-output relationships and complex arithmetic operations.
+
+//modelica
+```block Add
+  extends Modelica.ComplexBlocks.Interfaces.ComplexSI2SO;
+  parameter Modelica.ComplexBlocks.Types.Complex k1=Complex(1, 0) "Gain factor for u1";
+  parameter Modelica.ComplexBlocks.Types.Complex k2=Complex(1, 0) "Gain factor for u2";
+  Modelica.ComplexBlocks.Interfaces.ComplexInput u1(quantity="Flow") annotation(
+    Dialog(group="Input"));
+  Modelica.ComplexBlocks.Interfaces.ComplexInput u2(quantity="Flow") annotation(
+    Dialog(group="Input"));
+  Modelica.ComplexBlocks.Interfaces.ComplexOutput y(quantity="Flow") annotation(
+    Dialog(group="Output"));
+equation 
+  y = k1 * u1 + k2 * u2;
+end Add;
+```
+
+This Modelica block can be used to add two complex signals together, with optional gain factors. The output is the sum of the two input signals, each multiplied by their respective gain factor.

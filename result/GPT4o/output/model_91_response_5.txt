@@ -1,0 +1,51 @@
+To implement a PI controller in Modelica for maintaining the water level in a container, you can follow the structure below. This model will simulate the water level over time, considering both proportional and integral control actions.
+
+```modelica
+model PIController
+  // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0;            // Proportional coefficient
+  parameter Real Ki = 0.5;            // Integral coefficient
+  parameter Real leak_rate = 0.1;     // Leak rate in meters per unit time
+
+  // Variables
+  Real waterLevel(start = 0.2);       // Initial water level in meters
+  Real error;                         // Error in water level
+  Real Pcontrol;                      // Proportional control action
+  Real Icontrol;                      // Integral control action
+  Real integralError(start = 0.0);    // Accumulated error for integral control
+
+equation
+  // Calculate error
+  error = target_height - waterLevel;
+
+  // Proportional control
+  Pcontrol = Kp * error;
+
+  // Integral control
+  der(integralError) = error; // Accumulate error over time
+  Icontrol = Ki * integralError;
+
+  // Water level dynamics
+  der(waterLevel) = Pcontrol + Icontrol - leak_rate;
+
+  // Output for monitoring
+  annotation (experiment(StartTime=0, StopTime=100, Tolerance=1e-6, Interval=0.1));
+end PIController;
+```
+
+### Explanation:
+- **Parameters**: These define the target water level, the coefficients for proportional and integral control, and the leak rate.
+- **Variables**: 
+  - `waterLevel` starts at 0.2 meters.
+  - `error` is the difference between the target height and the current water level.
+  - `Pcontrol` and `Icontrol` are the control actions based on proportional and integral calculations.
+  - `integralError` accumulates the error over time for integral control.
+- **Equations**:
+  - The error is calculated as the difference between the target height and the current water level.
+  - `Pcontrol` is calculated using the proportional coefficient and the error.
+  - `Icontrol` is calculated using the integral coefficient and the accumulated error.
+  - The change in water level (`der(waterLevel)`) is determined by the sum of the control actions minus the leak rate.
+- **Simulation**: The `annotation` section sets up the simulation parameters, such as start and stop times, tolerance, and interval.
+
+This model will simulate how the water level changes over time, with the PI controller adjusting the inflow to maintain the target water level despite the leak.

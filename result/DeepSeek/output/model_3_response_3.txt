@@ -1,0 +1,20 @@
+
+Generate a Modelica block named `SignalRanker` that ranks output signals such that the output signals are ordered in descending order (y[i] >= y[i+1]). The block should extend the `Modelica.Blocks.Interfaces.MIMO` interface, ensuring that the number of outputs (nout) matches the number of inputs (nin). Use the `Modelica.Math.Vectors.sort` function to sort the input vector (u) in descending order with the 'ascending' parameter set to false.
+
+//modelica
+```block SignalRanker extends Modelica.Blocks.Interfaces.MIMO;
+  parameter Integer nin=Modelica.Blocks.Interfaces.nin;
+  parameter Integer nout=Modelica.Blocks.Interfaces.nout;
+  Modelica.Blocks.Interfaces.RealInput u[nin];
+  Modelica.Blocks.Interfaces.RealOutput y[nout];
+equation 
+  assert(nin==nout, "Number of inputs and outputs must be equal");
+  y = Modelica.Math.Vectors.sort(u, false);
+end SignalRanker;
+```
+
+This model will take an array of real-valued inputs and output an array of signals sorted in descending order. The assert statement is used to ensure that the number of inputs and outputs are equal, which is a requirement for a MIMO block. The sort function from the Modelica.Math.Vectors package is used to sort the input vector in descending order.
+
+Please note that the Modelica.Math.Vectors.sort function sorts the elements in ascending order by default. By setting the 'ascending' parameter to false, we can sort the elements in descending order.
+
+This model can be used in a Modelica model to rank the output signals of a system.

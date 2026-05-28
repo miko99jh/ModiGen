@@ -1,0 +1,27 @@
+
+Generate a Modelica function named `Rotator` that rotates a space phasor by a given angle. The function should include the following components and details:
+1. Components:
+-  The function should extend from Modelica.Icons.Function. 
+-  Input for the space phasor: input Real x[2]. 
+-  Input for the angle of rotation: input Modelica.Units.SI.Angle angle.
+-  Output for the rotated space phasor: output Real y[2] .
+2. Protected Variables:
+-  Rotation matrix: Real RotationMatrix[2, 2] initialized as {{+cos(-angle), -sin(-angle)}, {+sin(-angle), +cos(-angle)}}.
+3. Algorithm:
+ Perform the rotation by multiplying the 'RotationMatrix' with the input vector 'x' and assigning the result to 'y'.
+
+Please ensure that the function is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```function Rotator
+  extends Modelica.Icons.Function;
+  input Real x[2];
+  input Modelica.Units.SI.Angle angle;
+  output Real y[2];
+  protected 
+  Real RotationMatrix[2, 2] = {{+cos(-angle), -sin(-angle)}, {+sin(-angle), +cos(-angle)}};
+  algorithm 
+    y = RotationMatrix*x;
+  end Rotator;
+```
+This function takes a 2D vector 'x' and a rotation angle 'angle' as inputs and returns the rotated 2D vector 'y'. The rotation is performed by multiplying the rotation matrix with the input vector. The rotation matrix is initialized with the cosine and sine of the negative of the input angle, which corresponds to a clockwise rotation in a right-handed coordinate system.

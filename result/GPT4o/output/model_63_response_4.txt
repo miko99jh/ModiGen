@@ -1,0 +1,17 @@
+```modelica
+model SignalVoltage
+  extends Modelica.Electrical.Analog.Icons.VoltageSource;
+
+  Modelica.Electrical.Analog.Interfaces.PositivePin p;
+  Modelica.Electrical.Analog.Interfaces.NegativePin n;
+  Modelica.Blocks.Interfaces.RealInput v "Voltage between pin p and n (= p.v - n.v) as input signal";
+  Modelica.Units.SI.Current i "Current flowing from pin p to pin n";
+
+equation
+  v = p.v - n.v;
+  0 = p.i + n.i;
+  i = p.i;
+end SignalVoltage;
+```
+
+This Modelica model defines a voltage source that uses an input signal to determine the voltage across its terminals. The model extends from `Modelica.Electrical.Analog.Icons.VoltageSource` and includes the necessary components and equations to represent the behavior of a voltage source in an electrical circuit.

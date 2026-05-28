@@ -1,0 +1,53 @@
+Certainly! Below is a simple implementation of a `BouncingBall` model in Modelica. This model simulates a ball bouncing under the influence of gravity, with a specified coefficient of restitution.
+
+```modelica
+model BouncingBall
+  parameter Real radius = 0.1 "Radius of the ball";
+  parameter Real e = 0.9 "Coefficient of restitution";
+  parameter Real g = 9.81 "Acceleration due to gravity";
+  parameter Real initialHeight = 1 "Initial height of the ball";
+  parameter Real initialVelocity = 0 "Initial velocity of the ball";
+
+  Real height(start=initialHeight) "Height of the ball above the ground";
+  Real velocity(start=initialVelocity) "Velocity of the ball";
+
+  Boolean isFalling(start=true) "Flag to indicate if the ball is falling";
+
+equation
+  // Differential equations for motion
+  der(height) = velocity;
+  der(velocity) = if isFalling then -g else 0;
+
+  // Event for collision with the ground
+  when height <= radius then
+    velocity = -e * velocity;
+    isFalling = true;
+  end when;
+
+  // Event for reaching the peak of the bounce
+  when velocity <= 0 and isFalling then
+    isFalling = false;
+  end when;
+
+end BouncingBall
+```
+
+### Explanation:
+- **Parameters**: 
+  - `radius`: The radius of the ball.
+  - `e`: The coefficient of restitution, which determines how much velocity is retained after a bounce.
+  - `g`: The acceleration due to gravity.
+  - `initialHeight` and `initialVelocity`: The initial conditions for the simulation.
+
+- **Variables**:
+  - `height`: The current height of the ball.
+  - `velocity`: The current velocity of the ball.
+  - `isFalling`: A boolean flag indicating whether the ball is currently falling.
+
+- **Equations**:
+  - The differential equations describe the motion of the ball. The velocity changes according to gravity when the ball is falling.
+  - The `when` clauses handle events:
+    - When the ball hits the ground (`height <= radius`), it bounces back with a reduced velocity according to the coefficient of restitution.
+    - When the ball reaches the peak of its bounce (`velocity <= 0`), it starts falling again.
+
+This model will simulate the bouncing behavior of the ball, taking into account the effects of gravity and the coefficient of restitution. You can simulate this model using a Modelica environment like OpenModelica or Dymola to observe the ball's motion over time.

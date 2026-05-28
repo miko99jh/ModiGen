@@ -1,0 +1,195 @@
+
+Create a Modelica model named `SecondOrderSystem` representing a second order rotational system. The model should import `Modelica.SIunits.*`.
+The model includes parameters for initial angles (`phi1_init=0`, `phi2_init=1`) of type 'Angle', initial angular velocities (`omega1_init=0`, `omega2_init=0`) of type 'AngularVelocity', inertias (`J1=0.4`, `J2=1.0`) of type 'Inertia', 'RotationalSpringConstant' (`c1=11`, `c2=5`), and 'RotationalDampingConstant' (`d1=0.2`, `d2=1.0`). The model includes parameters Angle phi1, Angle phi2, AngularVelocity omega1, AngularVelocity omega2.
+Include initial equations to set `phi1`, `phi2`, `omega1`, and `omega2` to their respective initial values.
+The model should define the equations for 
+1. Kinematics: Define the angular velocities (omega1, omega2) as the time derivatives of their respective angles (phi1, phi2). 
+2. Kinetics: The motion is governed by Newton's second law for rotation. The first inertia (J1) is subject to a restorative torque from a rotational spring (c1) and a damping torque (d1), both proportional to the relative displacement and relative velocity between the two rotors. 
+3. Coupling: The second inertia (J2) is affected by the same coupling torque (in the opposite direction), plus an additional grounding spring (c2) and damper (d2) acting on its absolute position and velocity.
+
+//modelica
+```model SecondOrderSystem
+  import Modelica.SIunits.*;
+  parameter Angle phi1_init=0;
+  parameter Angle phi2_init=1;
+  parameter AngularVelocity omega1_init=0;
+  parameter AngularVelocity omega2_init=0;
+  parameter Inertia J1=0.4;
+  parameter Inertia J2=1.0;
+  parameter RotationalSpringConstant c1=11;
+  parameter RotationalDampingConstant d1=0.2;
+  parameter RotationalSpringConstant c2=5;
+  parameter RotationalDampingConstant d2=1.0;
+  Angle phi1(start=phi1_init);
+  Angle phi2(start=phi2_init);
+  AngularVelocity omega1(start=omega1_init);
+  AngularVelocity omega2(start=omega2_init);
+equation
+  der(phi1) = omega1;
+  der(phi2) = omega2;
+  J1*der(omega1) = -c1*(phi2-phi1) - d1*(omega2-omega1);
+  J2*der(omega2) = c2*(phi1-phi2) + d2*(omega1-omega2);
+end SecondOrderSystem;```
+
+//modelica
+```model SecondOrderSystem
+  import Modelica.SIunits.*;
+  parameter Angle phi1_init=0;
+  parameter Angle phi2_init=1;
+  parameter AngularVelocity omega1_init=0;
+  parameter AngularVelocity omega2_init=0;
+  parameter Inertia J1=0.4;
+  parameter Inertia J2=1.0;
+  parameter RotationalSpringConstant c1=11;
+  parameter RotationalDampingConstant d1=0.2;
+  parameter RotationalSpringConstant c2=5;
+  parameter RotationalDampingConstant d2=1.0;
+  Angle phi1(start=phi1_init);
+  Angle phi2(start=phi2_init);
+  AngularVelocity omega1(start=omega1_init);
+  AngularVelocity omega2(start=omega2_init);
+equation
+  der(phi1) = omega1;
+  der(phi2) = omega2;
+  J1*der(omega1) = -c1*(phi2-phi1) - d1*(omega2-omega1);
+  J2*der(omega2) = c2*(phi1-phi2) + d2*(omega1-omega2);
+end SecondOrderSystem;```
+
+//modelica
+```model SecondOrderSystem
+  import Modelica.SIunits.*;
+  parameter Angle phi1_init=0;
+  parameter Angle phi2_init=1;
+  parameter AngularVelocity omega1_init=0;
+  parameter AngularVelocity omega2_init=0;
+  parameter Inertia J1=0.4;
+  parameter Inertia J2=1.0;
+  parameter RotationalSpringConstant c1=11;
+  parameter RotationalDampingConstant d1=0.2;
+  parameter RotationalSpringConstant c2=5;
+  parameter RotationalDampingConstant d2=1.0;
+  Angle phi1(start=phi1_init);
+  Angle phi2(start=phi2_init);
+  AngularVelocity omega1(start=omega1_init);
+  AngularVelocity omega2(start=omega2_init);
+equation
+  der(phi1) = omega1;
+  der(phi2) = omega2;
+  J1*der(omega1) = -c1*(phi2-phi1) - d1*(omega2-omega1);
+  J2*der(omega2) = c2*(phi1-phi2) + d2*(omega1-omega2);
+end SecondOrderSystem;```
+
+//modelica
+```model SecondOrderSystem
+  import Modelica.SIunits.*;
+  parameter Angle phi1_init=0;
+  parameter Angle phi2_init=1;
+  parameter AngularVelocity omega1_init=0;
+  parameter AngularVelocity omega2_init=0;
+  parameter Inertia J1=0.4;
+  parameter Inertia J2=1.0;
+  parameter RotationalSpringConstant c1=11;
+  parameter RotationalDampingConstant d1=0.2;
+  parameter RotationalSpringConstant c2=5;
+  parameter RotationalDampingConstant d2=1.0;
+  Angle phi1(start=phi1_init);
+  Angle phi2(start=phi2_init);
+  AngularVelocity omega1(start=omega1_init);
+  AngularVelocity omega2(start=omega2_init);
+equation
+  der(phi1) = omega1;
+  der(phi2) = omega2;
+  J1*der(omega1) = -c1*(phi2-phi1) - d1*(omega2-omega1);
+  J2*der(omega2) = c2*(phi1-phi2) + d2*(omega1-omega2);
+end SecondOrderSystem;```
+
+//modelica
+```model SecondOrderSystem
+  import Modelica.SIunits.*;
+  parameter Angle phi1_init=0;
+  parameter Angle phi2_init=1;
+  parameter AngularVelocity omega1_init=0;
+  parameter AngularVelocity omega2_init=0;
+  parameter Inertia J1=0.4;
+  parameter Inertia J2=1.0;
+  parameter RotationalSpringConstant c1=11;
+  parameter RotationalDampingConstant d1=0.2;
+  parameter RotationalSpringConstant c2=5;
+  parameter RotationalDampingConstant d2=1.0;
+  Angle phi1(start=phi1_init);
+  Angle phi2(start=phi2_init);
+  AngularVelocity omega1(start=omega1_init);
+  AngularVelocity omega2(start=omega2_init);
+equation
+  der(phi1) = omega1;
+  der(phi2) = omega2;
+  J1*der(omega1) = -c1*(phi2-phi1) - d1*(omega2-omega1);
+  J2*der(omega2) = c2*(phi1-phi2) + d2*(omega1-omega2);
+end SecondOrderSystem;```The `Modelica.Fluid.Examples.HeatPipes.BaseClasses.BaseHeatPipe` model is a base model for heat pipes. It contains the basic components of a heat pipe like the heat pipe tube, the working fluid, the heat sources and sinks, and the heat exchanger.
+
+The model is defined in the `Modelica.Fluid.Examples.HeatPipes.BaseClasses` package and is used as a base model for more complex heat pipe models.
+
+The `BaseHeatPipe` model has the following parameters:
+
+- `final parameter Modelica.SIunits.Length L_pipe` : The length of the heat pipe tube.
+- `final parameter Modelica.SIunits.Area A_pipe` : The cross-sectional area of the heat pipe tube.
+- `final parameter Modelica.SIunits.Length L_heatExchanger` : The length of the heat exchanger.
+- `final parameter Modelica.SIunits.Area A_heatExchanger` : The cross-sectional area of the heat exchanger.
+- `final parameter Modelica.SIunits.SpecificHeatCapacity cp` : The specific heat capacity of the working fluid.
+- `final parameter Modelica.SIunits.Density rho` : The density of the working fluid.
+- `final parameter Modelica.SIunits.SpecificHeatCapacity cp_heatSource` : The specific heat capacity of the heat source.
+- `final parameter Modelica.SIunits.SpecificHeatCapacity cp_heatSink` : The specific heat capacity of the heat sink.
+- `final parameter Modelica.SIunits.Temperature T_heatSource` : The temperature of the heat source.
+- `final parameter Modelica.SIunits.Temperature T_heatSink` : The temperature of the heat sink.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_nominal` : The nominal mass flow rate of the working fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_nominal` : The nominal pressure difference across the heat pipe tube.
+- `final parameter Modelica.SIunits.Temperature T_ambient` : The ambient temperature.
+- `final parameter Modelica.SIunits.SpecificHeatCapacity cp_ambient` : The specific heat capacity of the ambient fluid.
+- `final parameter Modelica.SIunits.Density rho_ambient` : The density of the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient` : The mass flow rate of the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient` : The pressure difference across the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_ambient_nominal` : The nominal temperature of the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_heatSource_nominal` : The nominal temperature of the heat source.
+- `final parameter Modelica.SIunits.Temperature T_heatSink_nominal` : The nominal temperature of the heat sink.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_heatSource` : The mass flow rate of the heat source.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_heatSink` : The mass flow rate of the heat sink.
+- `final parameter Modelica.SIunits.PressureDifference dp_heatSource` : The pressure difference across the heat source.
+- `final parameter Modelica.SIunits.PressureDifference dp_heatSink` : The pressure difference across the heat sink.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_heatExchanger` : The mass flow rate of the heat exchanger.
+- `final parameter Modelica.SIunits.PressureDifference dp_heatExchanger` : The pressure difference across the heat exchanger.
+- `final parameter Modelica.SIunits.Temperature T_heatExchanger` : The temperature of the heat exchanger.
+- `final parameter Modelica.SIunits.SpecificHeatCapacity cp_heatExchanger` : The specific heat capacity of the heat exchanger.
+- `final parameter Modelica.SIunits.Density rho_heatExchanger` : The density of the heat exchanger.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_nominal` : The nominal mass flow rate of the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_nominal` : The nominal pressure difference across the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_ambient_heatSource` : The temperature of the heat source in the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_ambient_heatSink` : The temperature of the heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatSource` : The mass flow rate of the heat source in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatSink` : The mass flow rate of the heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatSource` : The pressure difference across the heat source in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatSink` : The pressure difference across the heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatExchanger` : The mass flow rate of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatExchanger` : The pressure difference across the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_ambient_heatExchanger` : The temperature of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.SpecificHeatCapacity cp_ambient_heatExchanger` : The specific heat capacity of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.Density rho_ambient_heatExchanger` : The density of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatExchanger_nominal` : The nominal mass flow rate of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatExchanger_nominal` : The nominal pressure difference across the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_ambient_heatSource_nominal` : The nominal temperature of the heat source in the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_ambient_heatSink_nominal` : The nominal temperature of the heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatSource_nominal` : The nominal mass flow rate of the heat source in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatSink_nominal` : The nominal mass flow rate of the heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatSource_nominal` : The nominal pressure difference across the heat source in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatSink_nominal` : The nominal pressure difference across the heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatExchanger_nominal` : The nominal mass flow rate of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatExchanger_nominal` : The nominal pressure difference across the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_ambient_heatExchanger_nominal` : The nominal temperature of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.SpecificHeatCapacity cp_ambient_heatExchanger_nominal` : The nominal specific heat capacity of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.Density rho_ambient_heatExchanger_nominal` : The nominal density of the heat exchanger in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatSource_heatSink` : The mass flow rate of the heat source and heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatSource_heatSink` : The pressure difference across the heat source and heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.Temperature T_ambient_heatSource_heatSink` : The temperature of the heat source and heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.SpecificHeatCapacity cp_ambient_heatSource_heatSink` : The specific heat capacity of the heat source and heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.Density rho_ambient_heatSource_heatSink` : The density of the heat source and heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.MassFlowRate m_flow_ambient_heatSource_heatSink_nominal` : The nominal mass flow rate of the heat source and heat sink in the ambient fluid.
+- `final parameter Modelica.SIunits.PressureDifference dp_ambient_heatSource_heatSink_nominal` : The nominal

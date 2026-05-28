@@ -1,0 +1,329 @@
+
+Implement a Modelica function named `SphereProperties` to calculate the surface area (`surface`) and volume (`volume`) of a sphere based on its radius (`radius`). The function should use an algorithm block to implement the calculation logic and utilize the pi constant from the standard Modelica library (Modelica.Constants.pi) for the formulas.
+
+//modelica
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function takes the radius of the sphere as an input and calculates the surface area and volume based on the formulas for a sphere. The surface area is calculated by multiplying the circumference of the base (4 * pi * radius^2) by the height (radius), and the volume is calculated by taking 1/3 of the base area (4 * pi * radius^2) and multiplying by the height (radius).
+
+The output variables `surface` and `volume` are assigned the calculated values.
+
+The `algorithm` keyword is used to define the calculation logic of the function. The `input` and `output` keywords are used to define the input and output variables of the function. The `Real` keyword is used to define the data type of the variables.
+
+The pi constant is imported from the Modelica.Constants package, which provides a wide range of mathematical and physical constants.
+
+The function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end SphereModel;```
+
+In this example, the `SphereProperties` function is called with the radius, surface, and volume variables as arguments. The surface area and volume of the sphere are calculated based on the radius and assigned to the `surface` and `volume` variables, respectively.
+
+Please note that this function assumes that the radius is a positive value. If the radius is not positive, the function may not return valid results.
+
+This function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius. The function is defined in a separate file and can be reused in multiple models.
+
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+This function can be used in a Modelica model to calculate the properties of a sphere based on its radius. For example, the function could be used in a model to calculate the surface area and volume of a sphere with a given radius.
+
+```model SphereModel
+  parameter Real radius = 1;
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);

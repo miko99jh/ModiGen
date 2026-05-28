@@ -1,0 +1,77 @@
+
+Implement the Modelica function named `Rt_T` for solving the temperature characteristics of platinum resistance. The input is the current temperature (`T`) and the output is the resistance value (`Rt`) of the platinum resistor. It is known that the reference resistance at 0°C is `R0` = 100 ohms. The function should use an `algorithm` block and define `R0` along with constants `A` = 3.9083*10^(-3), `B` = -5.775*10^(-7), and `C` = -4.183*10^(-12) as protected internal variables. When (`T` >= 0) and (`T` < 850), the resistance is calculated as `Rt` = R0 * (1 + A*T + B*T^2); When (`T` > -200) and (`T` < 0), the resistance is calculated as `Rt` = R0 * (1 + A*T + B*T^2 + C*T^3 * (T - 100)).
+
+//modelica
+```function Rt_T(Real T)
+  input Real T "Current temperature";
+  output Real Rt "Resistance value";
+protected 
+  Real R0 = 100 "Reference resistance at 0°C";
+  Real A = 3.9083*10^(-3) "Constant";
+  Real B = -5.775*10^(-7) "Constant";
+  Real C = -4.183*10^(-12) "Constant";
+algorithm 
+  if (T >= 0) and (T < 850) then
+    Rt := R0 * (1 + A*T + B*T^2);
+  else if (T > -200) and (T < 0) then
+    Rt := R0 * (1 + A*T + B*T^2 + C*T^3 * (T - 100));
+  else
+    Rt := R0;
+  end if;
+end Rt_T;```
+
+This function will be used in a Modelica model to calculate the resistance of a platinum resistor based on the current temperature.
+
+```model PlatinumResistor
+  parameter Real R0 = 100 "Reference resistance at 0°C";
+  parameter Real A = 3.9083*10^(-3) "Constant";
+  parameter Real B = -5.775*10^(-7) "Constant";
+  parameter Real C = -4.183*10^(-12) "Constant";
+  Real T "Current temperature";
+  Real Rt "Resistance value";
+equation 
+  Rt = Rt_T(T);
+end PlatinumResistor;```
+
+In this model, the current temperature (`T`) is a parameter that can be set, and the resistance value (`Rt`) is a variable that is calculated based on the `Rt_T` function.
+
+Please note that the constants `A`, `B`, and `C` are defined as parameters in the `PlatinumResistor` model, but they are defined as protected internal variables in the `Rt_T` function. This means that they can only be changed by the `Rt_T` function itself, and not from outside the function.
+
+Also note that the `Rt_T` function is defined outside the `PlatinumResistor` model, but it can be used within the model because it is in the same file. If the function were in a different file, it would need to be imported into the `PlatinumResistor` model using the `import` statement.
+
+Finally, please note that the `Rt_T` function uses the `:=` operator to assign a value to `Rt`. This is because the `:=` operator is used for variable initialization and assignment in Modelica. The `=` operator is used for equations in Modelica, which are used to define the relationships between variables.
+
+This function and model should be used to simulate the temperature characteristics of a platinum resistor.
+
+```modelica
+model PlatinumResistor
+  parameter Real R0 = 100 "Reference resistance at 0°C";
+  parameter Real A = 3.9083*10^(-3) "Constant";
+  parameter Real B = -5.775*10^(-7) "Constant";
+  parameter Real C = -4.183*10^(-12) "Constant";
+  Real T "Current temperature";
+  Real Rt "Resistance value";
+equation 
+  Rt = Rt_T(T);
+end PlatinumResistor;
+
+function Rt_T(Real T)
+  input Real T "Current temperature";
+  output Real Rt "Resistance value";
+protected 
+  Real R0 = 100 "Reference resistance at 0°C";
+  Real A = 3.9083*10^(-3) "Constant";
+  Real B = -5.775*10^(-7) "Constant";
+  Real C = -4.183*10^(-12) "Constant";
+algorithm 
+  if (T >= 0) and (T < 850) then
+    Rt := R0 * (1 + A*T + B*T^2);
+  else if (T > -200) and (T < 0) then
+    Rt := R0 * (1 + A*T + B*T^2 + C*T^3 * (T - 100));
+  else
+    Rt := R0;
+  end if;
+end Rt_T;
+```
+
+This Modelica code defines a function `Rt_T` to calculate the resistance of a platinum resistor based on temperature, and a model `PlatinumResistor` that uses this function to calculate the resistance. The constants `A`, `B`, and `C` are defined as protected internal variables in the `Rt_T` function. The `Rt_T` function is used in the `PlatinumResistor` model to calculate the resistance value `Rt` based on the current temperature `T`.

@@ -1,0 +1,24 @@
+
+Develop a State space version of an RLC circuit Modelica model named `RLC` where the circuit parameters are: voltage source 'Vb' is 24 volts, inductor 'L' is 1 Henry, resistor 'R' is 100 ohms, and capacitor 'C' is 0.001 Farads. The State space model should use the `ModelicaByExample.ArrayEquations.StateSpace.LTI` component 'rlc_comp' with 'nx=2' state variables, 'nu=1' input, 'ny=2' outputs, initial state' x0={0, 0}', matrices 'A=[-1/(R*C), 1/C; -1/L, 0], B=[0; 1/L], C=[1/R, 0; -1/R, 1], and D=[0; 0]'. Connect the input 'u' of LTI component to the voltage source.
+
+//modelica
+```model RLC
+  parameter Real Vb=24 "Voltage source";
+  parameter Real L=1 "Inductor";
+  parameter Real R=100 "Resistor";
+  parameter Real C=0.001 "Capacitor";
+  ModelicaByExample.ArrayEquations.StateSpace.LTI rlc_comp(nx=2, nu=1, ny=2, x0={0, 0}, A=[-1/(R*C), 1/C; -1/L, 0], B=[0; 1/L], C=[1/R, 0; -1/R, 1], D=[0; 0]);
+equation
+  rlc_comp.u = Vb;
+end RLC;
+```
+
+This model defines a simple RLC circuit and uses the StateSpace.LTI component to represent it. The voltage source is connected to the input of the LTI component, which represents the RLC circuit. The parameters for the circuit (voltage source, inductor, resistor, and capacitor) are defined at the start of the model. The state space matrices for the LTI component are also defined at the start of the model. The state space matrices are calculated based on the circuit parameters using the standard formulas for RLC circuits.
+
+Note: This model assumes that the voltage source is a constant value. In a real circuit, the voltage source would likely be a time-varying source, and the model would need to be updated to reflect this.
+
+Also note that the state space matrices are calculated assuming that the initial conditions (current through the inductor and charge on the capacitor) are zero. If the initial conditions are not zero, the matrices would need to be updated to reflect the initial conditions.
+
+Finally, this model does not include any equations to describe the behavior of the circuit. The behavior of the circuit is described by the state space matrices, which define the dynamics of the circuit. The output of the LTI component (the voltage across the resistor) is connected to the output of the model.
+
+This model is a simple example of how to use the StateSpace.LTI component to represent a circuit. In a real circuit, the behavior of the circuit would likely be more complex and would require a more detailed model.

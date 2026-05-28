@@ -1,0 +1,69 @@
+Certainly! Below is a Modelica model named `I` that implements an integrator with tracking mode and limiter functionality, extending the `IndustrialControlSystems.Controllers.Interfaces.Block`. The model includes the specified parameters and logic for handling anti-windup and tracking signals.
+
+```modelica
+model I
+  extends IndustrialControlSystems.Controllers.Interfaces.Block;
+
+  parameter Real T = 1 "Integral time";
+  parameter Real y_start = 0 "State initial value";
+  parameter Real Ymin = -1e10 "Minimum output limit";
+  parameter Real Ymax = 1e10 "Maximum output limit";
+  parameter Boolean AntiWindup = true "Anti-windup flag";
+  parameter Real eps = 1e-6 "Small positive number for numerical stability";
+
+  input Real u "Input signal";
+  input Real tr "Tracking signal";
+  input Boolean ts "Tracking signal active";
+
+  output Real y "Output signal";
+
+protected 
+  Real Y "Integrator state";
+
+initial equation
+  y = y_start;
+
+equation
+  if AntiWindup then
+    if not ts then
+      der(Y) = 1/T * u + 1/eps * (y - Y);
+    else
+      der(Y) = 1/eps * (y - Y);
+    end if;
+    y = max(Ymin, min(Ymax, tr));
+  else
+    Y = 0;
+    if not ts then
+      T * der(y) = u;
+    else
+      eps * der(y) = (-y + tr);
+    end if;
+  end if;
+end I;
+```
+
+### Explanation:
+- **Parameters:**
+  - `T`: Integral time constant.
+  - `y_start`: Initial value of the output state.
+  - `Ymin` and `Ymax`: Minimum and maximum limits for the output.
+  - `AntiWindup`: Flag to enable or disable anti-windup logic.
+  - `eps`: Small positive number to ensure numerical stability.
+
+- **Inputs:**
+  - `u`: The input signal to the integrator.
+  - `tr`: The tracking signal.
+  - `ts`: Boolean indicating if the tracking signal is active.
+
+- **Outputs:**
+  - `y`: The output signal of the integrator.
+
+- **Protected Variables:**
+  - `Y`: The internal state of the integrator.
+
+- **Equations:**
+  - The model handles different scenarios based on the `AntiWindup` flag and the `ts` signal.
+  - When `AntiWindup` is true, the model computes the derivative of `Y` based on whether the tracking signal is active or not and limits the output `y`.
+  - When `AntiWindup` is false, the model sets `Y` to zero and computes the derivative of `y` based on the tracking signal status.
+
+This model should provide the desired integrator functionality with tracking and limiter features.

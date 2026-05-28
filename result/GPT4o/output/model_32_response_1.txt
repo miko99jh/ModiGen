@@ -1,0 +1,71 @@
+Here is the Modelica model `Sample3` that implements the described functionality. The model uses the specified components and parameters to create a feedback loop with sampling and holding mechanisms.
+
+```modelica
+model Sample3
+  // Import necessary libraries
+  import Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock;
+  import Modelica.Clocked.Types.Resolution;
+  import Modelica.Blocks.Sources.Step;
+  import Modelica.Blocks.Math.Gain;
+  import Modelica.Blocks.Math.Feedback;
+  import Modelica.Clocked.RealSignals.Sampler.Hold;
+  import Modelica.Clocked.RealSignals.Sampler.SampleClocked;
+  import Modelica.Clocked.RealSignals.Sampler.Sample;
+
+  // Parameters
+  parameter Real k = 1.2 "Gain factor for the gain block";
+  parameter Real startTime = 0.04 "Start time for the step signal";
+
+  // Components
+  PeriodicExactClock periodicClock(factor=20, resolution=Resolution.ms) 
+    "Periodic clock with a factor of 20 and millisecond resolution";
+  Step step(startTime=startTime) 
+    "Step signal source with specified start time";
+  Gain gain(k=k) 
+    "Gain block with specified gain factor";
+  Feedback feedback 
+    "Feedback block to create the feedback loop";
+  Hold hold1 
+    "Hold block to convert clocked signal back to continuous-time";
+  SampleClocked sample1 
+    "Sample block to sample the step signal using the periodic clock";
+  Sample sample2 
+    "Sample block to sample the output of the hold block";
+
+equation
+  // Sampling the step signal using the periodic clock
+  sample1.u = step.y;
+  sample1.clock = periodicClock.clock;
+
+  // Feedback logic
+  feedback.u1 = sample1.y; // Positive input to feedback block
+  feedback.u2 = sample2.y; // Negative input to feedback block (from sample2)
+  gain.u = feedback.y;     // Output of feedback block is scaled by the gain
+
+  // Signal holding
+  hold1.u = gain.y;        // Output of gain block is held
+  hold1.clock = periodicClock.clock;
+
+  // Sampling the held signal
+  sample2.u = hold1.y;
+  sample2.clock = periodicClock.clock;
+
+end Sample3;
+```
+
+### Explanation of the Model
+1. **Clock Configuration**:
+   - The `PeriodicExactClock` generates a periodic clock signal with a factor of 20 and a resolution in milliseconds. This clock is used to trigger the sampling operations.
+
+2. **Step Signal**:
+   - The `Step` block generates a step signal starting at `startTime = 0.04`.
+
+3. **Feedback Loop**:
+   - The `Feedback` block takes two inputs: the positive input (`u1`) from the sampled step signal (`sample1.y`) and the negative input (`u2`) from the sampled output of the hold block (`sample2.y`).
+   - The output of the `Feedback` block is scaled by the `Gain` block with a gain factor `k = 1.2`.
+
+4. **Signal Holding and Sampling**:
+   - The `Hold` block (`hold1`) converts the clocked signal from the `Gain` block back to a continuous-time signal.
+   - The `Sample` block (`sample2`) samples the output of the `Hold` block and feeds it back to the negative input of the `Feedback` block, closing the loop.
+
+This model demonstrates the use of clocked and continuous-time components in a feedback loop with sampling and holding mechanisms.

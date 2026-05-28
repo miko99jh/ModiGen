@@ -1,0 +1,33 @@
+
+We have a container, and we want to keep the height of the water (`waterLevel`) in the container at a target height (`target_height`) of 1 meter. The water height (`waterLevel`) in the pool starts at 0.2m. Use proportional differential control to implement the above control system (defining the height error as `error`, and splitting the logic into proportional control `Pcontrol` and differential control `Dcontrol`) and simulate the change of the water level in the pool over time, where the proportional coefficient (`Kp`) is 1 and the differential coefficient (`Kd`) is 0.1. Please help me implement a modelica model named `PDController`.
+
+//modelica
+```model PDController
+  parameter Real target_height = 1 "Target height of water in the container";
+  parameter Real Kp = 1 "Proportional coefficient";
+  parameter Real Kd = 0.1 "Differential coefficient";
+  parameter Real waterLevel_start = 0.2 "Initial water level in the container";
+  Real waterLevel(start=waterLevel_start) "Current water level in the container";
+  Real error "Height error";
+  Real Pcontrol "Proportional control";
+  Real Dcontrol "Differential control";
+  Real waterLevel_prev "Previous water level in the container";
+equation
+  // Calculate the height error
+  error = target_height - waterLevel;
+  // Calculate the proportional control
+  Pcontrol = Kp * error;
+  // Calculate the differential control
+  Dcontrol = Kd * (waterLevel - waterLevel_prev);
+  // Update the water level
+  der(waterLevel) = Pcontrol + Dcontrol;
+  // Update the previous water level
+  waterLevel_prev = waterLevel;
+end PDController;
+```
+
+This model calculates the height error, proportional control, and differential control, and updates the water level and the previous water level. The water level is updated by the sum of the proportional control and the differential control. The previous water level is updated by the current water level.
+
+This model can be used in a simulation environment to simulate the change of the water level in the pool over time. The target height, the proportional coefficient, and the differential coefficient can be adjusted to achieve the desired control effect.
+
+Please note that this model assumes that the water level in the container changes continuously and the change rate is proportional to the height error and the difference between the current and previous water levels. This assumption may not be accurate in real-world scenarios, and the model may need to be adjusted based on the specific characteristics of the system.

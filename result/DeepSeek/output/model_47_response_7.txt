@@ -1,0 +1,22 @@
+
+Generate a Modelica model for a 'Linear current-controlled current source' component named 'CCC'. The model should extend the 'Modelica.Electrical.Analog.Interfaces.TwoPort' interface, which typically includes two electrical ports. There is a parameter 'gain' should be a Real type with a start value of 1.0, representing the current gain. The main functionality of the model is to control the output current 'i2' based on the input current 'i1' with a linear relationship governed by the 'gain' parameter. Specifically, the equation should be 'i2 = i1 * gain'. Additionally, the model should enforce that the voltage 'v1' at the input port is set to zero.
+
+//modelica
+```model CCC extends Modelica.Electrical.Analog.Interfaces.TwoPort(V_n=0)
+  parameter Real gain=1.0 "Current gain";
+  equation 
+    i2 = i1 * gain;
+    v1 = 0;
+end CCC;```
+
+This model represents a current-controlled current source, where the output current 'i2' is directly proportional to the input current 'i1' with a gain factor 'gain'. The voltage 'v1' at the input port is always zero, which is a characteristic of a current-controlled current source.
+
+The model is named 'CCC' and extends the 'Modelica.Electrical.Analog.Interfaces.TwoPort' interface. The 'gain' parameter is a Real type with a start value of 1.0. The equation 'i2 = i1 * gain' establishes the linear relationship between the input and output currents. The equation 'v1 = 0' ensures that the voltage at the input port is always zero.
+
+This model can be used in electrical circuits to provide a controlled current source. The 'gain' parameter can be adjusted to control the output current in response to changes in the input current.
+
+In the context of a circuit simulation, this model would be used to represent a controllable current source. The 'gain' parameter would control the ratio of the output current to the input current, allowing for the creation of complex circuits with controllable current sources.
+
+The 'TwoPort' interface provides the necessary electrical ports for the model, and the equations ensure that the current gain is applied correctly and that the input voltage is zero. This model can be used in a wide range of electrical circuits, from simple linear circuits to more complex ones with non-linear components.
+
+Please note that this model does not include any dynamic behavior or time-varying components. It is a static model that represents a linear current-controlled current source.

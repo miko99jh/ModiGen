@@ -1,0 +1,244 @@
+
+Implement a Modelica function named `SphereProperties` to calculate the surface area (`surface`) and volume (`volume`) of a sphere based on its radius (`radius`). The function should use an algorithm block to implement the calculation logic and utilize the pi constant from the standard Modelica library (Modelica.Constants.pi) for the formulas.
+
+//modelica
+```function SphereProperties
+  input Real radius;
+  output Real surface;
+  output Real volume;
+algorithm
+  surface := 4 * Modelica.Constants.pi * radius^2;
+  volume := 4/3 * Modelica.Constants.pi * radius^3;
+end SphereProperties;```
+
+The function `SphereProperties` takes an input `radius` and returns two outputs: `surface` and `volume`. The `surface` is calculated by multiplying the surface area formula (4 * pi * radius^2) and the `volume` is calculated by multiplying the volume formula (4/3 * pi * radius^3).
+
+The `algorithm` section is used to define the calculation logic of the function. The `input` and `output` keywords are used to define the input and output variables of the function. The `Real` keyword is used to define the data type of the variables.
+
+The `Modelica.Constants.pi` is used to get the value of pi from the Modelica standard library. The `^` operator is used to calculate the power of a number.
+
+The `:=` operator is used to assign a value to a variable. The `;` character is used to separate multiple statements in the `algorithm` section.
+
+The `end` keyword is used to mark the end of the function.
+
+The function can be used in a Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables. The calculated surface area and volume are then used in the `Sphere` model.
+
+Note: The `parameter` keyword is used to define a constant input variable. The `Real` keyword is used to define the data type of the variables. The `"..."` syntax is used to provide a description of the variable. The `equation` keyword is used to define the equations that are used to calculate the outputs of the model. The `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed as output variables.
+
+The `SphereProperties` function can be used in any Modelica model to calculate the surface area and volume of a sphere based on its radius.
+
+```model Sphere
+  parameter Real radius = 5 "Radius of the sphere";
+  Real surface;
+  Real volume;
+equation
+  SphereProperties(radius, surface, volume);
+end Sphere;```
+
+In this example, the `SphereProperties` function is called with the `radius` parameter and the `surface` and `volume` variables are passed

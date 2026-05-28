@@ -1,0 +1,31 @@
+model BackSample
+ // Parameters for the components
+  parameter Real f = 2; // Frequency of the sine wave
+  parameter Real offset = 0.1; // Offset of the sine wave
+  parameter Real startTime = 0; // Start time of the sine wave
+  parameter Integer factor = 20; // Factor for the periodic clock
+  parameter Modelica.Clocked.Types.Resolution resolution = Modelica.Clocked.Types.Resolution.ms; // Resolution in milliseconds
+  parameter Integer shiftCounter = 4; // Shift counter for ShiftSample
+  parameter Integer backCounter = 4; // Back counter for BackSample
+  parameter Integer resolutionShift = 3; // Resolution for ShiftSample
+  parameter Integer resolutionBack = 3; // Resolution for BackSample
+  parameter Real y_start = 0.5; // Initial output for BackSample
+
+  // Components
+  Modelica.Blocks.Sources.Sine sine(frequency=f, offset=offset, startTime=startTime) "Sine wave source";
+  Modelica.Clocked.ClockSignals.Clocks.PeriodicExactClock periodicClock(factor=factor, resolution=resolution) "Periodic clock for sampling";
+  Modelica.Clocked.RealSignals.Sampler.SampleClocked sample1 "Sampler for clocked signals";
+  Modelica.Clocked.RealSignals.Sampler.ShiftSample shiftSample1(shiftCounter=shiftCounter, resolution=resolutionShift) "ShiftSample block";
+  Modelica.Clocked.RealSignals.Sampler.BackSample backSample1(backCounter=backCounter, resolution=resolutionBack, y_start=y_start) "BackSample block";
+
+equation
+  // Connect the sine wave to the sampler
+  connect(sine.y, sample1.u);
+  connect(periodicClock.y, sample1.clock);
+
+  // Connect the sampled signal to the ShiftSample block
+  connect(sample1.y, shiftSample1.u);
+
+  // Connect the shifted signal to the BackSample block
+  connect(shiftSample1.y, backSample1.u);
+end BackSample;

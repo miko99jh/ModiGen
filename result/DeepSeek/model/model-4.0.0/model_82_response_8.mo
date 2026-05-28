@@ -1,0 +1,13 @@
+function factorY2DC
+  extends Modelica.Icons.Function;
+  input Integer m=3 "Number of phases";
+  output Real y "Factor of DC-voltage from RMS Y-voltage";
+protected 
+  Integer mBasic=integer(m/numberOfSymmetricBaseSystems(m)) "Number of basic systems";
+algorithm 
+  if mBasic == 2 then
+    y := 4/pi;
+  else
+    y := 2*sin((mBasic - 1)/2*pi/mBasic)*sqrt(2)*sin(pi/(2*m))/(pi/(2*m));
+  end if;
+end factorY2DC;

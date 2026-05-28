@@ -1,0 +1,54 @@
+
+Generate a Modelica function for a lead-lag process with the transfer function k(1+sT1)/(1+sT2). The function should be named `f1p1z`. The inputs should include 'alfa' (discretization parameter), 'T1' (zero), 'T2' (pole), 'u' (current input), 'u_pre' (previous input), 'y_pre' (previous output), 'Ts' (sampling time in seconds), and 'k' (gain). The output should be 'y' (output). The function should calculate intermediate variables(protected variable) A, B, C, D, E, and F in algorithm as follows:
+- A := alfa*Ts;
+- B := Ts - alfa*Ts;
+- C := A + T1;
+- D := B - T1;
+- E := A + T2;
+- F := B - T2;
+The output 'y' should be computed using the formula: y := (C*k*u + D*k*u_pre - F*y_pre)/E. All parameter variables involved in this function are Real.
+
+//modelica
+```function f1p1z
+  input Real alfa;
+  input Real T1;
+  input Real T2;
+  input Real u;
+  input Real u_pre;
+  input Real y_pre;
+  input Real Ts;
+  input Real k;
+  output Real y;
+protected 
+  Real A;
+  Real B;
+  Real C;
+  Real D;
+  Real E;
+  Real F;
+algorithm 
+  A := alfa*Ts;
+  B := Ts - alfa*Ts;
+  C := A + T1;
+  D := B - T1;
+  E := A + T2;
+  F := B - T2;
+  y := (C*k*u + D*k*u_pre - F*y_pre)/E;
+end f1p1z;```
+
+This Modelica function `f1p1z` implements a lead-lag process with the transfer function `k(1+sT1)/(1+sT2)`. It uses the inputs to compute intermediate variables A, B, C, D, E, and F, which are then used to compute the output `y`. The function is protected, meaning the variables A, B, C, D, E, and F are not directly accessible from outside the function.
+
+The inputs to the function are:
+- `alfa`: a Real number representing the discretization parameter.
+- `T1`: a Real number representing the zero of the transfer function.
+- `T2`: a Real number representing the pole of the transfer function.
+- `u`: a Real number representing the current input.
+- `u_pre`: a Real number representing the previous input.
+- `y_pre`: a Real number representing the previous output.
+- `Ts`: a Real number representing the sampling time in seconds.
+- `k`: a Real number representing the gain of the transfer function.
+
+The output of the function is:
+- `y`: a Real number representing the output of the lead-lag process.
+
+The function uses the inputs to compute the output using the formula `(C*k*u + D*k*u_pre - F*y_pre)/E`. This formula represents the transfer function of the lead-lag process.

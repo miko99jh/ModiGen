@@ -1,0 +1,41 @@
+
+Create a Modelica model for a first-order low-pass filter with no output limitations. The model should be named `FirstOrder` and extend Modelica.Blocks.Interfaces.SISO with parameter `y(start = y_start)`. The purpose of this model is to apply a low-pass filter with a transfer function y/u = k/(1+s*T). Depending on the parameter `T`, the filter can either have dynamics or be reduced to a static gain. If T > 0, the model applies a dynamic low-pass filter; otherwise, it acts as a static gain.
+
+Parameters:
+- `Boolean noDynamics` (default: `not(T > 0)`): Determines trivial configuration with no dynamics.
+- `Real k` (default: 1): Gain of the filter.
+- `Modelica.Units.SI.Time T`: Time constant of the filter.
+- `Modelica.Blocks.Types.Init initType` (default: `Modelica.Blocks.Types.Init.NoInit`): Type of initialization.
+- `Real y_start` (default: 0): Initial value of the output.
+- The instantiation of `Modelica.Blocks.Continuous.FirstOrder` named `firstOrder1`, which has parameters T = T, initType = initType, k = k, y_start = y_start, With conditions `if not noDynamics`.
+-The instantiation of `Modelica.Blocks.Math. Gain` named `gain`, which has parameters k = k, with conditions `if noDynamics`.
+
+In the equation section, establish the signal flow by connecting the model's input u to the input ports of both firstOrder1 and gain. Similarly, route the output signals from firstOrder1 and gain to the model's main output y. Ensure these connections respect the conditional instantiation logic of the sub-components.
+
+Implement the described `FirstOrder` model according to these specifications.
+
+//modelica
+```model FirstOrder
+  extends Modelica.Blocks.Interfaces.SISO;
+  parameter Modelica.SIunits.Time T(start = 1) "Time constant";
+  parameter Real k(start = 1) "Gain";
+  parameter Real y(start = 0) "Output";
+  parameter Modelica.Blocks.Types.Init initType = Modelica.Blocks.Types.Init.NoInit "Type of initialization";
+  parameter Real y_start(start = 0) "Initial value of the output";
+  parameter Boolean noDynamics = not(T > 0) "Determines trivial configuration with no dynamics";
+  Modelica.Blocks.Continuous.FirstOrder firstOrder1(T = T, initType = initType, k = k, y_start = y_start) if not noDynamics;
+  Modelica.Blocks.Math.Gain gain(k = k) if noDynamics;
+  Modelica.Blocks.Interfaces.RealInput u;
+  Modelica.Blocks.Interfaces.RealOutput y;
+equation 
+  if not noDynamics then
+    connect(u, firstOrder1.u);
+    connect(firstOrder1.y, y);
+  else
+    connect(u, gain.u);
+    connect(gain.y, y);
+  end if;
+end FirstOrder;
+```
+
+This model should be able to handle both dynamic and static cases depending on the parameter T.

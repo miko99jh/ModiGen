@@ -1,0 +1,34 @@
+
+Generate a Modelica model named `Yd01` that represents a transformer with a Yd1 vector group. The model should include the following components and details:
+1. Components:
+- The model should extend `Modelica.Electrical.Machines.Interfaces.PartialBasicTransformer` with the final VectorGroup set to `Yd01`. 
+- Include a star connection for the primary winding: Modelica.Electrical.Polyphase.Basic.Star star1 with final m set to m.
+- Include a negative pin for the star point: Modelica.Electrical.Analog.Interfaces.NegativePin starpoint1. 
+- Include a delta connection for the secondary winding: Modelica.Electrical.Polyphase.Basic.Delta Delta2 with final m set to m.
+2. Connections:
+ The model should include the following connections:
+- Primary Star & Neutral: Establish the primary neutral by tying the star connection's common point ('star1.pin_n') to the external 'starpoint1'.
+- Primary Winding Path: Route the primary leakage from 'l1sigma.plug_n' into the core's first winding entry ('core.plug_p1'), and complete the path by linking the winding return ('core.plug_n1') to the star supply side ('star1.plug_p').
+- Vector Group Bridge: Implement the **Yd1** phase shift logic by bridging the core's internal windings, specifically linking the second winding exit ('core.plug_n2') to the third winding entry ('core.plug_p3').
+- Secondary Delta & Leakage: Integrate the secondary leakage by connecting the core's second winding entry ('core.plug_p2') to 'l2sigma.plug_n'. Finally, route the secondary power from the core's third winding return ('core.plug_n3') to the delta circuit return ('Delta2.plug_n') and link the delta supply ('Delta2.plug_p') to the external resistor exit ('r2.plug_p').
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model Yd01
+  extends Modelica.Electrical.Machines.Interfaces.PartialBasicTransformer(final vectorGroup = Modelica.Electrical.Machines.Types.VectorGroup.Yd1);
+  Modelica.Electrical.Polyphase.Basic.Star star1(final m = m);
+  Modelica.Electrical.Analog.Interfaces.NegativePin starpoint1;
+  Modelica.Electrical.Polyphase.Basic.Delta Delta2(final m = m);
+equation 
+  connect(star1.pin_n, starpoint1);
+  connect(l1sigma.plug_n, core.plug_p1);
+  connect(core.plug_n1, star1.plug_p);
+  connect(core.plug_n2, core.plug_p3);
+  connect(core.plug_p2, l2sigma.plug_n);
+  connect(core.plug_n3, Delta2.plug_n);
+  connect(Delta2.plug_p, r2.plug_p);
+end Yd01;
+```
+
+Note: The model assumes that the transformer has two phases (m=2), and the leakage inductances (l1sigma, l2sigma) and resistance (r2) are already defined elsewhere in the model. The model also assumes that the core has the necessary connections for the Yd1 vector group.

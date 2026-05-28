@@ -1,0 +1,37 @@
+model PIController
+ // Parameters
+  parameter Real target_height = 1.0; // Target water level in meters
+  parameter Real Kp = 1.0;            // Proportional coefficient
+  parameter Real Ki = 0.5;            // Integral coefficient
+  parameter Real leak_rate = 0.1;     // Leak rate in meters per unit time
+
+  // Variables
+  Real waterLevel(start = 0.2);       // Current water level in meters
+  Real error;                         // Error between target and current water level
+  Real Pcontrol;                      // Proportional control component
+  Real Icontrol;                      // Integral control component
+  Real inflow;                        // Water inflow rate
+
+  // Integral state
+  Real integralError(start = 0.0);    // Accumulated error for integral control
+
+equation
+  // Calculate error
+  error = target_height - waterLevel;
+
+  // Proportional control
+  Pcontrol = Kp * error;
+
+  // Integral control
+  der(integralError) = error;         // Accumulate error over time
+  Icontrol = Ki * integralError;
+
+  // Total inflow rate
+  inflow = Pcontrol + Icontrol;
+
+  // Water level dynamics
+  der(waterLevel) = inflow - leak_rate;
+
+  // Simulation time settings
+  annotation (experiment(StartTime = 0, StopTime = 100, Tolerance = 1e-6, Interval = 0.1));
+end PIController;

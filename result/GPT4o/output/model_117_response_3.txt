@@ -1,0 +1,25 @@
+To create a Modelica model named `Variant1_unstable` that simulates an unstable scenario based on the choice of a sample interval, you can extend the existing `ModelicaByExample.Architectures.SensorComparison.Examples.Variant1` model and modify the `sensor` component to use a parameter `sample_time=0.036`. Below is the Modelica code for this model:
+
+```modelica
+model Variant1_unstable
+  extends ModelicaByExample.Architectures.SensorComparison.Examples.Variant1;
+
+  // Modify the sensor component to use a sample time of 0.036
+  parameter Real sample_time = 0.036;
+
+  // Assuming the sensor component has a parameter for sample time
+  ModelicaByExample.Architectures.SensorComparison.Sensor sensor(
+    sample_time = sample_time);
+
+  // Additional modifications or components can be added here if needed
+
+end Variant1_unstable;
+```
+
+In this code:
+
+- The model `Variant1_unstable` extends the existing `Variant1` model from the `ModelicaByExample.Architectures.SensorComparison.Examples` package.
+- A parameter `sample_time` is defined with a value of `0.036`, which is intended to create an unstable scenario.
+- The `sensor` component is instantiated with the modified `sample_time` parameter.
+
+Make sure that the `sensor` component in the original `Variant1` model has a parameter for `sample_time` that can be modified. If the `sensor` component does not have such a parameter, you may need to modify the original model to include it.

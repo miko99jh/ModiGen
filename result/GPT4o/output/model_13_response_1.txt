@@ -1,0 +1,39 @@
+Here is the Modelica model for the `Xnor` gate as per your requirements:
+
+```modelica
+model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(
+    nInput=2, 
+    final nOutput=1);
+
+  // Parameters
+  parameter Real Ts = 0 "Sample time (0 for continuous operation)";
+
+equation
+  // Assert that the number of inputs is at least 2
+  assert(nInput >= 2, "The number of inputs (nInput) must be greater than or equal to 2.");
+
+  // Continuous or sampled operation
+  if Ts > 0 then
+    // Sampled operation
+    when sample(0, Ts) then
+      y[1] = not Functions.Xor(u[:], nInput);
+    end when;
+  else
+    // Continuous operation
+    y[1] = not Functions.Xor(u[:], nInput);
+  end if;
+
+end Xnor;
+```
+
+### Explanation:
+1. **Extending the Base Class**: The model extends `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`.
+2. **Parameters**: A parameter `Ts` is defined to specify the sample time. If `Ts` is 0, the model operates continuously; otherwise, it samples the input signals at regular intervals.
+3. **Assertion**: An assertion ensures that `nInput` is at least 2.
+4. **XNOR Logic**:
+   - If `Ts > 0`, the XNOR operation is performed inside a `when sample(0, Ts)` block to ensure it is executed at regular intervals.
+   - If `Ts == 0`, the XNOR operation is performed continuously.
+5. **XNOR Expression**: The XNOR operation is implemented using the expression `y[1] = not Functions.Xor(u[:], nInput)`.
+
+This model should meet your requirements for an n-bit XNOR gate.

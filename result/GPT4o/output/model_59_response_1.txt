@@ -1,0 +1,28 @@
+```modelica
+model IdealOpAmp3Pin
+  // Positive input pin
+  Modelica.Electrical.Analog.Interfaces.PositivePin in_p;
+  
+  // Negative input pin
+  Modelica.Electrical.Analog.Interfaces.NegativePin in_n;
+  
+  // Output pin
+  Modelica.Electrical.Analog.Interfaces.PositivePin out;
+
+equation
+  // Voltage at positive input equals voltage at negative input
+  in_p.v = in_n.v;
+  
+  // Current at positive input is zero
+  in_p.i = 0;
+  
+  // Current at negative input is zero
+  in_n.i = 0;
+  
+  // The output voltage is not defined in an ideal op-amp model
+  // as it depends on the external feedback network.
+  // Therefore, no equation is provided for out.v.
+end IdealOpAmp3Pin;
+```
+
+This Modelica model represents an ideal operational amplifier with three pins. The model ensures that the voltages at the positive and negative input pins are equal, and that the currents at both input pins are zero, which are the key characteristics of an ideal op-amp. The output voltage is not defined in this model, as it typically depends on the external circuit configuration.

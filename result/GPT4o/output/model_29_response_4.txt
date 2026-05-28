@@ -1,0 +1,53 @@
+To create a Modelica model named `SpeedControl` for discrete control of crankshaft speed by throttle actuation, you can use the following code. This model includes the specified components, parameters, and equations for implementing a discrete-time PI control law.
+
+```modelica
+model SpeedControl
+  // Parameters
+  parameter Real k_p = 0.0614 "Proportional gain";
+  parameter Real k_I = 0.0723 "Integral gain";
+
+  // Inputs
+  Modelica.Blocks.Interfaces.RealInput N_des(unit = "rad/s") "Desired speed";
+  Modelica.Blocks.Interfaces.RealInput N(unit = "rad/s") "Measured speed";
+
+  // Output
+  Modelica.Blocks.Interfaces.RealOutput Theta(unit = "deg") "Throttle angle";
+
+  // Protected variable
+  protected
+    Modelica.Units.NonSI.Angle_deg x_d(start = 8.973, fixed = true) "Integral state";
+
+  // Discrete-time PI control law
+  equation
+    when Clock() then
+      // Integral state update
+      x_d = previous(x_d) + k_I * (previous(N_des) - previous(N)) * interval();
+
+      // Output calculation
+      Theta = k_p * (N_des - N) + x_d;
+    end when;
+end SpeedControl;
+```
+
+### Explanation:
+
+1. **Parameters**:
+   - `k_p`: Proportional gain, set to 0.0614.
+   - `k_I`: Integral gain, set to 0.0723.
+
+2. **Inputs**:
+   - `N_des`: Desired speed input, with units of rad/s.
+   - `N`: Measured speed input, with units of rad/s.
+
+3. **Output**:
+   - `Theta`: Throttle angle output, with units of degrees.
+
+4. **Protected Variable**:
+   - `x_d`: Represents the integral state, initialized to 8.973 degrees.
+
+5. **Equations**:
+   - The `when Clock() then` block is used to implement the discrete-time PI control law.
+   - The integral state `x_d` is updated at each clock tick, accumulating the speed error scaled by the integral gain `k_I` and the clock interval.
+   - The throttle angle `Theta` is calculated as the sum of the proportional correction and the current integral state `x_d`.
+
+This model uses discrete-time control techniques with clocked operators like `previous()` and `interval()` to ensure correct behavior in a discrete-time context.

@@ -1,0 +1,192 @@
+
+Generate a Modelica model for a comparison function that implements 'not equal (!=)' logic. The model should be named `NotEqual` and it should extend from the `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` model. The inputs `u1` and `u2` are real signals, and the output 'y' is a Boolean. The input and output exist in `IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison` and does not need to be redeclared. In The equation section, the model includes a sample time parameter 'Ts', which when greater than 0, triggers the comparison at regular intervals; otherwise, the comparison is continuous. If the absolute difference between u1 and u2 is less than a small threshold (eps), the output y should be false; otherwise, it should be true.
+
+//modelica
+```model NotEqual
+  extends IndustrialControlSystems.Logical.Comparisons.RealType.Interfaces.RealComparison;
+  parameter Real eps = 1e-6 "Small threshold for comparison";
+equation
+  if Ts > 0 then
+    y = (abs(u1 - u2) > eps) and (time - lastEvent >= Ts);
+  else
+    y = abs(u1 - u2) > eps;
+  end if;
+end NotEqual;```
+
+This model should be used in a Modelica model to compare two real signals and determine if they are not equal. The comparison can be made at regular intervals (if Ts > 0) or continuously (if Ts <= 0). The threshold 'eps' can be adjusted to set the precision of the comparison.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `abs` function is used to calculate the absolute difference between u1 and u2. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `and` operator is used to combine the conditions. The comparison is only true if both conditions are true.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `>` operator is used to compare the absolute difference with the threshold 'eps'. If the absolute difference is greater than 'eps', the output 'y' is true. Otherwise, it is false.
+
+Note: The `extends` keyword is used to inherit properties and functions from the `RealComparison` model. This allows the `NotEqual` model to use the input and output variables and the sample time parameter 'Ts' defined in the `RealComparison` model.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value that can be changed during the simulation. The value of 'eps' is set to 1e-6 by default, but it can be changed as needed.
+
+Note: The `equation` keyword is used to define the equations that describe the behavior of the model. The equations in this model determine the output 'y' based on the inputs 'u1' and 'u2', the threshold 'eps', and the sample time parameter 'Ts'.
+
+Note: The `end` keyword is used to mark the end of a block of code, such as a model or an equation.
+
+Note: The `if` keyword is used to conditionally execute a block of code. The block of code is only executed if the condition following the `if` keyword is true.
+
+Note: The `and` operator is used to combine two Boolean expressions. The combined expression is true only if both expressions are true.
+
+Note: The `>` operator is used to compare two real numbers. If the left operand is greater than the right operand, the result is true. Otherwise, the result is false.
+
+Note: The `lastEvent` variable is a built-in Modelica variable that holds the time of the last event output. It is used here to ensure that the comparison is only made at regular intervals when Ts > 0.
+
+Note: The `time` variable is a built-in Modelica variable that holds the current simulation time. It is used here to ensure that the comparison is made continuously when Ts <= 0.
+
+Note: The `abs` function is used to calculate the absolute value of a real number. This is to ensure that the comparison is not affected by the sign of the difference.
+
+Note: The `parameter` keyword is used to define a constant value

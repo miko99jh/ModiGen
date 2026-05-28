@@ -1,0 +1,46 @@
+To create a Modelica model named `SpeedControl` for the discrete control of crankshaft speed by throttle actuation, you can follow the structure below. This model uses a discrete-time Proportional-Integral (PI) control law to adjust the throttle angle based on the difference between the desired and measured speeds.
+
+```modelica
+model SpeedControl
+  // Parameters
+  parameter Real k_p = 0.0614 "Proportional gain";
+  parameter Real k_I = 0.0723 "Integral gain";
+
+  // Inputs
+  Modelica.Blocks.Interfaces.RealInput N_des(unit="rad/s") "Desired speed";
+  Modelica.Blocks.Interfaces.RealInput N(unit="rad/s") "Measured speed";
+
+  // Output
+  Modelica.Blocks.Interfaces.RealOutput Theta(unit="deg") "Throttle angle";
+
+protected 
+  // Integral state
+  Modelica.Units.NonSI.Angle_deg x_d(start=8.973, fixed=true) "Integral state";
+
+equation 
+  // Discrete-time PI control law
+  when Clock() then
+    // Update integral state
+    x_d = previous(x_d) + k_I * (previous(N_des) - previous(N)) * interval();
+
+    // Calculate throttle angle
+    Theta = k_p * (N_des - N) + x_d;
+  end when;
+end SpeedControl;
+```
+
+### Explanation:
+
+1. **Parameters and Inputs/Outputs**:
+   - `k_p` and `k_I` are the proportional and integral gains, respectively.
+   - `N_des` is the desired speed input.
+   - `N` is the measured speed input.
+   - `Theta` is the output representing the throttle angle.
+   - `x_d` is a protected variable used to store the integral state.
+
+2. **Equations**:
+   - The `when Clock() then` block is used to implement the discrete-time behavior.
+   - `x_d` is updated at each clock tick by accumulating the speed error, scaled by the integral gain and the clock interval.
+   - `Theta` is calculated as the sum of the proportional correction and the current integral state.
+
+This model assumes that the clock is defined elsewhere in the simulation environment, which dictates the discrete-time steps for the control law.

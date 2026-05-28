@@ -1,0 +1,48 @@
+To create a Modelica model named `RTD_Pt100` that simulates the temperature change of a platinum resistance sensor in a medium, you can use the following code. This model will calculate the temperature change of the sensor over time based on the heat balance between the sensor and the medium. The medium temperature (`Tg`) is defined as an input, and the sensor temperature (`Tj`) is defined as an output.
+
+```modelica
+model RTD_Pt100
+  // Parameters
+  parameter Real V = 1.15e-9; // Volume of the sensor [m^3]
+  parameter Real c = 456; // Comprehensive specific heat [J/(kg·K)]
+  parameter Real Ar = 5.31e-6; // Sensor surface area [m^2]
+  parameter Real alpha = 800; // Convective heat transfer coefficient [W/(m^2·K)]
+  parameter Real pho = 7980; // Comprehensive density [kg/m^3]
+
+  // Inputs
+  input Real Tg = 100; // Medium temperature [°C]
+
+  // Outputs
+  output Real Tj(start=25); // Sensor temperature [°C]
+
+  // Variables
+  Real Q; // Heat transfer rate [W]
+
+equation
+  // Heat transfer rate from the medium to the sensor
+  Q = alpha * Ar * (Tg - Tj);
+
+  // Heat balance equation for the sensor
+  der(Tj) = Q / (pho * V * c);
+end RTD_Pt100;
+```
+
+### Explanation:
+- **Parameters**: These are constants that define the physical properties of the sensor and the medium.
+  - `V`: Volume of the sensor.
+  - `c`: Comprehensive specific heat of the sensor material.
+  - `Ar`: Surface area of the sensor.
+  - `alpha`: Convective heat transfer coefficient.
+  - `pho`: Comprehensive density of the sensor material.
+
+- **Inputs**: `Tg` is the temperature of the medium, which is stable at 100°C.
+
+- **Outputs**: `Tj` is the temperature of the sensor, which starts at 25°C.
+
+- **Variables**: `Q` is the heat transfer rate from the medium to the sensor.
+
+- **Equations**:
+  - The heat transfer rate `Q` is calculated using the convective heat transfer equation: `Q = alpha * Ar * (Tg - Tj)`.
+  - The rate of change of the sensor temperature `der(Tj)` is determined by the heat balance equation: `der(Tj) = Q / (pho * V * c)`.
+
+This model will simulate how the sensor temperature changes over time as it approaches the medium temperature. You can simulate this model in a Modelica environment to observe the sensor's temperature response.

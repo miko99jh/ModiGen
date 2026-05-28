@@ -1,0 +1,16 @@
+Certainly! Below is a Modelica model named `OnOffVariant` that extends from `ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel`. It includes two redeclared and replaceable components: an `OnOffActuator` and an `OnOffControl`, with specified parameters.
+
+```modelica
+model OnOffVariant
+  extends ModelicaByExample.Architectures.ThermalControl.Examples.ExpandableModel;
+
+  redeclare replaceable ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffActuator actuator(
+    heating_capacity=500);
+
+  redeclare replaceable ModelicaByExample.Architectures.ThermalControl.Implementations.OnOffControl controller(
+    setpoint=300);
+
+end OnOffVariant;
+```
+
+This model is designed to be compatible with Modelica version 3.2.3, and it uses the specified components with the given parameters. Make sure that the `ModelicaByExample` library is available in your environment to ensure proper functionality.

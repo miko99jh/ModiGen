@@ -1,0 +1,33 @@
+model TestTrackingFO
+ // Import necessary libraries
+  import IndustrialControlSystems.Controllers.Blocks.FO;
+  import Modelica.Blocks.Sources.Step;
+  import Modelica.Blocks.Sources.BooleanPulse;
+  import Modelica.Blocks.Sources.Trapezoid;
+
+  // Components
+  FO FOtr(useTS=true, T=0.4) "Fractional Order controller with tracking mode enabled";
+  FO FOaw(mu=1, AntiWindup=true, T=0.4, useTS=true, Ymin=0, Ymax=2) 
+    "Fractional Order controller with anti-windup and tracking mode enabled";
+  FO FO(mu=1, T=0.4) "Standard Fractional Order controller without tracking mode";
+
+  Step Signal(startTime=2, height=2) "Step signal source for control input";
+  BooleanPulse TSsignal(startTime=4, width=10, period=40) 
+    "Boolean pulse signal for tracking mode switch";
+  Trapezoid TrackRef(amplitude=5, rising=1, width=2, falling=1, period=8, nperiod=1, startTime=4) 
+    "Trapezoidal signal source for tracking reference";
+
+equation
+  // Connect the step source signal to the control inputs '.u' of all FO controllers
+  connect(Signal.y, FO.u) "Connect step signal to FO control input";
+  connect(Signal.y, FOtr.u) "Connect step signal to FOtr control input";
+  connect(Signal.y, FOaw.u) "Connect step signal to FOaw control input";
+
+  // Link the boolean pulse TSsignal to the tracking mode switches '.TS' of FOtr and FOaw
+  connect(TSsignal.y, FOtr.TS) "Connect boolean pulse to FOtr tracking mode switch";
+  connect(TSsignal.y, FOaw.TS) "Connect boolean pulse to FOaw tracking mode switch";
+
+  // Provide the trapezoidal TrackRef as the tracking reference '.TR' for FOtr and FOaw
+  connect(TrackRef.y, FOtr.TR) "Connect trapezoidal signal to FOtr tracking reference";
+  connect(TrackRef.y, FOaw.TR) "Connect trapezoidal signal to FOaw tracking reference";
+end TestTrackingFO;

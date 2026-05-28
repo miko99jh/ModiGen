@@ -1,0 +1,3 @@
+model VariableResistor
+ ...
+    end VariableResistor;

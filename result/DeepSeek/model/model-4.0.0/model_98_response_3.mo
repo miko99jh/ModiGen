@@ -1,0 +1,1 @@
+model PlatinumResistor "Model of a platinum resistor" parameter Real R0 = 100 "Reference resistance at 0°C"; parameter Real A = 3.9083*10^(-3) "Coefficient"; parameter Real B = -5.775*10^(-7) "Coefficient"; parameter Real C = -4.183*10^(-12) "Coefficient"; Real T "Current temperature"; Real Rt "Resistance value"; equation Rt = Rt_T(T); end PlatinumResistor;

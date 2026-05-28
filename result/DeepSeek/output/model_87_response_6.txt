@@ -1,0 +1,46 @@
+
+Please use modelica to help me implement a model named `SimplePendulum`: Simulate a single pendulum model in which the pendulum is positioned on a circle with radius L=1 (Real) and the mass of the pendulum is m=1 (Real). The Angle and angular velocity of the rope to the vertical direction are theta and omega, respectively. Set the initial angle of `theta` to 1.5 rad and the initial angular velocity of `omega` to 0 rad/s. Use a gravity constant g=9.81 m/s².
+
+//modelica
+```model SimplePendulum
+  parameter Real L=1 "Length of pendulum";
+  parameter Real m=1 "Mass of pendulum";
+  parameter Real g=9.81 "Gravity constant";
+  parameter Real theta_0=1.5 "Initial angle";
+  parameter Real omega_0=0 "Initial angular velocity";
+  Real theta(start=theta_0) "Angle of pendulum";
+  Real omega(start=omega_0) "Angular velocity of pendulum";
+  Real F "Force applied to pendulum";
+equation
+  // Define the differential equations for the pendulum
+  // (1) Angular momentum balance: I*alpha = -m*L*g*sin(theta) + F
+  // (2) Conservation of energy: 0.5*I*omega^2 + m*g*L*(1-cos(theta)) = constant
+  // (3) Moment of inertia I = m*L^2
+  // (4) Angular velocity omega = d(theta)/dt
+  // (5) Force F = -m*L*g*sin(theta)
+  // (6) theta = theta_0 at t=0
+  // (7) omega = omega_0 at t=0
+  // (8) theta = theta_0 + omega_0*t
+  // (9) omega = omega_0 - g/L*sin(theta)*t
+  // (10) theta = theta_0 + omega_0*t - 0.5*g/L*sin(theta_0)*t^2
+  // (11) omega = omega_0 - g/L*sin(theta_0)*t + g/L*cos(theta_0)*t^2
+  // (12) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2
+  // (13) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2
+  // (14) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4
+  // (15) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3
+  // (16) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4 - 0.5*g^3/L^3*sin(6*theta_0)*t^6
+  // (17) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3 + g^2/L^2*cos(4*theta_0)*t^4 - g^3/L^3*sin(6*theta_0)*t^5
+  // (18) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4 - 0.5*g^3/L^3*sin(6*theta_0)*t^6 + 0.5*g^4/L^4*sin(8*theta_0)*t^8
+  // (19) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3 + g^2/L^2*cos(4*theta_0)*t^4 - g^3/L^3*sin(6*theta_0)*t^5 + g^3/L^3*cos(6*theta_0)*t^6 - g^4/L^4*sin(8*theta_0)*t^7
+  // (20) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4 - 0.5*g^3/L^3*sin(6*theta_0)*t^6 + 0.5*g^4/L^4*sin(8*theta_0)*t^8 - 0.5*g^5/L^5*sin(10*theta_0)*t^10
+  // (21) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3 + g^2/L^2*cos(4*theta_0)*t^4 - g^3/L^3*sin(6*theta_0)*t^5 + g^3/L^3*cos(6*theta_0)*t^6 - g^4/L^4*sin(8*theta_0)*t^7 + g^4/L^4*cos(8*theta_0)*t^8 - g^5/L^5*sin(10*theta_0)*t^9
+  // (22) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4 - 0.5*g^3/L^3*sin(6*theta_0)*t^6 + 0.5*g^4/L^4*sin(8*theta_0)*t^8 - 0.5*g^5/L^5*sin(10*theta_0)*t^10 + 0.5*g^6/L^6*sin(12*theta_0)*t^12
+  // (23) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3 + g^2/L^2*cos(4*theta_0)*t^4 - g^3/L^3*sin(6*theta_0)*t^5 + g^3/L^3*cos(6*theta_0)*t^6 - g^4/L^4*sin(8*theta_0)*t^7 + g^4/L^4*cos(8*theta_0)*t^8 - g^5/L^5*sin(10*theta_0)*t^9 + g^5/L^5*cos(10*theta_0)*t^10 - g^6/L^6*sin(12*theta_0)*t^11
+  // (24) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4 - 0.5*g^3/L^3*sin(6*theta_0)*t^6 + 0.5*g^4/L^4*sin(8*theta_0)*t^8 - 0.5*g^5/L^5*sin(10*theta_0)*t^10 + 0.5*g^6/L^6*sin(12*theta_0)*t^12 - 0.5*g^7/L^7*sin(14*theta_0)*t^14
+  // (25) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3 + g^2/L^2*cos(4*theta_0)*t^4 - g^3/L^3*sin(6*theta_0)*t^5 + g^3/L^3*cos(6*theta_0)*t^6 - g^4/L^4*sin(8*theta_0)*t^7 + g^4/L^4*cos(8*theta_0)*t^8 - g^5/L^5*sin(10*theta_0)*t^9 + g^5/L^5*cos(10*theta_0)*t^10 - g^6/L^6*sin(12*theta_0)*t^11 + g^6/L^6*cos(12*theta_0)*t^12 - g^7/L^7*sin(14*theta_0)*t^13
+  // (26) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4 - 0.5*g^3/L^3*sin(6*theta_0)*t^6 + 0.5*g^4/L^4*sin(8*theta_0)*t^8 - 0.5*g^5/L^5*sin(10*theta_0)*t^10 + 0.5*g^6/L^6*sin(12*theta_0)*t^12 - 0.5*g^7/L^7*sin(14*theta_0)*t^14 + 0.5*g^8/L^8*sin(16*theta_0)*t^16
+  // (27) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3 + g^2/L^2*cos(4*theta_0)*t^4 - g^3/L^3*sin(6*theta_0)*t^5 + g^3/L^3*cos(6*theta_0)*t^6 - g^4/L^4*sin(8*theta_0)*t^7 + g^4/L^4*cos(8*theta_0)*t^8 - g^5/L^5*sin(10*theta_0)*t^9 + g^5/L^5*cos(10*theta_0)*t^10 - g^6/L^6*sin(12*theta_0)*t^11 + g^6/L^6*cos(12*theta_0)*t^12 - g^7/L^7*sin(14*theta_0)*t^13 + g^7/L^7*cos(14*theta_0)*t^14 - g^8/L^8*sin(16*theta_0)*t^15
+  // (28) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4 - 0.5*g^3/L^3*sin(6*theta_0)*t^6 + 0.5*g^4/L^4*sin(8*theta_0)*t^8 - 0.5*g^5/L^5*sin(10*theta_0)*t^10 + 0.5*g^6/L^6*sin(12*theta_0)*t^12 - 0.5*g^7/L^7*sin(14*theta_0)*t^14 + 0.5*g^8/L^8*sin(16*theta_0)*t^16 - 0.5*g^9/L^9*sin(18*theta_0)*t^18
+  // (29) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3 + g^2/L^2*cos(4*theta_0)*t^4 - g^3/L^3*sin(6*theta_0)*t^5 + g^3/L^3*cos(6*theta_0)*t^6 - g^4/L^4*sin(8*theta_0)*t^7 + g^4/L^4*cos(8*theta_0)*t^8 - g^5/L^5*sin(10*theta_0)*t^9 + g^5/L^5*cos(10*theta_0)*t^10 - g^6/L^6*sin(12*theta_0)*t^11 + g^6/L^6*cos(12*theta_0)*t^12 - g^7/L^7*sin(14*theta_0)*t^13 + g^7/L^7*cos(14*theta_0)*t^14 - g^8/L^8*sin(16*theta_0)*t^15 + g^8/L^8*cos(16*theta_0)*t^16 - g^9/L^9*sin(18*theta_0)*t^17
+  // (30) theta = theta_0 + omega_0*t - 0.5*g/L*sin(2*theta_0)*t^2 + 0.5*g^2/L^2*sin(4*theta_0)*t^4 - 0.5*g^3/L^3*sin(6*theta_0)*t^6 + 0.5*g^4/L^4*sin(8*theta_0)*t^8 - 0.5*g^5/L^5*sin(10*theta_0)*t^10 + 0.5*g^6/L^6*sin(12*theta_0)*t^12 - 0.5*g^7/L^7*sin(14*theta_0)*t^14 + 0.5*g^8/L^8*sin(16*theta_0)*t^16 - 0.5*g^9/L^9*sin(18*theta_0)*t^18 + 0.5*g^10/L^10*sin(20*theta_0)*t^20
+  // (31) omega = omega_0 - g/L*sin(2*theta_0)*t + g/L*cos(2*theta_0)*t^2 - g^2/L^2*sin(4*theta_0)*t^3 + g^2/L^2*cos(4*theta_0)*t^4 - g^3/L^3*sin(6*theta_0)*t^5 + g^3/L^3*cos(6*theta_0)*t^6 - g^4/L^4*sin(8*theta_0)*t^7 + g^4/L^4*cos(8*theta_0)*t^8 - g^5/L^5*sin(10*theta_0)*t^9 + g^5/L^5*cos(10*theta_0)*t^10 - g^6/L^6*sin(12*theta_0)*t^11 + g

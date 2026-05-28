@@ -1,0 +1,50 @@
+To create a Modelica model for a block called `AssignClockVectorized`, which assigns a clock signal to a vector of Real input signals and outputs them as a clocked Real signal vector, you can follow the structure below. This model will include the necessary inputs, outputs, and interfaces as specified:
+
+```modelica
+block AssignClockVectorized
+  parameter Integer n(min=1) = 1 "Size of input signal vector u (= size of output signal vector y)";
+  
+  // Input and output vectors
+  Modelica.Blocks.Interfaces.RealInput u[n] "Vector of Real input signals";
+  Modelica.Blocks.Interfaces.RealOutput y[n] "Vector of Real output signals";
+  
+  // Clock input
+  Modelica.Clocked.ClockSignals.Interfaces.ClockInput clock "Clock input signal";
+
+protected 
+  // Internal clocked data
+  Modelica.Clocked.RealSignals.ClockedReal yClocked[n](each clock=clock) "Clocked version of output signals";
+
+equation 
+  // Assign input to output on clock tick
+  when ClockSample(clock) then
+    for i in 1:n loop
+      yClocked[i] = u[i];
+    end for;
+  end when;
+
+  // Connect clocked output to continuous output
+  for i in 1:n loop
+    y[i] = yClocked[i];
+  end for;
+
+end AssignClockVectorized;
+```
+
+### Explanation:
+
+1. **Parameters and Interfaces**:
+   - `n`: A parameter that defines the size of the input and output vectors. It has a minimum value of 1.
+   - `u[n]`: A vector of Real input signals, defined using `Modelica.Blocks.Interfaces.RealInput`.
+   - `y[n]`: A vector of Real output signals, defined using `Modelica.Blocks.Interfaces.RealOutput`.
+   - `clock`: A clock input signal, defined using `Modelica.Clocked.ClockSignals.Interfaces.ClockInput`.
+
+2. **Protected Section**:
+   - `yClocked[n]`: An internal vector of clocked Real signals, which is updated on each clock tick.
+
+3. **Equations**:
+   - The `when ClockSample(clock)` statement ensures that the assignment of `u` to `yClocked` occurs whenever the clock signal triggers.
+   - A `for` loop is used to iterate over the elements of the vectors, ensuring that each element of `u` is assigned to the corresponding element of `yClocked`.
+   - Another `for` loop is used to connect the clocked output `yClocked` to the continuous output `y`.
+
+This model effectively assigns the input vector `u` to the output vector `y` whenever the clock signal triggers, using the standard Modelica interfaces for inputs, outputs, and clock signals.

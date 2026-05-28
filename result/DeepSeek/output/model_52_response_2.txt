@@ -1,0 +1,199 @@
+
+Create a Modelica model named `ShowSaturatingInductor` that demonstrates the behavior of a SaturatingInductor component.
+
+The model should include the following parameters:
+ Inductance near zero current (Lzer) with a value of 2,'Modelica.Units.SI.Inductance';
+ nominal inductance at nominal current (Lnom) with a value of 1, 'Modelica.Units.SI.Inductance';
+ nominal current (Inom) with a value of 1, 'Modelica.Units.SI.Current'; and inductance at large currents (Linf) with a value of 0.5, 'Modelica.Units.SI.Inductance';
+ a source voltage (U) with a peak of 1.25, 'Modelica.Units.SI.Voltage';
+ a source frequency (f) calculated as '1/(2*Modelica.Constants.pi)', 'Modelica.Units.SI.Frequency';
+ a phase shift (phase) equals to 'Modelica.Constants.pi/2', 'Modelica.Units.SI.Angle' for the source voltage.
+
+The model should also include a SineVoltage source `SineVoltage1` (Modelica.Electrical.Analog.Sources.SineVoltage) with `(V=U, phase=phase, f=f)`, a Ground component `Ground1` (Modelica.Electrical.Analog.Basic.Ground), a SaturatingInductor component `SaturatingInductance1` (Modelica.Electrical.Analog.Basic.SaturatingInductor) with `Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true)`, and an Inductor component `Inductance1` (Modelica.Electrical.Analog.Basic.Inductor) with `L=Lnom, i(fixed=true)`.
+
+The model should also include connections between the components as follows:
+- Source Setup: Ground the negative terminal of 'SineVoltage1.n' using 'Ground1.p'.
+- Parallel Branches: Connect both the 'SaturatingInductance1' and the standard 'Inductance1' in parallel across the 'SineVoltage1' source. Specifically, link all positive pins ('.p') to the source high-side and all negative pins ('.n') to the source return path.
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductance1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 
+  connect(SineVoltage1.n, Ground1.p);
+  connect(SineVoltage1.p, SaturatingInductance1.p);
+  connect(SineVoltage1.p, Inductance1.p);
+  connect(SineVoltage1.n, SaturatingInductance1.n);
+  connect(SineVoltage1.n, Inductance1.n);
+end ShowSaturatingInductor;```
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductance1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 
+  connect(SineVoltage1.n, Ground1.p);
+  connect(SineVoltage1.p, SaturatingInductor1.p);
+  connect(SineVoltage1.p, Inductance1.p);
+  connect(SineVoltage1.n, SaturatingInductor1.n);
+  connect(SineVoltage1.n, Inductance1.n);
+end ShowSaturatingInductor;```
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductor1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 
+  connect(SineVoltage1.n, Ground1.p);
+  connect(SineVoltage1.p, SaturatingInductor1.p);
+  connect(SineVoltage1.p, Inductance1.p);
+  connect(SineVoltage1.n, SaturatingInductor1.n);
+  connect(SineVoltage1.n, Inductance1.n);
+end ShowSaturatingInductor;```
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductor1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 
+  connect(SineVoltage1.n, Ground1.p);
+  connect(SineVoltage1.p, SaturatingInductor1.p);
+  connect(SineVoltage1.p, Inductance1.p);
+  connect(SineVoltage1.n, SaturatingInductor1.n);
+  connect(SineVoltage1.n, Inductance1.n);
+end ShowSaturatingInductor;```
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductor1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 
+  connect(SineVoltage1.n, Ground1.p);
+  connect(SineVoltage1.p, SaturatingInductor1.p);
+  connect(SineVoltage1.p, Inductance1.p);
+  connect(SineVoltage1.n, SaturatingInductor1.n);
+  connect(SineVoltage1.n, Inductance1.n);
+end ShowSaturatingInductor;```
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductor1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 
+  connect(SineVoltage1.n, Ground1.p);
+  connect(SineVoltage1.p, SaturatingInductor1.p);
+  connect(SineVoltage1.p, Inductance1.p);
+  connect(SineVoltage1.n, SaturatingInductor1.n);
+  connect(SineVoltage1.n, Inductance1.n);
+end ShowSaturatingInductor;```
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductor1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 
+  connect(SineVoltage1.n, Ground1.p);
+  connect(SineVoltage1.p, SaturatingInductor1.p);
+  connect(SineVoltage1.p, Inductance1.p);
+  connect(SineVoltage1.n, SaturatingInductor1.n);
+  connect(SineVoltage1.n, Inductance1.n);
+end ShowSaturatingInductor;```
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductor1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 
+  connect(SineVoltage1.n, Ground1.p);
+  connect(SineVoltage1.p, SaturatingInductor1.p);
+  connect(SineVoltage1.p, Inductance1.p);
+  connect(SineVoltage1.n, SaturatingInductor1.n);
+  connect(SineVoltage1.n, Inductance1.n);
+end ShowSaturatingInductor;```
+
+//modelica
+```model ShowSaturatingInductor
+  parameter Modelica.Units.SI.Inductance Lzer = 2;
+  parameter Modelica.Units.SI.Inductance Lnom = 1;
+  parameter Modelica.Units.SI.Current Inom = 1;
+  parameter Modelica.Units.SI.Inductance Linf = 0.5;
+  parameter Modelica.Units.SI.Voltage U = 1.25;
+  parameter Modelica.Units.SI.Frequency f = 1/(2*Modelica.Constants.pi);
+  parameter Modelica.Units.SI.Angle phase = Modelica.Constants.pi/2;
+  Modelica.Electrical.Analog.Sources.SineVoltage SineVoltage1(V=U, phase=phase, f=f);
+  Modelica.Electrical.Analog.Basic.Ground Ground1;
+  Modelica.Electrical.Analog.Basic.SaturatingInductor SaturatingInductor1(Lzer=Lzer, Lnom=Lnom, Inom=Inom, Linf=Linf, i(fixed=true));
+  Modelica.Electrical.Analog.Basic.Inductor Inductance1(L=Lnom, i(fixed=true));
+equation 

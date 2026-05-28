@@ -1,0 +1,260 @@
+
+Generate a Modelica model named `Subtracter` that represents an inverting subtracter circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.OpAmps` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 5) representing the amplitude of the input voltage
+- `f` (Modelica.Units.SI.Frequency, default value: 10) representing the frequency of the input voltage.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn1` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = f`.
+- `vIn2` (Modelica.Electrical.Analog.Sources.ConstantVoltage) to generate a constant input voltage with parameter `V = Vin`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `feedback` (Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback) to implement the feedback loop, with the initial current `i` of `p1_2` set to 0.
+
+The following connections should be made:
+- Dual-Source Integration: Route the dynamic signal 'vIn1' and the static signal 'vIn2' into the 'feedback' network's input ports 'p1' and 'p1_2' respectively.
+- Reference & Return: Establish a common reference by tying the return pins ('.n') of both sources ('vIn1', 'vIn2') and the feedback input ('n1') to the 'ground.p'.
+- Output Differential: Link the output stage of the feedback circuit ('p2', 'n2') to the 'vOut' sensor. Note: Ensure the polarity is set such that 'p2' connects to the sensor's negative terminal.
+
+The model should accurately represent the behavior of an inverting subtracter circuit.
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(feedback.p2, vOut.n);
+  connect(vIn1.n, vOut.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(feedback.p2, vOut.n);
+  connect(vIn1.n, vOut.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(feedback.p2, vOut.n);
+  connect(vIn1.n, vOut.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(feedback.p2, vOut.n);
+  connect(vIn1.n, vOut.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```
+
+//modelica
+```model Subtracter
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn1(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sources.ConstantVoltage vIn2(V=Vin);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.Feedback feedback(i=0);
+equation 
+  connect(vIn1.p, feedback.p1);
+  connect(vIn2.p, feedback.p1_2);
+  connect(feedback.n1, ground.p);
+  connect(feedback.p2, vOut.n);
+  connect(vIn1.n, vOut.p);
+  connect(vIn2.n, ground.p);
+end Subtracter;
+```Generate a Modelica model named `InvertingAmplifier` that represents an inverting amplifier circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.OpAmps` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 5) representing the amplitude of the input voltage
+- `f` (Modelica.Units.SI.Frequency, default value: 10) representing the frequency of the input voltage.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = f`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `opAmp` (Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.InvertingAmplifier) to implement the inverting amplifier circuit.
+
+The following connections should be made:
+- Connect the positive terminal of the sine voltage source (`vIn.p`) to the non-inverting input of the operational amplifier (`opAmp.nonIn`).
+- Connect the negative terminal of the sine voltage source (`vIn.n`) to the inverting input of the operational amplifier (`opAmp.in`).
+- Connect the output of the operational amplifier (`opAmp.out`) to the positive terminal of the voltage sensor (`vOut.p`).
+- Connect the negative terminal of the voltage sensor (`vOut.n`) to the ground (`ground.p`).
+
+The model should accurately represent the behavior of an inverting amplifier circuit.
+
+//modelica
+```model InvertingAmplifier
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.InvertingAmplifier opAmp;
+equation 
+  connect(vIn.p, opAmp.nonIn);
+  connect(vIn.n, opAmp.in);
+  connect(opAmp.out, vOut.p);
+  connect(vOut.n, ground.p);
+end InvertingAmplifier;
+```
+
+//modelica
+```model InvertingAmplifier
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.InvertingAmplifier opAmp;
+equation 
+  connect(vIn.p, opAmp.nonIn);
+  connect(vIn.n, opAmp.in);
+  connect(opAmp.out, vOut.p);
+  connect(vOut.n, ground.p);
+end InvertingAmplifier;
+```
+
+//modelica
+```model InvertingAmplifier
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.InvertingAmplifier opAmp;
+equation 
+  connect(vIn.p, opAmp.nonIn);
+  connect(vIn.n, opAmp.in);
+  connect(opAmp.out, vOut.p);
+  connect(vOut.n, ground.p);
+end InvertingAmplifier;
+```
+
+//modelica
+```model InvertingAmplifier
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.InvertingAmplifier opAmp;
+equation 
+  connect(vIn.p, opAmp.nonIn);
+  connect(vIn.n, opAmp.in);
+  connect(opAmp.out, vOut.p);
+  connect(vOut.n, ground.p);
+end InvertingAmplifier;
+```Generate a Modelica model named `NonInvertingAmplifier` that represents a non-inverting amplifier circuit.
+This model is part of the `Modelica.Electrical.Analog.Examples.OpAmps` package and extends the `Modelica.Icons.Example`.
+The model should have the following parameters:
+- `Vin` (Modelica.Units.SI.Voltage, default value: 5) representing the amplitude of the input voltage
+- `f` (Modelica.Units.SI.Frequency, default value: 10) representing the frequency of the input voltage.
+
+The model should include the following components:
+- `ground` (Modelica.Electrical.Analog.Basic.Ground) to represent the ground connection.
+- `vIn` (Modelica.Electrical.Analog.Sources.SineVoltage) to generate a sinusoidal input voltage with parameters `V = Vin` and `f = f`.
+- `vOut` (Modelica.Electrical.Analog.Sensors.VoltageSensor) to measure the output voltage.
+- `opAmp` (Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.NonInvertingAmplifier) to implement the non-inverting amplifier circuit.
+
+The following connections should be made:
+- Connect the positive terminal of the sine voltage source (`vIn.p`) to the non-inverting input of the operational amplifier (`opAmp.nonIn`).
+- Connect the negative terminal of the sine voltage source (`vIn.n`) to the ground (`ground.p`).
+- Connect the output of the operational amplifier (`opAmp.out`) to the positive terminal of the voltage sensor (`vOut.p`).
+- Connect the negative terminal of the voltage sensor (`vOut.n`) to the ground (`ground.p`).
+
+The model should accurately represent the behavior of a non-inverting amplifier circuit.
+
+//modelica
+```model NonInvertingAmplifier
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.NonInvertingAmplifier opAmp;
+equation 
+  connect(vIn.p, opAmp.nonIn);
+  connect(vIn.n, ground.p);
+  connect(opAmp.out, vOut.p);
+  connect(vOut.n, ground.p);
+end NonInvertingAmplifier;
+```
+
+//modelica
+```model NonInvertingAmplifier
+  extends Modelica.Icons.Example;
+  parameter Modelica.Units.SI.Voltage Vin=5 "Amplitude of the input voltage";
+  parameter Modelica.Units.SI.Frequency f=10 "Frequency of the input voltage";
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.Analog.Sources.SineVoltage vIn(V=Vin, f=f);
+  Modelica.Electrical.Analog.Sensors.VoltageSensor vOut;
+  Modelica.Electrical.Analog.Examples.OpAmps.OpAmpCircuits.NonInvertingAmplifier opAmp;
+equation 
+  connect(vIn.p, opAmp.nonIn);
+  connect(vIn.n, ground.p);
+  connect(opAmp.out, vOut.p);
+  connect(vOut.n, ground.p);
+end NonInvertingAmplifier;
+```
+
+//

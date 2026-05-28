@@ -1,0 +1,342 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+equation 
+  assert(nInput>=2, "Number of inputs should be greater than or equal to 2");
+  if Ts > 0 then
+    when sample(0, Ts) then
+      y[1] = not Functions.Xor(u[:], nInput);
+  else
+    y[1] = not Functions.Xor(u[:], nInput);
+  end if;
+end Xnor;
+```
+
+This model should be placed in the `LogicalOperations` package.
+
+Please note that the `Functions.Xor` function is used to perform the XOR operation on the input signals. This function is assumed to be available in the `Functions` package. If it is not, you will need to implement it yourself.
+
+The `sample` function is used to sample the input signals at regular intervals. The first argument to the `sample` function is the offset time, and the second argument is the sample time. In this case, the offset time is 0, which means that the sampling starts at the beginning of the simulation. The sample time is `Ts`, which is a parameter of the model.
+
+The `assert` statement is used to check the validity of the model's parameters. In this case, it checks whether the number of inputs is greater than or equal to 2. If the assertion fails, the simulation will stop and an error message will be displayed.
+
+The `not` operator is used to invert the result of the XOR operation.
+
+The `y[1]` expression is used to set the output signal. The output signal is a single signal, so it is indexed by 1.
+
+The `u[:]` expression is used to access all input signals. The `:` operator is used to select all elements of an array.
+
+The `nInput` expression is used to get the number of input signals.
+
+The `Ts` expression is used to get the sample time.
+
+The `when` statement is used to execute a block of code at regular intervals. The block of code is executed every time the condition specified in the `when` statement becomes true. In this case, the condition is `sample(0, Ts)`, which means that the block of code is executed at regular intervals starting at the beginning of the simulation.
+
+The `end if;` statement is used to end the if statement.
+
+The `end Xnor;` statement is used to end the model.
+
+The `extends` keyword is used to inherit properties and functions from another model. In this case, the model inherits from `LogicalBlock`.
+
+The `final` keyword is used to declare a parameter as final, meaning its value cannot be changed during the simulation. In this case, `nOutput` is declared as final.
+
+The `equation` keyword is used to start the equation section of the model.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is used to start a when statement. A when statement is used to execute a block of code at regular intervals.
+
+The `:` keyword is used to select all elements of an array.
+
+The `not` keyword is used to invert a boolean value.
+
+The `y` keyword is used to access the output signal.
+
+The `u` keyword is used to access the input signals.
+
+The `nInput` keyword is used to get the number of input signals.
+
+The `Ts` keyword is used to get the sample time.
+
+The `assert` keyword is used to check the validity of a condition. If the condition is false, the simulation will stop and an error message will be displayed.
+
+The `if` keyword is used to start an if statement. An if statement is used to execute a block of code if a certain condition is true.
+
+The `when` keyword is

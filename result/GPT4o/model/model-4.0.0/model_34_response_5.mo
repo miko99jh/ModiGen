@@ -1,0 +1,19 @@
+model TimeBasedSine
+ // Import necessary components from Modelica library
+  import Modelica.Clocked.RealSignals.Sampler.AssignClock;
+  import Modelica.Clocked.ClockSignals.Clocks.PeriodicRealClock;
+  import Modelica.Clocked.RealSignals.TimeBasedSources.Sine;
+
+  // Declare components
+  PeriodicRealClock periodicClock1(period=0.1) "Periodic clock with a period of 0.1 seconds";
+  AssignClock assignClock1 "Assign clock to the sine signal";
+  Sine sine(f=2) "Clocked sine source with frequency 2 Hz";
+
+equation
+  // Establish clock assignment logic
+  connect(periodicClock1.y, assignClock1.clock) "Connect periodic clock to assignClock1";
+  connect(sine.y, assignClock1.u) "Route sine output to assignClock1 input";
+
+  // Ensure the sine source uses the periodic clock
+  sine.clock = periodicClock1.y;
+end TimeBasedSine;

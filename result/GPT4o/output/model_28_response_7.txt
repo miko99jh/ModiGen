@@ -1,0 +1,37 @@
+To create a Modelica block named `ConjunctiveClock` that extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock` and performs a logical conjunction (AND) operation, you can redeclare the internal `combinator` component using the appropriate Boolean logic block from the Modelica Standard Library. Below is an example of how you might implement this:
+
+```modelica
+block ConjunctiveClock
+  extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock;
+
+  // Redeclare the combinator component to use a logical AND operation
+  redeclare Modelica.Blocks.Logical.And combinator(n=numberOfInputClocks);
+
+  // Parameters
+  parameter Integer numberOfInputClocks(min=1) = 2 "Number of input clocks";
+
+  // Inputs
+  input Clock inputClocks[numberOfInputClocks] "Array of input clocks";
+
+  // Outputs
+  output Clock outputClock "Output clock that ticks when all input clocks have ticked";
+
+equation
+  // Connect the input clocks to the combinator
+  for i in 1:numberOfInputClocks loop
+    connect(inputClocks[i], combinator.u[i]);
+  end for;
+
+  // Connect the combinator output to the output clock
+  connect(combinator.y, outputClock);
+end ConjunctiveClock;
+```
+
+### Explanation:
+- **Extending `PartialLogicalClock`:** The block extends `PartialLogicalClock`, which provides a framework for creating logical clocks.
+- **Redeclaring `combinator`:** The `combinator` component is redeclared to use `Modelica.Blocks.Logical.And`, which performs a logical AND operation. The parameter `n` is set to `numberOfInputClocks` to specify the number of inputs to the AND block.
+- **Parameters and Inputs:** The block has a parameter `numberOfInputClocks` to specify how many input clocks there are, and an array `inputClocks` to hold these clocks.
+- **Outputs:** The block outputs a single clock `outputClock` that ticks when all input clocks have ticked at least once.
+- **Equations:** The `equation` section connects each input clock to the corresponding input of the `combinator`, and connects the output of the `combinator` to the `outputClock`.
+
+This block will tick the `outputClock` only when all `inputClocks` have ticked at least once, effectively performing a logical conjunction of the input clocks.

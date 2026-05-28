@@ -1,0 +1,38 @@
+
+Create a Modelica model named `IndependentSampling`. The model includes real type variables 'x', 'y', 'e' and 'next_time'. This model specifically demonstrates the technique of independent sampling where two variables, 'x' and 'y', are sampled at 10Hz using different methods. The model should compute the error 'e' as the difference between 'x' and 'y'. Additionally, 'x' is a direct sample, manage the sampling rate for 'y' using a variable 'next_time' which updates every 0.1 seconds based on the previous 'next_time', when {initial(), time>pre(next_time)} then 'y' sample. This model is crucial for systems that require synchronization of separate processes that are sampled at the same rate but initiated differently.
+
+//modelica
+```model IndependentSampling
+  parameter Real samplingRate = 10 "Sampling rate in Hz";
+  Real x(start=0) "Variable x";
+  Real y(start=0) "Variable y";
+  Real e "Error between x and y";
+  Real next_time(start=0) "Next time to sample y";
+initial equation
+  next_time = time + 0.1;
+equation
+  // Sampling 'x' at 10Hz
+  when (time - pre(time) >= 1/samplingRate) then
+    x = x + 1;
+  end when;
+
+  // Sampling 'y' at 0.1Hz
+  when (time > next_time) then
+    y = x;
+    next_time = time + 0.1;
+  end when;
+
+  // Computing the error
+  e = x - y;
+end IndependentSampling;
+```
+
+This model demonstrates the independent sampling of two variables 'x' and 'y' at different rates. The variable 'x' is sampled at a rate of 10Hz, while 'y' is sampled at a rate of 0.1Hz. The error 'e' is computed as the difference between 'x' and 'y'. The sampling rate for 'y' is managed using the variable 'next_time', which updates every 0.1 seconds based on the previous 'next_time'.
+
+Please note that this model assumes that the simulation time step is less than 0.1 seconds to ensure accurate independent sampling of 'y'. If the simulation time step is greater than 0.1 seconds, the model may not behave as expected.
+
+The initial() function is used to set the initial value of 'next_time' to the current simulation time plus 0.1 seconds. The time>pre(next_time) condition ensures that 'y' is sampled only when the current simulation time is greater than the next time to sample 'y'.
+
+The error 'e' is computed as the difference between 'x' and 'y', which is the difference between the two sampled variables. This error can be used to monitor the synchronization of the two processes.
+
+This model is useful for systems that require synchronization of separate processes that are sampled at different rates.

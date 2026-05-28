@@ -1,0 +1,26 @@
+
+Generate a Modelica model named `Add` that adds two integer inputs 'u1' and 'u2' and outputs their sum 'y'. The model should extend the `IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation`. The input 'u' and output 'y' exist in IntSimpleOperation and does not need to be redeclared. It should handle the addition through a conditional operation based on the sampling time Ts. If Ts is greater than zero, the output is computed at each sample point; otherwise, the output is the direct sum of the two inputs.
+
+//modelica
+```model Add
+  extends IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
+  parameter Integer u1(start=0);
+  parameter Integer u2(start=0);
+  output Integer y;
+
+equation
+  if Ts > 0 then
+    der(y) = (u1 + u2);
+  else
+    y = u1 + u2;
+  end if;
+end Add;
+```
+
+This model extends the `IntSimpleOperation` interface and defines two integer parameters `u1` and `u2` which are the inputs to the addition operation. The output `y` is computed based on the sampling time `Ts`. If `Ts` is greater than zero, `y` is computed as the derivative of `y` which is equal to the sum of `u1` and `u2`. If `Ts` is not greater than zero, `y` is computed as the direct sum of `u1` and `u2`.
+
+Please note that this model does not include any initial conditions or state variables since the output is computed directly based on the inputs and the sampling time.
+
+Also note that the `der` operator is used to denote the derivative of `y` with respect to time. This operator is used when the output is computed at each sample point. If `Ts` is not greater than zero, the `der` operator is not used and the output is computed directly.
+
+This model can be used in a simulation environment to test the addition operation with different inputs and sampling times.

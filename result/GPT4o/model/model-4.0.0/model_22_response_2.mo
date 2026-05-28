@@ -1,0 +1,26 @@
+model PQBus
+ extends PowerGrids.Icons.Load(
+    PIcon = port.P,
+    QIcon = port.Q,
+    PPuIcon = port.PPu,
+    QPuIcon = port.QPu);
+
+  extends PowerGrids.Electrical.BaseClasses.SolutionChecking(
+    VPuCheck = port.VPu,
+    IPuCheck = port.IPu);
+
+  extends PowerGrids.Electrical.BaseClasses.OnePortACPF(
+    final portVariablesPhases = true);
+
+  // Parameters
+  parameter PowerGrids.Types.ActivePower P = SNom 
+    "Active power entering the bus (default is nominal power)";
+  parameter PowerGrids.Types.ReactivePower Q = 0 
+    "Reactive power entering the bus (default is 0)";
+
+equation
+  // Assign active and reactive power to the port
+  port.P = P;
+  port.Q = Q;
+
+end PQBus;

@@ -1,0 +1,52 @@
+To create a Modelica block named `EventClock` that generates a clock signal based on changes in a Boolean input, you can follow the structure below. This block extends `Modelica.Clocked.ClockSignals.Interfaces.PartialClock` and uses a Boolean input to trigger the clock signal. The implementation considers the `useSolver` flag to determine how the clock is instantiated.
+
+```modelica
+block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+
+  parameter Boolean useSolver = false "Flag to use solver-based clock";
+  parameter String solverMethod = "default" "Solver method for nested clock";
+
+  Modelica.Blocks.Interfaces.BooleanInput u "Boolean input signal";
+  output Modelica.Clocked.ClockSignals.Clock y "Output clock signal";
+
+protected
+  Boolean previous_u(start=false) "Previous value of input signal";
+
+equation
+  // Update previous_u at each event
+  when u <> previous_u then
+    previous_u = u;
+  end when;
+
+  // Generate clock signal based on input change
+  if useSolver then
+    // Instantiate nested clock with solver method
+    y = Modelica.Clocked.ClockSignals.Clock(y, solverMethod);
+  else
+    // Standard event clock triggered by input change
+    when u and not previous_u then
+      y = Modelica.Clocked.ClockSignals.Clock(y);
+    end when;
+  end if;
+end EventClock;
+```
+
+### Explanation:
+- **Parameters:**
+  - `useSolver`: A Boolean parameter to decide whether to use a solver-based clock.
+  - `solverMethod`: A string parameter specifying the solver method for the nested clock.
+
+- **Inputs and Outputs:**
+  - `u`: A Boolean input signal that triggers the clock.
+  - `y`: The output clock signal.
+
+- **Protected Variables:**
+  - `previous_u`: A Boolean variable to store the previous value of the input signal `u`.
+
+- **Equations:**
+  - The `when` statement updates `previous_u` whenever `u` changes.
+  - If `useSolver` is true, a nested clock is instantiated using the specified `solverMethod`.
+  - Otherwise, a standard event clock is triggered directly by changes in `u`.
+
+This model provides a flexible way to generate clock signals based on Boolean events, with options for solver-based clock generation.

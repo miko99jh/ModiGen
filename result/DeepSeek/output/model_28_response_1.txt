@@ -1,0 +1,194 @@
+
+Generate a Modelica block named `ConjunctiveClock` with the following for a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. This block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`. It also configure the block to perform a logical conjunction (AND) by redeclaring the internal 'combinator' component with the appropriate Boolean logic block from the Modelica Standard Library in `PartialLogicalClock`.
+
+//modelica
+```block ConjunctiveClock extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock(combinator = Modelica.Blocks.Logical.And);```
+
+The `ConjunctiveClock` block should have an input connector `in` and an output connector `out` that are of type `ClockSignal`.
+
+//modelica
+```connector in input ClockSignal;
+connector out output ClockSignal;```
+
+The `ConjunctiveClock` block should have a parameter `n` that determines the number of input clocks.
+
+//modelica
+```parameter Integer n=2 "Number of input clocks";```
+
+The `ConjunctiveClock` block should have an array `inputClocks` of size `n` that represents the input clocks.
+
+//modelica
+```input ClockSignal inputClocks[n](start=false) "Input clocks";```
+
+The `ConjunctiveClock` block should have a `when` clause that triggers the `combinator` component when all input clocks have ticked at least once.
+
+//modelica
+```when all inputClocks.tick then combinator.trigger;```
+
+The `ConjunctiveClock` block should have a `reset` clause that resets the `combinator` component for the next cycle.
+
+//modelica
+```reset when not all inputClocks.tick;```
+
+The `ConjunctiveClock` block should connect the `in` connector to the `inputClocks` array and the `out` connector to the `combinator.out` connector.
+
+//modelica
+```connect(in, inputClocks);
+connect(combinator.out, out);```
+
+The `ConjunctiveClock` block should have a `nominal` annotation for the `out` connector that sets the nominal value to `false`.
+
+//modelica
+```annotation(nominal(out=false));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Blocks.Types.BlockIcon` to display an icon for the block.
+
+//modelica
+```annotation(Modelica.Blocks.Types.BlockIcon(graphics={}));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Blocks.Types.BlockName` to display the name of the block.
+
+//modelica
+```annotation(Modelica.Blocks.Types.BlockName(name="ConjunctiveClock"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines(Machines="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical` to display the type of the block.
+
+//modelica
+```annotation(Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical.Logical(Logical="Logical"));```
+
+The `ConjunctiveClock` block should be annotated with `@Modelica.Electrical.Machines.Types.Machines.Logical.Logical.Logical.

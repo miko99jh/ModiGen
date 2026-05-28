@@ -1,0 +1,39 @@
+```modelica
+model SignalCurrent
+  // Parameter for the number of phases
+  parameter Integer m(min=1) = 3;
+
+  // Voltage drops between the two plugs
+  Modelica.Units.SI.Voltage v[m];
+
+  // Positive polyphase plug
+  Modelica.Electrical.Polyphase.Interfaces.PositivePlug plug_p(final m=m);
+
+  // Negative polyphase plug
+  Modelica.Electrical.Polyphase.Interfaces.NegativePlug plug_n(final m=m);
+
+  // Real input for the current
+  Modelica.Blocks.Interfaces.RealInput i[m](each unit="A");
+
+  // Array of signal current sources
+  Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent[m];
+
+equation
+  // Voltage drop calculation
+  v = plug_p.pin.v - plug_n.pin.v;
+
+  // Signal Routing: Route each element of the external input signal vector 'i'
+  // to the corresponding control input ('i') of the 'signalCurrent' array
+  for k in 1:m loop
+    signalCurrent[k].i = i[k];
+  end for;
+
+  // Electrical Connection: Interpose the current source array between the plugs
+  for k in 1:m loop
+    connect(signalCurrent[k].p, plug_p.pin[k]);
+    connect(signalCurrent[k].n, plug_n.pin[k]);
+  end for;
+end SignalCurrent;
+```
+
+This Modelica model defines a polyphase signal current source with the specified components and connections. The model uses a loop to connect each phase of the current source to the corresponding pins of the positive and negative plugs, and routes the input current signals to the signal current sources.

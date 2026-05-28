@@ -1,0 +1,14 @@
+Certainly! Below is a Modelica model named `Damper` for a rotational damper, which includes the specified parameter and extends the given interface:
+
+```modelica
+model Damper
+  extends ModelicaByExample.Components.Rotational.Interfaces.Compliant;
+
+  parameter Modelica.SIunits.RotationalDampingConstant d "Rotational damping constant (Nm/(rad/s))";
+
+equation
+  tau = d * der(phi_rel);
+end Damper;
+```
+
+This model defines a rotational damper with a damping constant `d`. The equation `tau = d * der(phi_rel)` represents the damping torque, where `tau` is the torque exerted by the damper, and `der(phi_rel)` is the derivative of the relative angular displacement, simulating the damping effect in rotational systems.

@@ -1,0 +1,29 @@
+
+Generate a Modelica model for a block called `AssignClockVectorized` which assign a clock signal to a vector of Real input signals and output them as a clocked Real signal vector. The model should include the following details:
+
+1. **Inputs and Outputs**:
+- `n(min=1)=1`: Size of input signal vector u (= size of output signal vector y).
+- `u[n]`: A vector of Real input signals. The size of this vector is determined by the parameter `n` (an integer with a minimum value of 1).
+- `y[n]`: A vector of Real output signals, which will have the same size as the input vector `u`. 
+- `clock`: A clock input signal that triggers the assignment of the input vector `u` to the output vector `y`.
+
+2. **Inheritance and Interfaces**: The block should include standard Modelica interfaces for Real input (`Modelica.Blocks.Interfaces.RealInput`) and Real output (`Modelica.Blocks.Interfaces.RealOutput`). The block should also include a clock input interface (`Modelica.Clocked.ClockSignals.Interfaces.ClockInput`). 
+
+The equation should update the output `y` with the input `u` whenever the clock signal triggers.
+
+//modelica
+```block AssignClockVectorized
+  extends Modelica.Blocks.Interfaces.RealInput,
+         Modelica.Blocks.Interfaces.RealOutput,
+         Modelica.Clocked.ClockSignals.Interfaces.ClockInput;
+  parameter Integer n(min=1)=1 "Size of input signal vector u (= size of output signal vector y)";
+  input Real u[n] "A vector of Real input signals";
+  output Real y[n] "A vector of Real output signals";
+equation
+  when clock then
+    y = u;
+  end when;
+end AssignClockVectorized;
+```
+
+This Modelica block should be able to handle a vector of Real input signals and output them as a Real vector signal, with the output update being triggered by a clock signal.

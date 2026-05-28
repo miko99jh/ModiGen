@@ -1,0 +1,39 @@
+To create a Modelica block named `EventClock` that generates a clock signal when the Boolean input changes from false to true, you can extend `Modelica.Clocked.ClockSignals.Interfaces.PartialClock` and define the necessary input and output. Below is an example implementation:
+
+```modelica
+block EventClock
+  extends Modelica.Clocked.ClockSignals.Interfaces.PartialClock;
+
+  parameter Boolean useSolver = false "Flag to use solver-based clock";
+  parameter String solverMethod = "default" "Solver method for nested clock";
+
+  Modelica.Blocks.Interfaces.BooleanInput u "Boolean input signal";
+  output Modelica.Clocked.ClockSignals.Clock y "Output clock signal";
+
+equation
+  if useSolver then
+    // Instantiate a nested clock associated with the specified solver method
+    y = Modelica.Clocked.ClockSignals.Clock(u, solverMethod);
+  else
+    // Define y as a standard event clock triggered directly by u
+    when u then
+      y = Modelica.Clocked.ClockSignals.Clock(u);
+    end when;
+  end if;
+end EventClock;
+```
+
+### Explanation:
+- **Parameters**:
+  - `useSolver`: A Boolean parameter to decide whether to use a solver-based clock.
+  - `solverMethod`: A string parameter specifying the solver method for the nested clock.
+
+- **Inputs and Outputs**:
+  - `u`: A Boolean input signal that triggers the clock.
+  - `y`: The output clock signal.
+
+- **Equation Section**:
+  - If `useSolver` is true, the clock `y` is instantiated using a nested clock associated with the specified `solverMethod`.
+  - If `useSolver` is false, the clock `y` is defined as a standard event clock triggered directly by changes in `u`.
+
+This implementation assumes that the `Modelica.Clocked.ClockSignals.Clock` can be instantiated with a Boolean input and optionally a solver method, which may require additional context or specific library support in Modelica. Adjustments might be necessary based on the actual capabilities and syntax of the Modelica environment you are using.

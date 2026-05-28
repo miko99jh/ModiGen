@@ -1,0 +1,47 @@
+
+Generate a Modelica model named `ZDiode` that represents a Zener diode with three working areas. The model extends `Modelica.Electrical.Analog.Interfaces.OnePort`. It also extends `Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort` with a default temperature value of 293.15 K. The model should include the following components and details:
+1. Model Functionality: The model represents a Zener diode, which operates in three distinct regions: forward bias, reverse bias, and breakdown (Zener) region.
+2. Parameters:
+- Modelica.Units.SI.Current Ids=1e-6 `Saturation current`
+- Modelica.Units.SI.Voltage Vt=0.04 `Voltage equivalent of temperature (kT/qn)`
+- Real Maxexp(final min=Modelica.Constants.small) = 30
+- Modelica.Units.SI.Resistance R=1e8
+- Modelica.Units.SI.Voltage Bv=5.1
+- Modelica.Units.SI.Current Ibv=0.7
+- Real Nbv=0.74 
+- Real T=293.15
+3. Equations and Expressions:
+ The current through the diode i is defined by a piecewise function based on the voltage v:
+i = smooth(1, if (v > Maxexp * Vt) then
+Ids * (exp(Maxexp) * (1 + v / Vt - Maxexp) - 1) + v / R
+else if ((v + Bv) < -Maxexp * (Nbv * Vt)) then
+-Ids - Ibv * exp(Maxexp) * (1 - (v + Bv) / (Nbv * Vt) - Maxexp) + v / R
+else
+Ids * (exp(v / Vt) - 1) - Ibv * exp(-(v + Bv) / (Nbv * Vt)) + v / R);
+The power loss LossPower is defined as: `LossPower = v * i;`
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model ZDiode
+  extends Modelica.Electrical.Analog.Interfaces.OnePort;
+  extends Modelica.Electrical.Analog.Interfaces.ConditionalHeatPort(T = 293.15);
+  parameter Modelica.Units.SI.Current Ids=1e-6 "Saturation current";
+  parameter Modelica.Units.SI.Voltage Vt=0.04 "Voltage equivalent of temperature (kT/qn)";
+  parameter Real Maxexp(final min=Modelica.Constants.small) = 30;
+  parameter Modelica.Units.SI.Resistance R=1e8;
+  parameter Modelica.Units.SI.Voltage Bv=5.1;
+  parameter Modelica.Units.SI.Current Ibv=0.7;
+  parameter Real Nbv=0.74;
+  parameter Real T=293.15;
+equation 
+  i = smooth(1, if (v > Maxexp * Vt) then
+    Ids * (exp(Maxexp) * (1 + v / Vt - Maxexp) - 1) + v / R
+  else if ((v + Bv) < -Maxexp * (Nbv * Vt)) then
+    -Ids - Ibv * exp(Maxexp) * (1 - (v + Bv) / (Nbv * Vt) - Maxexp) + v / R
+  else
+    Ids * (exp(v / Vt) - 1) - Ibv * exp(-(v + Bv) / (Nbv * Vt)) + v / R);
+  LossPower = v * i;
+end ZDiode;```
+
+This model should be used in a simulation environment to study the behavior of a Zener diode under different voltage and current conditions.

@@ -1,0 +1,72 @@
+
+Create a Modelica model named `Xnor` for an n-bit XNOR gate. The model should extend `IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock` with `nInput=2` and `final nOutput=1`. The functionality of the model is to perform an XNOR operation on n input signals and produce a single output signal.
+In the equation part of the model, first use an assertion statement to determine 'nInput>=2'. If the parameter `Ts` (sample time) is greater than 0, the model should sample the input signals at regular intervals. The result should be a single output signal that use the expression `y[1] = not Functions.Xor(u[:], nInput)` to perform the XNOR operation.
+**Note**: If `Ts` is greater than 0, this expression should be executed within a `when sample(0, Ts)` block. Otherwise, it should be executed directly.
+
+//modelica
+```model Xnor
+  extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+  parameter Integer nInput=2;
+  parameter Integer nOutput=1;
+  parameter Real Ts=0;
+  output Boolean y[nOutput];
+  input Boolean u[nInput];
+equation 
+  assert(nInput>=2, "The number of inputs should be at least 2");
+  when Ts > 0 then
+    y[1] = not Functions.Xor(u[:], nInput) within 0..1;
+  else
+    y[1] = not Functions.Xor(u[:], nInput);
+  end when;
+end Xnor;
+```
+
+This model should be placed in a package named `XnorPackage` and the package should be placed in a library named `LogicalLibrary`.
+
+//modelica
+```modelica
+package XnorPackage
+  "Package for Xnor model"
+  model Xnor
+    extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+    parameter Integer nInput=2;
+    parameter Integer nOutput=1;
+    parameter Real Ts=0;
+    output Boolean y[nOutput];
+    input Boolean u[nInput];
+  equation 
+    assert(nInput>=2, "The number of inputs should be at least 2");
+    when Ts > 0 then
+      y[1] = not Functions.Xor(u[:], nInput) within 0..1;
+    else
+      y[1] = not Functions.Xor(u[:], nInput);
+    end when;
+  end Xnor;
+end XnorPackage;
+```
+
+```modelica
+library LogicalLibrary
+  "Library for logical operations"
+  package XnorPackage
+    "Package for Xnor model"
+    model Xnor
+      extends IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(nInput=2, nOutput=1);
+      parameter Integer nInput=2;
+      parameter Integer nOutput=1;
+      parameter Real Ts=0;
+      output Boolean y[nOutput];
+      input Boolean u[nInput];
+    equation 
+      assert(nInput>=2, "The number of inputs should be at least 2");
+      when Ts > 0 then
+        y[1] = not Functions.Xor(u[:], nInput) within 0..1;
+      else
+        y[1] = not Functions.Xor(u[:], nInput);
+      end when;
+    end Xnor;
+  end XnorPackage;
+end LogicalLibrary;
+```
+
+The `Xnor` model should be placed in the `XnorPackage` package and the `XnorPackage` should be placed in the `LogicalLibrary` library.

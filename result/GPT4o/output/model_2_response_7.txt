@@ -1,0 +1,20 @@
+```modelica
+function layer_fcf_distances
+  input Real s[:]; // Array of layer thicknesses
+  output Real d[size(s, 1) + 1]; // Array of distances between face centers
+protected
+  Integer n; // Size of the input array s
+algorithm
+  n := size(s, 1);
+  // Assign the first and last elements of d
+  d[1] := s[1] / 2;
+  d[n + 1] := s[n] / 2;
+  
+  // Calculate the distances between face centers for the intermediate layers
+  for i in 2:n loop
+    d[i] := (s[i - 1] + s[i]) / 2;
+  end for;
+end layer_fcf_distances;
+```
+
+This Modelica function `layer_fcf_distances` calculates the distances between the centers of faces in a layered structure based on the input array `s` of layer thicknesses. The output array `d` contains the calculated distances, with the first and last elements being half of the first and last layer thicknesses, respectively, and the intermediate elements being the average of the current and previous layer thicknesses.

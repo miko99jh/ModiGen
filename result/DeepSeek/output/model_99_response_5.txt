@@ -1,0 +1,20 @@
+
+Implement a Modelica function named `PotentialEnergy` for solving gravitational potential energy, where the inputs are mass (`m`), height (`h`), and gravitational acceleration (`g`) which defaults to 9.81, and the output is the gravitational potential energy (`pe`) of the object. The function should use an `algorithm` block to calculate the potential energy.
+
+//modelica
+```function PotentialEnergy
+  input Real m "Mass";
+  input Real h "Height";
+  input Real g = 9.81 "Gravitational acceleration";
+  output Real pe "Gravitational potential energy";
+algorithm 
+  pe := 0.5 * m * h * g;
+end PotentialEnergy;```
+
+This function calculates the gravitational potential energy of an object given its mass, height, and gravitational acceleration. The potential energy is calculated using the formula `0.5 * m * h * g`, where `m` is the mass of the object, `h` is the height from which the object is raised, and `g` is the gravitational acceleration. The function defaults to a gravitational acceleration of 9.81 m/s^2 if no value is provided for `g`.
+
+Note: The gravitational potential energy is defined as the energy an object has due to its position in a gravitational field, and it is equal to the work done by the force of gravity to elevate the object. In this case, the object is raised from ground level (h=0) to a height `h`, and the gravitational force does positive work on the object, thereby increasing its gravitational potential energy.
+
+The function uses an `algorithm` block to perform the calculation, which is a block in Modelica that is used to perform calculations that do not depend on time. The result of the calculation is then assigned to the output variable `pe`.
+
+This function can be used in a Modelica model to calculate the gravitational potential energy of an object at different heights or with different masses or gravitational accelerations.

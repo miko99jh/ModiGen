@@ -1,0 +1,9 @@
+model Inductor
+ extends Modelica.Electrical.Analog.Interfaces.OnePort(
+    i(start=0)); // Initial value of current set to 0
+
+  parameter Modelica.Units.SI.Inductance L = 1 "Inductance in henry";
+
+equation
+  L * der(i) = v; // Relates inductance to the time derivative of current
+end Inductor;

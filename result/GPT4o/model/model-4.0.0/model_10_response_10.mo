@@ -1,0 +1,28 @@
+function f1p1z
+ input Real alfa;       // Discretization parameter
+  input Real T1;         // Zero
+  input Real T2;         // Pole
+  input Real u;          // Current input
+  input Real u_pre;      // Previous input
+  input Real y_pre;      // Previous output
+  input Real Ts;         // Sampling time in seconds
+  input Real k;          // Gain
+  output Real y;         // Output
+
+protected
+  Real A;                // Intermediate variable
+  Real B;                // Intermediate variable
+  Real C;                // Intermediate variable
+  Real D;                // Intermediate variable
+  Real E;                // Intermediate variable
+  Real F;                // Intermediate variable
+
+algorithm
+  A := alfa * Ts;
+  B := Ts - alfa * Ts;
+  C := A + T1;
+  D := B - T1;
+  E := A + T2;
+  F := B - T2;
+  y := (C * k * u + D * k * u_pre - F * y_pre) / E;
+end f1p1z;

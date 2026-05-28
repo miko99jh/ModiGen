@@ -1,0 +1,30 @@
+
+Generate a Modelica model named `IdealCore` that represents an ideal transformer with 3 windings. The model should include the following components and details:
+ 1.Components:
+- The model should extend `PartialCore`.
+2. Equations and Expressions:
+ The model should include the following equations to define the relationships between the voltages and currents of the windings:
+- The magnetizing current vector 'im' should be set to zero for all 'm' phases using the 'zeros()' function.
+- Define the voltage transformation ratios: 'v1 = n12 * v2' and 'v1 = n13 * v3'.
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model IdealCore
+  extends Modelica.Electrical.Machines.Interfaces.PartialCore;
+  parameter Real n12 "Voltage transformation ratio 1 to 2";
+  parameter Real n13 "Voltage transformation ratio 1 to 3";
+
+  parameter Integer m = Modelica.Electrical.Machines.Utilities.getNumberOfPhases(windingSet.phases);
+  parameter Real im[m] = zeros(m);
+
+equation 
+  // magnetizing current
+  im = zeros(m);
+
+  // voltage transformation ratios
+  v1 = n12 * v2;
+  v1 = n13 * v3;
+end IdealCore;```
+
+Note: The 'zeros()' function is used to create an array of zeros with the same size as the number of phases'm'. The 'getNumberOfPhases()' function is used to determine the number of phases in the winding set.

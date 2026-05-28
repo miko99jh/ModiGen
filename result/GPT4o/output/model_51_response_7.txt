@@ -1,0 +1,39 @@
+```modelica
+model Resistor
+  extends Modelica.Icons.Example;
+
+  // Electrical components
+  Modelica.Electrical.Analog.Basic.Resistor resistor(
+    R=100, 
+    alpha=1e-3, 
+    T_ref=293.15, 
+    i(start=0), 
+    useHeatPort=true) "Resistor with thermal effects";
+  
+  Modelica.Electrical.Analog.Sources.SineVoltage sineVoltage1(
+    V=220, 
+    f=1) "Sine voltage source";
+  
+  Modelica.Electrical.Analog.Basic.Ground ground "Electrical ground";
+
+  // Thermal components
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor(
+    G=50) "Thermal conductor";
+  
+  Modelica.Thermal.HeatTransfer.Celsius.FixedTemperature fixedTemperature(
+    T=20) "Fixed temperature source";
+
+equation
+  // Electrical connections
+  connect(sineVoltage1.p, resistor.p);
+  connect(resistor.n, ground.p);
+  connect(sineVoltage1.n, ground.p);
+
+  // Thermal connections
+  connect(resistor.heatPort, thermalConductor.port_a);
+  connect(thermalConductor.port_b, fixedTemperature.port);
+  
+end Resistor;
+```
+
+This Modelica model represents an electrical resistor with a simple thermal network. It includes a resistor with specified electrical and thermal properties, a sine voltage source, a ground, a thermal conductor, and a fixed temperature source. The connections are set up to simulate both the electrical and thermal behavior of the resistor.

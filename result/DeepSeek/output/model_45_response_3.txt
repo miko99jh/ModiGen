@@ -1,0 +1,27 @@
+
+Generate a Modelica block named `ExtractSignal` that extracts specific signals from an input signal vector. The model should inherit from `Modelica.ComplexBlocks.Interfaces.ComplexMIMO`, indicating that it handles multiple input and output signals in a complex multi-input multi-output system.  The key parameter is `extract`, which is an integer array with a size of `nout`, specifying the indices of the input vector to be extracted and sent to the output. The model should iterate over the range of output signals (`nout`) and assign each input `u[extract[i]]` to the corresponding output `y[i]`. Ensure accurate handling of the parameterization and iteration to correctly map input signals to outputs.
+
+//modelica
+```block ExtractSignal
+  extends Modelica.ComplexBlocks.Interfaces.ComplexMIMO;
+  parameter Integer extract[nout];
+  output ComplexOutput y[nout];
+
+equation 
+  for i in 1:nout loop
+    y[i] = u[extract[i]];
+  end for;
+end ExtractSignal;
+```
+
+This model will take an array of complex inputs `u` and an array of integers `extract` as parameters. It will then output an array of complex signals `y` where each signal is a copy of the corresponding input signal specified by the `extract` array.
+
+Please note that this model assumes that the size of the `extract` array is equal to `nout` (the number of output signals), and that each element of the `extract` array is a valid index for the `u` array. If these assumptions are not met, the model may not function as intended.
+
+Also, this model does not include any error checking or handling for invalid inputs. If an invalid index is provided in the `extract` array, the model will likely fail or produce incorrect results. It is the responsibility of the user to ensure that the `extract` array contains only valid indices for the `u` array.
+
+In addition, this model does not include any checks to ensure that the `extract` array does not contain duplicate indices. If duplicate indices are provided, the model will produce incorrect results because it will attempt to assign the same input signal to multiple output signals. It is the responsibility of the user to ensure that the `extract` array does not contain duplicate indices.
+
+Finally, this model does not include any checks to ensure that the `extract` array does not contain indices that are out of bounds for the `u` array. If an index is out of bounds, the model will fail or produce incorrect results. It is the responsibility of the user to ensure that the `extract` array contains only valid indices for the `u` array.
+
+Please note that this model is a simple implementation and does not include any advanced error checking or handling. It is the responsibility of the user to ensure that the model is used correctly.

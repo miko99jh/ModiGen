@@ -1,0 +1,43 @@
+
+Generate a Modelica block named `ConjunctiveClock` with the following for a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle. This block extends `Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock`. It also configure the block to perform a logical conjunction (AND) by redeclaring the internal 'combinator' component with the appropriate Boolean logic block from the Modelica Standard Library in `PartialLogicalClock`.
+
+//modelica
+```block ConjunctiveClock extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock(combinator = Modelica.Blocks.Logical.And(nin=nin));```
+
+This block should have the following parameters:
+
+- `nin` (integer, default: 2): The number of input signals.
+- `nout` (integer, default: 1): The number of output signals.
+
+The block should have the following connectors:
+
+- `clk[nin]` (input, Real): The input clock signals.
+- `reset` (input, Real): The reset signal.
+- `y[nout]` (output, Real): The output signal.
+
+The block should have the following equations:
+
+- The output signal `y` is equal to the result of the logical conjunction of the input clock signals `clk`.
+- The reset signal `reset` should reset the internal state of the block.
+
+The block should be placed in a package named `Modelica.Clocked.ClockSignals.Clocks.Logical`.
+
+//modelica
+```package Modelica.Clocked.ClockSignals.Clocks.Logical;
+
+block ConjunctiveClock extends Modelica.Clocked.ClockSignals.Clocks.Logical.PartialLogicalClock(combinator = Modelica.Blocks.Logical.And(nin=nin));
+  parameter Integer nin=2 "The number of input signals";
+  parameter Integer nout=1 "The number of output signals";
+  input Real clk[nin] "The input clock signals";
+  input Real reset "The reset signal";
+  output Real y[nout] "The output signal";
+equation 
+  y = clk;
+  reset => reset;
+end ConjunctiveClock;```
+
+Please note that the actual implementation of the `PartialLogicalClock` block is not provided in the question, so the above code is a hypothetical implementation based on the description provided.
+
+The `PartialLogicalClock` block should be extended with a `combinator` component that is an instance of `Modelica.Blocks.Logical.And` with `nin` inputs. The `y` output should be connected to the `y` output of the `combinator` component. The `reset` input should be connected to the `reset` input of the `combinator` component. The `clk` input signals should be connected to the `u` input signals of the `combinator` component.
+
+This block can be used to create a logical clock that ticks when all input clocks have ticked at least once, then resets for the next cycle.

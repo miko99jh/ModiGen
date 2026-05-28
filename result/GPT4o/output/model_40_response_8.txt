@@ -1,0 +1,59 @@
+Here is the Modelica implementation of the `TransferFunction` block as described:
+
+```modelica
+block TransferFunction
+  extends Modelica.Clocked.RealSignals.Interfaces.PartialClockedSISO;
+
+  // Parameters
+  parameter Real b[:] = {1} "Numerator coefficients of the transfer function";
+  parameter Real a[:] "Denominator coefficients of the transfer function";
+
+  // Outputs
+  output Real x[size(a, 1) - 1](start = zeros(size(a, 1) - 1)) 
+    "State vector representing internal states in controller canonical form";
+
+protected
+  parameter Integer nb = size(b, 1) "Size of numerator of transfer function";
+  parameter Integer na = size(a, 1) "Size of denominator of transfer function";
+  Real x1 "Intermediate variable for current state calculation";
+  Real xext[na] "Extended state vector including current and previous states";
+
+equation
+  // Ensure denominator's first coefficient is non-zero
+  assert(a[1] <> 0, "The first coefficient of the denominator (a[1]) must be non-zero.");
+
+  // Intermediate state calculation
+  x1 = (u - sum(a[2:na] .* previous(x))) / a[1];
+
+  // Construct extended state vector
+  xext = {x1, previous(x)};
+
+  // Update state vector
+  x = xext[1:(na - 1)];
+
+  // Output calculation
+  y = sum(b .* {xext[i] for i in 1:nb}) + sum(zeros(na - nb));
+end TransferFunction;
+```
+
+### Explanation of the Code:
+1. **Parameters**:
+   - `b`: Represents the numerator coefficients of the transfer function.
+   - `a`: Represents the denominator coefficients of the transfer function.
+   - `nb` and `na`: Represent the sizes of the numerator and denominator arrays, respectively.
+
+2. **Outputs**:
+   - `x`: Represents the internal state vector of the system in controller canonical form. It is initialized to zeros.
+
+3. **Protected Variables**:
+   - `x1`: An intermediate variable used to calculate the current state.
+   - `xext`: An extended state vector that includes the current state (`x1`) and the previous states (`previous(x)`).
+
+4. **Equations**:
+   - The first equation ensures that the first coefficient of the denominator (`a[1]`) is non-zero, as required for a valid transfer function.
+   - The second equation calculates the intermediate state `x1` by subtracting the weighted sum of previous states (using `a[2:end]`) from the input `u`, and then normalizing by `a[1]`.
+   - The third equation constructs the extended state vector `xext` by concatenating `x1` with the previous state vector `previous(x)`.
+   - The fourth equation updates the state vector `x` by taking the relevant slice of `xext`.
+   - The final equation computes the output `y` as the dot product of the numerator coefficients `b` with the extended state vector `xext`. If the numerator has fewer coefficients than the denominator, it is padded with zeros.
+
+This block implements a discrete-time transfer function in a clocked system, accurately modeling the relationship between the input `u` and the output `y` in the z-domain.

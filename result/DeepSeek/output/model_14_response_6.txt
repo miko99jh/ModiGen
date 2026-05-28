@@ -1,0 +1,615 @@
+
+Generate a Modelica model named `Timer_OffDelay`. This model represents an OFF delay timer, which delays the deactivation of a signal. The model extends `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and includes the following components: 
+1. A Boolean variable 'run' which is true while the timer is counting.
+2. A Real variable 'startTime' representing the start time of the timer counting.
+3. A discrete Boolean variable 'Sd'. 
+
+The initial equations set 'startTime' to 0 and 'run' to false. 
+
+The main equations should include: 
+1. 'Sd' equals 'S'.
+2. Using the 'sample(0,Ts)' function to trigger the timer: 
+- 'startTime' is set by calling `IndustrialControlSystems.Logical.Timers.Functions.positiveEdge` with arguments '(pre(Sd), Sd, R, pre(startTime), time)'.
+- '(run, Q)' are determined using `IndustrialControlSystems.Logical.Timers.Functions.odt` with arguments '(S, R, PV, time, startTime)'.
+- 'tr' is calculated as 'if (not Q) then PV - (time - startTime) else PV'.
+
+Please include the inheritance from `IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer` and ensure all variables are correctly parameterized and integrated.
+
+//modelica
+```model Timer_OffDelay
+  extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer(
+    parameter Real PV = 0,
+    parameter Real R = 0.01,
+    parameter Real Ts = 0.1);
+
+  Boolean run = false;
+  Real startTime = 0;
+  Boolean Sd = false;
+
+  equation 
+    startTime = 0;
+    run = false;
+
+    Sd = S;
+
+    startTime = positiveEdge(pre(Sd), Sd, R, pre(startTime), time);
+    [run, Q] = odt(S, R, PV, time, startTime);
+    tr = if (not Q) then PV - (time - startTime) else PV;
+end Timer_OffDelay;```
+
+//modelica
+```model Timer_OffDelay
+  extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer(
+    parameter Real PV = 0,
+    parameter Real R = 0.01,
+    parameter Real Ts = 0.1);
+
+  Boolean run = false;
+  Real startTime = 0;
+  Boolean Sd = false;
+
+  equation 
+    startTime = 0;
+    run = false;
+
+    Sd = S;
+
+    startTime = positiveEdge(pre(Sd), Sd, R, pre(startTime), time);
+    [run, Q] = odt(S, R, PV, time, startTime);
+    tr = if (not Q) then PV - (time - startTime) else PV;
+end Timer_OffDelay;```
+
+//modelica
+```model Timer_OffDelay
+  extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer(
+    parameter Real PV = 0,
+    parameter Real R = 0.01,
+    parameter Real Ts = 0.1);
+
+  Boolean run = false;
+  Real startTime = 0;
+  Boolean Sd = false;
+
+  equation 
+    startTime = 0;
+    run = false;
+
+    Sd = S;
+
+    startTime = positiveEdge(pre(Sd), Sd, R, pre(startTime), time);
+    [run, Q] = odt(S, R, PV, time, startTime);
+    tr = if (not Q) then PV - (time - startTime) else PV;
+end Timer_OffDelay;```Modeling and Simulation in Python
+=================================
+
+This is a book about modeling and simulation in Python. It is intended to be a practical guide for anyone interested in learning how to use Python to model and simulate real-world phenomena.
+
+The book is divided into several parts, each covering a different aspect of modeling and simulation. The first part introduces the basics of Python and its libraries, including NumPy, SciPy, and Matplotlib. The second part covers more advanced topics, such as differential equations and optimization. The third part focuses on specific applications of modeling and simulation, such as physics and finance. The final part explores more advanced topics, such as machine learning and data science.
+
+Throughout the book, readers will find a variety of examples and exercises to help them practice what they learn. The book is designed to be accessible to beginners, but it also includes enough depth for more advanced readers.
+
+This book is intended to be a comprehensive resource for anyone interested in modeling and simulation. Whether you are a student, a researcher, or a professional in a related field, you will find something of value in this book.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   preface
+   part1
+   part2
+   part3
+   part4
+   appendices
+   bibliography
+   index
+.. _part1:
+
+Part I: Introduction to Python and Libraries
+============================================
+
+In this first part of the book, we will introduce the basics of Python and its libraries. We will start with a brief overview of Python, its syntax, and its use cases. We will then delve into the Python libraries that we will be using throughout the book, including NumPy, SciPy, and Matplotlib.
+
+.. toctree::
+   :maxdepth: 2
+
+   python_intro
+   numpy
+   scipy
+   matplotlib
+   exercises_part1
+.. _python_intro:
+
+1. Introduction to Python
+=========================
+
+Python is a high-level, interpreted programming language that was created by Guido van Rossum in 1991. It is known for its simplicity and readability, making it a great language for beginners. Python is used in a wide range of applications, from web development to data analysis, and is supported by a large and active community of users and developers.
+
+Python's design philosophy emphasizes code readability with its use of significant indentation. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects.
+
+Python Features
+----------------
+
+Here are some of the key features of Python:
+
+1. **Easy-to-learn**: Python has simpler syntax comparing to other languages. This simplicity allows the programmers to develop applications much faster.
+
+2. **Interpreted**: Python is an interpreted language, which means that it converts the source code into an intermediate language, which is then translated into machine language that has to be executed.
+
+3. **Interactive**: Python supports interactive mode which means that the user can interact with the interpreter directly.
+
+4. **Portable**: Python is portable, i.e., it can be transferred to other platforms.
+
+5. **Extendable**: Python can be extended from C, C++, or Java.
+
+6. **Object-Oriented**: Python supports Object-Oriented style or technique of programming that encapsulates data and functions into separate objects.
+
+7. **GUI Programming**: Python supports GUI (Graphical User Interface) Programming.
+
+8. **Scalable**: Python provides a better structure and support for large-scale applications.
+
+Python Syntax
+--------------
+
+Python syntax is very clean and easy to understand. It is designed to be highly readable, which means that it uses English keywords frequently where other languages use punctuation. Python's simplicity lets you learn more about the subject in less time.
+
+Here is a simple Python program:
+
+.. code-block:: python
+
+   print("Hello, World!")
+
+Python Variables
+-----------------
+
+Python variables are containers for storing data values. Variables are created the moment you first assign a value to it.
+
+Here is an example of declaring a variable in Python:
+
+.. code-block:: python
+
+   x = 5
+   y = "Hello, World!"
+
+Python Data Types
+------------------
+
+Python has five standard data types:
+
+1. Numbers
+2. String
+3. List
+4. Tuple
+5. Dictionary
+
+Python Numbers
+----------------
+
+Python supports four different numerical types:
+
+- int (signed integers like 10, 2, 29)
+- float (floating point real values like -21.9, 0.1, 3.14)
+- complex (complex numbers like 3.14j, 9.322e-36j)
+
+Python Strings
+----------------
+
+Strings in python are identified as a contiguous set of characters represented in the quotation marks. Python allows for either pairs of single or double quotes.
+
+Python Lists
+--------------
+
+Lists are used to store multiple items in a single variable. Lists are one of 4 built-in data types in Python used to store collections of data, the other 3 are Tuple, Set, and Dictionary, all with different qualities and usage.
+
+Python Tuples
+----------------
+
+A tuple is a collection of objects which ordered and immutable. Tuples are sequences, just like lists. The differences between tuples and lists are, the tuples cannot be changed unlike lists and tuples use parentheses, whereas lists use square brackets.
+
+Python Dictionaries
+--------------------
+
+Python's dictionaries are kind of hash-table type. They work like associative arrays or hashes which are almost similar to arrays except that you can use strings as indices.
+
+Python If...Else
+------------------
+
+Python programming language assumes any non-zero and non-null values as true, and if it is either zero or null, then it is assumed as false value.
+
+Python While Loop
+-------------------
+
+A while loop statement in Python programming language repeatedly executes a target statement as long as a given condition is true.
+
+Python For Loop
+-----------------
+
+A for loop is used for iterating over a sequence which can be either a list, a tuple, a dictionary, a set, or a string.
+
+Python Functions
+------------------
+
+A function is a block of organized, reusable code that is used to perform a single related action. Functions provide better modularity for your application and a high degree of code reusing.
+
+Python Modules
+-----------------
+
+A module is a file containing a set of functions you want to include in your application.
+
+Python Packages
+------------------
+
+A package is a namespace that contains multiple related modules.
+
+Python File Methods
+---------------------
+
+Python's file methods are:
+
+- `open()`: Open a file
+- `close()`: Close an open file
+- `read()`: Read from a file
+- `write()`: Write to a file
+- `seek()`: Change the file position
+- `tell()`: Tell the current file position
+- `readline()`: Read only one line from the file
+- `readlines()`: Read all lines from the file
+- `xreadlines()`: Read lines from the file
+
+Python Exception Handling
+---------------------------
+
+Python uses try/except block to handle the exceptions.
+
+Python Classes/Objects
+-------------------------
+
+Python is an object-oriented programming language. Almost everything in Python is an object, with its properties and methods.
+
+Python Inheritance
+----------------------
+
+Inheritance is a way of creating a new class using the properties of an existing class.
+
+Python Iterators
+--------------------
+
+An iterator is an object that contains a countable number of values.
+
+Python Generators
+--------------------
+
+A generator is a special type of iterator that lazily produces values, i.e., it produces a value each time it is iterated over.
+
+Python Decorators
+--------------------
+
+A decorator is a design pattern in Python that allows a user to add new functionality to an existing object without modifying its structure.
+
+Python Modules
+--------------------
+
+A module is a file containing a set of functions you want to include in your application.
+
+Python Packages
+--------------------
+
+A package is a namespace that contains multiple related modules.
+
+Python Standard Library
+--------------------------
+
+Python comes with a large standard library that includes modules for tasks such as string manipulation, file I/O, and even interfaces to operating system primitives.
+
+Python PIP
+-------------
+
+PIP is a package manager for Python. It's used to install and manage additional packages that aren't part of the Python standard library.
+
+Python IDEs
+--------------
+
+There are several IDEs available for Python, including:
+
+- PyCharm
+- Jupyter Notebook
+- Spyder
+- Visual Studio Code
+- Atom
+- Sublime Text
+
+Python Tools
+--------------
+
+Python has a number of tools and libraries that can be used to develop and test Python applications, including:
+
+- PyTest
+- unittest
+- Mock
+- Coverage
+- PyLint
+- PyFlakes
+- PyChecker
+
+Python Frameworks
+-------------------
+
+Python has several frameworks that can be used to develop web applications, including:
+
+- Django
+- Flask
+- Pyramid
+- Web2py
+- Bottle
+- Pyramid
+
+Python for Data Science
+-------------------------
+
+Python is also widely used in data science, with libraries such as:
+
+- NumPy
+- Pandas
+- Matplotlib
+- SciPy
+- Scikit-learn
+- TensorFlow
+- PyTorch
+
+Python for Web Development
+-----------------------------
+
+Python is used for web development, with frameworks such as:
+
+- Django
+- Flask
+- Pyramid
+- Web2py
+- Bottle
+- Pyramid
+
+Python for Machine Learning
+------------------------------
+
+Python is used for machine learning, with libraries such as:
+
+- NumPy
+- Pandas
+- Matplotlib
+- SciPy
+- Scikit-learn
+- TensorFlow
+- PyTorch
+
+Python for Automation
+------------------------
+
+Python is used for automation, with libraries such as:
+
+- PyAutoGUI
+- AutoIt
+- pywinauto
+- pyautogui
+
+Python for GUI Development
+------------------------------
+
+Python is used for GUI development, with libraries such as:
+
+- Tkinter
+- PyQt
+- PyGTK
+- wxPython
+- Kivy
+
+Python for Networking
+------------------------
+
+Python is used for networking, with libraries such as:
+
+- socket
+- select
+- asyncio
+- aiohttp
+- paramiko
+
+Python for Game Development
+-------------------------------
+
+Python is used for game development, with libraries such as:
+
+- Pygame
+- Pyglet
+- Panda3D
+- Cocos2d
+- Kivy
+
+Python for Mobile App Development
+---------------------------------------
+
+Python is used for mobile app development, with libraries such as:
+
+- Kivy
+- BeeWare
+- PyQt
+- PyGTK
+- PyQt
+
+Python for Web Scraping
+-------------------------------
+
+Python is used for web scraping, with libraries such as:
+
+- BeautifulSoup
+- Scrapy
+- Selenium
+- Mechanize
+
+Python for Data Visualization
+----------------------------------
+
+Python is used for data visualization, with libraries such as:
+
+- Matplotlib
+- Seaborn
+- Plotly
+- Bokeh
+- PyQtGraph
+
+Python for Image Processing
+----------------------------------
+
+Python is used for image processing, with libraries such as:
+
+- PIL
+- OpenCV
+- scikit-image
+- scikit-learn
+- scikit-learn
+
+Python for Audio Processing
+----------------------------------
+
+Python is used for audio processing, with libraries such as:
+
+- PyDub
+- Librosa
+- Music21
+- PyAudio
+- PyDub
+
+Python for Video Processing
+----------------------------------
+
+Python is used for video processing, with libraries such as:
+
+- OpenCV
+- moviepy
+- imageio
+- av
+- imageio-ffmpeg
+
+Python for Natural Language Processing
+------------------------------------------
+
+Python is used for natural language processing, with libraries such as:
+
+- NLTK
+- SpaCy
+- TextBlob
+- Gensim
+- Pattern
+
+Python for Database Access
+----------------------------------
+
+Python is used for database access, with libraries such as:
+
+- sqlite3
+- SQLAlchemy
+- PyMySQL
+- MySQLdb
+- psycopg2
+- pyodbc
+
+Python for Network Programming
+-----------------------------------
+
+Python is used for network programming, with libraries such as:
+
+- socket
+- select
+- asyncio
+- aiohttp
+- paramiko
+
+Python for Parallel Programming
+-------------------------------------
+
+Python is used for parallel programming, with libraries such as:
+
+- multiprocessing
+- concurrent.futures
+- joblib
+- dask
+- ray
+
+Python for Scientific Computing
+-------------------------------------
+
+Python is used for scientific computing, with libraries such as:
+
+- NumPy
+- SciPy
+- Matplotlib
+- Pandas
+- Scikit-learn
+- TensorFlow
+- PyTorch
+
+Python for Machine Learning
+-------------------------------------
+
+Python is used for machine learning, with libraries such as:
+
+- NumPy
+- SciPy
+- Matplotlib
+- Pandas
+- Scikit-learn
+- TensorFlow
+- PyTorch
+
+Python for Deep Learning
+-------------------------------------
+
+Python is used for deep learning, with libraries such as:
+
+- TensorFlow
+- Keras
+- PyTorch
+- Theano
+- Caffe
+
+Python for Data Analysis
+-------------------------------------
+
+Python is used for data analysis, with libraries such as:
+
+- NumPy
+- Pandas
+- Matplotlib
+- SciPy
+- Scikit-learn
+- TensorFlow
+- PyTorch
+
+Python for Web Scraping
+-------------------------------------
+
+Python is used for web scraping, with libraries such as:
+
+- BeautifulSoup
+- Scrapy
+- Selenium
+- Mechanize
+
+Python for Data Visualization
+-------------------------------------
+
+Python is used for data visualization, with libraries such as:
+
+- Matplotlib
+- Seaborn
+- Plotly
+- Bokeh
+- PyQtGraph
+
+Python for Image Processing
+-------------------------------------
+
+Python is used for image processing, with libraries such as:
+
+- PIL
+- OpenCV
+- scikit-image
+-

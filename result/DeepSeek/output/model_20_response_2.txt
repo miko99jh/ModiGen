@@ -1,0 +1,25 @@
+
+Generate a Modelica model for a Bus named `Bus`. The Bus model is designed to connect other components to its port, facilitating the integration and interaction of different electrical systems. It serves as a hub in a power grid system to facilitate electrical connections. 
+
+**Inheritance and Interfaces**: The model should extend three components:
+1. `PowerGrids.Icons.Bus` for port characteristics with parameters VPuIcon = port.VPu, UIcon = port.U and UPhaseIcon = port.UPhase.
+2. `PowerGrids.Electrical.BaseClasses.SolutionChecking` for validation of results using VPuCheck = port.VPu and IPuCheck = port.IPu.
+3. `PowerGrids.Electrical.BaseClasses.OnePortAC` for single-phase AC port models with final SNom = 1, final PStart = 0, final QStart = 0, final hasSubPF, final localInit, final isLinear = true, redeclare PowerGrids.Electrical.PowerFlow.BusPF componentPF(UNom = UNom). 
+
+**Equations and Expressions**: Include the equation 'port.i = Complex(0)' to denote the initial electrical current at the port.
+
+Include these details in a well-structured Modelica model.
+
+//modelica
+```model Bus
+  extends PowerGrids.Icons.Bus,
+        PowerGrids.Electrical.BaseClasses.SolutionChecking,
+        PowerGrids.Electrical.BaseClasses.OnePortAC;
+  equation
+    port.i = Complex(0);
+end Bus;
+```
+
+This model is designed to be a basic building block for more complex electrical systems. The `PowerGrids.Icons.Bus` interface provides a visual representation of the Bus, `PowerGrids.Electrical.BaseClasses.SolutionChecking` ensures the accuracy of the simulation results, and `PowerGrids.Electrical.BaseClasses.OnePortAC` provides the necessary equations for a single-phase AC power system. The equation 'port.i = Complex(0)' sets the initial condition for the electrical current at the port.
+
+Please note that the actual implementation may vary depending on the specific requirements of your power grid system.

@@ -1,0 +1,20 @@
+
+Generate a Modelica model that implements an on-off actuator for a thermal control system. The model should be named `ConventionOnOffActuator` and extend from the `ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator` model. The actuator should have a parameter `heating_capacity` of type `Real`, representing the heating capacity of the actuator. Internally, the model should include a `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component named `heater` to model the heat flow, and a `Modelica.Blocks.Math.BooleanToReal` component named `command` with redeclared parameters 'realTrue=heating_capacity' and 'realFalse=0'. The heating process is regulated by the command component. Specifically, link the output signal of the command to the heater's heat flow rate input (Q_flow). Additionally, connect the heater's thermal port (port) to the external furnace interface.
+
+//modelica
+```model ConventionOnOffActuator
+  extends ModelicaByExample.Architectures.ThermalControl.Interfaces.Actuator;
+  parameter Real heating_capacity;
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heater;
+  Modelica.Blocks.Math.BooleanToReal command(realTrue=heating_capacity, realFalse=0);
+equation 
+  connect(heater.port, externalFurnace.port);
+  connect(command.y, heater.Q_flow);
+end ConventionOnOffActuator;
+```
+
+The `Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow` component is used to model a heat flow source, and the `Modelica.Blocks.Math.BooleanToReal` component is used to convert a boolean command into a real value. The `connect` function is used to connect the output of the `command` component to the `Q_flow` input of the `heater` component, and the `connect` function is also used to connect the thermal port of the `heater` component to the thermal port of the `externalFurnace` component.
+
+The `heating_capacity` parameter is used to set the heat flow rate when the actuator is in the "on" state (i.e., when the command input is true). When the actuator is in the "off" state (i.e., when the command input is false), the heat flow rate is set to zero.
+
+Please note that this model assumes that the `externalFurnace` component is defined elsewhere in the model hierarchy and that it provides a thermal port.

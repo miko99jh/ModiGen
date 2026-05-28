@@ -1,0 +1,37 @@
+
+Generate a Modelica block named `FractionalDelay` for a FractionalDelay component that delays the incoming clocked input signal by a fractional multiple of the sample period. This model is typically used in systems requiring fine-grained control of signal processing, such as digital communication or signal filtering. The model extends `Modelica.Clocked.IntegerSignals.Interfaces.PartialClockedSISO`, adhering to a single input, single output methodology within clocked behavior constraints.
+
+Inputs:
+- 'shift(min=0)' (Integer parameter, default value: 0): Specifies the delay as a product of the sample period (interval()) and the ratio shift/resolution.
+- 'resolution(min=1)' (Integer parameter, default value: 1): Represents the time quantization resolution of the sample period.
+
+The model contains the following protected variables:
+- 'n = div(shift,resolution)', Integer;
+- 'u_buffer[n+1](each start=0)', Integer, representing the previous values of the inputs, u_last[1] = u, u_last[2] = previous(u_last[1]);
+- 'first(start=true)', Boolean, Used to identify the first clock tick.
+
+Equation Handling:
+- Flag Update: Reset 'first' to false immediately upon execution to ensure it only stays true during the first tick.
+- Buffer Management: At each tick, if it's the initial step (checked via 'previous(first)'), fill the entire 'u_buffer' with the current input 'u'. Otherwise, shift the buffer: prepend the current input 'u' and drop the oldest value using 'previous(u_buffer)'.
+- Output Calculation: Use the 'shiftSample' operator to calculate the final output y based on the oldest buffer value, the 'shift', and the 'resolution'.
+
+//modelica
+```block FractionalDelay extends Modelica.Clocked.IntegerSignals.Interfaces.PartialClockedSISO
+  parameter Integer shift(min=0) = 0 "Delay as a product of the sample period and the ratio shift/resolution";
+  parameter Integer resolution(min=1) = 1 "Time quantization resolution of the sample period";
+  protected 
+  Integer n = div(shift,resolution) if shift > 0 else 0;
+  Integer u_buffer[n+1](each start=0) if n > 0;
+  Boolean first(start=true);
+  equation 
+  first = false;
+  if first then 
+    u_buffer = fill(u, n+1);
+  else 
+    u_buffer = {u} ++ u_buffer[1:n];
+  end if;
+  y = shiftSample(u_buffer[1], shift, resolution);
+end FractionalDelay;
+```
+
+This model can be used in a larger model to introduce a fractional delay in a signal processing system. The delay is controlled by the'shift' and'resolution' parameters, allowing for precise control over the delay amount.

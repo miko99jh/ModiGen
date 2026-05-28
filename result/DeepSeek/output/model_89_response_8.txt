@@ -1,0 +1,37 @@
+
+Please use modelica to help me implement a model named `NewtonCoolingDynamic`: Simulate the temperature change of a water under Newton's law of cooling. Among them, the initial temperature of water (`T0`) is 100 °C, the ambient temperature (`T_inf`) is 25 °C, the water meter area (`A`) is 1 square meter, the mass (`m`) is 1kg, the specific heat (`c_p`) is 4200 J/(kg.°C), and the convection cooling coefficient (`h`) is 767 W/(m2.°C). Use an initial equation to set `T` to `T0`. 20 seconds after the start of the simulation, the ambient temperature suddenly dropped to 0°C.
+
+//modelica
+```model NewtonCoolingDynamic
+  parameter Real T0(unit="degC") = 100;
+  parameter Real T_inf(unit="degC") = 25;
+  parameter Real A(unit="m^2") = 1;
+  parameter Real m(unit="kg") = 1;
+  parameter Real c_p(unit="J/(kg.degC)") = 4200;
+  parameter Real h(unit="W/(m^2.degC)") = 767;
+  Real T(start=T0, unit="degC");
+  Real Q_dot(unit="W");
+  Real Q_dot_conv(unit="W");
+  Real Q_dot_rad(unit="W");
+initial equation
+  T = T0;
+equation
+  der(T) = (Q_dot - Q_dot_conv)/ (m*c_p);
+  Q_dot_conv = h*A*(T_inf - T);
+  Q_dot = Q_dot_conv;
+  when time = 20 "s" then
+    T_inf = 0 "degC";
+end NewtonCoolingDynamic;
+```
+
+This model is a simple model of Newton's law of cooling. The heat loss from the water is calculated by the convection coefficient `h` and the difference in temperature between the water and the ambient temperature `T_inf - T`. The heat loss is equal to the heat gained, so `Q_dot_conv = Q_dot`. The temperature change is calculated by the heat loss and the specific heat of the water `m*c_p`.
+
+Please note that the model assumes that the water loses heat only through convection and that there is no heat gain or loss through radiation. Also, the model does not account for the heat capacity of the container holding the water.
+
+The initial temperature of the water is set to 100 °C, and the ambient temperature is set to 25 °C. The water meter area is 1 square meter, the mass is 1kg, the specific heat is 4200 J/(kg.°C), and the convection cooling coefficient is 767 W/(m2.°C).
+
+The ambient temperature drops to 0 °C 20 seconds after the start of the simulation.
+
+The model is implemented in Modelica, which is a hardware independent modeling language. The model can be used to simulate the temperature change of the water under the given conditions.
+
+Please let me know if you need any further assistance.

@@ -1,0 +1,26 @@
+Certainly! Below is a Modelica block model that assigns a clock to a clocked Integer signal named `AssignClock`. It includes the specified components and uses a `when` clause to govern the assignment of the input to the output based on the clock signal.
+
+```modelica
+block AssignClock
+  // Define the clocked Integer input signal
+  Modelica.Blocks.Interfaces.IntegerInput u;
+  
+  // Define the clocked Integer output signal
+  Modelica.Blocks.Interfaces.IntegerOutput y;
+  
+  // Define the clock input for the model
+  Modelica.Clocked.ClockSignals.Interfaces.ClockInput clock;
+  
+equation
+  // Use a when clause triggered by the clock signal to assign the input to the output
+  when Clock(clock) then
+    y = u;
+  end when;
+end AssignClock;
+```
+
+In this model:
+- `IntegerInput u` is the connector for the clocked Integer input signal.
+- `IntegerOutput y` is the connector for the clocked Integer output signal.
+- `ClockInput clock` is the connector for the clock input signal.
+- The `when Clock(clock) then` clause ensures that the assignment `y = u` occurs only when the clock signal is active, effectively synchronizing the input and output signals with the clock.

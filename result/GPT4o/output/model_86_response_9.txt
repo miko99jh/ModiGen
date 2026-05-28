@@ -1,0 +1,60 @@
+To implement a `BouncingBall` model in Modelica, you can follow the structure below. This model simulates a ball that falls under the influence of gravity and bounces upon hitting the ground. The coefficient of restitution is used to model the energy loss during the bounce.
+
+```modelica
+model BouncingBall
+  // Parameters
+  parameter Real radius = 0.1 "Radius of the ball in meters";
+  parameter Real e = 0.9 "Coefficient of restitution";
+  parameter Real g = 9.81 "Acceleration due to gravity in m/s^2";
+
+  // State variables
+  Real h(start = 1) "Height of the ball in meters";
+  Real v(start = 0) "Velocity of the ball in m/s";
+
+  // Event to detect collision with the ground
+  Boolean isOnGround;
+
+equation
+  // Differential equation for velocity
+  der(v) = if isOnGround then 0 else -g;
+
+  // Differential equation for height
+  der(h) = v;
+
+  // Event condition for collision with the ground
+  isOnGround = h <= radius and v <= 0;
+
+  // When the ball hits the ground, reverse and reduce the velocity
+  when isOnGround then
+    reinit(v, -e * v);
+    reinit(h, radius);
+  end when;
+
+  // Ensure the height does not go below the radius
+  assert(h >= radius, "Ball has penetrated the ground!");
+
+end BouncingBall;
+```
+
+### Explanation:
+- **Parameters**: 
+  - `radius`: The radius of the ball.
+  - `e`: The coefficient of restitution, which determines how much velocity is retained after a bounce.
+  - `g`: The gravitational acceleration.
+
+- **State Variables**:
+  - `h`: The height of the ball.
+  - `v`: The velocity of the ball.
+
+- **Equations**:
+  - The differential equation for `v` accounts for gravity when the ball is not on the ground.
+  - The differential equation for `h` is simply the velocity.
+  - The `isOnGround` condition checks if the ball is touching the ground and moving downwards.
+
+- **Events**:
+  - When the ball hits the ground (`isOnGround` is true), the velocity is reversed and reduced by the coefficient of restitution, and the height is reset to the radius to simulate a bounce.
+
+- **Assertions**:
+  - An assertion is used to ensure the ball does not penetrate the ground.
+
+This model should simulate the bouncing behavior of the ball, taking into account the energy loss during each bounce.

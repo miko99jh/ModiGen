@@ -1,0 +1,33 @@
+
+Create a Modelica model named `SignalCurrent` to serve as a polyphase signal current source. The model should include the following components and details:
+1. Components:
+- Parameter for the number of phases: parameter Integer m(min=1) = 3.
+- Voltage drops between the two plugs: Modelica.Units.SI.Voltage v[m] = plug_p.pin.v - plug_n.pin.v .
+- Positive polyphase plug: Modelica.Electrical.Polyphase.Interfaces.PositivePlug plug_p(final m=m).
+- Negative polyphase plug: Modelica.Electrical.Polyphase.Interfaces.NegativePlug plug_n(final m=m).
+- Real input for the current: Modelica.Blocks.Interfaces.RealInput i[m] with each unit="A".
+- Array of signal current sources: Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent[m].
+2. Equations:
+ The model should include the following connections:
+-  Signal Routing: Route each element of the external input signal vector 'i' to the corresponding control input  ('i') of the 'signalCurrent' array.
+-  Electrical Connection: Interpose the current source array between the plugs such that the positive terminals ('p') of the sources connect to the internal pins of the positive plug ('plug_p.pin'), and the negative terminals ('n') connect to the internal pins of the negative plug ('plug_n.pin').
+
+Please ensure that the model is syntactically correct and adheres to the Modelica language standard.
+
+//modelica
+```model SignalCurrent
+  parameter Integer m(min=1) = 3;
+  Modelica.Units.SI.Voltage v[m] = plug_p.pin.v - plug_n.pin.v;
+  Modelica.Electrical.Polyphase.Interfaces.PositivePlug plug_p(final m=m);
+  Modelical.Electrical.Polyphase.Interfaces.NegativePlug plug_n(final m=m);
+  Modelica.Blocks.Interfaces.RealInput i[m] "Current" each unit="A";
+  Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent[m](i=i);
+equation
+  for j in 1:m loop
+    signalCurrent[j].p = plug_p.pin[j];
+    signalCurrent[j].n = plug_n.pin[j];
+  end for;
+end SignalCurrent;
+```
+
+The code provided above is a Modelica model named `SignalCurrent`. It includes a positive polyphase plug (`plug_p`), a negative polyphase plug (`plug_n`), and an array of signal current sources (`signalCurrent`). The external input signal vector `i` is routed to the corresponding control inputs of the `signalCurrent` array. The current sources are interposed between the plugs such that the positive terminals connect to the internal pins of the positive plug and the negative terminals connect to the internal pins of the negative plug.
