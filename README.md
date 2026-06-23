@@ -66,7 +66,7 @@ The remaining Modelica dependency libraries used by the artifact are provided un
 
 ---
 
-🚀 Getting Started
+### 🚀 Getting Started
 
 ▶ **Install dependencies**
 
