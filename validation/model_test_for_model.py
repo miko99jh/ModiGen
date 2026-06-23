@@ -3,6 +3,10 @@ import shutil
 from OMPython import OMCSessionZMQ
 import re
 from tqdm import tqdm
+from pathlib import Path
+
+def to_omc_path(path):
+    return Path(path).resolve().as_posix()
 
 allowed_restrictions = {'class', 'block', 'model'}
 
@@ -100,6 +104,7 @@ def load_libraries(lib_files, lib_files_dir, version, omc):
     load1 = omc.sendExpression(f'loadFile("D:/Program/OpenModelica1.18.1-64bit/lib/omlibrary/Modelica {version}/package.mo")')
     for i in lib_files:
         lib_file_name = os.path.join(lib_files_dir, i)
+        lib_file_name = to_omc_path(lib_file_name)
         load_lib = omc.sendExpression(f'loadFile("{lib_file_name}")')
         last_folder = os.path.basename(os.path.dirname(lib_file_name))
         print(f"loading {last_folder} ... {load_lib}")

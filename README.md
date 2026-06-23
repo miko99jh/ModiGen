@@ -48,6 +48,24 @@ The pipeline includes the following core components:
 
 ---
 
+### ⚙️ OpenModelica Library Configuration
+
+Before running the evaluation pipeline, please make sure that the Modelica Standard Library (MSL) path in `validation/model_test_for_model.py` matches your local OpenModelica installation.
+
+In our local environment, the MSL is loaded as follows:
+
+```python
+load1 = omc.sendExpression(
+    f'loadFile("D:/Program/OpenModelica1.18.1-64bit/lib/omlibrary/Modelica {version}/package.mo")'
+)
+```
+
+If OpenModelica is installed in a different location, please update this path accordingly.
+
+The remaining Modelica dependency libraries used by the artifact are provided under `validation/library-OM/`.
+
+---
+
 🚀 Getting Started
 
 ▶ **Install dependencies**
@@ -55,11 +73,11 @@ The pipeline includes the following core components:
 ```bash
 pip install -r requirements.txt
 ```
-Ensure OpenModelica (omc) is installed and available in your system PATH.
+Ensure OpenModelica (`omc`) is installed and available in your system `PATH`.
 
 ▶ **Prepare model checkpoints and data**
 
-* Place your HuggingFace-compatible LLM (e.g., Llama-3.1, Qwen-2.5-Coder) in the local directory and update the path in gen_model.py.
+* Place your HuggingFace-compatible LLM (e.g., Llama-3.1, Qwen-2.5-Coder) in the local directory and update the path in `gen_model.py`.
 
 * Ensure the benchmark datasets are available under `json_files/`.
 

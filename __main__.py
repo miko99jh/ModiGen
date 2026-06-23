@@ -61,7 +61,7 @@ def main():
     current_folder = os.path.dirname(os.path.abspath(__file__))
     
     # Configuration
-    model_name = "GPT4o" # Adjust based on your current experiment
+    model_name = "GPT4o_test" # Adjust based on your current experiment
     input_folder = os.path.join(current_folder, f"result/{model_name}/output")
     output_folder = os.path.join(current_folder, f"result/{model_name}/model")
     simu_base_dir = os.path.join(current_folder, f"result/{model_name}/simulation")
@@ -79,7 +79,7 @@ def main():
     # =============================================================================================
     # 2. Simulation and Verification (OMC Session)
     # =============================================================================================
-    lib_files_dir = os.path.join(current_folder, "library-OM")
+    lib_files_dir = os.path.join(current_folder, "validation/library-OM")
     lib_files_json = os.path.join(current_folder, "json_files/libraries.json")
     with open(lib_files_json, 'r') as file:
         lib_files_data = json.load(file)
@@ -175,7 +175,13 @@ def main():
     MSE_THRESHOLD = 1e-3
     results_json_path = output_file
 
-    for n in range(1, 127):
+    model_numbers = sorted(
+        int(match.group(1))
+        for key in total_txt_files.keys()
+        if (match := re.fullmatch(r"model_(\d+)", key))
+    )
+
+    for n in model_numbers:
         passed_count = 0
         failed_count = 0
         print(f"\n\033[32mmodel_{n}\033[0m")

@@ -1,0 +1,71 @@
+Certainly! Below is a Modelica model named `I` for an integrator with tracking mode and limiter functionality. This model extends `IndustrialControlSystems.Controllers.Interfaces.Block` and includes the specified features and parameters.
+
+```modelica
+model I
+  extends IndustrialControlSystems.Controllers.Interfaces.Block;
+
+  parameter Real T = 1 "Integral time";
+  parameter Real y_start = 0 "State initial value";
+  parameter Boolean AntiWindup = true "Flag for anti-windup functionality";
+  parameter Real eps = 1e-6 "Small positive number for numerical stability";
+  parameter Real Ymin = -1e10 "Minimum output limit";
+  parameter Real Ymax = 1e10 "Maximum output limit";
+
+  input Real u "Input signal";
+  input Boolean ts "Tracking signal active";
+  input Real tr "Tracking reference";
+
+  output Real y "Output signal";
+
+protected 
+  Real Y(start = y_start) "State variable";
+
+initial equation
+  y = y_start;
+
+equation
+  if AntiWindup then
+    if not ts then
+      der(Y) = 1/T * u + 1/eps * (y - Y);
+    else
+      der(Y) = 1/eps * (y - Y);
+    end if;
+    y = max(Ymin, min(Ymax, tr));
+  else
+    Y = 0;
+    if not ts then
+      T * der(y) = u;
+    else
+      eps * der(y) = (-y + tr);
+    end if;
+  end if;
+end I;
+```
+
+### Explanation:
+- **Parameters:**
+  - `T`: Integral time constant.
+  - `y_start`: Initial value of the state.
+  - `AntiWindup`: Boolean flag to enable or disable anti-windup.
+  - `eps`: A small positive number to ensure numerical stability.
+  - `Ymin` and `Ymax`: Limits for the output signal `y`.
+
+- **Inputs:**
+  - `u`: The input signal to the integrator.
+  - `ts`: A boolean signal indicating if tracking is active.
+  - `tr`: The tracking reference value.
+
+- **Outputs:**
+  - `y`: The output signal of the integrator.
+
+- **Protected Variable:**
+  - `Y`: The state variable of the integrator.
+
+- **Initial Equation:**
+  - Sets the initial value of `y` to `y_start`.
+
+- **Equations:**
+  - If `AntiWindup` is true and `ts` is not active, the derivative of `Y` is computed using the input `u` and the difference between `y` and `Y`.
+  - If `AntiWindup` is true and `ts` is active, the derivative of `Y` is computed based on the difference between `y` and `Y`.
+  - The output `y` is limited between `Ymin` and `Ymax`.
+  - If `AntiWindup` is false, `Y` is set to 0, and the derivative of `y` is computed based on whether `ts` is active or not.
